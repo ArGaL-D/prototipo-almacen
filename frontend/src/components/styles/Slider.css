@@ -1,0 +1,17 @@
+.slider{
+    width : 100vw;
+    height: 100vh;
+
+    background: lightslategrey;
+}
+
+.slider header{
+    width : 100vw;
+    height: 4em;
+
+    display: flex;
+    align-items: center;
+    justify-content: right;
+
+    background: lightyellow;
+}

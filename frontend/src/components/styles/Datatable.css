@@ -1,0 +1,138 @@
+.table-equipo{
+    width : 100%;
+    
+    text-align: center;
+    font-size: clamp(13px, 2vw, .8rem);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 800;
+    
+    
+    border-collapse: collapse;
+
+    position: relative;
+    background: linen;
+}
+
+.table-equipo th{
+    color:lightskyblue;
+    background: #20232a; 
+    
+    padding: .6em;
+    font-size: .9rem;
+    text-transform: uppercase;    
+
+    position: sticky;
+    top: 0em;    
+}
+
+/* FILAS - TABLA */
+.table-equipo tr{
+    background: #ebedef; 
+    transition: 400ms ease-in-out;       
+}
+.table-equipo tr:nth-child(even){
+    background: #c7c5c5;
+    box-shadow: 0px 1px 5px 0px rgba(167, 167, 167, 0.55);
+}
+
+/* FILAS - TABLA - ANIMACIONES*/
+.table-equipo tr:hover{
+    background: #20232a;
+    color: whitesmoke;
+}
+
+.table-equipo tr:hover .btn-qr,
+.table-equipo tr:hover .btn-edit,
+.table-equipo tr:hover .btn-del{
+    border: 1px solid lightskyblue;
+}
+
+.table-equipo tr td{
+    padding: 1em;
+    
+}
+
+.btn-qr{
+    display: flex;
+    justify-content: center;
+    padding: .2em .6em .3em .6em;
+}
+
+.btn-qr,
+.btn-del,
+.btn-edit{
+    width : 100%;
+    border: 1px solid #1B2631;
+    border-radius: 5px;
+    
+    color: whitesmoke;
+    background:#20232a;
+
+    font-size: clamp(12px, 2vw,1.2rem);
+}
+
+.btn-qr:active,
+.btn-del:active,
+.btn-edit:active{
+    color: lightskyblue;
+}
+
+/* TOOLTIP */
+.td-descrip{
+    width: 100%;
+    height: 2.2em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+tbody tr:nth-child(even) .td-descrip:hover .tooltipText{
+    transform: translateX(-70%);
+    transition-delay: 1s;
+    visibility: visible;    
+}
+tbody tr:nth-child(odd) .td-descrip:hover .tooltipText{
+    transform: translateX(70%);
+    transition-delay: .5s;
+    visibility: visible;    
+}
+/* ICON */
+.td-descrip:hover svg{
+    color: lightskyblue;    
+}
+.td-descrip svg{
+    font-size: 1rem;
+}
+.tooltipText{
+    width : 15em;
+    height: 5em;
+    position: absolute;
+    
+    transition: 400ms ease-in;    
+    background: #20232a;
+    box-shadow: -1px 0px 5px 0px rgba(0,0,0,0.75);
+    border: 1px solid lightskyblue;
+    visibility: hidden;
+
+    overflow: auto;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    
+}
+.tooltipText p{
+    padding: 0 1em 0 1em;
+    color: whitesmoke;
+    margin: auto;
+}
+
+
+
+@media screen and (orientation: landscape) and (max-height: 450px){
+    .table-equipo{
+        font-size: 12px;
+    }
+}

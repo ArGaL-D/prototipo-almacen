@@ -1,0 +1,48 @@
+.login{
+    width : 100vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /*background: #ebedef;*/
+    background: linear-gradient(225deg, rgba(133,146,158,1) 7%, rgba(52,73,94,1) 53%);
+}
+
+.login form{
+    width : 90%;
+    height: 40%;    
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    /*background: #ebedef; 
+    box-shadow: 0px 0px 8px -1px rgba(29, 29, 29, 0.75);*/
+}
+
+.login .warning{
+    color: lightskyblue;    
+
+    font-family: 'Roboto',sans-serif;    
+    font-weight: 600;
+
+    display: flex;
+    justify-content: center;
+}
+
+/* FOR TABLETS */
+@media screen and (min-width: 600px) and (max-width: 1100px) {
+    .login form{
+        width: 70%;
+    }
+}
+
+/* FOR DESKTOPS */
+@media screen and (min-width:1100px){
+    .login form{
+        width: 30%;
+    }
+}
+

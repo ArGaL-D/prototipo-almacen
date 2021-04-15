@@ -1,0 +1,22 @@
+.page{
+    width : 100vw;
+    height: 100vh;
+
+    position: relative;
+    background: #ebedef;
+    
+
+    display: flex;
+    flex-direction: column;
+}
+
+.page .container{
+    height: calc(100vh - 4em);
+
+    display: flex;
+}
+
+.container .option{
+    background: lightpink;
+    width: 50%;
+}

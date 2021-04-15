@@ -1,0 +1,54 @@
+.boxTooltip{
+    width : 7em;
+    height: .5em;
+    
+    border-radius: 0 2px 2px 0px;
+    
+    padding: 10px 10px 10px 0px;
+    /* Ocultar el tooltip */
+    position: absolute;
+    z-index : -1;
+    left: -100%;
+    top: 30%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+
+    transition: 300ms ease-in-out;
+    /*transition-delay: .5s;*/
+    /* visibility: hidden; */
+}
+ /* Animación del toolTip - mover hacia la derecha */
+li:hover .boxTooltip{
+    transform: translateX(133%);
+    background: #20232a;
+}
+
+.boxTooltip span{
+    color: #F3F2F2;
+    
+    font-family: sans-serif;
+    font-size: 13px;    
+}
+
+/* 
+   For Desktops - Only 
+   when it resizes the window 
+*/
+
+@media only screen and (max-height: 530px){
+    .boxTooltip{
+        top:25%;
+        padding: 5px;
+    }
+}
+/* 
+    For mobiles 
+    don't show the tooltips
+*/
+@media only screen and (orientation: portrait) and (max-width: 450px){
+    .boxTooltip{
+        visibility: hidden;
+    }
+} 

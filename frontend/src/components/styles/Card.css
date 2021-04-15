@@ -1,0 +1,69 @@
+.card{
+    width : 90%;
+    height: 100%;
+        
+    background: #20232a;
+
+    font-family: 'Roboto', sans-serif;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+
+    transition: 200ms ease-in-out;
+}
+
+.card .title{
+    margin: 1em;
+}
+
+.card .title span{
+    color: whitesmoke;
+    font-weight: 800;    
+}
+
+.card .text p{
+    color: whitesmoke;
+    font-size: .9rem;
+    text-align: center;
+}
+
+.card .icon{
+    color: lightblue;
+    font-size: 3.5rem;
+    transition: 400ms ease-in-out;
+}
+
+
+/* BUTTON */
+.card .link button{
+    color: lightskyblue;
+    background: transparent;
+
+    cursor: pointer;
+    margin: .5em 0 1em 0;
+    border: 1px solid lightskyblue;
+    border-radius: 3px;
+    outline-style: none;
+    
+    padding: .5em 1.5em .5em 1.5em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+
+    transition: 100ms ease-in;
+}
+
+/* ANIMACIONES */
+
+.card .link button:active{
+    color: #20232a;
+    background: rgb(117, 184, 226);
+}
+
+.card:hover{  
+    box-shadow: 0px 0px 8px -1px rgb(21, 189, 255);
+}
+.card:hover .icon{  
+    color: rgb(93, 176, 228);
+}

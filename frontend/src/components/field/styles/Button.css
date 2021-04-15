@@ -1,0 +1,27 @@
+/* BUTTON */
+.generic-btn button{
+    width : 100%;
+    height: clamp(3em, 5vw, 3.5em);
+
+    color: lightskyblue;
+    background: #20232a;
+
+    border: 1px solid lightskyblue;
+    border-radius: 3px;
+    outline-style: none;
+    
+    padding: .3em 1.5em .3em 1.5em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+
+    transition: 100ms ease-in;
+}
+
+.generic-btn button:active{
+    color: #20232a;
+    background: lightskyblue;
+}
+.generic-btn button:hover{  
+
+    box-shadow: 0px 0px 8px -1px rgba(81, 202, 250, 0.75);
+}

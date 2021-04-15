@@ -1,0 +1,74 @@
+.input_dark{
+    width : 99.5%;
+    height: clamp(2em, 2vw, 3.5em);
+
+    display : flex;
+    position: relative;
+
+    border: 2px solid #747272;
+    border-radius: 3px;
+    transition: 500ms ease-in;
+
+    color: whitesmoke;
+}
+
+/* ICON */
+.input_dark .icon{
+    width: 15%;
+    color:rgb(133, 171, 221);
+    
+    background: transparent;
+    background: #20232a;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.2rem;
+}
+
+/* TITLE */
+.input_dark .title{    
+    position: absolute;
+    left: .5em;    
+    top : 27%;
+
+    transition: 300ms ease-in-out;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color:rgb(133, 171, 221);
+}
+
+/* INPUT-TAg*/
+.input_dark input{
+    width: 85%;
+    color: #20232a;
+    z-index: 10;
+    
+    outline: none;
+    border : none;
+
+    padding-left: 10px;
+    background: transparent;
+}
+
+/* EFECTOS  */
+.input_dark:hover{
+    border: 2px solid #20232a;
+}
+
+.input_dark input:valid ~ .icon,
+.input_dark input:focus ~ .icon,
+.input_dark input:hover ~ .icon{
+    color: rgb(111, 168, 243);
+}
+
+.input_dark input:valid ~ .title,
+.input_dark input:focus ~ .title,
+.input_dark input:hover ~ .title{
+    top: -56%;
+    color: #20232a;
+    font-size: .8rem;
+    font-weight: 800;
+}

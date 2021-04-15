@@ -1,0 +1,5 @@
+.text-area textarea{
+    width: 100%;
+    font-size: clamp(.8rem, 2vw, .9rem);
+    font-family: 'Roboto',sans-serif;
+}
