@@ -17,6 +17,7 @@ export default function Prestamo({setTitle}) {
 
     return (
         <div className="module_prestamo">
+
             <div className="container">
                 <div className="tarjeta">
                     <Card 
