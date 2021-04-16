@@ -14,7 +14,16 @@ export default function Prestamo({setTitle}) {
     useEffect(() => {
         setTitle('Préstamo');
         sessionStorage.setItem('page','prestamo');
+        /*
+        if(document.querySelector('container2')){
+            document.querySelector('container2').style.cssText ="z-index:10;"
+        } */
     })
+
+    //Ocultar tarjetas 
+    const ocultar = () =>{
+        document.getElementById('container2').style.cssText ="z-index:20;"
+    }
 
     return (
         <div className="module_prestamo">
@@ -25,6 +34,7 @@ export default function Prestamo({setTitle}) {
                         text = "Salón"
                         title = "Alumno"
                         btnTitle = "Formulario"
+                        onClick = {ocultar}
                     />                    
                 </Link>
                 
@@ -34,6 +44,7 @@ export default function Prestamo({setTitle}) {
                         text = "Salón"
                         title = "Profesor"
                         btnTitle = "Formulario"
+                        onClick = {ocultar}
                     />               
                 </Link>
 
@@ -43,6 +54,7 @@ export default function Prestamo({setTitle}) {
                         text = "Laboratorio"
                         title = "Alumno"
                         btnTitle = "Formulario"
+                        onClick = {ocultar}
                     />
                 </Link>  
 
@@ -52,6 +64,7 @@ export default function Prestamo({setTitle}) {
                         text = "Laboratorio"
                         title = "Profesor"
                         btnTitle = "Formulario"
+                        onClick = {ocultar}
                     />
                 </Link>
 
@@ -61,11 +74,12 @@ export default function Prestamo({setTitle}) {
                         text = "Asignacion de equipo"
                         title = "Personal"
                         btnTitle = "Formulario"
+                        onClick = {ocultar}
                     />
                 </Link>                                
             </div>
 
-            <div className="container2">
+            <div className="container2" id="container2">
                 <Switch>
                     <Route exact path={`/page/prestamo/form-alumno-salon`}>
                         <div className="form">
