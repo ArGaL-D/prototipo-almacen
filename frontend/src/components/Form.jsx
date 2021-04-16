@@ -22,7 +22,7 @@ export default function Form() {
 
 function FormAlumno (){
     return(
-        <form>
+        <form id="form">
             <div className="input">
                 <InputDark 
                     id = 'input-name'
@@ -39,8 +39,7 @@ function FormAlumno (){
                     icon = {<FaIcons.FaIdCardAlt/>}
                     onClick = {null} 
                     onChange = {null}                   
-                    placeholder = "Alumno"
-                    cursorPointer = {true}
+                    placeholder = "Boleta"
                 />
             </div>
             <div className="input">
@@ -49,7 +48,7 @@ function FormAlumno (){
                     icon = {<BiIcons.BiBarcodeReader/>}
                     onClick = {null} 
                     onChange = {null}                   
-                    placeholder = "Alumno"
+                    placeholder = "Serial"
                     cursorPointer = {true}
                 />
             </div>
@@ -59,20 +58,11 @@ function FormAlumno (){
                     icon = {<GiIcons.GiWifiRouter/>}
                     onClick = {null} 
                     onChange = {null}                   
-                    placeholder = "Alumno"
+                    placeholder = "Equipo"
                     cursorPointer = {true}
                 />
             </div>
-            <div className="input">
-                <InputDark 
-                    id = 'input-name'
-                    icon = {<BiIcons.BiBarcodeReader/>}
-                    onClick = {null} 
-                    onChange = {null}                   
-                    placeholder = "Alumno"
-                    cursorPointer = {true}
-                />
-            </div>
+
             <div className="input">
                 <InputDark 
                     id = 'input-name'
@@ -80,8 +70,7 @@ function FormAlumno (){
                     icon = {<MdIcons.MdDateRange/>}
                     onClick = {null} 
                     onChange = {null}                   
-                    placeholder = "Alumno"
-                    cursorPointer = {true}
+                    placeholder = "Fecha de salida"
                 />
             </div>
             <div className="select">

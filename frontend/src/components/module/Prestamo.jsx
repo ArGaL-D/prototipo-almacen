@@ -60,10 +60,12 @@ export default function Prestamo({setTitle}) {
                 </div>
             </div>
 
-            <div className="formulario">
-                <Form
-                               
-                />                
+            <div className="container2">
+                <div className="form">
+                    <Form
+                                
+                    />    
+                </div>
             </div>
         </div>
     )

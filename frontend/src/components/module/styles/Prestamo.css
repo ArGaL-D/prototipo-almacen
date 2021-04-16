@@ -31,3 +31,21 @@
     justify-content: center;
     transition: 200ms ease-in; 
 }
+
+/* CONTENEDOR 2 */
+.module_prestamo .container2{
+    width: calc(100% - 15em);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background: rgb(151, 68, 116);
+}
+
+.module_prestamo .container2 .form{
+    width : 40%;
+    height: 95%;
+
+    background: cornflowerblue;
+}
