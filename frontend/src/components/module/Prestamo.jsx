@@ -17,7 +17,6 @@ export default function Prestamo({setTitle}) {
 
     return (
         <div className="module_prestamo">
-
             <div className="container">
                 <div className="tarjeta">
                     <Card 
@@ -62,7 +61,8 @@ export default function Prestamo({setTitle}) {
             </div>
 
             <div className="formulario">
-                <Form                     
+                <Form
+                               
                 />                
             </div>
         </div>

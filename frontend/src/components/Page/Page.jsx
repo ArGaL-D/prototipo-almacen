@@ -31,7 +31,6 @@ function Page() {
             title={title}
             hiddenSidebar = {showSidebar}
         />
-        
         <div className="container">
 
           <Sidebar showSidebar={sidebar} />

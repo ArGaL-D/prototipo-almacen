@@ -24,7 +24,6 @@ function Buscar({setTitle}) {
 
     return (
         <div className="module_buscar">
-
             
                 <div className="input">
                     <InputDark
