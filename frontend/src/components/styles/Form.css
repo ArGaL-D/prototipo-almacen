@@ -1,15 +1,40 @@
 #form{
     width : 95%;
     height: 100%;
-
     margin: auto;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
     justify-content: space-around;
 }
 
 #form h3{
     font-size: 1rem;
     font-family: 'Roboto', sans-serif;
+}
+#form .input{
+    width: 99%;
+    align-self: center;
+}
+
+/* FOR MOBILES */
+@media screen and (max-width:450px) {
+    #form h3{
+        font-size: .8rem;
+    }
+    #form{
+        width: 100%;
+    }
+}
+
+@media screen and (orientation: landscape) and (max-height: 600px) {
+    #form{
+        display: block;
+    }
+    #form .input, .select{
+        margin: 1em;
+    }
+    #form h3{
+        margin-left: 1em;
+    }
 }

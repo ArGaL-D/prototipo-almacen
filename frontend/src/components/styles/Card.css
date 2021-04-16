@@ -67,3 +67,14 @@
 .card:hover .icon{  
     color: rgb(93, 176, 228);
 }
+
+
+@media screen and (orientation: landscape) and (max-height:450px) {
+    .card{
+        width: 90%;
+    }
+
+    .card .icon{
+        font-size: 1.5rem;
+    }
+}

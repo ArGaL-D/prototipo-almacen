@@ -76,3 +76,12 @@
     font-size: .8rem;
     font-weight: 800;
 }
+
+
+/* FOR MOBILES */
+@media screen and (max-width: 450px) {
+    .input_dark{
+        height: 1.8em;
+    }
+}
+

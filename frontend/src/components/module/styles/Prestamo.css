@@ -7,6 +7,8 @@
     
     display: flex;
     flex-direction: row-reverse;
+
+    position: relative;
 }
 
 
@@ -44,8 +46,43 @@
 }
 
 .module_prestamo .container2 .form{
-    width : 40%;
+    width : 50%;
     height: 95%;
 
+    overflow: auto;
     background: cornflowerblue;
+}
+
+
+/* FOR MOBILES */
+@media screen and (max-width: 500px) {
+    /* CONTENEDOR 2 */
+    .module_prestamo .container2{
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .module_prestamo .container2 .form{
+        width : 95%;
+        height: 98%;
+    }
+}
+
+@media screen and (orientation: landscape) and (max-height: 450px) {
+    .module_prestamo .container2{
+        width: 70%;
+
+        background: tomato;
+    }
+    .module_prestamo .container{
+        width: 30%;
+    }
+}
+
+/* FOR TABLETS */
+@media screen and (min-width: 500px) and (max-width:1120px) {
+    .module_prestamo .container2 .form{
+        width: 95%;
+    }
 }

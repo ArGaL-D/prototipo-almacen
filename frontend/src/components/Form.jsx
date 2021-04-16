@@ -95,7 +95,6 @@ function FormAlumno (){
                     onClick = {null} 
                     onChange = {handleText}                   
                     placeholder = "Equipo"
-                    cursorPointer = {true}
                 />
             </div>
 
