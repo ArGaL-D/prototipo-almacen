@@ -43,7 +43,7 @@ function FormAlumno (){
         }else if (name==="piso"){
             setFormData({...formData, piso: tag.selectedIndex});
         }else if (name==="aula"){
-            setFormData({...formData, aula: tag.selectedIndex});
+            setFormData({...formData, aula: tag.options[tag.selectedIndex].text});
         }else{
             setFormData({...formData,[name]: tag.value});
         }
@@ -126,15 +126,18 @@ function FormAlumno (){
                     name = "piso"
                     type = "PISO"
                     onChange = {handleText}
+                    numEdificio = {formData.edificio}
                     numPiso = {formData.piso}
                 />
             </div>
-            <div className="AULA">
+            <div className="select">
                 <Select
                     id = "select-aula"
                     name = "aula"
-                    type = "AULA"
+                    type = "AULA"                    
                     onChange = {handleText}                    
+                    numEdificio = {formData.edificio}
+                    numPiso = {formData.piso}
                 />
             </div>
             <div className="button">
