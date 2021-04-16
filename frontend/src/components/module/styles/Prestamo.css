@@ -15,7 +15,7 @@
 .module_prestamo .container{
     width : 15em;
     height: 100%;
-    
+    z-index: 40;
 
     display: flex;    
     flex-direction: column;
@@ -39,6 +39,7 @@
     align-items: center;
     justify-content: center;
     
+
     background: rgb(151, 68, 116);
 }
 
@@ -53,19 +54,29 @@
 
 /* FOR MOBILES */
 @media screen and (max-width: 500px) {
+    .module_prestamo .container{
+        width: 100%;        
+    }
+    .module_prestamo .container a{
+        margin: 1em;
+        border: 1px solid lightskyblue;
+    }
+ 
+
     /* CONTENEDOR 2 */
     .module_prestamo .container2{
+        
         position: absolute;
-        left: 0;
-        width: 100%;
+        left: .5em;        
+        z-index: 20; /* Revisar el z-index(container)*/
+        
+        width : 95%;
         height: 100%;
     }
     .module_prestamo .container2 .form{
-        width : 95%;
-        height: 98%;
+        width: 90%;
     }
 
-    
 }
 
 @media screen and (orientation: landscape) and (max-height: 450px) {

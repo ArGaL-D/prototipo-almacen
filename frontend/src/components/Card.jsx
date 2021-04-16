@@ -3,7 +3,7 @@ import "./styles/Card.css";
 
 export default function Card(props) {
     return (
-        <div className="card">
+        <div className="card" onClick={props.onClick}>
             <div className="title">
                 <span>{props.title}</span>
             </div>

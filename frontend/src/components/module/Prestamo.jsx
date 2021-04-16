@@ -1,5 +1,5 @@
 import { useEffect} from 'react'
-import { Link } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import Card from '../Card';
 
 
@@ -28,7 +28,7 @@ export default function Prestamo({setTitle}) {
                     />                    
                 </Link>
                 
-                <Link to="/page/prestamo/form">
+                <Link to="/page/prestamo/form-prof-salon">
                     <Card 
                         icon = {<FaIcons.FaChalkboardTeacher/>}
                         text = "Salón"
@@ -37,7 +37,7 @@ export default function Prestamo({setTitle}) {
                     />               
                 </Link>
 
-                <Link to="/page/prestamo/form">                
+                <Link to="/page/prestamo/form-alumno-lab">                
                     <Card 
                         icon = {<FaIcons.FaUserGraduate/>}
                         text = "Laboratorio"
@@ -46,7 +46,7 @@ export default function Prestamo({setTitle}) {
                     />
                 </Link>  
 
-                <Link to="/page/prestamo/form">
+                <Link to="/page/prestamo/form-prof-lab">
                     <Card 
                         icon = {<FaIcons.FaChalkboardTeacher/>}
                         text = "Laboratorio"
@@ -55,7 +55,7 @@ export default function Prestamo({setTitle}) {
                     />
                 </Link>
 
-                <Link to="/page/prestamo/form">
+                <Link to="/page/prestamo/form-asignacion">
                     <Card 
                         icon = {<FaIcons.FaUserTie/>}
                         text = "Asignacion de equipo"
@@ -66,13 +66,43 @@ export default function Prestamo({setTitle}) {
             </div>
 
             <div className="container2">
-
-                <div className="form">
-                    <Form
-                                
-                    />    
-                </div>
-
+                <Switch>
+                    <Route exact path={`/page/prestamo/form-alumno-salon`}>
+                        <div className="form">
+                            <Form
+                                type = "ALUMNO"     
+                            />    
+                        </div>
+                    </Route>
+                    <Route exact path={`/page/prestamo/form-prof-salon`}>
+                        <div className="form">
+                            <Form
+                                type = "PROFESOR"     
+                            />    
+                        </div>
+                    </Route>
+                    <Route exact path={`/page/prestamo/form-alumno-lab`}>
+                        <div className="form">
+                            <Form
+                                type = "ALUMNO"     
+                            />    
+                        </div>
+                    </Route>
+                    <Route exact path={`/page/prestamo/form-prof-lab`}>
+                        <div className="form">
+                            <Form
+                                type = "PROFESOR"     
+                            />    
+                        </div>
+                    </Route>
+                    <Route exact path={`/page/prestamo/form-asignacion`}>
+                        <div className="form">
+                            <Form
+                                type = "PERSONAL"     
+                            />    
+                        </div>
+                    </Route>
+                </Switch>
             </div>
         </div>
     )
