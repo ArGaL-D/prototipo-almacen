@@ -50,86 +50,33 @@ function FormAlumno (props){
         }else{
             setFormData({...formData,[name]: tag.value});
         }
-
     }
     
 
     return(
         <form id="form">
-            {/*
-             props.type==="ALUMNO"?
-             <>
-                <h3>Alumno</h3>
-                <div className="input">
-                    <InputDark 
-                        id = 'input-name'
-                        name = 'alumno'
-                        icon = {<RiIcons.RiBodyScanFill/>}
-                        onClick = {null} 
-                        onChange = {handleText}                   
-                        placeholder = "Nombre"
-                        cursorPointer = {true}
-                    />
-                </div>
-                <div className="input">
-                    <InputDark 
-                        id = 'input-boleta'
-                        name = 'boleta'
-                        icon = {<FaIcons.FaIdCardAlt/>}
-                        onClick = {null} 
-                        onChange = {handleText}                   
-                        placeholder = "Boleta"
-                    />
-                </div>
-             </>
-            :
-             <>
-                <h3>Profesor</h3>
-                <div className="input">
-                    <InputDark 
-                        id = 'input-name'
-                        name = 'profesor'
-                        icon = {<RiIcons.RiBodyScanFill/>}
-                        onClick = {null} 
-                        onChange = {handleText}                   
-                        placeholder = "Nombre"
-                        cursorPointer = {true}
-                    />
-                </div>
-                <div className="input">
-                    <InputDark 
-                        id = 'input-clave'
-                        name = 'clave'
-                        icon = {<FaIcons.FaIdCardAlt/>}
-                        onClick = {null} 
-                        onChange = {handleText}                   
-                        placeholder = "Clave"
-                    />
-                </div>   
-             </>             
-            */}
-               <h3>{`${props.type}`}</h3>
-                <div className="input">
-                    <InputDark 
-                        id = "input-name"
-                        name = {props.type.toLowerCase()}
-                        icon = {<RiIcons.RiBodyScanFill/>}
-                        onClick = {null} 
-                        onChange = {handleText}                   
-                        placeholder = "Nombre"
-                        cursorPointer = {true}
-                    />
-                </div>
-                <div className="input">
-                    <InputDark 
-                        id = 'input-clave'
-                        name = 'clave'
-                        icon = {<FaIcons.FaIdCardAlt/>}
-                        onClick = {null} 
-                        onChange = {handleText}                   
-                        placeholder = {props.type==="ALUMNO" ? "Boleta" : "Clave" }
-                    />
-                </div>  
+            <h3>{`${props.type}`}</h3>
+            <div className="input">
+                <InputDark 
+                    id = "input-name"
+                    name = {props.type.toLowerCase()}
+                    icon = {<RiIcons.RiBodyScanFill/>}
+                    onClick = {null} 
+                    onChange = {handleText}                   
+                    placeholder = "Nombre"
+                    cursorPointer = {true}
+                />
+            </div>
+            <div className="input">
+                <InputDark 
+                    id = 'input-clave'
+                    name = 'clave'
+                    icon = {<FaIcons.FaIdCardAlt/>}
+                    onClick = {null} 
+                    onChange = {handleText}                   
+                    placeholder = {props.type==="ALUMNO" ? "Boleta" : "Clave" }
+                />
+            </div>  
             <h3>Equipo</h3>
             <div className="input">
                 <InputDark 

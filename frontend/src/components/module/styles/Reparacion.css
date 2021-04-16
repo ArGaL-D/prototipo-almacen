@@ -10,11 +10,18 @@
 
 /* CONTENEDOR 1 */
 .module-reparacion .container1{
-    width : 15%;
+    width : 15em;
     height: 100%;
     
     font-family: 'Nunito', sans-serif;
     background: whitesmoke;
+}
+
+.container1 h1{
+    color: #555e66;
+    margin: .5em 0 .5em .5em;
+    font-size: 1.4rem;    
+    font-family: 'Roboto', sans-serif;
 }
 
 .container1 a{
@@ -24,9 +31,9 @@
 
 /* OPCIONES DEL CONTENEDOR - LINK */
 .container1 .link-option{
-    width : 100%;
+    width : 90%;
     height: 2em;
-    margin: .5em 0 .5em 0;
+    margin: .5em 0 .5em 1em;
     color :lightslategray;
 
     display: flex;
@@ -37,6 +44,11 @@
     transition: 300ms ease-in-out;
 }
 
+.link-option .text{
+    width: 100%;
+    margin-left: .5em;
+    text-align: left;
+}
 /* ICONS */
 .container1 .icon1,
 .container1 .icon2{
@@ -51,16 +63,21 @@
     font-size: 1.5rem;
 }
 
+
 /* ANIMACIONES  */
 .container1 .link-option:hover{
     color:  #34495e;
     transform: translateX(1em);
 }
+.container1 .link-option:active{
+    color:  #2b88e4;
+    transform: translateX(1em);
+    transition: 100ms;
+}
 
 
 
 /* CONTENEDOR 2 */
-.module-reparacion .container2{
-    width : 85%;
+.module-reparacion .container2{    
     height: 100%;
 }
