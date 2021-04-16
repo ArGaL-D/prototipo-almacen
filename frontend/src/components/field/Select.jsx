@@ -29,7 +29,7 @@ export default function Select(props) {
                             <option value={value} key={key} required>{value}</option>
                         )
                     }),
-                    PISO: piso(props.num_edificio).map( (value, key) => {
+                    PISO: piso(props.numEdificio).map( (value, key) => {
                         return(
                             <option value={value} key={key}>{value}</option>
                         )
@@ -40,7 +40,7 @@ export default function Select(props) {
                             <option value={value} key={key}>{value}</option>
                         )
                     } ),
-                    AULA: aula(props.num_edificio, props.num_piso).map( (value, key) => {
+                    AULA: aula(props.numEdificio, props.numPiso).map( (value, key) => {
                         return(
                             <option value={value} key={key}>{value}</option>
                         )

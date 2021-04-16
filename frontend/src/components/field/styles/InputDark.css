@@ -39,6 +39,10 @@
     font-size: 14px;
     color:rgb(133, 171, 221);
 }
+/* Sólo para input-dates */
+.input_dark.active .title{
+    color: transparent;
+}
 
 /* INPUT-TAg*/
 .input_dark input{

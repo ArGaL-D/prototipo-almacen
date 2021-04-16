@@ -3,7 +3,7 @@ import "./styles/InputDark.css";
 
 export default function InputDark(props) {
     return (
-        <div className="input_dark">            
+        <div className={props.type==="date"?"input_dark active": "input_dark"}>            
             <input 
                 id={props.id}
                 name={props.name} 
