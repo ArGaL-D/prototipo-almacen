@@ -1,0 +1,19 @@
+.module-reparacion{
+    width : calc(100vw - 5em);
+    height: 100%;
+
+    display : flex;    
+    position: relative;
+}
+
+.module-reparacion .container1{
+    width: 20%;
+    height: 100%;
+
+    background: whitesmoke;
+}
+
+.module-reparacion .container2{
+    width : 80%;
+    height: 100%;
+}

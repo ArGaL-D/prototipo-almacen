@@ -1,14 +1,81 @@
 .module-ubicacion{
-    width : 100%;
+    width : calc(100vw - 5em);
     height: 100%;
 
-    display: flex;    
-    background: lightslategrey;
+    display : flex;    
+    position: relative;
 }
 
+/* CONTENEDOR 1 */
 .module-ubicacion .container1{
-    width: 10%;
+    width: 20%;
     height: 100%;
+    background: #f8f9f9 ;
+}
 
-    background: maroon;
+
+/* CONTENEDOR 2 */
+.module-ubicacion .container2{
+    width: 78%;
+    margin-left: .5em;
+}
+
+/* box-Buscar*/
+.container2 .buscador{
+    width : 50%;
+    margin: 2em 0 .5em 0;
+}
+
+.container2 .buscador .input{
+    margin-top: 1em;
+}
+
+.container2 .checkbox{
+    margin: .5em 0 .5em 0;
+
+    display: flex;
+}
+
+.checkbox label{
+    padding-left: .2em;    
+    font-family: 'Roboto', sans-serif;
+}
+
+/* box - Selects */
+.container2 .selects{
+    display: flex;
+}
+
+.container2 .selects .select{
+    margin: 0 1em .2em 0;
+}
+
+.container2 .tabla{
+    overflow: auto;
+}
+
+
+
+/* FOR MOBILES */
+@media screen and (max-width: 800px) {
+    .container1{
+        position: absolute;
+        visibility: hidden;
+    }
+    .module-ubicacion .container2{
+        width: 95%;
+    }
+    .container2 .buscador{
+        width: 100%;
+    }
+}
+
+@media screen and (orientation: landscape) and (max-height: 450px){
+    .container1{
+        position: absolute;
+        visibility: hidden;
+    }
+    .module-ubicacion .container2{
+        width: 97%;
+    }
 }

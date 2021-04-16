@@ -23,27 +23,44 @@ export default function Ubicacion({setTitle}) {
     return (
         <div className="module-ubicacion">
             <div className="container1">
-                
+
             </div>
             
             <div className="container2">
                 <div className="buscador">
-                    <InputDark
-                        icon = {<GoIcons.GoSearch/>}
-                        placeholder = "buscar"
-                    />
+                    <div className="input">
+                        <InputDark
+                            icon = {<GoIcons.GoSearch/>}
+                            placeholder = "Palabra clave"
+                        />
+                    </div>
+                    <div className="checkbox">
+                        <input 
+                            id = "checkbox"
+                            name = "checkbox"
+                            type = "checkbox"
+                        />
+                        <label htmlFor="checkbox">Desbloquear</label>
+                    </div>
                 </div>
 
-                <div className="ubicacion">
-                    <Select
-                        type = "EDIFICIO"
-                    />
-                    <Select
-                        type = "PISO"
-                    />
-                    <Select
-                        type = "AULA"
-                    />                
+                <div className="selects">
+                    <div className="select">
+                        <Select
+                            type = "EDIFICIO"
+                        />                        
+                    </div>
+                    <div className="select">
+                        <Select
+                            type = "PISO"
+                        />                        
+                    </div>
+                    <div className="select">
+                        <Select
+                            type = "AULA"
+                        />                        
+                    </div>
+            
                 </div>
 
                 <div className="tabla">
