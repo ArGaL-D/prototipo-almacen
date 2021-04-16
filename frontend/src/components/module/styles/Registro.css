@@ -2,12 +2,11 @@
     width : calc(100vw - 5em);
     height: 100%;
 
+    position: relative;
     overflow: auto;
 
     display: flex;    
     justify-content: center;    
-
-    position: relative;
 }
 
 

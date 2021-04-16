@@ -1,15 +1,24 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import InputDark from '../field/InputDark';
+import Button from '../field/Button';
 
-import * as RiIcons   from "react-icons/ri";
+import * as FaIcons   from "react-icons/fa";
 import * as GiIcons   from "react-icons/gi";
 import * as MdIcons   from "react-icons/md";
 import * as BiIcons   from "react-icons/bi";
-import Button from '../field/Button';
+import * as ImIcons   from "react-icons/im";
+
 
 import "./styles/Entrega.css";
 
 export default function Entrega({setTitle}) {
+
+    const [formData,setFormData] = useState({
+        equipo : "",
+        serial : "",
+        persona: "",
+        fechaEntrega: ""
+    });
 
     //Establecer título actual - navbar
     useEffect(() => {
@@ -17,48 +26,69 @@ export default function Entrega({setTitle}) {
         sessionStorage.setItem('page','entrega');
     })
 
+
+    const handleInputText = (e) =>{
+        setFormData({...formData,[e.target.name]: e.target.value.toUpperCase()});
+    }
+
     return (
         <div className="module-entrega">
             <form>
-                <InputDark 
-                    id = "entrega-nombre"
-                    name = "nombre"
-                    icon = {<RiIcons.RiBodyScanFill/>}
-                    placeholder = "Nombre"
-                />
-
-                <InputDark 
-                    id = "entrega-equipo"
-                    name = "equipo"
-                    icon = {<GiIcons.GiWifiRouter/>}
-                    placeholder = "Equipo"
-                />
-
-                <InputDark 
-                    id = "entrega-serial"
-                    name = "serial"
-                    icon = {<BiIcons.BiBarcodeReader/>}
-                    placeholder = "Serial"                    
-                />    
-
-                <InputDark 
-                    id = "fecha-salida"
-                    name = "fechaSalida"
-                    icon = {<MdIcons.MdDateRange/>}
-                    placeholder = "Fecha de salida"                    
-                /> 
-
-                <InputDark 
-                    id = "fecha-entrega"
-                    name = "fechaEntrega"
-                    icon = {<MdIcons.MdDateRange/>}
-                    placeholder = "Fecha de entrega"                    
-                /> 
-
+                <div className="inpt">
+                    <InputDark 
+                        id = "entrega-nombre"
+                        name = "nombre"
+                        icon = {<FaIcons.FaUserFriends/>}                        
+                        onChange = {handleInputText}
+                        placeholder = "Nombre"
+                    />
+                </div>
+                <div className="inpt">
+                    <InputDark 
+                        id = "entrega-equipo"
+                        name = "equipo"
+                        icon = {<GiIcons.GiWifiRouter/>}                        
+                        onChange = {handleInputText}
+                        placeholder = "Equipo"
+                    />
+                </div>
+                <div className="inpt">
+                    <InputDark 
+                        id = "entrega-serial"
+                        name = "serial"
+                        icon = {<BiIcons.BiBarcodeReader/>}                        
+                        onChange = {handleInputText}
+                        placeholder = "Serial"                    
+                    />   
+                </div>
+                <div className="inpt">
+                    <InputDark 
+                        id = "fecha-salida"
+                        name = "fechaSalida"
+                        icon = {<MdIcons.MdDateRange/>}   
+                        type = "date"
+                        onChange = {handleInputText}                        
+                        placeholder = "Fecha de salida"                    
+                    /> 
+                </div>
+                <div className="inpt">
+                    <InputDark 
+                        id = "fecha-salida"
+                        name = "fechaEntrega"
+                        icon = {<MdIcons.MdDateRange/>}   
+                        type = "date"                     
+                        onChange = {handleInputText}                        
+                        placeholder = "Fecha de entrega"                    
+                    /> 
+                </div>                
                 <Button
-                    title = "Entregar"
+                    title = "ENTREGAR"
                 />
             </form>
+
+            <div className="icon-scan">
+                <ImIcons.ImQrcode/>
+            </div>
         </div>
     )
 }
