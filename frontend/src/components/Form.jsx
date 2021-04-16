@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router';
 import InputDark from './field/InputDark';
 import Select from './field/Select';
 import Button from './field/Button';
@@ -11,7 +12,11 @@ import * as MdIcons   from "react-icons/md";
 
 import "./styles/Form.css";
 
+
 export default function Form() {
+    
+    let { id } = useParams();
+
     return (
         <>
             <FormAlumno />

@@ -1,7 +1,8 @@
 .card{
-    width : 90%;
+    width : 95%;
     height: 100%;
         
+    margin: auto;
     background: #20232a;
 
     font-family: 'Roboto', sans-serif;
@@ -62,7 +63,7 @@
 }
 
 .card:hover{  
-    box-shadow: 0px 0px 8px -1px rgb(21, 189, 255);
+    box-shadow: 0px 0px 5px 3px rgb(21, 189, 255);
 }
 .card:hover .icon{  
     color: rgb(93, 176, 228);
@@ -72,6 +73,7 @@
 @media screen and (orientation: landscape) and (max-height:450px) {
     .card{
         width: 90%;
+        border: 1px solid lightskyblue;
     }
 
     .card .icon{

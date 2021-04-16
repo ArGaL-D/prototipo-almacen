@@ -1,4 +1,5 @@
-import React,{useEffect} from 'react'
+import { useEffect} from 'react'
+import { Link } from 'react-router-dom';
 import Card from '../Card';
 
 
@@ -18,54 +19,60 @@ export default function Prestamo({setTitle}) {
     return (
         <div className="module_prestamo">
             <div className="container">
-                <div className="tarjeta">
+                <Link to="/page/prestamo/form-alumno-salon">                    
                     <Card 
                         icon = {<FaIcons.FaUserGraduate/>}
                         text = "Salón"
                         title = "Alumno"
                         btnTitle = "Formulario"
-                    />
-                </div>
-                <div className="tarjeta">
+                    />                    
+                </Link>
+                
+                <Link to="/page/prestamo/form">
                     <Card 
                         icon = {<FaIcons.FaChalkboardTeacher/>}
                         text = "Salón"
                         title = "Profesor"
                         btnTitle = "Formulario"
-                    />
-                </div>
-                <div className="tarjeta">
+                    />               
+                </Link>
+
+                <Link to="/page/prestamo/form">                
                     <Card 
                         icon = {<FaIcons.FaUserGraduate/>}
                         text = "Laboratorio"
                         title = "Alumno"
                         btnTitle = "Formulario"
                     />
-                </div>
-                <div className="tarjeta">
+                </Link>  
+
+                <Link to="/page/prestamo/form">
                     <Card 
                         icon = {<FaIcons.FaChalkboardTeacher/>}
                         text = "Laboratorio"
                         title = "Profesor"
                         btnTitle = "Formulario"
                     />
-                </div>
-                <div className="tarjeta">
+                </Link>
+
+                <Link to="/page/prestamo/form">
                     <Card 
                         icon = {<FaIcons.FaUserTie/>}
                         text = "Asignacion de equipo"
                         title = "Personal"
                         btnTitle = "Formulario"
                     />
-                </div>
+                </Link>                                
             </div>
 
             <div className="container2">
+
                 <div className="form">
                     <Form
                                 
                     />    
                 </div>
+
             </div>
         </div>
     )

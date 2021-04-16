@@ -15,24 +15,21 @@
 .module_prestamo .container{
     width : 15em;
     height: 100%;
+    
 
     display: flex;    
     flex-direction: column;
 
     overflow: auto;
-    background: white;
+    background: #20232a;
 }
 
-.module_prestamo .container .tarjeta{
-    width : 100%;
-    height: 50%;
-
-    margin: 1em 0 0 0;
-
-    display: flex;
-    justify-content: center;
-    transition: 200ms ease-in; 
+/* TARJETA --> LINK*/
+.module_prestamo .container a{
+    text-decoration: none;
+    margin: .2em 0 0 0;    
 }
+
 
 /* CONTENEDOR 2 */
 .module_prestamo .container2{
@@ -67,6 +64,8 @@
         width : 95%;
         height: 98%;
     }
+
+    
 }
 
 @media screen and (orientation: landscape) and (max-height: 450px) {
