@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
 .module-reparacion{
     width : calc(100vw - 5em);
     height: 100%;
@@ -6,14 +8,59 @@
     position: relative;
 }
 
+/* CONTENEDOR 1 */
 .module-reparacion .container1{
-    width: 20%;
+    width : 15%;
     height: 100%;
-
+    
+    font-family: 'Nunito', sans-serif;
     background: whitesmoke;
 }
 
+.container1 a{
+    width: 100%;
+    text-decoration: none;
+}
+
+/* OPCIONES DEL CONTENEDOR - LINK */
+.container1 .link-option{
+    width : 100%;
+    height: 2em;
+    margin: .5em 0 .5em 0;
+    color :lightslategray;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-weight: 500;
+    transition: 300ms ease-in-out;
+}
+
+/* ICONS */
+.container1 .icon1,
+.container1 .icon2{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container1 .icon1 svg,
+.container1 .icon2 svg{
+    padding: 0 0 0 .2em;
+    font-size: 1.5rem;
+}
+
+/* ANIMACIONES  */
+.container1 .link-option:hover{
+    color:  #34495e;
+    transform: translateX(1em);
+}
+
+
+
+/* CONTENEDOR 2 */
 .module-reparacion .container2{
-    width : 80%;
+    width : 85%;
     height: 100%;
 }
