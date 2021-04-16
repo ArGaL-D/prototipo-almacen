@@ -11,13 +11,10 @@ import Form from '../Form';
 
 export default function Prestamo({setTitle}) {
 
+    //Establecer título actual - navbar
     useEffect(() => {
         setTitle('Préstamo');
         sessionStorage.setItem('page','prestamo');
-        /*
-        if(document.querySelector('container2')){
-            document.querySelector('container2').style.cssText ="z-index:10;"
-        } */
     })
 
     //Ocultar tarjetas 
