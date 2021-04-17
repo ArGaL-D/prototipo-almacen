@@ -18,6 +18,14 @@
     align-self: center;
 }
 
+#form .select-options{
+    display: flex;
+}
+#form .select-options .select{
+ 
+    margin-right: 1em;
+}
+
 /* MODULO - REPARACION */
 
 

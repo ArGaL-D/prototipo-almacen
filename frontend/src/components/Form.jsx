@@ -12,6 +12,7 @@ import * as MdIcons   from "react-icons/md";
 import * as HiIcons   from "react-icons/hi";
 
 import "./styles/Form.css";
+import TextArea from './field/TextArea';
 
 
 export default function Form(props) {
@@ -21,7 +22,8 @@ export default function Form(props) {
         {
             {
                 ALUMNO: <FormPrestamo type={props.type}/>,
-                PROFESOR: <FormPrestamo type={props.type}/>,                
+                PROFESOR: <FormPrestamo type={props.type}/>, 
+                PERSONAL: <FormPrestamo type={props.type}/>,                
                 REPORTE: <FormReparacion />
             }[props.type]
         }
@@ -162,7 +164,8 @@ function FormPrestamo (props){
 
 function FormReparacion (){
     return(
-        <form id="formReporte">
+        <form id="form">
+            <h2>Datos</h2>
             <div className="input">
                 <InputDark
                     id = "reporte"
@@ -197,24 +200,28 @@ function FormReparacion (){
                     placeholder = "Equipo"
                 />
             </div>
-            <div className="select">
-                <Select
-                    id = "selectReparacion"
-                    name = "reparacion"
-                    type = "REPARACION"
-                    onChange = {null}
-                    placeholder = "Reparación"
-                />
+
+            <div className="select-options">
+                <div className="select">
+                    <Select
+                        id = "selectReparacion"
+                        name = "reparacion"
+                        type = "REPARACION"
+                        onChange = {null}
+                        placeholder = "Reparación"
+                    />
+                </div>
+                <div className="select">
+                    <Select
+                        id = "selectEtapa"
+                        name = "etapa"
+                        type = "REPARACION_ETAPA"
+                        onChange = {null}
+                        placeholder = "Estatus"
+                    />            
+                </div>
             </div>
-            <div className="select">
-                <Select
-                    id = "selectEtapa"
-                    name = "etapa"
-                    type = "REPARACION_ETAPA"
-                    onChange = {null}
-                    placeholder = "Estatus"
-                />            
-            </div>
+
             <div className="input">
                 <InputDark 
                     id = 'inputFecha'
@@ -223,6 +230,16 @@ function FormReparacion (){
                     icon = {<MdIcons.MdDateRange/>}                     
                     onChange = {null}                   
                     placeholder = "Fecha actual"
+                />
+            </div>
+            <div className="textArea">
+                <TextArea
+                    placeholder = "Detalles del reporte."
+                />
+            </div>
+            <div className="button">
+                <Button
+                    title = "ACEPTAR"
                 />
             </div>
 

@@ -67,13 +67,14 @@ export default function Reparacion({setTitle}) {
                 <Switch>
                     <Route path="/page/reparacion/hilo">
                         <h3>HOLA HILO</h3>
-                        <Form
-                            type = "REPORTE"
-                        />
                     </Route>
                    
                     <Route path="/page/reparacion/reporte">
-                        <h3>HOLA REPORTE</h3>
+                        <div className="box-reporte">
+                            <Form
+                                type = "REPORTE"
+                            />
+                        </div>
                     </Route>
 
                     <Route path="/page/reparacion/seguimiento">

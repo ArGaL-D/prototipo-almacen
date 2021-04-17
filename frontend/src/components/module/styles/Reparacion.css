@@ -79,5 +79,18 @@
 
 /* CONTENEDOR 2 */
 .module-reparacion .container2{    
+    width: calc(100% - 15em);
     height: 100%;
+    background: lightcoral;
+
+    display: flex;
+}
+
+/* Contenedor - formulario - reporte */
+.module-reparacion .box-reporte{
+    background: lightblue;
+    width: 50%;
+    height: 90%;
+
+    margin: auto;
 }
