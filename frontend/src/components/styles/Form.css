@@ -18,15 +18,17 @@
     align-self: center;
 }
 
+/* MODULO - REPARACION */
+#form h2{
+    font-family: 'Roboto', sans-serif;
+}
+
 #form .select-options{
     display: flex;
 }
 #form .select-options .select{
- 
     margin-right: 1em;
 }
-
-/* MODULO - REPARACION */
 
 
 

@@ -8,8 +8,16 @@ import * as GrIcons from "react-icons/gr";
 
 import "./styles/Reparacion.css";
 import Form from '../Form';
+import Hilo from '../Hilo';
+import Datatable from '../Datatable';
 
 export default function Reparacion({setTitle}) {
+
+    //Columnas-seguimiento
+    const columnas = [
+        "#", "SERIAL", "EQUIPO", "HILO", "REPORTE",
+        "DETALLES", "ESTATUS", "ETAPA", "FECHA","HORA"
+    ];
     
     //Establecer título actual - navbar
     useEffect(() => {
@@ -66,7 +74,9 @@ export default function Reparacion({setTitle}) {
             <div className="container2">
                 <Switch>
                     <Route path="/page/reparacion/hilo">
-                        <h3>HOLA HILO</h3>
+                        <div className="card-hilo">
+                            <Hilo/>                            
+                        </div>
                     </Route>
                    
                     <Route path="/page/reparacion/reporte">
@@ -78,7 +88,12 @@ export default function Reparacion({setTitle}) {
                     </Route>
 
                     <Route path="/page/reparacion/seguimiento">
-                        <h3>HOLA SEGUIMIENTO</h3>
+                        <div className="table">
+                            <Datatable 
+                                rows = {null}
+                                columns = {columnas}                                
+                            />
+                        </div>
                     </Route>
                 </Switch>
             </div>

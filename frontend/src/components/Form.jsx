@@ -165,13 +165,13 @@ function FormPrestamo (props){
 function FormReparacion (){
     return(
         <form id="form">
-            <h2>Datos</h2>
+            <h2>Reporte</h2>
             <div className="input">
                 <InputDark
                     id = "reporte"
                     name = "reporte"
                     icon = {<HiIcons.HiPencilAlt/>}
-                    placeholder = "Reporte"
+                    placeholder = "Título"
                 />
             </div>
             <div className="input">

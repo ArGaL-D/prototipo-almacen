@@ -8,7 +8,9 @@
     position: relative;
 }
 
-/* CONTENEDOR 1 */
+/* 
+    CONTENEDOR 1 
+*/
 .module-reparacion .container1{
     width : 15em;
     height: 100%;
@@ -75,22 +77,34 @@
     transition: 100ms;
 }
 
-
-
-/* CONTENEDOR 2 */
+/* 
+    CONTENEDOR 2 
+*/
 .module-reparacion .container2{    
     width: calc(100% - 15em);
-    height: 100%;
-    background: lightcoral;
-
+    height: 100%;    
     display: flex;
+
+    background: lightsalmon;
 }
 
-/* Contenedor - formulario - reporte */
+/* COTENEDOR - FORMULARIO - reporte */
 .module-reparacion .box-reporte{
     background: lightblue;
-    width: 50%;
+    width : 50%;
     height: 90%;
 
     margin: auto;
+}
+
+/* TARJETA - HILO */
+.module-reparacion .container2 .card-hilo{
+    width : 50%;
+    height: 60%;
+    margin: auto;    
+}
+
+/* COTENEDOR - TABLE */
+.module-reparacion .table{
+    width: 95%;
 }
