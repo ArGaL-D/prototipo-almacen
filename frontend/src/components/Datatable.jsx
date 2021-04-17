@@ -11,14 +11,14 @@ export default function Datatable({columns, rows ,type,openModal,deleteData}) {
     return (
         <table className="table-equipo">
             <thead>
-                <tr>
-                    {
-                        columns.map((column,index) =>{
-                          return(
-                            <th key={index}>{column}</th>
-                          )   
-                        })
-                    }
+              <tr>
+                  {
+                    columns.map((column,index) =>{
+                      return(
+                        <th key={index}>{column}</th>
+                      )   
+                    })
+                  }
                 </tr>
             </thead>            
             {
@@ -28,7 +28,8 @@ export default function Datatable({columns, rows ,type,openModal,deleteData}) {
                                 openModal={openModal}
                                 deleteData={deleteData}
                             />,
-                    UBICACION: <tbodyUbicacion rows={rows} />
+                    UBICACION: <tbodyUbicacion rows={rows} />,
+                    HILO: <tbodyHilo rows={rows}/>
                 }[type]
             }
 
@@ -105,6 +106,30 @@ function tbodyUbicacion (props){
       </tbody>
     )
 }
+
+function tbodyHilo (props){
+  return(
+      <tbody>
+      {
+        props.rows.map( (row,index) =>{
+          return(
+            <tr key={index}>
+              <td>{index+1}</td>
+              <td>{row.num_serie}</td>
+              <td>{row.equipo}</td>
+              <td>{row.hilo}</td>
+              <td>{row.fecha}</td>
+              <td>{row.hora}</td>
+            </tr>  
+          )  
+        })
+      }  
+    </tbody>
+  )
+}
+
+
+
 
 
 const TooltipText = (props) => {

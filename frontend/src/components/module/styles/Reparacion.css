@@ -100,6 +100,45 @@
     margin: auto;
 }
 
+/* BUTTON - aviso */
+.aviso{
+    width : 2em;
+    height: 2em;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 2rem;
+
+    position: absolute;
+    right: 3%;
+    top: 6%;
+
+    color: lightgoldenrodyellow;
+    border-radius: 50%;
+    background: #20232a;
+    box-shadow: 0px 1px 5px 0px rgba(154, 154, 156, 0.75);    
+}
+.aviso:hover{
+    width: 2.1em;
+    height: 2.1em;
+    box-shadow: 0px 1px 5px 2px lightgoldenrodyellow;
+    transition: 300ms ease-in-out;
+}
+.swal-modal .swal-text {
+    text-align: justify;
+}
+/* VENTANA EMERGENTE - aviso*/
+.format-pre{
+    font-family: 'Roboto', sans-serif;
+    text-align: justify;
+}
+
+/* MODAL - TABLA - HILOS */
+
+
 /* TARJETA - HILO */
 .module-reparacion .containerRep2 .card-hilo{
     width : 50%;
@@ -124,6 +163,10 @@
     width: 100%;
     overflow: auto;
 }
+
+
+
+
 
 /* FOR MOBILES */
 @media screen and (max-width: 600px) {
@@ -187,11 +230,21 @@
         height: 80%;
         background: lightpink;
     }
+    /* BUTTON - Aviso */
+    .aviso{
+        font-size: 1rem;
+        top: 1em;
+    }
 }
 
 @media screen and (min-width:600px) and (max-width:1000px) {
     /* Formulario */
     .module-reparacion .containerRep2 .box-reporte{
         width: 98%;
+    }
+    /* BUTTON - Aviso */
+    .aviso{
+        font-size: 1rem;
+        top: 2.5em;
     }
 }

@@ -27,10 +27,10 @@ export default function Hilo() {
     },[]);
 
     return (
-        <div className="container-hilo">            
+        <div className="container-hilo">  
             <div className="boxHilo">
                 <span id="title1">
-                    {hilo}
+                    {hilo}                    
                 </span>
                 <span id="title2">
                     Último hilo
@@ -39,7 +39,7 @@ export default function Hilo() {
                     {`${lastHilo}`}
                 </span>
             </div>
-            
+
             <div className="button">
                 <Button                 
                     title = "NUEVO HILO"

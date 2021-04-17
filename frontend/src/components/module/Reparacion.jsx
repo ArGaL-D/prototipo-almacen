@@ -1,5 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import {Link, Switch, Route} from 'react-router-dom';
+import { Modal } from 'react-responsive-modal';
+import Swal from 'sweetalert2';
 
 import Form from '../Form';
 import Hilo from '../Hilo';
@@ -11,25 +13,43 @@ import * as RiIcons from "react-icons/ri";
 import * as GiIcons from "react-icons/gi";
 import * as GrIcons from "react-icons/gr";
 import * as GoIcons from "react-icons/go";
+import * as IoIcons from "react-icons/io";
 
 import "./styles/Reparacion.css";
+import 'react-responsive-modal/styles.css';
 
 
 export default function Reparacion({setTitle}) {
 
     //Columnas-seguimiento
-    const columnas = [
+    const columnasSeg = [
         "#", "SERIAL", "EQUIPO", "HILO", "REPORTE",
         "DETALLES", "ESTATUS", "ETAPA", "FECHA","HORA"
     ];
+    //Columnas-seguimiento-Hilo
+    const columnasHilo = [
+        "#", "SERIAL", "EQUIPO", "HILO", "FECHA","HORA"
+    ];
+
+    const textAviso = '<strong>1)</strong> Si es la primera vez en hacer un reporte, ingrese un HILO de seguimiento; a partir del segundo reporte hasta su finalización, tendrá que ingresar el mismo HILO.</br><strong>2)</strong> Si el equipo ya cuenta con un HILO de seguimiento y no se acuerda cuál es, de clic en el ícono del campo hilo.</br><strong>3)</strong> Si el equipo ya cuenta con un HILO de seguimiento y se registra otro HILO diferente, se creará dos o más ramas de seguimientos diferentes.'
 
     const [modal,setModal] = useState(false);
     
-    const showModal = () =>{
+    const openModal = () =>{
         setModal(!modal);
-        console.log('hola')
     }
 
+    const warning = () =>{
+        Swal.fire({
+            html: textAviso,
+            title: 'Aviso',
+            icon: 'warning',
+            customClass:{
+                popup: 'format-pre'
+            },  
+            confirmButtonText: 'ACEPTAR'
+          }) 
+    }
 
     //Establecer título actual - navbar
     useEffect(() => {
@@ -95,8 +115,17 @@ export default function Reparacion({setTitle}) {
                         <div className="box-reporte">
                             <Form
                                 type = "REPORTE"
-                                showModal = {showModal}
+                                showModal = {openModal}
                             />
+                            <div className="aviso" onClick={warning}>
+                                <IoIcons.IoMdWarning/>
+                            </div>
+                            <Modal open={modal} onClose={openModal} center>
+                                <Datatable
+                                    type = 'HILO'
+                                    columns = {columnasHilo}
+                                />
+                            </Modal>
                         </div>
                     </Route>
 
@@ -111,7 +140,7 @@ export default function Reparacion({setTitle}) {
                             <div className="table-seguimiento">
                                 <Datatable 
                                     rows = {null}
-                                    columns = {columnas}                                
+                                    columns = {columnasSeg}                                
                                 />
                             </div>
                         </div>
