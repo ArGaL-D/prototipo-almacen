@@ -1,6 +1,8 @@
 import Cookies from 'js-cookie';
 import React,{useEffect} from 'react';
 
+import "./styles/Usuarios.css";
+
 export default function Usuarios({setTitle}) {
 
     useEffect(() => {
@@ -9,7 +11,7 @@ export default function Usuarios({setTitle}) {
     })
 
     return (
-        <div>
+        <div className="module-usuarios">
             USUARIO
         </div>
     )
