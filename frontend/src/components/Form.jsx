@@ -9,6 +9,7 @@ import * as BiIcons   from "react-icons/bi";
 import * as RiIcons   from "react-icons/ri";
 import * as GiIcons   from "react-icons/gi";
 import * as MdIcons   from "react-icons/md";
+import * as HiIcons   from "react-icons/hi";
 
 import "./styles/Form.css";
 
@@ -17,13 +18,21 @@ export default function Form(props) {
     
     return (
         <>
-            <FormAlumno type={props.type}/>
+        {
+            {
+                ALUMNO: <FormPrestamo type={props.type}/>,
+                PROFESOR: <FormPrestamo type={props.type}/>,                
+                REPORTE: <FormReparacion />
+            }[props.type]
+        }
+            
         </>
     )
 }
 
+// Formulario del módulo PRÉSTAMO
 
-function FormAlumno (props){
+function FormPrestamo (props){
 
     const [formData, setFormData] = useState({
         alumno:     "",
@@ -52,7 +61,6 @@ function FormAlumno (props){
         }
     }
     
-
     return(
         <form id="form">
             <h3>{`${props.type}`}</h3>
@@ -146,6 +154,78 @@ function FormAlumno (props){
                     title = "FINALIZAR"
                 />
             </div>
+        </form>
+    )
+}
+
+// Formulario del módulo REPARACIÓN
+
+function FormReparacion (){
+    return(
+        <form id="formReporte">
+            <div className="input">
+                <InputDark
+                    id = "reporte"
+                    name = "reporte"
+                    icon = {<HiIcons.HiPencilAlt/>}
+                    placeholder = "Reporte"
+                />
+            </div>
+            <div className="input">
+                <InputDark
+                    id = "hilo"
+                    name = "hilo"
+                    icon = {<BiIcons.BiGitBranch/>}
+                    placeholder = "Hilo"
+                />
+            </div>
+            <div className="input">
+                <InputDark 
+                    id = 'serial'
+                    name = 'serial'
+                    icon = {<BiIcons.BiBarcodeReader/>}                  
+                    onChange = {null}                   
+                    placeholder = "Serial"
+                />
+            </div>
+            <div className="input">
+                <InputDark 
+                    id = 'equipo'
+                    name = 'equipo'
+                    icon = {<GiIcons.GiWifiRouter/>}                     
+                    onChange = {null}                   
+                    placeholder = "Equipo"
+                />
+            </div>
+            <div className="select">
+                <Select
+                    id = "selectReparacion"
+                    name = "reparacion"
+                    type = "REPARACION"
+                    onChange = {null}
+                    placeholder = "Reparación"
+                />
+            </div>
+            <div className="select">
+                <Select
+                    id = "selectEtapa"
+                    name = "etapa"
+                    type = "REPARACION_ETAPA"
+                    onChange = {null}
+                    placeholder = "Estatus"
+                />            
+            </div>
+            <div className="input">
+                <InputDark 
+                    id = 'inputFecha'
+                    name = 'fecha'
+                    type = "date"
+                    icon = {<MdIcons.MdDateRange/>}                     
+                    onChange = {null}                   
+                    placeholder = "Fecha actual"
+                />
+            </div>
+
         </form>
     )
 }
