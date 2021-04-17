@@ -24,7 +24,7 @@ export default function Hilo() {
     useEffect( ()=>{
         const lastKey = localStorage.getItem('ultimoHilo');
         setLastHilo(lastKey);
-    });
+    },[]);
 
     return (
         <div className="container-hilo">            
@@ -39,6 +39,7 @@ export default function Hilo() {
                     {`${lastHilo}`}
                 </span>
             </div>
+            
             <div className="button">
                 <Button                 
                     title = "NUEVO HILO"

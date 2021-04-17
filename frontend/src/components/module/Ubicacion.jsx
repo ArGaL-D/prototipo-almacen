@@ -1,10 +1,10 @@
 import React,{useEffect} from 'react';
 import InputDark from '../field/InputDark';
+import Datatable from '../Datatable';
 import Select from '../field/Select';
-import "./styles/Ubicacion.css";
 
 import * as GoIcons from "react-icons/go";
-import Datatable from '../Datatable';
+import "./styles/Ubicacion.css";
 
 export default function Ubicacion({setTitle}) {
 
@@ -21,7 +21,7 @@ export default function Ubicacion({setTitle}) {
     })
 
     return (
-        <div className="module-ubicacion">
+        <div className="module-ubicacion">            
             <div className="container1">
 
             </div>

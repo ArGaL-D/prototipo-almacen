@@ -4,14 +4,17 @@
     width : calc(100vw - 5em);
     height: 100%;
 
-    display : flex;    
+    display : flex; 
+    overflow: auto;   
+
     position: relative;
+    background: darkgoldenrod;
 }
 
 /* 
     CONTENEDOR 1 
 */
-.module-reparacion .container1{
+.module-reparacion .containerRep1{
     width : 15em;
     height: 100%;
     
@@ -19,20 +22,20 @@
     background: whitesmoke;
 }
 
-.container1 h1{
+.containerRep1 h1{
     color: #555e66;
     margin: .5em 0 .5em .5em;
-    font-size: 1.4rem;    
+    font-size: clamp(1rem, 2vw, 1.4rem);    
     font-family: 'Roboto', sans-serif;
 }
 
-.container1 a{
+.containerRep1 a{
     width: 100%;
     text-decoration: none;
 }
 
 /* OPCIONES DEL CONTENEDOR - LINK */
-.container1 .link-option{
+.containerRep1 .link-option{
     width : 90%;
     height: 2em;
     margin: .5em 0 .5em 1em;
@@ -52,26 +55,26 @@
     text-align: left;
 }
 /* ICONS */
-.container1 .icon1,
-.container1 .icon2{
+.containerRep1 .icon1,
+.containerRep1 .icon2{
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.container1 .icon1 svg,
-.container1 .icon2 svg{
+.containerRep1 .icon1 svg,
+.containerRep1 .icon2 svg{
     padding: 0 0 0 .2em;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2vw,1.5rem);
 }
 
 
 /* ANIMACIONES  */
-.container1 .link-option:hover{
+.containerRep1 .link-option:hover{
     color:  #34495e;
     transform: translateX(1em);
 }
-.container1 .link-option:active{
+.containerRep1 .link-option:active{
     color:  #2b88e4;
     transform: translateX(1em);
     transition: 100ms;
@@ -80,11 +83,11 @@
 /* 
     CONTENEDOR 2 
 */
-.module-reparacion .container2{    
+.module-reparacion .containerRep2{    
     width: calc(100% - 15em);
     height: 100%;    
     display: flex;
-
+    justify-content: center;
     background: lightsalmon;
 }
 
@@ -98,13 +101,97 @@
 }
 
 /* TARJETA - HILO */
-.module-reparacion .container2 .card-hilo{
+.module-reparacion .containerRep2 .card-hilo{
     width : 50%;
     height: 60%;
     margin: auto;    
 }
 
 /* COTENEDOR - TABLE */
-.module-reparacion .table{
-    width: 95%;
+.module-reparacion .seguimiento{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    background: cornflowerblue;
+}
+/* CONTENEDOR - Input*/
+.seguimiento .inpt-buscar{
+    width: 45%;
+    margin: 2em 0 1em 0;
+}
+.module-reparacion .table-seguimiento{
+    width: 100%;
+    overflow: auto;
+}
+
+/* FOR MOBILES */
+@media screen and (max-width: 600px) {
+    .module-reparacion{
+        flex-direction: column;
+    }
+    /* 
+        CONTENEDOR 1 
+    */
+    .module-reparacion .containerRep1{
+        width: 10%;
+        height: auto;
+    }
+    /* Menú de opciones */
+    .module-reparacion .containerRep1{
+        width : 10%;
+        height: auto;
+
+        display: flex;
+
+        background: transparent;
+        position: absolute;
+        bottom: 0;
+        left: 26%;
+    }
+    .module-reparacion .containerRep1 .text, .icon2{
+        visibility: hidden;
+    }
+    .module-reparacion h1{
+        position: absolute;
+        visibility: hidden;
+    }
+    /* Opciones - link */
+    .containerRep1 .link-option{        
+        color: lightgreen;
+        background: transparent;
+    }
+
+    /* 
+        CONTENEDOR 2
+    */
+    .module-reparacion .containerRep2{
+        width: 100%;
+    }
+    /* Formulario */
+    .module-reparacion .containerRep2 .box-reporte{
+        width: 98%;
+        margin-top: .6em;
+    }
+    /* Tarjeta hilo */
+    .module-reparacion .containerRep2 .card-hilo{
+        width : 100%;
+        height: 100%;
+    }
+    /* Tabla - seguimiento*/
+    .module-reparacion .seguimiento .inpt-buscar{
+        width: 95%;
+        margin: 1.5em 0 1em 0; 
+    }
+    .module-reparacion .seguimiento .table-seguimiento{
+        height: 80%;
+        background: lightpink;
+    }
+}
+
+@media screen and (min-width:600px) and (max-width:1000px) {
+    /* Formulario */
+    .module-reparacion .containerRep2 .box-reporte{
+        width: 98%;
+    }
 }

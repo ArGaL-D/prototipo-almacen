@@ -19,7 +19,7 @@ export default function InputDark(props) {
             </label>
             <div 
                 style ={props.cursorPointer?{cursor:'pointer'}:null}
-                onClick={props.scan}
+                onClick={props.onClick}
                 className="icon">
                 {props.icon}
             </div>

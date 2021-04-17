@@ -25,11 +25,12 @@
 }
 
 #title1{    
-    font-size: 4rem;    
+    font-size: clamp(2.2rem, 2vw,4rem);    
+    font-weight: 600;
 }
 #title2{
     padding: 1em 0 0 0;
-    font-size: 2rem;    
+    font-size: clamp(1.5rem, 2vw, 2rem);    
     font-weight: 600;
 }
 #title3{     
@@ -48,4 +49,29 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+
+/* FOR MOBILES */
+@media screen and (max-width: 450px) {
+    /* Caja 1 */
+    .container-hilo .boxHilo{
+        width: 100%;
+        height: 55%;    
+        
+    }
+    #title2{
+        padding-top: 2em;
+    }
+    #title3{
+        font-size: 2rem;
+        padding-top: 3rem;
+    }
+    /* Caja 2 */
+    .container-hilo .button{
+        width: 100%;
+        height: 45%;
+        
+        
+    }
 }

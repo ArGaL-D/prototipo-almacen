@@ -1,15 +1,19 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import {Link, Switch, Route} from 'react-router-dom';
+
+import Form from '../Form';
+import Hilo from '../Hilo';
+import Datatable from '../Datatable';
+import InputDark from '../field/InputDark';
 
 import * as BiIcons from "react-icons/bi";
 import * as RiIcons from "react-icons/ri";
 import * as GiIcons from "react-icons/gi";
 import * as GrIcons from "react-icons/gr";
+import * as GoIcons from "react-icons/go";
 
 import "./styles/Reparacion.css";
-import Form from '../Form';
-import Hilo from '../Hilo';
-import Datatable from '../Datatable';
+
 
 export default function Reparacion({setTitle}) {
 
@@ -18,7 +22,15 @@ export default function Reparacion({setTitle}) {
         "#", "SERIAL", "EQUIPO", "HILO", "REPORTE",
         "DETALLES", "ESTATUS", "ETAPA", "FECHA","HORA"
     ];
+
+    const [modal,setModal] = useState(false);
     
+    const showModal = () =>{
+        setModal(!modal);
+        console.log('hola')
+    }
+
+
     //Establecer título actual - navbar
     useEffect(() => {
         setTitle('Reparación');
@@ -28,10 +40,10 @@ export default function Reparacion({setTitle}) {
     return (
         <div className="module-reparacion">
             
-            <div className="container1">
+            <div className="containerRep1">
                 <h1>Opciones</h1>
                 <Link to = "/page/reparacion/hilo">
-                    <div className="option-hilo link-option">
+                    <div className="link-option">
                         <div className="icon1">
                             <BiIcons.BiGitBranch/>
                         </div>
@@ -44,12 +56,12 @@ export default function Reparacion({setTitle}) {
                     </div>
                 </Link>
                 <Link to = "/page/reparacion/reporte">
-                    <div className="option-hilo link-option">
+                    <div className="link-option">
                         <div className="icon1">
                             <GrIcons.GrTextAlignLeft/>
                         </div>
                         <div className="text">
-                            <span>Generar reporte</span>
+                            <span>Hacer reporte</span>
                         </div>
                         <div className="icon2">
                             <RiIcons.RiArrowRightSFill/>
@@ -57,7 +69,7 @@ export default function Reparacion({setTitle}) {
                     </div>
                 </Link>
                 <Link to = "/page/reparacion/seguimiento">
-                    <div className="option-seguimiento  link-option">
+                    <div className="link-option">
                         <div className="icon1">
                            <GiIcons.GiArchiveResearch/>
                         </div>
@@ -71,7 +83,7 @@ export default function Reparacion({setTitle}) {
                 </Link>
             </div>
 
-            <div className="container2">
+            <div className="containerRep2">
                 <Switch>
                     <Route path="/page/reparacion/hilo">
                         <div className="card-hilo">
@@ -83,16 +95,25 @@ export default function Reparacion({setTitle}) {
                         <div className="box-reporte">
                             <Form
                                 type = "REPORTE"
+                                showModal = {showModal}
                             />
                         </div>
                     </Route>
 
                     <Route path="/page/reparacion/seguimiento">
-                        <div className="table">
-                            <Datatable 
-                                rows = {null}
-                                columns = {columnas}                                
-                            />
+                        <div className="seguimiento">
+                            <div className="inpt-buscar">
+                                <InputDark
+                                    icon = {<GoIcons.GoSearch/>}
+                                    placeholder = "Hilo de seguimiento"
+                                />
+                            </div>
+                            <div className="table-seguimiento">
+                                <Datatable 
+                                    rows = {null}
+                                    columns = {columnas}                                
+                                />
+                            </div>
                         </div>
                     </Route>
                 </Switch>

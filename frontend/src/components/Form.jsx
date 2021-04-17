@@ -24,7 +24,7 @@ export default function Form(props) {
                 ALUMNO: <FormPrestamo type={props.type}/>,
                 PROFESOR: <FormPrestamo type={props.type}/>, 
                 PERSONAL: <FormPrestamo type={props.type}/>,                
-                REPORTE: <FormReparacion />
+                REPORTE: <FormReparacion showModal={props.showModal}/>
             }[props.type]
         }
             
@@ -116,7 +116,6 @@ function FormPrestamo (props){
                     name = 'fecha'
                     type = "date"
                     icon = {<MdIcons.MdDateRange/>}
-                    onClick = {null} 
                     onChange = {handleText}                   
                     placeholder = "Fecha de salida"
                 />
@@ -162,7 +161,7 @@ function FormPrestamo (props){
 
 // Formulario del módulo REPARACIÓN
 
-function FormReparacion (){
+function FormReparacion (props){
     return(
         <form id="form">
             <h2>Reporte</h2>
@@ -172,14 +171,6 @@ function FormReparacion (){
                     name = "reporte"
                     icon = {<HiIcons.HiPencilAlt/>}
                     placeholder = "Título"
-                />
-            </div>
-            <div className="input">
-                <InputDark
-                    id = "hilo"
-                    name = "hilo"
-                    icon = {<BiIcons.BiGitBranch/>}
-                    placeholder = "Hilo"
                 />
             </div>
             <div className="input">
@@ -198,6 +189,16 @@ function FormReparacion (){
                     icon = {<GiIcons.GiWifiRouter/>}                     
                     onChange = {null}                   
                     placeholder = "Equipo"
+                />
+            </div>
+            <div className="input">
+                <InputDark
+                    id = "hilo"
+                    name = "hilo"
+                    icon = {<BiIcons.BiGitBranch/>}
+                    onClick = {props.showModal}
+                    placeholder = "Hilo"
+                    cursorPointer = {true}
                 />
             </div>
 
@@ -232,11 +233,13 @@ function FormReparacion (){
                     placeholder = "Fecha actual"
                 />
             </div>
+
             <div className="textArea">
                 <TextArea
                     placeholder = "Detalles del reporte."
                 />
             </div>
+
             <div className="button">
                 <Button
                     title = "ACEPTAR"
@@ -246,3 +249,5 @@ function FormReparacion (){
         </form>
     )
 }
+
+// Tabla de 
