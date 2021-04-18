@@ -21,6 +21,7 @@ export default function Usuarios({setTitle}) {
 
     return (
         <div className="module-usuarios">
+            {/* CONTENEDOR 1 */}
             <div className="container1-usuarios">
                 <div className="rectangle">
                     <Rectangle
@@ -44,6 +45,7 @@ export default function Usuarios({setTitle}) {
                     />
                 </div>
             </div>
+            {/* CONTENEDOR 2 */}
             <div className="container2-usuarios">
                 <div className="dona">
                     <PieChart />
