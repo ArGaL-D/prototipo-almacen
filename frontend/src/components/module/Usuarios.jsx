@@ -23,6 +23,20 @@ export default function Usuarios({setTitle}) {
                         content = "Nuevo perfil"                    
                     />
                 </div>
+                <div className="rectangle">
+                    <Rectangle
+                        icon = {<IoIcons.IoPersonAdd />}
+                        title = "Usuarios"
+                        content = "Total de usuarios"                    
+                    />
+                </div>
+                <div className="rectangle">
+                    <Rectangle
+                        icon = {<IoIcons.IoPersonAdd />}
+                        title = "Administrador"
+                        content = "Datos del perfil"                    
+                    />
+                </div>
             </div>
             <div className="container2-usuarios">
                 

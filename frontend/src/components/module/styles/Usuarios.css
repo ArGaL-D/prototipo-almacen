@@ -13,14 +13,17 @@
 /* CONTENEDOR 1 */
 .container1-usuarios{
     width : 95%;
-    height: 40%;
+    height: 25%;
 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background: lightgreen;
 }
 
 .container1-usuarios .rectangle{
-    width : 30%;
-    height: 8em;
+    width : 25%;
+    height: 7em;
 
     background: lightgoldenrodyellow;
 }
@@ -28,7 +31,52 @@
 /* CONTENEDOR 2 */
 .container2-usuarios{
     width : 95%;
-    height: 60%;
+    height: 75%;
 
     background: lightpink;
 }
+
+
+
+/* FOR MOBILES */
+@media screen and (max-width: 800px) {
+    /* CONTENEDOR 1 */
+    .container1-usuarios{
+        height: 40%;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .container1-usuarios .rectangle{
+        width : 99%;
+        height: 5em;
+        border: 1px solid lightsalmon;
+        background: crimson;
+    }
+    /* CONTENEDOR 2 */
+    .container2-usuarios{
+        height: 60%;
+    }
+}
+
+@media screen and (orientation: landscape) and (max-height: 450px) {
+    .container1-usuarios{
+        overflow: auto;
+        flex-direction: column;
+    }
+    .container1-usuarios .rectangle{
+        width : 99%;
+        height: 5em;
+        border: 1px solid lightsalmon;
+        background: crimson;
+    }
+}
+
+/* FOR TABLETS 
+@media screen and (min-width:600px) and (max-width: 1100px) {
+    .container1-usuarios .rectangle{
+        width: 32%;        
+        height: 4.5em;
+    }
+    
+}
+*/

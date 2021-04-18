@@ -1,8 +1,10 @@
 import React from 'react';
 
+import "./styles/Rectangle.css";
+
 export default function Rectangle({icon, title, content}) {
     return (
-        <div className="reactangle-option">
+        <div className="rectangle-option">
             <div className="bar">
                 {icon}
             </div>
