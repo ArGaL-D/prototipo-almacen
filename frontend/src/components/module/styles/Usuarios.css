@@ -1,0 +1,34 @@
+.module-usuarios{
+    width : calc(100vw - 5em);
+    height: 100%;
+
+    overflow: auto;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;    
+}
+
+/* CONTENEDOR 1 */
+.container1-usuarios{
+    width : 95%;
+    height: 40%;
+
+    background: lightgreen;
+}
+
+.container1-usuarios .rectangle{
+    width : 30%;
+    height: 8em;
+
+    background: lightgoldenrodyellow;
+}
+
+/* CONTENEDOR 2 */
+.container2-usuarios{
+    width : 95%;
+    height: 60%;
+
+    background: lightpink;
+}
