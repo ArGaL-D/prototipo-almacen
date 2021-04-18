@@ -5,13 +5,19 @@ import Rectangle from '../Rectangle';
 import * as IoIcons from 'react-icons/io5';
 
 import "./styles/Usuarios.css";
+import PieChart from '../PieChart';
 
 export default function Usuarios({setTitle}) {
+
 
     useEffect(() => {
         setTitle('Usuarios');    
         sessionStorage.setItem('page','usuarios');
+        
     })
+
+
+
 
     return (
         <div className="module-usuarios">
@@ -40,7 +46,7 @@ export default function Usuarios({setTitle}) {
             </div>
             <div className="container2-usuarios">
                 <div className="dona">
-                    gola
+                    <PieChart />
                 </div>
                 <div className="info">
                     fskdpk
