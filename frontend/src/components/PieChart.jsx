@@ -31,7 +31,7 @@ export default function PieChart() {
         <Doughnut 
             data = {data}                
             width = {600}
-            height = {460}               
+            height = {455}               
             options = {
             {
                 title: {display: true, text: "EQUIPOS"}

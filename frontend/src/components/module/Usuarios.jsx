@@ -61,9 +61,11 @@ export default function Usuarios({setTitle}) {
             </div>
             {/* CONTENEDOR 2 */}
             <div className="container_2">
+                {/* Parte 1 */} 
                 <div className="donut">
                     <PieChart />
                 </div>
+                {/* Parte 2 */} 
                 <div className="box_modules">
                     <div className="inpt_search">
                         <InputDark
