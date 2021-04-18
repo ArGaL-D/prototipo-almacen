@@ -33,8 +33,28 @@
     width : 95%;
     height: 75%;
 
+    display: flex;
+    justify-content: space-between;
     background: lightpink;
 }
+/* GRÁFICA - Dona */
+.container2-usuarios .dona{
+    width : 47%;
+    background: lightseagreen;
+}
+
+/* DONA - INFO */
+.container2-usuarios .info{
+    width: 47%;
+    background: lightcoral;
+}
+
+
+
+
+
+
+
 
 
 
@@ -59,15 +79,25 @@
 }
 
 @media screen and (orientation: landscape) and (max-height: 450px) {
+    .module-usuarios{
+        flex-direction: row;
+    }
+    /* CONTENEDOR 1*/
     .container1-usuarios{
-        overflow: auto;
+        width : 40%;
+        height: 100%;
+        justify-content: space-around;
         flex-direction: column;
     }
     .container1-usuarios .rectangle{
-        width : 99%;
-        height: 5em;
+        width : 100%;
+        height:  4em;
         border: 1px solid lightsalmon;
         background: crimson;
+    }
+    /* CONTENEDOR 2 */
+    .container2-usuarios{
+        height: 100%;
     }
 }
 
@@ -80,3 +110,15 @@
     
 }
 */
+
+/* FOR DESKTOPS */
+@media screen and (min-height: 800px) {
+    /* CONTENDOR 1 */
+    .module-usuarios .container1-usuarios{
+        height: 15%;
+    }
+    /* CONTENDOR 2 */
+    .module-usuarios .container2-usuarios{
+        height: 85%;
+    }
+}

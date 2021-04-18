@@ -39,7 +39,12 @@ export default function Usuarios({setTitle}) {
                 </div>
             </div>
             <div className="container2-usuarios">
-                
+                <div className="dona">
+                    gola
+                </div>
+                <div className="info">
+                    fskdpk
+                </div>
             </div>            
         </div>
     )
