@@ -1,6 +1,8 @@
 import Cookies from 'js-cookie';
 import React,{useEffect} from 'react';
 import Rectangle from '../Rectangle';
+import Datatable from "../Datatable";
+import InputDark from "../field/InputDark";
 
 import * as IoIcons from 'react-icons/io5';
 
@@ -9,6 +11,11 @@ import PieChart from '../PieChart';
 
 export default function Usuarios({setTitle}) {
 
+    const columns = [
+        "Serial", "Equipo","Marca","Modelo","Estatus",
+        "Descrip", "Almacén","Edificio","Piso",
+        "Editar","Eliminar"        
+    ];
 
     useEffect(() => {
         setTitle('Usuarios');    
@@ -22,7 +29,7 @@ export default function Usuarios({setTitle}) {
     return (
         <div className="module-usuarios">
             {/* CONTENEDOR 1 */}
-            <div className="container1-usuarios">
+            <div className="container_1">
                 <div className="rectangle">
                     <Rectangle
                         icon = {<IoIcons.IoPersonAdd />}
@@ -33,27 +40,45 @@ export default function Usuarios({setTitle}) {
                 <div className="rectangle">
                     <Rectangle
                         icon = {<IoIcons.IoPersonAdd />}
-                        title = "Usuarios"
-                        content = "Total de usuarios"                    
+                        title = "Crear usuario"
+                        content = "Nuevo perfil"                    
                     />
                 </div>
                 <div className="rectangle">
                     <Rectangle
                         icon = {<IoIcons.IoPersonAdd />}
-                        title = "Administrador"
-                        content = "Datos del perfil"                    
+                        title = "Crear usuario"
+                        content = "Nuevo perfil"                    
+                    />
+                </div>
+                <div className="rectangle">
+                    <Rectangle
+                        icon = {<IoIcons.IoPersonAdd />}
+                        title = "Crear usuario"
+                        content = "Nuevo perfil"                    
                     />
                 </div>
             </div>
             {/* CONTENEDOR 2 */}
-            <div className="container2-usuarios">
-                <div className="dona">
+            <div className="container_2">
+                <div className="donut">
                     <PieChart />
                 </div>
-                <div className="info">
-                    fskdpk
+                <div className="box_modules">
+                    <div className="inpt_search">
+                        <InputDark
+                            placeholder = "Buscar"
+                        />
+                    </div>
+                    <div className="table">
+                        <Datatable
+                            rows = {null}
+                            columns = {columns}
+                        /> 
+                    </div>
                 </div>
-            </div>            
+            </div>
+
         </div>
     )
 }

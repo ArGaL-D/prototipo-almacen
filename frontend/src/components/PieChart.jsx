@@ -7,8 +7,9 @@ export default function PieChart() {
         labels: [
           'Disponiblidad',
           'Reparación',
-          'Préstamo'
+          'Prestados'
         ],
+        
         datasets: [
         {
           label: 'EQUIPOS',
@@ -18,7 +19,7 @@ export default function PieChart() {
             'rgb(196, 69, 106)',
             'rgb(69, 106, 196)'
           ],        
-          
+          responsive: true,
           borderWidth: 2,
           hoverOffset: 6,
           hoverBorderWidth: 0
@@ -27,18 +28,16 @@ export default function PieChart() {
       };
 
     return (
-        <div>
-           <Doughnut 
-              data = {data}                
-              width = {600}
-              height = {400}   
-              options = {
-                {
-                  title: {display: true, text: "EQUIPOS"}
-                }
-              }        
-           /> 
-        </div>
+        <Doughnut 
+            data = {data}                
+            width = {600}
+            height = {460}               
+            options = {
+            {
+                title: {display: true, text: "EQUIPOS"}
+            }
+            }        
+        /> 
     )
 }
 

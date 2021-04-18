@@ -15,7 +15,7 @@
     align-items: center;
     justify-content: center;
 
-    font-size: clamp(1.5rem, 2vw, 2rem);
+    font-size: clamp(1rem, 2vw, 2rem);
     background: rgb(44, 177, 221);
 }
 
@@ -28,11 +28,11 @@
 /* CONTENT - TITLE */
 .content h2{    
     margin: .5em 0 0 .5em;
-    font-size: clamp(.9rem, 2vw, 1.4rem);
+    font-size: clamp(.9rem, 2vw, 1.2rem);
     font-family: 'Poppins', sans-serif;
 }
 .content p{
-    margin: 1em 0 0 1.5em;
+    margin: .2em 0 0 1.5em;
     font-size: clamp(.9rem, 2vw, 1rem);
     font-weight: 600;
     font-family: 'Roboto', sans-serif;
@@ -42,10 +42,10 @@
 
 
 /* FOR MOBILES */
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 600px) {
     /* CONTENT */
     .content p{
-        margin: .5em 0 0 1.5em;
+        margin: .1em 0 0 1em;
     }
 
 }

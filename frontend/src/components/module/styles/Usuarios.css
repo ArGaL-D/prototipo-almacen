@@ -2,128 +2,90 @@
     width : calc(100vw - 5em);
     height: 100%;
 
-    overflow: auto;
+    overflow: auto; 
+}
+
+/* CONTENEDOR 1 */
+.container_1{
+    width : 100%;
     
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;    
-}
-
-/*  
-    CONTENEDOR 1
-*/
-.container1-usuarios{
-    width : 95%;
-    height: 25%;
+    background: coral;
 
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: lightgreen;
+    justify-content: space-around;
 }
 
-.container1-usuarios .rectangle{
-    width : 25%;
-    height: 7em;
+.container_1 .rectangle{
+    width: 15em;
+    height: 5em;
 
-    background: lightgoldenrodyellow;
+    margin: 1em;
+    background: darkgoldenrod;
 }
 
-/* 
-    CONTENEDOR 2 
-*/
-.container2-usuarios{
-    width : 95%;
-    height: 75%;
-
+/* CONTENEDOR 2 */
+.container_2{
+    width: 100%;
+    height: 90%;
     display: flex;
     justify-content: space-between;
-    background: lightpink;
+    background: lightslategray;
 }
-/* GRÁFICA - Dona */
-.container2-usuarios .dona{
-    width : 47%;
+/* - Dona */
+.container_2 .donut{
+    width: 39.5em;
+    background: lightskyblue;
+}
+/* - Caja */
+.box_modules{
+    width: 39.5em;
     background: lightseagreen;
 }
-
-/* DONA - INFO */
-.container2-usuarios .info{
-    width: 47%;
-    background: lightcoral;
+/* -Caja - Tabla*/
+.box_modules .table{
+    overflow: auto;
 }
+/* - Input - buscar */
+.box_modules .inpt_search{
+    margin: 1em 0 .5em 0;
+}
+
+
 
 
 
 
 
 /* FOR MOBILES */
-@media screen and (max-width: 800px) {
-    /* CONTENEDOR 1 */
-    .container1-usuarios{
-        height: 40%;
-        flex-direction: column;
-        justify-content: space-around;
+@media screen and (max-width: 450px) {
+    .container_1{
+        display: flex;
+        flex-wrap: wrap;
     }
-    .container1-usuarios .rectangle{
-        width : 99%;
-        height: 5em;
-        border: 1px solid lightsalmon;
-        background: crimson;
+
+    .container_2{        
+        flex-wrap: wrap;
     }
-    /* CONTENEDOR 2 */
-    .container2-usuarios{        
-        height: 60%;
-        flex-direction: column;
-    }
-    /* CONTENEDOR 2 - DONA */
-    .container2-usuarios .dona{
+
+    .container_2 .donut{
         width: 100%;
-        height: 100%;
+    }
+    .container_2 .box_modules .table{
+        height: 5em; /* CHECAR -> CUANDO ya HAYA VALORES */
+        background: rgb(233, 233, 155);
     }
 }
 
-@media screen and (orientation: landscape) and (max-height: 450px) {
-    .module-usuarios{
-        flex-direction: row;
+/* FOR TABLETS */
+@media screen and (min-width: 600px) and (max-width: 1100px) {
+    .container_1{
+        width: 85%;
+        flex-wrap: wrap;
     }
-    /* CONTENEDOR 1*/
-    .container1-usuarios{
-        width : 40%;
-        height: 100%;
-        justify-content: space-around;
-        flex-direction: column;
-    }
-    .container1-usuarios .rectangle{
-        width : 100%;
-        height:  4em;
-        border: 1px solid lightsalmon;
-        background: crimson;
-    }
-    /* CONTENEDOR 2 */
-    .container2-usuarios{
-        height: 100%;
-    }
-}
 
-/* FOR TABLETS 
-@media screen and (min-width:600px) and (max-width: 1100px) {
-    .container1-usuarios .rectangle{
-        width: 32%;        
-        height: 4.5em;
+    .container_2{
+        width: 85%;
+        flex-wrap: wrap;
     }
-    
-}
-*/
 
-/* FOR DESKTOPS */
-@media screen and (min-height: 800px) {
-    /* CONTENDOR 1 */
-    .module-usuarios .container1-usuarios{
-        height: 15%;
-    }
-    /* CONTENDOR 2 */
-    .module-usuarios .container2-usuarios{
-        height: 85%;
-    }
 }
