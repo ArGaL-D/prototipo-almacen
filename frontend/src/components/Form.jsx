@@ -24,7 +24,8 @@ export default function Form(props) {
                 ALUMNO: <FormPrestamo type={props.type}/>,
                 PROFESOR: <FormPrestamo type={props.type}/>, 
                 PERSONAL: <FormPrestamo type={props.type}/>,                
-                REPORTE: <FormReparacion showModal={props.showModal}/>
+                REPORTE: <FormReparacion showModal={props.showModal}/>,
+                USUARIO: <FormUsuario showModal={props.showModal}/>
             }[props.type]
         }
             
@@ -250,4 +251,59 @@ function FormReparacion (props){
     )
 }
 
-// Tabla de 
+// Formulario de CREAR USUARIO - módulo Admin
+
+function FormUsuario (props){
+    return(
+        <form id="formUser">
+            <div className="input-container">
+                <div className="input">
+                    <InputDark 
+                        id = 'inputNombres'
+                        name = 'nombres'
+                        icon = {<MdIcons.MdDateRange/>}                     
+                        onChange = {null}                   
+                        placeholder = "Nombre(s)"
+                    />
+                </div>
+                <div className="input">
+                    <InputDark 
+                        id = 'inputApellidos'
+                        name = 'apellidos'
+                        icon = {<MdIcons.MdDateRange/>}                     
+                        onChange = {null}                   
+                        placeholder = "Apellido(s)"
+                    />
+                </div>
+            </div>
+            <div className="input">
+                <InputDark 
+                    id = 'inputEmail'
+                    name = 'email'
+                    icon = {<MdIcons.MdDateRange/>}                     
+                    onChange = {null}                   
+                    placeholder = "Email"
+                />
+            </div>
+            <div className="input">
+                <InputDark 
+                    id = 'inputPassword'
+                    name = 'password'
+                    type = 'password'
+                    icon = {<MdIcons.MdDateRange/>}                     
+                    onChange = {null}                   
+                    placeholder = "Password"
+                />
+            </div>
+            <div className="select">
+                <Select
+                    id = "selectEtapa"
+                    name = "etapa"
+                    type = "REPARACION_ETAPA"
+                    onChange = {null}
+                    placeholder = "Estatus"
+                />            
+            </div>
+        </form>
+    )
+}

@@ -2,122 +2,53 @@
     width : calc(100vw - 5em);
     height: 100%;
 
-    overflow: auto; 
+    overflow: auto;
+    position: relative; 
 }
-
 /* CONTENEDOR 1 */
-.container_1{
-    width : 100%;
-    
-    background: coral;
-
-    display: flex;
-    justify-content: space-around;
+.module-usuarios .container_1{
+    background: whitesmoke;
+    box-shadow: 0px 1px 5px 0px rgba(211, 211, 211, 0.75);
 }
 
 .container_1 .rectangle{
-    width: 15em;
-    height: clamp(4em, 5vh, 5em);
-
-    margin: 1em;
-    background: darkgoldenrod;
+    height: 4em;
+    background: lightslategrey;
 }
-
+a{
+    text-decoration: none;
+}
 /* CONTENEDOR 2 */
-.container_2{
-    width: 100%;
-    
-
-    display: flex;
-    justify-content: space-between;
-    background: lightslategray;
-}
-/* - Dona */
-.donut .border{
-    height: auto;
-    background: whitesmoke;
-    box-shadow: 0px 1px 5px 0px rgba(185, 185, 185, 0.75);
-}
-.container_2 .donut{
-    width: 39.5em;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: lightskyblue;
-}
-/* - Caja */
-.box_modules{
-    width: 39.5em;
-    
-    background: rgb(116, 45, 138);
-}
-/* - Input - buscar */
-.box_modules .inpt_search{
-    width: 98%;
-    margin: 1.5em auto .5em auto;
-}
-/* -Caja - Tabla*/
-.box_modules .table{
-    width: 98%;
-    margin: auto;
+.container_2 .table{
     overflow: auto;
 }
 
 
-/* FOR MOBILES */
-@media screen and (max-width: 450px) {
-    .container_1{
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .container_2{        
-        flex-wrap: wrap;
-    }
-    .box_modules{
-        overflow: auto;
-    }
-    .container_2 .donut{
-        width: 100%;        
-    }
-    .donut .border{
-        width : 100%;
-        height: 90%;
-    }
-    .box_modules .table{
-        width: 100%;
-    }
-    .container_2 .box_modules .table{
-        height: 100%; /* CHECAR -> CUANDO ya HAYA VALORES */
-        background: rgb(233, 233, 155);
-    }
-}
-
-/* FOR TABLETS */
-@media screen and (min-width: 500px) and (max-width: 1100px) {
-    .container_1{
-        width: 100%;
-        flex-wrap: wrap;
-    }
-
-    .container_2{
-        width: 100%;
-        flex-wrap: wrap;
-    }
-    .container_2 .donut,
-    .container_2 .box_modules{
-        width: 100%;
-    }
-}
 
 /* FOR DESKTOPS */
-@media screen and (min-width:1200px) {
-    .container_1{
-        height: 20%;
-        align-items: center;
+@media screen and (min-width: 1100px) {
+    .module-usuarios{
+        display: flex;
     }
+    /* CONTENEDOR 1 */
+    .container_1{
+        width : 20%;
+        height: 100%;
+        
+        background: lightsalmon;
+        z-index: 1;
+    }
+    /* CONTAINER 2 */
     .container_2{
-        height: 80%;
+        width: 80%;
+            
+        right: 0;
+        overflow: auto;
+    }
+    .container_2 .form{
+        
+    }
+    .donut{
+        width: 70%;
     }
 }

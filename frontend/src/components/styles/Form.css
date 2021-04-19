@@ -26,8 +26,17 @@
 #form .select-options{
     display: flex;
 }
-#form .select-options .select{
-    margin-right: 1em;
+
+/* MÓDULO USUARIOS - CREAR USUARIO - */
+#formUser{
+    background: lightpink;
+}
+.input-container{
+    display: flex;
+    justify-content: space-between;
+}
+.input-container .input{
+    width: 49%;
 }
 
 
