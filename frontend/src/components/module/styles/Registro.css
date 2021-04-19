@@ -41,6 +41,10 @@
 .module_registrar form .text-area{
     width: 100%;
 }
+.module_registrar form .text-area h3{
+    padding: 1em 0 .2em 0;
+    font-size: 1rem;
+}
 .module_registrar form .btn{
     width : 100%;
 }
