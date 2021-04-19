@@ -96,7 +96,7 @@ server.post('/registrar', (req, res) => {
 /* POST  Módulo ( PRÉSTAMO ) */
 server.post('/prestamo', (req, res) => {
     // Solicitar datos enviados por el cliente
-    const nombre = req.body.tag_inputs.nombre_persona;
+    const persona = req.body.tag_inputs.nombre_persona;
     const clave = req.body.tag_inputs.clave_boleta;
     const serie = req.body.tag_inputs.serie_equipo;
     const fecha = req.body.tag_inputs.fecha_salida;
@@ -107,7 +107,7 @@ server.post('/prestamo', (req, res) => {
     pool.getConnection((error, connection) => {
         if (error) throw error;
 
-        connection.query("call sp_addPrestamo(?,?,?,?,?,?,?)", [nombre, clave, serie, fecha, edificio, piso, aula], (err, results) => {
+        connection.query("call sp_addPrestamo(?,?,?,?,?,?,?)", [persona, clave, serie, fecha, edificio, piso, aula], (err, results) => {
             connection.release();
 
             if (err) console.log(err)
