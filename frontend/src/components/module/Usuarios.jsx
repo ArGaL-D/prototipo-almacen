@@ -22,6 +22,11 @@ export default function Usuarios({setTitle}) {
         "Editar","Eliminar"        
     ];
 
+    const userComlumns = [
+        "#", "ID", "USUARIO", "NOMBRE(S)", "APELLIDO(S)",
+        "EMAIL", "PERMISOS", "ELIMINAR"
+    ]
+
     useEffect(() => {
         setTitle('Usuarios');    
         sessionStorage.setItem('page','usuarios');
@@ -40,7 +45,7 @@ export default function Usuarios({setTitle}) {
                     <Link to={`${path}`}>
                         <Rectangle
                             icon = {<IoIcons.IoPersonAdd />}
-                            title = "Gráficas"
+                            title = "Gráfica"
                             content = "Información"
                         />
                     </Link>
@@ -72,15 +77,6 @@ export default function Usuarios({setTitle}) {
                         />
                     </Link>
                 </div>
-                <div className="rectangle">
-                    <Link to={`${path}/administrador`}>
-                        <Rectangle
-                            icon = {<IoIcons.IoPersonAdd />}
-                            title = "Administrador"
-                            content = "Total de usuarios"
-                        />
-                    </Link>
-                </div>
             </div>
 
             
@@ -99,13 +95,18 @@ export default function Usuarios({setTitle}) {
                             </div>
                         </div>
                         <div className="form">
-                                <Form
-                                    type = "USUARIO"
-                                />
+                            <Form
+                                type = "USUARIO"
+                            />
                         </div>
                     </Route>
                     <Route path={`${path}/usuarios`}>
-                        <h2>Usuarios</h2>
+                        <div className="table">
+                            <Datatable
+                                rows = {null}
+                                columns = {userComlumns}
+                            />
+                        </div>                        
                     </Route>
                     <Route path={`${path}/administrador`}>
                         <h2>Administrador</h2>
@@ -116,6 +117,11 @@ export default function Usuarios({setTitle}) {
                                 rows = {null}
                                 columns = {columns}
                             />
+                        </div>
+                    </Route>
+                    <Route path={`${path}/*`}>
+                        <div className="table">
+                            ERROR
                         </div>
                     </Route>
                 </Switch>

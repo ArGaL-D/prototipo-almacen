@@ -256,11 +256,21 @@ function FormReparacion (props){
 function FormUsuario (props){
     return(
         <form id="form">
+            <br/>
+            <div className="input">
+                <InputDark 
+                    id = 'inputUsuario'
+                    name = 'usuario'
+                    icon = {<FaIcons.FaUserAlt/>}        
+                    onChange = {null}                   
+                    placeholder = "Usuario"
+                />
+            </div>
             <div className="input">
                 <InputDark 
                     id = 'inputNombres'
                     name = 'nombres'
-                    icon = {<MdIcons.MdDateRange/>}                     
+                    icon = {<FaIcons.FaUserEdit/>}                     
                     onChange = {null}                   
                     placeholder = "Nombre(s)"
                 />
@@ -269,7 +279,7 @@ function FormUsuario (props){
                 <InputDark 
                     id = 'inputApellidos'
                     name = 'apellidos'
-                    icon = {<MdIcons.MdDateRange/>}                     
+                    icon = {<FaIcons.FaUserEdit/>}                     
                     onChange = {null}                   
                     placeholder = "Apellido(s)"
                 />
@@ -278,7 +288,8 @@ function FormUsuario (props){
                 <InputDark 
                     id = 'inputEmail'
                     name = 'email'
-                    icon = {<MdIcons.MdDateRange/>}                     
+                    type = 'email'
+                    icon = {<MdIcons.MdEmail/>}                     
                     onChange = {null}                   
                     placeholder = "Email"
                 />
@@ -288,9 +299,9 @@ function FormUsuario (props){
                     id = 'inputPassword'
                     name = 'password'
                     type = 'password'
-                    icon = {<MdIcons.MdDateRange/>}                     
+                    icon = {<FaIcons.FaKey/>}                    
                     onChange = {null}                   
-                    placeholder = "Password"
+                    placeholder = "Contraseña"
                 />
             </div>
             <div className="input">
@@ -298,12 +309,13 @@ function FormUsuario (props){
                     id = 'inputRepeatPass'
                     name = 'repeatPass'
                     type = 'password'
-                    icon = {<MdIcons.MdDateRange/>}                     
+                    icon = {<FaIcons.FaKey/>}                     
                     onChange = {null}                   
-                    placeholder = "Confirmar password"
+                    placeholder = "Confirmar contraseña"
                 />
             </div>
             <div className="select">
+                <span>Permisos</span>
                 <Select
                     id = "selectEtapa"
                     name = "etapa"

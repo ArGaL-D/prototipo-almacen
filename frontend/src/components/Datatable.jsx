@@ -29,7 +29,8 @@ export default function Datatable({columns, rows ,type,openModal,deleteData}) {
                                 deleteData={deleteData}
                             />,
                     UBICACION: <tbodyUbicacion rows={rows} />,
-                    HILO: <tbodyHilo rows={rows}/>
+                    HILO: <tbodyHilo rows={rows}/>,
+                    USUARIOS: <tbodyUsuarios rows={rows}/>
                 }[type]
             }
 
@@ -120,6 +121,28 @@ function tbodyHilo (props){
               <td>{row.hilo}</td>
               <td>{row.fecha}</td>
               <td>{row.hora}</td>
+            </tr>  
+          )  
+        })
+      }  
+    </tbody>
+  )
+}
+
+function tbodyUsuarios (props){
+  return(
+      <tbody>
+      {
+        props.rows.map( (row,index) =>{
+          return(
+            <tr key={index}>
+              <td>{index+1}</td>
+              <td>{row.id_usuario}</td>
+              <td>{row.usuario}</td>
+              <td>{row.nombre}</td>
+              <td>{row.apellido}</td>
+              <td>{row.email}</td>
+              <td>{row.permisos}</td>
             </tr>  
           )  
         })
