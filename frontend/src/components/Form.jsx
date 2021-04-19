@@ -255,26 +255,24 @@ function FormReparacion (props){
 
 function FormUsuario (props){
     return(
-        <form id="formUser">
-            <div className="input-container">
-                <div className="input">
-                    <InputDark 
-                        id = 'inputNombres'
-                        name = 'nombres'
-                        icon = {<MdIcons.MdDateRange/>}                     
-                        onChange = {null}                   
-                        placeholder = "Nombre(s)"
-                    />
-                </div>
-                <div className="input">
-                    <InputDark 
-                        id = 'inputApellidos'
-                        name = 'apellidos'
-                        icon = {<MdIcons.MdDateRange/>}                     
-                        onChange = {null}                   
-                        placeholder = "Apellido(s)"
-                    />
-                </div>
+        <form id="form">
+            <div className="input">
+                <InputDark 
+                    id = 'inputNombres'
+                    name = 'nombres'
+                    icon = {<MdIcons.MdDateRange/>}                     
+                    onChange = {null}                   
+                    placeholder = "Nombre(s)"
+                />
+            </div>
+            <div className="input">
+                <InputDark 
+                    id = 'inputApellidos'
+                    name = 'apellidos'
+                    icon = {<MdIcons.MdDateRange/>}                     
+                    onChange = {null}                   
+                    placeholder = "Apellido(s)"
+                />
             </div>
             <div className="input">
                 <InputDark 
@@ -295,6 +293,16 @@ function FormUsuario (props){
                     placeholder = "Password"
                 />
             </div>
+            <div className="input">
+                <InputDark 
+                    id = 'inputRepeatPass'
+                    name = 'repeatPass'
+                    type = 'password'
+                    icon = {<MdIcons.MdDateRange/>}                     
+                    onChange = {null}                   
+                    placeholder = "Confirmar password"
+                />
+            </div>
             <div className="select">
                 <Select
                     id = "selectEtapa"
@@ -303,6 +311,11 @@ function FormUsuario (props){
                     onChange = {null}
                     placeholder = "Estatus"
                 />            
+            </div>
+            <div className="button">
+                <Button
+                    title = "REGISTRAR"
+                />
             </div>
         </form>
     )

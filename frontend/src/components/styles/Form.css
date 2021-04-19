@@ -31,13 +31,7 @@
 #formUser{
     background: lightpink;
 }
-.input-container{
-    display: flex;
-    justify-content: space-between;
-}
-.input-container .input{
-    width: 49%;
-}
+
 
 
 

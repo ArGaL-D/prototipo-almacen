@@ -97,11 +97,11 @@ export default function Usuarios({setTitle}) {
                             <div className="title">
                                 Información Personal
                             </div>
-                            <div className="form">
+                        </div>
+                        <div className="form">
                                 <Form
                                     type = "USUARIO"
                                 />
-                            </div>
                         </div>
                     </Route>
                     <Route path={`${path}/usuarios`}>

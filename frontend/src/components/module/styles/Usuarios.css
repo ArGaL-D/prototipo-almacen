@@ -46,7 +46,11 @@ a{
         overflow: auto;
     }
     .container_2 .form{
-        
+        width: 50%;
+        height: 75%;
+
+        margin: auto;
+        background: lightskyblue;
     }
     .donut{
         width: 70%;
