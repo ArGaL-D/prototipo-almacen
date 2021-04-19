@@ -69,7 +69,7 @@ export default function Prestamo({setTitle}) {
                     <Card 
                         icon = {<FaIcons.FaUserTie/>}
                         text = "Asignacion de equipo"
-                        title = "Personal"
+                        title = "Asignación"
                         btnTitle = "Formulario"
                         onClick = {ocultar}
                     />
@@ -78,38 +78,38 @@ export default function Prestamo({setTitle}) {
 
             <div className="container2" id="container2">
                 <Switch>
-                    <Route exact path={`/page/prestamo/form-alumno-salon`}>
+                    <Route path={`/page/prestamo/form-alumno-salon`}>
                         <div className="form">
                             <Form
                                 type = "ALUMNO"     
                             />    
                         </div>
                     </Route>
-                    <Route exact path={`/page/prestamo/form-prof-salon`}>
+                    <Route path={`/page/prestamo/form-prof-salon`}>
                         <div className="form">
                             <Form
                                 type = "PROFESOR"     
                             />    
                         </div>
                     </Route>
-                    <Route exact path={`/page/prestamo/form-alumno-lab`}>
+                    <Route path={`/page/prestamo/form-alumno-lab`}>
                         <div className="form">
                             <Form
                                 type = "ALUMNO"     
                             />    
                         </div>
                     </Route>
-                    <Route exact path={`/page/prestamo/form-prof-lab`}>
+                    <Route path={`/page/prestamo/form-prof-lab`}>
                         <div className="form">
                             <Form
                                 type = "PROFESOR"     
                             />    
                         </div>
                     </Route>
-                    <Route exact path={`/page/prestamo/form-asignacion`}>
+                    <Route exact path={`/page/prestamo`}>
                         <div className="form">
                             <Form
-                                type = "PERSONAL"     
+                                type = "ASIGNACION"     
                             />    
                         </div>
                     </Route>

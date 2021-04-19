@@ -1,10 +1,12 @@
 import {useEffect,useState} from 'react'
-import { QRCode  } from 'react-qrcode-logo';
+import {QRCode} from 'react-qrcode-logo';
+import Swal from 'sweetalert2';
+import axios from "axios";
 
-import { inputData } from "../config/InputData";
+import {inputData} from "../config/InputData";
 import InputDark from "../field/InputDark";
-import Button from "../field/Button";
 import TextArea from '../field/TextArea';
+import Button  from "../field/Button";
 import Select from '../field/Select';
 
 import "./styles/Registro.css";
@@ -48,14 +50,19 @@ export default function Registro({setTitle}) {
     };
 
     /* Ocultar||Mostrar modal-Qr*/
-    const showModal = (e) =>{
+    const closeModal = (e) =>{
         e.preventDefault();
         setModal(!modal);
+        window.location.reload();
     }
 
     //Recolectar valores del input-select
     const handleInputChange = (e) =>{
-        setFormData({...formData,[e.target.name]: e.target.value});
+        if (e.target.name === "descripcion"){
+            setFormData({...formData,[e.target.name]: e.target.value});
+        }else{
+            setFormData({...formData,[e.target.name]: e.target.value.toUpperCase()});
+        }
     }
     const handleSelectChange = (e) =>{
         const value = e.target.options[e.target.selectedIndex].text.toUpperCase();
@@ -83,10 +90,38 @@ export default function Registro({setTitle}) {
 
     }
 
+    //Enviar datos al servidor
+    const sendingData = async (e) =>{
+        e.preventDefault();
+
+        try {
+            const resp = await axios.post('http://localhost:3001/registrar',formData);
+            const existeSerial = resp.data.existe_serial;
+
+            if(existeSerial){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `El serial ${formData.serial} ya se registró, revise el equipo.`,
+                  })
+            }else{
+                setModal(!modal);
+            }
+
+        } catch (error) {
+            console.log(error)
+            Swal.fire({
+                icon: 'error',
+                title: `${error}`,
+                text: `Hubo problemas en registrar el equipo. Probablemente, el servidor esté desactivado o haya conflictos internos en el servidor.`,
+              })
+        }
+    }
+
     return (
         <div className="module_registrar">
             
-            <form>
+            <form onSubmit={sendingData}>
                 <div className="container">
                     <h3>Datos</h3>
                     {
@@ -138,8 +173,7 @@ export default function Registro({setTitle}) {
 
                     <div className="btn">
                         <Button
-                            title = "QR-CODE"
-                            onClick={showModal}
+                            title = "QR-CODE"                            
                         />
                     </div>                                
                 </div>  
@@ -167,7 +201,7 @@ export default function Registro({setTitle}) {
                 <div className="btn-modal">
                         <Button
                             title = "REGISTRAR"
-                            onClick={showModal}
+                            onClick={closeModal}
                         />
                 </div>  
                 

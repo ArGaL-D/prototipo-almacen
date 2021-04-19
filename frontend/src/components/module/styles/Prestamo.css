@@ -42,7 +42,8 @@
     height: 95%;
 
     overflow: auto;
-    background: cornflowerblue;
+    background: whitesmoke;
+    box-shadow: 0px 1px 5px 0px rgba(185, 185, 185, 0.75);
 }
 
 

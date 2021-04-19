@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router';
+import axios from "axios";
+import Swal from 'sweetalert2';
+
 import InputDark from './field/InputDark';
 import Select from './field/Select';
 import Button from './field/Button';
@@ -23,7 +25,7 @@ export default function Form(props) {
             {
                 ALUMNO: <FormPrestamo type={props.type}/>,
                 PROFESOR: <FormPrestamo type={props.type}/>, 
-                PERSONAL: <FormPrestamo type={props.type}/>,                
+                ASIGNACION: <FormPrestamo type={props.type}/>,                
                 REPORTE: <FormReparacion showModal={props.showModal}/>,
                 USUARIO: <FormUsuario showModal={props.showModal}/>
             }[props.type]
@@ -38,8 +40,8 @@ export default function Form(props) {
 function FormPrestamo (props){
 
     const [formData, setFormData] = useState({
-        alumno:     "",
-        boleta:     "",
+        persona:     "",
+        clave :     "",
         serial:     "",
         equipo:     "",
         fecha :     "",        
@@ -60,17 +62,34 @@ function FormPrestamo (props){
         }else if (name==="aula"){
             setFormData({...formData, aula: tag.options[tag.selectedIndex].text});
         }else{
-            setFormData({...formData,[name]: tag.value});
+            setFormData({...formData,[name]: tag.value.toUpperCase()});
+        }
+    }
+
+
+    const sendingData = async (e) =>{
+        e.preventDefault();
+        
+        try {
+            const resp = await axios.post('http://localhost:3001/registrar',formData);
+            
+        } catch (error) {
+            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: `${error}`,
+                text: `Hubo problemas en registrar el préstamo. Probablemente, el servidor esté desactivado o haya conflictos internos en el servidor.`,
+              })            
         }
     }
     
     return(
-        <form id="form">
+        <form id="form" on onSubmit={sendingData}>
             <h3>{`${props.type}`}</h3>
             <div className="input">
                 <InputDark 
                     id = "input-name"
-                    name = {props.type.toLowerCase()}
+                    name = "persona"
                     icon = {<RiIcons.RiBodyScanFill/>}
                     onClick = {null} 
                     onChange = {handleText}                   

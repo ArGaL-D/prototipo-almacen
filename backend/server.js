@@ -63,13 +63,13 @@ server.get('/ubicacion', (req, res) => {
 /* POST  Módulo ( REGISTRAR ) */
 server.post('/registrar', (req, res) => {
     // Solicitar datos enviados por el cliente
-    const serial = req.body.serial;
-    const nombre = req.body.equipo;
-    const marca = req.body.marca;
-    const modelo = req.body.modelo;
-    const estatus = req.body.estatus;
-    const almacen = req.body.almacen;
-    const edificio = req.body.edificio;
+    const serial    = req.body.serial;
+    const nombre    = req.body.equipo;
+    const marca     = req.body.marca;
+    const modelo    = req.body.modelo;
+    const estatus   = req.body.estatus;
+    const almacen   = req.body.almacen;
+    const edificio  = req.body.edificio;
     const piso = req.body.piso;
     const descripcion = req.body.descripcion;
 
