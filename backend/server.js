@@ -96,13 +96,13 @@ server.post('/registrar', (req, res) => {
 /* POST  Módulo ( PRÉSTAMO ) */
 server.post('/prestamo', (req, res) => {
     // Solicitar datos enviados por el cliente
-    const persona = req.body.tag_inputs.nombre_persona;
-    const clave = req.body.tag_inputs.clave_boleta;
-    const serie = req.body.tag_inputs.serie_equipo;
-    const fecha = req.body.tag_inputs.fecha_salida;
-    const edificio = req.body.tag_selects.edificio;
-    const piso = req.body.tag_selects.piso;
-    const aula = req.body.tag_selects.aula;
+    const persona  = req.body.persona;
+    const clave    = req.body.clave;
+    const serie    = req.body.serial;
+    const fecha    = req.body.fecha;    
+    const piso     = req.body.piso;
+    const aula     = req.body.aula;
+    const edificio = req.body.edificio;
 
     pool.getConnection((error, connection) => {
         if (error) throw error;
@@ -114,16 +114,17 @@ server.post('/prestamo', (req, res) => {
 
             if (results[0][0].existe_equipo === 0) {
                 res.json({ existe_serial: false });
+            }else if (results[0][0].existe_equipo === 1){
+                res.json({ existe_serial: true });
             } else if (results[0][0].equipo_disponible === 0) {
                 res.json({ equipo_disponible: false });
-            } else if (results[0][0].equipo_disponible === 1) {
-                res.json({ equipo_disponible: true });
             } else {
-                console.log(results)
-            }
+                res.json({ equipo_disponible: true });
+            } 
         });
     });
 
+    
     console.log("-> POST")
 });
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import Swal from 'sweetalert2';
 
@@ -25,7 +25,7 @@ export default function Form(props) {
             {
                 ALUMNO: <FormPrestamo type={props.type}/>,
                 PROFESOR: <FormPrestamo type={props.type}/>, 
-                ASIGNACION: <FormPrestamo type={props.type}/>,                
+                ASIGNACION: <FormPrestamo type={props.type}/>,      
                 REPORTE: <FormReparacion showModal={props.showModal}/>,
                 USUARIO: <FormUsuario showModal={props.showModal}/>
             }[props.type]
@@ -50,6 +50,38 @@ function FormPrestamo (props){
         edificio:   ""
     });
 
+    // Establecer fecha automática
+    useEffect( ()=> {
+        let currentDate = new Date();
+        const inputFecha = document.getElementById('input-date');
+
+        let month = currentDate.getUTCMonth() + 1;
+        let day   = currentDate.getDate();
+        let year  = currentDate.getUTCFullYear();
+
+        const today = `${year}-${month}-${day}`;
+
+        inputFecha.valueAsDate = new Date(today);
+        inputFecha.readOnly = true;
+        
+        // Guardar fecha actual
+        if (formData.fecha === ""){
+            setFormData({...formData, fecha: today});
+        }
+    },[formData]);
+
+    // Bloquear índice 0 a los tag-select
+    useEffect( ()=> {
+        let select1 = document.getElementById('select-edificio');
+        let select2 = document.getElementById('select-piso');
+        let select3 = document.getElementById('select-aula');
+        
+        select1.options[0].disabled = true;
+        select2.options[0].disabled = true;
+        select3.options[0].disabled = true;
+
+    });
+
     //Recoletar datos de los campos-formulario
     const handleText = (e) =>{
         const tag  = e.target;
@@ -69,29 +101,55 @@ function FormPrestamo (props){
 
     const sendingData = async (e) =>{
         e.preventDefault();
-        
-        try {
-            const resp = await axios.post('http://localhost:3001/registrar',formData);
-            
-        } catch (error) {
-            console.log(error);
+
+        if (formData.edificio === "" || formData.piso === "2" || formData.aula === ""){
             Swal.fire({
-                icon: 'error',
-                title: `${error}`,
-                text: `Hubo problemas en registrar el préstamo. Probablemente, el servidor esté desactivado o haya conflictos internos en el servidor.`,
-              })            
+                icon: 'warning',
+                title: 'Oops...',
+                text: `Por favor, seleccione los campos faltantes de ubicación.`,
+              })
+        }else{
+            try {
+                const resp = await axios.post('http://localhost:3001/prestamo',formData);
+    
+                const existeEquipo = resp.data.existe_serial;
+                const equipoDisponible = resp.data.equipo_disponible;
+    
+                console.log(resp.data)
+    
+                if (existeEquipo===false){
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Oops...',
+                        text: `El equipo ${formData.equipo}-${formData.serial} no se encuentra registrado en el almacén. Seleccione otro equipo. `,
+                      })
+                }else if (equipoDisponible===false){
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Oops...',
+                        text: `El equipo [${formData.serial}] no se encuentra disponible por el momento, o no se ha registrado su entrega del préstamo. `,
+                      })
+                }
+    
+            } catch (error) {
+                console.log(error);
+                Swal.fire({
+                    icon: 'error',
+                    title: `${error}`,
+                    text: `Hubo problemas en registrar el préstamo. Probablemente, el servidor esté desactivado o haya conflictos internos en el servidor.`,
+                  })            
+            }
         }
     }
     
     return(
-        <form id="form" on onSubmit={sendingData}>
-            <h3>{`${props.type}`}</h3>
+        <form id="form" onSubmit={sendingData}>
+            <h3>{props.type}</h3>
             <div className="input">
                 <InputDark 
                     id = "input-name"
                     name = "persona"
                     icon = {<RiIcons.RiBodyScanFill/>}
-                    onClick = {null} 
                     onChange = {handleText}                   
                     placeholder = "Nombre"
                     cursorPointer = {true}
@@ -102,9 +160,8 @@ function FormPrestamo (props){
                     id = 'input-clave'
                     name = 'clave'
                     icon = {<FaIcons.FaIdCardAlt/>}
-                    onClick = {null} 
                     onChange = {handleText}                   
-                    placeholder = {props.type==="ALUMNO" ? "Boleta" : "Clave" }
+                    placeholder = {props.type === "ALUMNO" ? "Boleta" : "Clave" }
                 />
             </div>  
             <h3>Equipo</h3>
@@ -113,7 +170,6 @@ function FormPrestamo (props){
                     id = 'input-name'
                     name = 'serial'
                     icon = {<BiIcons.BiBarcodeReader/>}
-                    onClick = {null} 
                     onChange = {handleText}                   
                     placeholder = "Serial"
                     cursorPointer = {true}
@@ -124,7 +180,6 @@ function FormPrestamo (props){
                     id = 'input-name'
                     name = 'equipo'
                     icon = {<GiIcons.GiWifiRouter/>}
-                    onClick = {null} 
                     onChange = {handleText}                   
                     placeholder = "Equipo"
                 />
@@ -132,7 +187,7 @@ function FormPrestamo (props){
 
             <div className="input">
                 <InputDark 
-                    id = 'input-name'
+                    id = 'input-date'
                     name = 'fecha'
                     type = "date"
                     icon = {<MdIcons.MdDateRange/>}
@@ -197,8 +252,7 @@ function FormReparacion (props){
                 <InputDark 
                     id = 'serial'
                     name = 'serial'
-                    icon = {<BiIcons.BiBarcodeReader/>}                  
-                    onChange = {null}                   
+                    icon = {<BiIcons.BiBarcodeReader/>}                                   
                     placeholder = "Serial"
                 />
             </div>
@@ -206,8 +260,7 @@ function FormReparacion (props){
                 <InputDark 
                     id = 'equipo'
                     name = 'equipo'
-                    icon = {<GiIcons.GiWifiRouter/>}                     
-                    onChange = {null}                   
+                    icon = {<GiIcons.GiWifiRouter/>}                                      
                     placeholder = "Equipo"
                 />
             </div>
@@ -228,7 +281,6 @@ function FormReparacion (props){
                         id = "selectReparacion"
                         name = "reparacion"
                         type = "REPARACION"
-                        onChange = {null}
                         placeholder = "Reparación"
                     />
                 </div>
@@ -237,7 +289,6 @@ function FormReparacion (props){
                         id = "selectEtapa"
                         name = "etapa"
                         type = "REPARACION_ETAPA"
-                        onChange = {null}
                         placeholder = "Estatus"
                     />            
                 </div>
@@ -248,8 +299,7 @@ function FormReparacion (props){
                     id = 'inputFecha'
                     name = 'fecha'
                     type = "date"
-                    icon = {<MdIcons.MdDateRange/>}                     
-                    onChange = {null}                   
+                    icon = {<MdIcons.MdDateRange/>}                                    
                     placeholder = "Fecha actual"
                 />
             </div>
@@ -272,7 +322,7 @@ function FormReparacion (props){
 
 // Formulario de CREAR USUARIO - módulo Admin
 
-function FormUsuario (props){
+function FormUsuario (){
     return(
         <form id="form">
             <br/>
@@ -280,8 +330,7 @@ function FormUsuario (props){
                 <InputDark 
                     id = 'inputUsuario'
                     name = 'usuario'
-                    icon = {<FaIcons.FaUserAlt/>}        
-                    onChange = {null}                   
+                    icon = {<FaIcons.FaUserAlt/>}                         
                     placeholder = "Usuario"
                 />
             </div>
@@ -289,8 +338,7 @@ function FormUsuario (props){
                 <InputDark 
                     id = 'inputNombres'
                     name = 'nombres'
-                    icon = {<FaIcons.FaUserEdit/>}                     
-                    onChange = {null}                   
+                    icon = {<FaIcons.FaUserEdit/>}                                     
                     placeholder = "Nombre(s)"
                 />
             </div>
@@ -298,8 +346,7 @@ function FormUsuario (props){
                 <InputDark 
                     id = 'inputApellidos'
                     name = 'apellidos'
-                    icon = {<FaIcons.FaUserEdit/>}                     
-                    onChange = {null}                   
+                    icon = {<FaIcons.FaUserEdit/>}                                      
                     placeholder = "Apellido(s)"
                 />
             </div>
@@ -308,8 +355,7 @@ function FormUsuario (props){
                     id = 'inputEmail'
                     name = 'email'
                     type = 'text'
-                    icon = {<MdIcons.MdEmail/>}                     
-                    onChange = {null}                   
+                    icon = {<MdIcons.MdEmail/>}                                      
                     placeholder = "Email"
                 />
             </div>
@@ -318,8 +364,7 @@ function FormUsuario (props){
                     id = 'inputPassword'
                     name = 'password'
                     type = 'password'
-                    icon = {<FaIcons.FaKey/>}                    
-                    onChange = {null}                   
+                    icon = {<FaIcons.FaKey/>}                                     
                     placeholder = "Contraseña"
                 />
             </div>
@@ -328,8 +373,7 @@ function FormUsuario (props){
                     id = 'inputRepeatPass'
                     name = 'repeatPass'
                     type = 'password'
-                    icon = {<FaIcons.FaKey/>}                     
-                    onChange = {null}                   
+                    icon = {<FaIcons.FaKey/>}                                     
                     placeholder = "Confirmar contraseña"
                 />
             </div>
@@ -339,7 +383,6 @@ function FormUsuario (props){
                     id = "selectEtapa"
                     name = "etapa"
                     type = "REPARACION_ETAPA"
-                    onChange = {null}
                     placeholder = "Estatus"
                 />            
             </div>
@@ -351,3 +394,4 @@ function FormUsuario (props){
         </form>
     )
 }
+
