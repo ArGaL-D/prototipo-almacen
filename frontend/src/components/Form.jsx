@@ -288,7 +288,7 @@ function FormUsuario (props){
                 <InputDark 
                     id = 'inputEmail'
                     name = 'email'
-                    type = 'email'
+                    type = 'text'
                     icon = {<MdIcons.MdEmail/>}                     
                     onChange = {null}                   
                     placeholder = "Email"

@@ -6,6 +6,8 @@ import InputDark from "../field/InputDark";
 
 import * as IoIcons from 'react-icons/io5';
 import * as GoIcons from "react-icons/go";
+import * as FaIcons from "react-icons/fa";
+import * as MdIcons from "react-icons/md";
 
 import "./styles/Usuarios.css";
 import PieChart from '../PieChart';
@@ -44,7 +46,7 @@ export default function Usuarios({setTitle}) {
                 <div className="rectangle">
                     <Link to={`${path}`}>
                         <Rectangle
-                            icon = {<IoIcons.IoPersonAdd />}
+                            icon = {<FaIcons.FaChartPie />}
                             title = "Gráfica"
                             content = "Información"
                         />
@@ -53,7 +55,7 @@ export default function Usuarios({setTitle}) {
                 <div className="rectangle">
                     <Link to={`${path}/equipos`}>
                         <Rectangle
-                            icon = {<IoIcons.IoPersonAdd />}
+                            icon = {<MdIcons.MdImportantDevices />}
                             title = "Equipos"
                             content = "Editar los equipos"
                         />
@@ -71,7 +73,7 @@ export default function Usuarios({setTitle}) {
                 <div className="rectangle">
                     <Link to={`${path}/usuarios`}>
                         <Rectangle
-                            icon = {<IoIcons.IoPersonAdd />}
+                            icon = {<FaIcons.FaUserFriends />}
                             title = "Usuarios"
                             content = "Total de usuarios"
                         />

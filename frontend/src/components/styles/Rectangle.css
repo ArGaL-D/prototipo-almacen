@@ -4,6 +4,18 @@
     cursor: pointer;
 
     display: flex;
+    transition: 400ms ease-in-out;
+}
+
+.rectangle-option:hover{
+    box-shadow: 0px 1px 5px 0px rgba(199, 199, 199, 0.75);
+}
+.rectangle-option:hover .bar svg{
+    color: rgb(33, 158, 189);
+}
+.rectangle-option:active .bar svg{
+    color: rgb(83, 69, 216);
+    transition: 100ms;
 }
 
 /* BARRA - ICON - rectángulo */
@@ -15,8 +27,11 @@
     align-items: center;
     justify-content: center;
 
-    font-size: clamp(1rem, 2vw, 2rem);
-    background: rgb(44, 177, 221);
+    font-size: clamp(1rem, 2vw, 2rem);        
+}
+.bar svg{
+    color: rgb(144, 194, 224);
+    transition: 500ms ease-in-out;
 }
 
 /* CONTENT - rectángulo */
@@ -30,12 +45,22 @@
     margin: .5em 0 0 .5em;
     font-size: clamp(.9rem, 2vw, 1rem);
     font-family: 'Poppins', sans-serif;
+    color: #20232a;
+
+    transition: 200ms ease-in-out;
+}
+.rectangle-option:hover .content h2{
+    color: rgb(33, 158, 189);
+}
+.rectangle-option:active .content h2{
+    color: rgb(83, 69, 216);
 }
 .content p{
     margin: .2em 0 0 1.3em;
     font-size: clamp(.8rem, 2vw, .9rem);
     font-weight: 600;
     font-family: 'Roboto', sans-serif;
+    color: gray;
 }
 
 
