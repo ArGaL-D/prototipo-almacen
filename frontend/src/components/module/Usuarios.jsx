@@ -5,6 +5,7 @@ import Datatable from "../Datatable";
 import InputDark from "../field/InputDark";
 
 import * as IoIcons from 'react-icons/io5';
+import * as GoIcons from "react-icons/go";
 
 import "./styles/Usuarios.css";
 import PieChart from '../PieChart';
@@ -63,12 +64,15 @@ export default function Usuarios({setTitle}) {
             <div className="container_2">
                 {/* Parte 1 */} 
                 <div className="donut">
-                    <PieChart />
+                    <div className="border">
+                        <PieChart />
+                    </div>            
                 </div>
                 {/* Parte 2 */} 
                 <div className="box_modules">
                     <div className="inpt_search">
                         <InputDark
+                            icon = {<GoIcons.GoSearch/>}
                             placeholder = "Buscar"
                         />
                     </div>
