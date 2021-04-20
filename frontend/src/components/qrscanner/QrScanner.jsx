@@ -9,7 +9,6 @@ const QrScanner = ( {closeModalQr, getQrResults, type} ) => {
 
     const [closeQr, setQrClose] = useState('');
 
-
     const handleDecode = async (result) => {  
         setQrClose(result.data) // No mover de posición.
   
@@ -48,7 +47,7 @@ const QrScanner = ( {closeModalQr, getQrResults, type} ) => {
             
             //Verificar valores
             if(clave && nombre){
-                getQrResults(nombre,clave);
+                getQrResults(nombre[0],clave[0]);
             }else{
                 Swal.fire({
                     icon: 'error',

@@ -15,12 +15,13 @@ import * as RiIcons   from "react-icons/ri";
 import * as GiIcons   from "react-icons/gi";
 import * as MdIcons   from "react-icons/md";
 import QrScanner from '../qrscanner/QrScanner';
+import QrScannerEquipo from '../qrscanner/QrScannerEquipo';
 
 export default function Prestamo({setTitle}) {
 
 
-    const [openModal,setOpenModal] = useState(false);
-    const [openForm,setOpenForm] = useState(false);
+    const [openScanner1,setOpenScaner1] = useState(false);
+    const [openScanner2,setOpenScaner2] = useState(false);
     const [typeForm,setTypeForm] = useState('Aumno');
 
     const [formData, setFormData] = useState({
@@ -66,12 +67,20 @@ export default function Prestamo({setTitle}) {
         }
     },[formData]);
 
-    const showModal = () =>{
-        setOpenModal(true);
+    //Abrir ventana modal Qr-scanner
+    const showModalScanner1 = () =>{
+        setOpenScaner1(true);
+    }
+    const showModalScanner2 = () =>{
+        setOpenScaner2(true);
     }
 
+    //Obtener reultados del QR
     const getQrResults = (alumno,boleta) =>{
         setFormData({...formData, nombre:alumno, clave:boleta})
+    }
+    const getQrResults2 = (equipo_nombre,num_serie) =>{
+        setFormData({...formData, equipo:equipo_nombre, serial:num_serie})
     }
 
     // Recolectar opción de tipo de formulario
@@ -127,7 +136,7 @@ export default function Prestamo({setTitle}) {
                         text: `El equipo [${formData.serial}] no se encuentra disponible por el momento, o no se ha registrado su entrega del préstamo. `,
                       })
                 }else{
-                    setOpenModal(true);
+                    setOpenScaner1(true);
                 }
                 
 
@@ -160,7 +169,7 @@ export default function Prestamo({setTitle}) {
                         id = "input-name"
                         name = "nombre"
                         icon = {<RiIcons.RiBodyScanFill/>}
-                        onClick = {showModal}
+                        onClick = {showModalScanner1}
                         onChange = {handleText}
                         placeholder = "Nombre"
                         defaultValue = {formData.nombre}
@@ -172,8 +181,8 @@ export default function Prestamo({setTitle}) {
                         id = 'input-clave'
                         name = 'clave'
                         icon = {<FaIcons.FaIdCardAlt/>}
-                        onChange = {handleText}
-                        placeholder = {typeForm === "Alumno" ? "Boleta" : "Clave" }
+                        onChange = {handleText}                        
+                        placeholder = {typeForm === "Alumno" ? "Boleta" : "Clave" }                        
                         defaultValue = {formData.clave}
                     />
                 </div>
@@ -183,8 +192,10 @@ export default function Prestamo({setTitle}) {
                         id = 'input-serial'
                         name = 'serial'
                         icon = {<BiIcons.BiBarcodeReader/>}
+                        onClick = {showModalScanner2}
                         onChange = {handleText}
                         placeholder = "Serial"
+                        defaultValue = {formData.serial}
                         cursorPointer = {true}
                     />
                 </div>
@@ -195,6 +206,7 @@ export default function Prestamo({setTitle}) {
                         icon = {<GiIcons.GiWifiRouter/>}
                         onChange = {handleText}
                         placeholder = "Equipo"
+                        defaultValue = {formData.equipo}
                     />
                 </div>
 
@@ -247,12 +259,22 @@ export default function Prestamo({setTitle}) {
                 </div>
 
                 {
-                    openModal ?
+                    openScanner1 ?
                         <div className="qrScanner">
                             <QrScanner
                                 type = {typeForm}
-                                closeModalQr = {setOpenModal}
+                                closeModalQr = {setOpenScaner1}
                                 getQrResults = {getQrResults}
+                            />
+                        </div>
+                    : null
+                }
+                {
+                    openScanner2 ?
+                        <div className="qrScanner">
+                            <QrScannerEquipo
+                                closeModalQr  = {setOpenScaner2}
+                                getQrResults = {getQrResults2}
                             />
                         </div>
                     : null
