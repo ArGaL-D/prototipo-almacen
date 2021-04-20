@@ -14,7 +14,7 @@ import * as BiIcons   from "react-icons/bi";
 import * as RiIcons   from "react-icons/ri";
 import * as GiIcons   from "react-icons/gi";
 import * as MdIcons   from "react-icons/md";
-import QrScanner from '../QrScanner';
+import QrScanner from '../qrscanner/QrScanner';
 
 export default function Prestamo({setTitle}) {
 
@@ -74,6 +74,7 @@ export default function Prestamo({setTitle}) {
         setFormData({...formData, nombre:alumno, clave:boleta})
     }
 
+    // Recolectar opción de tipo de formulario
     const handleSelectForm = (e) =>{
         const tag = e.target;
         setTypeForm( tag.options[tag.selectedIndex].text );
@@ -162,7 +163,8 @@ export default function Prestamo({setTitle}) {
                         onClick = {showModal}
                         onChange = {handleText}
                         placeholder = "Nombre"
-                        cursorPointer = {true}
+                        defaultValue = {formData.nombre}
+                        cursorPointer = {true}                        
                     />
                 </div>
                 <div className="input">
@@ -172,6 +174,7 @@ export default function Prestamo({setTitle}) {
                         icon = {<FaIcons.FaIdCardAlt/>}
                         onChange = {handleText}
                         placeholder = {typeForm === "Alumno" ? "Boleta" : "Clave" }
+                        defaultValue = {formData.clave}
                     />
                 </div>
                 <h3>Equipo</h3>
@@ -247,6 +250,7 @@ export default function Prestamo({setTitle}) {
                     openModal ?
                         <div className="qrScanner">
                             <QrScanner
+                                type = {typeForm}
                                 closeModalQr = {setOpenModal}
                                 getQrResults = {getQrResults}
                             />
