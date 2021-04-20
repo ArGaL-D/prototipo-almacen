@@ -23,16 +23,19 @@ BEGIN
     
     /*Verificar el serial(equipo) en la tabla 'EQUIPO' existe*/
     if @existe_equipo = 1  then
-	 if @status_equipo = 'DISPONIBLE' then
-	     insert into PRESTAMOS  values(nombre_persona, clave_boleta, serie_equipo, fecha);
-	     insert into UBICACIONES values(edificio, piso, aula, serie_equipo);
-	     update EQUIPOS set estatus="PRESTADO" where EQUIPOS.num_serie=serie_equipo;
-	     select @disponibilidad_equipo as equipo_disponible;
-	 else
-	     select @disponibilidad_equipo := 0 as equipo_disponible;
-	 end if;
+        if @status_equipo = 'DISPONIBLE' then
+            insert into PRESTAMOS  values(nombre_persona, clave_boleta, serie_equipo, fecha);
+            insert into UBICACIONES values(edificio, piso, aula, serie_equipo);
+            update EQUIPOS set estatus="PRESTADO" where EQUIPOS.num_serie=serie_equipo;
+
+            select @existe_equipo as existe_equipo;
+            select @status_equipo as status_equipo;
+        else
+            select @existe_equipo as existe_equipo;
+            select @status_equipo as status_equipo;
+        end if;
     else
-	 select @existe_equipo as existe_equipo;
+        select @existe_equipo as existe_equipo;
     end if;	
 END$$
 

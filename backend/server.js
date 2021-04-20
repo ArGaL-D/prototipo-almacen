@@ -112,15 +112,26 @@ server.post('/prestamo', (req, res) => {
 
             if (err) console.log(err)
 
-            if (results[0][0].existe_equipo === 0) {
+            // Valores retorno - StoredProcedure
+            const existeEquipo = results[0][0].existe_equipo;
+
+            if (existeEquipo === 1 ){
+                const statusEquipo = results[1][0].status_equipo;
+
+                if (statusEquipo !== "DISPONIBLE"){
+                    res.json({ 
+                        equipo_disponible: false, 
+                        equipo_status: statusEquipo 
+                    });
+                }else{
+                    res.json({ 
+                        equipo_disponible: true, 
+                        equipo_status: statusEquipo 
+                    });
+                }
+            }else{
                 res.json({ existe_serial: false });
-            }else if (results[0][0].existe_equipo === 1){
-                res.json({ existe_serial: true });
-            } else if (results[0][0].equipo_disponible === 0) {
-                res.json({ equipo_disponible: false });
-            } else {
-                res.json({ equipo_disponible: true });
-            } 
+            }
         });
     });
 

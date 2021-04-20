@@ -130,6 +130,7 @@ export default function Prestamo({setTitle}) {
 
                 const existeEquipo = resp.data.existe_serial;
                 const equipoDisponible = resp.data.equipo_disponible;
+                const equipoStatus = resp.data.equipo_status;
 
                 if (existeEquipo===false){
                     Swal.fire({
@@ -141,7 +142,7 @@ export default function Prestamo({setTitle}) {
                     Swal.fire({
                         icon: 'warning',
                         title: 'Oops...',
-                        text: `El equipo [${formData.serial}] no se encuentra disponible por el momento, o no se ha registrado su entrega del préstamo. `,
+                        text: `El equipo [${formData.serial}] no se encuentra disponible por el momento. ESTATUS: '${equipoStatus}'. `,
                       })
                 }else{
                     setOpenModalQr(true);
