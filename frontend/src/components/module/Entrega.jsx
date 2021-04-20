@@ -34,6 +34,7 @@ export default function Entrega({setTitle}) {
     return (
         <div className="module-entrega">
             <form>
+                <h3>Datos de entrega</h3>
                 <div className="inpt">
                     <InputDark 
                         id = "entrega-nombre"

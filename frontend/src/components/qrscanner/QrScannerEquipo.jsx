@@ -1,6 +1,5 @@
 import {useState} from 'react';
 import Swal from 'sweetalert2';
-import axios from "axios";
 import Scanner from "react-webcam-qr-scanner";
 
 import "./QrScanner.css";
