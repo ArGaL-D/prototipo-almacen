@@ -170,7 +170,6 @@ server.post('/entrega', (req, res) => {
     });
 
     console.log("-> POST")
-    //res.json( {saludo: "HOLA COMO ESTAS" })
 });
 
 /* POST - WEB SCRAPTING - (Préstamo-Formulario-alumno) */

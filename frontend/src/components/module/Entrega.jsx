@@ -10,13 +10,16 @@ import * as ImIcons   from "react-icons/im";
 
 
 import "./styles/Entrega.css";
+import QrScannerEntrega from '../qrscanner/QrScannerEntrega';
 
 export default function Entrega({setTitle}) {
 
+    const [openScanner, setOpenScanner] = useState(false);
     const [formData,setFormData] = useState({
         equipo : "",
         serial : "",
-        persona: "",
+        nombre : "",
+        fechaSalida : "",
         fechaEntrega: ""
     });
 
@@ -26,6 +29,20 @@ export default function Entrega({setTitle}) {
         sessionStorage.setItem('page','entrega');
     })
 
+    // Mostrar modal - scanner
+    const showScanner = () =>{
+        setOpenScanner(!openScanner);
+    }
+
+    // Obtener resultados del Scanner-Qr
+    const getQrResults = (persona,equip0,serie,fecha) =>{
+        setFormData({...formData,
+                nombre: persona,
+                equipo: equip0,
+                serial: serie,
+                fechaSalida: fecha
+        });
+    }
 
     const handleInputText = (e) =>{
         setFormData({...formData,[e.target.name]: e.target.value.toUpperCase()});
@@ -85,9 +102,18 @@ export default function Entrega({setTitle}) {
                 <Button
                     title = "ENTREGAR"
                 />
+                { openScanner?
+                    <div className="qrContainer">
+                        <QrScannerEntrega
+                            closeModalQr = {setOpenScanner}
+                            getQrResults = {getQrResults}
+                        />
+                    </div>
+                  :null
+                }
             </form>
 
-            <div className="icon-scan">
+            <div className="icon-scan" onClick={showScanner}>
                 <ImIcons.ImQrcode/>
             </div>
         </div>
