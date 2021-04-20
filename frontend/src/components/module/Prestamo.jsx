@@ -22,6 +22,8 @@ export default function Prestamo({setTitle}) {
 
     const [openScanner1,setOpenScaner1] = useState(false);
     const [openScanner2,setOpenScaner2] = useState(false);
+    const [openModalQr ,setOpenModalQr] = useState(false);
+
     const [typeForm,setTypeForm] = useState('Aumno');
 
     const [formData, setFormData] = useState({
@@ -73,6 +75,12 @@ export default function Prestamo({setTitle}) {
     }
     const showModalScanner2 = () =>{
         setOpenScaner2(true);
+    }
+
+    // Recargar página
+    const reloadPage = (e) =>{
+        e.preventDefault();
+        window.location.reload();
     }
 
     //Obtener reultados del QR
@@ -136,7 +144,7 @@ export default function Prestamo({setTitle}) {
                         text: `El equipo [${formData.serial}] no se encuentra disponible por el momento, o no se ha registrado su entrega del préstamo. `,
                       })
                 }else{
-                    setOpenScaner1(true);
+                    setOpenModalQr(true);
                 }
                 
 
@@ -254,7 +262,7 @@ export default function Prestamo({setTitle}) {
                 </div>
                 <div className="button">
                     <Button
-                        title = "FINALIZAR"
+                        title = "ACEPTAR"
                     />
                 </div>
 
@@ -279,6 +287,26 @@ export default function Prestamo({setTitle}) {
                         </div>
                     : null
                 }
+                <div className={openModalQr?"qrGenerator active": "qrGenerator"}>
+                    <div className="marco">
+                        <QRCode 
+                            size  = {220}
+                            value = { JSON.stringify({
+                                nombre: formData.nombre,
+                                equipo: formData.equipo,
+                                serial: formData.serial,
+                                fechaSalida: formData.fecha
+                            })}                   
+                            enableCORS = {true}                            
+                            qrStyle    = {'squares'}
+                            quietZone  = {10}                              
+                        />
+                    </div>
+                    <Button
+                        title = "FINALIZAR"
+                        onClick = {reloadPage}
+                    />  
+                </div>
             </form>
         </div>
     )
