@@ -1,15 +1,29 @@
-import { useEffect} from 'react'
-import { Link, Route, Switch } from 'react-router-dom';
-import Card from '../Card';
-
-
-import * as FaIcons from "react-icons/fa";
+import { useEffect, useState } from 'react'
+import {QRCode} from 'react-qrcode-logo';
 
 import "./styles/Prestamo.css";
-import Form from '../Form';
+import Button from '../field/Button';
+import FormPrestamo from '../forms/FormPrestamo';
+import Select from '../field/Select';
 
 
 export default function Prestamo({setTitle}) {
+
+
+    const [openModal,setOpenModal] = useState(false);
+    const [openForm,setOpenForm] = useState(false);
+    const [typeForm,setTypeForm] = useState('Aumno');
+
+    const [formData, setFormData] = useState({
+        nombre:     "",
+        clave :     "",
+        serial:     "",
+        equipo:     "",
+        fecha :     "",
+        piso:       "",
+        aula:       "",
+        edificio:   ""
+    });
 
     //Establecer título actual - navbar
     useEffect(() => {
@@ -17,104 +31,66 @@ export default function Prestamo({setTitle}) {
         sessionStorage.setItem('page','prestamo');
     })
 
-    //Ocultar tarjetas 
-    const ocultar = () =>{
-        document.getElementById('container2').style.cssText ="z-index:20;"
+    // Bloquear índice 0 - tag-select - tipo de formulario
+    useEffect( ()=> {
+        let select1 = document.getElementById('select-form');
+        select1.options[0].disabled = true;
+    });
+
+
+    const handleSelectForm = (e) =>{
+        const tag = e.target;
+        setTypeForm( tag.options[tag.selectedIndex].text );
     }
+
+    // Recargar la página
+    const reloadPage = () =>{
+        window.location.reload();
+    }
+
 
     return (
         <div className="module_prestamo">
-            <div className="container">
-                <Link to="/page/prestamo/form-alumno-salon">                    
-                    <Card 
-                        icon = {<FaIcons.FaUserGraduate/>}
-                        text = "Salón"
-                        title = "Alumno"
-                        btnTitle = "Formulario"
-                        onClick = {ocultar}
-                    />                    
-                </Link>
-                
-                <Link to="/page/prestamo/form-prof-salon">
-                    <Card 
-                        icon = {<FaIcons.FaChalkboardTeacher/>}
-                        text = "Salón"
-                        title = "Profesor"
-                        btnTitle = "Formulario"
-                        onClick = {ocultar}
-                    />               
-                </Link>
+            
+                <div className="formulario">
+                    <div className="select-form">
+                        <Select
+                            id = 'select-form'
+                            type = "PRESTAMO"
+                            onChange = {handleSelectForm}
+                        />
+                    </div>
 
-                <Link to="/page/prestamo/form-alumno-lab">                
-                    <Card 
-                        icon = {<FaIcons.FaUserGraduate/>}
-                        text = "Laboratorio"
-                        title = "Alumno"
-                        btnTitle = "Formulario"
-                        onClick = {ocultar}
-                    />
-                </Link>  
+                    <FormPrestamo
+                        type = {typeForm}
+                        formData = {formData}
+                        setFormData = {setFormData}
+                        setOpenModal = {setOpenModal}
+                    />   
+                    <div className={openModal?"qrModal active": "qrModal"}>
+                        <div className="marco">
+                            <QRCode 
+                                size  = {230}
+                                value = { JSON.stringify
+                                        ({
+                                            nombre:formData.nombre, 
+                                            equipo:formData.equipo, 
+                                            serial: formData.serial, 
+                                            fecha_salida:formData.fecha}
+                                        )}                   
+                                enableCORS = {true}                            
+                                qrStyle    = {'squares'}
+                                quietZone  = {10 } 
+                            />  
+                        </div>
+                        <Button
+                            title = "ACEPTAR"
+                            onClick = {reloadPage}
+                        />
+                    </div>         
+                </div>            
 
-                <Link to="/page/prestamo/form-prof-lab">
-                    <Card 
-                        icon = {<FaIcons.FaChalkboardTeacher/>}
-                        text = "Laboratorio"
-                        title = "Profesor"
-                        btnTitle = "Formulario"
-                        onClick = {ocultar}
-                    />
-                </Link>
-
-                <Link to="/page/prestamo/form-asignacion">
-                    <Card 
-                        icon = {<FaIcons.FaUserTie/>}
-                        text = "Asignacion de equipo"
-                        title = "Asignación"
-                        btnTitle = "Formulario"
-                        onClick = {ocultar}
-                    />
-                </Link>                                
-            </div>
-
-            <div className="container2" id="container2">
-                <Switch>
-                    <Route path={`/page/prestamo/form-alumno-salon`}>
-                        <div className="form">
-                            <Form
-                                type = "ALUMNO"     
-                            />    
-                        </div>
-                    </Route>
-                    <Route path={`/page/prestamo/form-prof-salon`}>
-                        <div className="form">
-                            <Form
-                                type = "PROFESOR"     
-                            />    
-                        </div>
-                    </Route>
-                    <Route path={`/page/prestamo/form-alumno-lab`}>
-                        <div className="form">
-                            <Form
-                                type = "ALUMNO"     
-                            />    
-                        </div>
-                    </Route>
-                    <Route path={`/page/prestamo/form-prof-lab`}>
-                        <div className="form">
-                            <Form
-                                type = "PROFESOR"     
-                            />    
-                        </div>
-                    </Route>
-                    <Route exact path={`/page/prestamo`}>
-                        <div className="form">
-                            <Form
-                                type = "ASIGNACION"     
-                            />    
-                        </div>
-                    </Route>
-                </Switch>
-            </div>
         </div>
     )
 }
+

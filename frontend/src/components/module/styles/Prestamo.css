@@ -1,94 +1,80 @@
 .module_prestamo{
     width : calc(100vw - 5em);
     height: 100%;    
-    
-    display: flex;
-    flex-direction: row-reverse;
-    
+        
     overflow: auto;
     position: relative;
-}
-
-
-.module_prestamo .container{
-    width : 15em;
-    height: 100%;    
-
-    display: flex;    
-    flex-direction: column;
-
-    overflow: auto;
-    background: #20232a;
-}
-
-/* TARJETA --> LINK*/
-.module_prestamo .container a{
-    text-decoration: none;
-    margin: .2em 0 0 0;    
-}
-
-
-/* CONTENEDOR 2 */
-.module_prestamo .container2{
-    width: calc(100% - 15em);
 
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.module_prestamo .container2 .form{
-    width : 50%;
-    height: 95%;
 
-    overflow: auto;
+.formulario{
+    width : 35%;
+    height: 90%;
+
+    padding: 1em;
+    z-index: 0;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
     background: whitesmoke;
     box-shadow: 0px 1px 5px 0px rgba(185, 185, 185, 0.75);
+
+    position: relative;
+}
+
+/* MODAL - QR */
+.qrModal{
+    width : 100%;
+    height: 100%;
+    z-index: 80;
+    
+    position: absolute;
+    top: 0;
+
+    visibility: hidden;
+    background: whitesmoke;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.qrModal.active{
+    visibility: visible;
+}
+
+.qrModal .marco{
+    border: 2px solid rgb(72, 166, 224);
 }
 
 
 /* FOR MOBILES */
-@media screen and (max-width: 500px) {
-    .module_prestamo .container{
-        width: 100%;     
-        z-index: 10;   
+@media screen and (max-width:610px) {
+    .module_prestamo .select-form{
+        width: 90%;
     }
-    .module_prestamo .container a{
-        margin: 1em;
-        border: 1px solid lightskyblue;
-    }
- 
-
-    /* CONTENEDOR 2 */
-    .module_prestamo .container2{
-        width : 100%;
-        height: 100%;
-
-        position: absolute;
-        left: 0;        
-        /*z-index: 50; /* Revisar el z-index(container)*/
-        z-index: 2;
-    }
-    .module_prestamo .container2 .form{
-        width: 97%;
-    }
-
-}
-
-@media screen and (orientation: landscape) and (max-height: 450px) {
-    .module_prestamo .container2{
-        width: 70%;
-
-        background: tomato;
-    }
-    .module_prestamo .container{
-        width: 30%;
+    .module_prestamo .formulario{
+        padding: 1em 0 1em 0;
+        width: 95%;
     }
 }
+@media screen and (orientation: landscape) and (max-height:610px) {
+    .module_prestamo .formulario{
+        overflow: auto;
+    }
+}
+
+
 
 /* FOR TABLETS */
-@media screen and (min-width: 500px) and (max-width:1120px) {
-    .module_prestamo .container2 .form{
-        width: 95%;
+@media screen and (min-width:610px) and (max-width:1100px) {
+    .module_prestamo .formulario{
+        width: 70%;
     }
 }

@@ -1,0 +1,42 @@
+.qr-modal{
+    width : 95%;
+    height: 96%;
+
+    position: absolute;
+    margin-top: .9em;
+    z-index: 20;
+    
+    transform: translateX(-250%);
+}
+.qr-modal.active{
+    transform: translateX(0%);
+}
+
+.qr-modal{
+    width : 40%;
+    height: 96%;
+    margin: .5em 0 auto 0;
+
+    transition: 600ms ease-in-out;
+    background:whitesmoke;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.marco{
+    width : auto;
+    height: auto;
+    border: 4px solid rgb(17, 120, 189);
+
+    display: flex;
+    align-items: center;
+    transition: 1.2s;
+}
+
+.qr-modal .btn-modal{
+    margin-top: 3em;
+    width: 40%;
+}

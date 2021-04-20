@@ -17,18 +17,31 @@ import "./styles/Form.css";
 import TextArea from './field/TextArea';
 
 
-export default function Form(props) {
+export default function Form({type,qrData,setQrData,showModal,setOpenModal}) {
     
     return (
         <>
         {
             {
-                ALUMNO: <FormPrestamo type={props.type}/>,
-                PROFESOR: <FormPrestamo type={props.type}/>, 
-                ASIGNACION: <FormPrestamo type={props.type}/>,      
-                REPORTE: <FormReparacion showModal={props.showModal}/>,
-                USUARIO: <FormUsuario showModal={props.showModal}/>
-            }[props.type]
+                ALUMNO: <FormPrestamo 
+                                type={type}  
+                                qrData={qrData} 
+                                setQrData={setQrData} 
+                        />,
+                PROFESOR: <FormPrestamo 
+                                type={type}  
+                                qrData={qrData} 
+                                setQrData={setQrData} 
+                        />, 
+                ASIGNACION: <FormPrestamo 
+                                type={type}  
+                                qrData={qrData} 
+                                setQrData={setQrData}
+                                setOpenModal = {setOpenModal}
+                         />,      
+                REPORTE: <FormReparacion showModal={showModal}/>,
+                USUARIO: <FormUsuario showModal={showModal}/>
+            }[type]
         }
             
         </>
@@ -37,10 +50,10 @@ export default function Form(props) {
 
 // Formulario del módulo PRÉSTAMO
 
-function FormPrestamo (props){
+function FormPrestamo ({type, qrData, setQrData,setOpenModal}){
 
     const [formData, setFormData] = useState({
-        persona:     "",
+        nombre:     "",
         clave :     "",
         serial:     "",
         equipo:     "",
@@ -66,7 +79,7 @@ function FormPrestamo (props){
         
         // Guardar fecha actual
         if (formData.fecha === ""){
-            setFormData({...formData, fecha: today});
+            setFormData({...formData, fecha: today});            
         }
     },[formData]);
 
@@ -94,11 +107,15 @@ function FormPrestamo (props){
         }else if (name==="aula"){
             setFormData({...formData, aula: tag.options[tag.selectedIndex].text});
         }else{
-            setFormData({...formData,[name]: tag.value.toUpperCase()});
+            setFormData({...formData,[name]: tag.value.toUpperCase()});         
         }
+        //Agregar datos al Qr
+        if (name === "nombre" || name === "equipo" || name === "serial" || name === "fecha"){
+            setQrData({...qrData, [tag.name]: tag.value.toUpperCase()})
+        }   
     }
 
-
+    // Enviar datos al servidor
     const sendingData = async (e) =>{
         e.preventDefault();
 
@@ -115,8 +132,6 @@ function FormPrestamo (props){
                 const existeEquipo = resp.data.existe_serial;
                 const equipoDisponible = resp.data.equipo_disponible;
     
-                console.log(resp.data)
-    
                 if (existeEquipo===false){
                     Swal.fire({
                         icon: 'warning',
@@ -129,8 +144,9 @@ function FormPrestamo (props){
                         title: 'Oops...',
                         text: `El equipo [${formData.serial}] no se encuentra disponible por el momento, o no se ha registrado su entrega del préstamo. `,
                       })
-                }
-    
+                }                
+                setOpenModal(true);    
+
             } catch (error) {
                 console.log(error);
                 Swal.fire({
@@ -139,16 +155,16 @@ function FormPrestamo (props){
                     text: `Hubo problemas en registrar el préstamo. Probablemente, el servidor esté desactivado o haya conflictos internos en el servidor.`,
                   })            
             }
-        }
+        }    
     }
     
     return(
         <form id="form" onSubmit={sendingData}>
-            <h3>{props.type}</h3>
+            <h3>{type}</h3>
             <div className="input">
                 <InputDark 
                     id = "input-name"
-                    name = "persona"
+                    name = "nombre"
                     icon = {<RiIcons.RiBodyScanFill/>}
                     onChange = {handleText}                   
                     placeholder = "Nombre"
@@ -161,13 +177,13 @@ function FormPrestamo (props){
                     name = 'clave'
                     icon = {<FaIcons.FaIdCardAlt/>}
                     onChange = {handleText}                   
-                    placeholder = {props.type === "ALUMNO" ? "Boleta" : "Clave" }
+                    placeholder = {type === "ALUMNO" ? "Boleta" : "Clave" }
                 />
             </div>  
             <h3>Equipo</h3>
             <div className="input">
                 <InputDark 
-                    id = 'input-name'
+                    id = 'input-serial'
                     name = 'serial'
                     icon = {<BiIcons.BiBarcodeReader/>}
                     onChange = {handleText}                   
@@ -177,7 +193,7 @@ function FormPrestamo (props){
             </div>
             <div className="input">
                 <InputDark 
-                    id = 'input-name'
+                    id = 'input-equipo'
                     name = 'equipo'
                     icon = {<GiIcons.GiWifiRouter/>}
                     onChange = {handleText}                   

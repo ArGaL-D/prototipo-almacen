@@ -96,7 +96,7 @@ server.post('/registrar', (req, res) => {
 /* POST  Módulo ( PRÉSTAMO ) */
 server.post('/prestamo', (req, res) => {
     // Solicitar datos enviados por el cliente
-    const persona  = req.body.persona;
+    const persona  = req.body.nombre;
     const clave    = req.body.clave;
     const serie    = req.body.serial;
     const fecha    = req.body.fecha;    

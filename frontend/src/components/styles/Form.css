@@ -1,6 +1,6 @@
 /* MODULO - PRESTAMO*/
 #form{
-    width : 95%;
+    width : 100%;
     height: 100%;
     margin: auto;
 
@@ -8,12 +8,13 @@
     flex-direction: column;    
     justify-content: space-around;   
 
-    background: whitesmoke;
+    position: relative;
 }
 
 #form h3{
     font-size: 1rem;
     font-family: 'Roboto', sans-serif;
+    margin-left: 1rem;
 }
 #form .input{
     width: 99%;
@@ -25,9 +26,7 @@
     font-family: 'Roboto', sans-serif;
 }
 
-#form .select-options{
-    display: flex;
-}
+
 
 /* MÓDULO USUARIOS - CREAR USUARIO - */
 #form .select span{
@@ -36,14 +35,25 @@
     font-family: 'Roboto', sans-serif;
 }
 
-
-
+/* CONTENEDOR - SELECTS */
+#form .selects{
+    display: flex;
+}
+#form .selects .select{
+    width: 95%;    
+}
+/*
+#form .selects .select:not(:first-child):not(:last-child){
+    margin: 0 .5em 0 .5em;
+}
+*/
 
 
 /* FOR MOBILES */
 @media screen and (max-width:450px) {
     #form h3{
         font-size: .8rem;
+        margin-left: 40%;
     }
     #form{
         width: 100%;
@@ -51,16 +61,29 @@
     #form .input{
         width: 90%;
     }
+
+    #form .selects{
+        flex-direction: column;
+    }
+
+    #form .select{
+        margin: .1em auto .1em auto;
+    }
+
+    #form .button{
+        width: 90%;
+        margin: 0 auto 0 auto;
+    }
 }
 
-@media screen and (orientation: landscape) and (max-height: 600px) {
+@media screen and (orientation: landscape) and (max-height:610px) {
     #form{
         display: block;
     }
     #form .input, .select{
-        margin: 1em;
+        margin: 1em 0 .5em 0;
     }
     #form h3{
-        margin-left: 1em;
+        margin-left: 40%;
     }
 }

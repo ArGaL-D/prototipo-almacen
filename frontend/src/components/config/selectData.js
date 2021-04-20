@@ -159,4 +159,10 @@ export const etapaReparacion = [
     'Otro'
 ];
 
+export const tipoPrestamo = [
+    'Tipo de formulario',
+    'Alumno',
+    'Profesor',
+    'Asignación'
+];
 

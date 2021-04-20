@@ -180,31 +180,29 @@ export default function Registro({setTitle}) {
             </form>
 
             <div className={modal?"qr-modal active": "qr-modal"}>
-
                 <div className={
                         formData.serial==="" || formData.marca==="" || 
                         formData.equipo==="" || formData.modelo===""
                         ? "marco":"marco active" }>
                     <QRCode 
-                            size  = {220}
-                            value = { JSON.stringify(qrData) }                   
-                            enableCORS = {true}                            
-                            qrStyle    = {'squares'}
-                            quietZone  = {10 }                            
-                            fgColor    = {"#000406"}                   
-                            logoWidth  = {75 }
-                            logoHeight = {150}
-                            logoOpacity= {0.4}
-                        />  
+                        size  = {220}
+                        value = { JSON.stringify(qrData) }                   
+                        enableCORS = {true}                            
+                        qrStyle    = {'squares'}
+                        quietZone  = {10 }                            
+                        fgColor    = {"#000406"}                   
+                        logoWidth  = {75 }
+                        logoHeight = {150}
+                        logoOpacity= {0.4}
+                    />  
                 </div>
                 
                 <div className="btn-modal">
-                        <Button
-                            title = "REGISTRAR"
-                            onClick={closeModal}
-                        />
-                </div>  
-                
+                    <Button
+                        title = "REGISTRAR"
+                        onClick={closeModal}
+                    />
+                </div>                  
             </div>
 
         </div>

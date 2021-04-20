@@ -6,7 +6,8 @@ import { edificio,
     almacenEdificio, 
     almacenPiso,
     reparacion,
-    etapaReparacion 
+    etapaReparacion, 
+    tipoPrestamo
    } from "../config/selectData";
 
 import React from 'react';
@@ -66,6 +67,11 @@ export default function Select(props) {
                         )
                     }),
                     REPARACION_ETAPA: etapaReparacion.map( (value, index) => {
+                        return(
+                            <option value={value} key={index}>{value}</option>
+                        )
+                    }),
+                    PRESTAMO: tipoPrestamo.map((value, index) => {
                         return(
                             <option value={value} key={index}>{value}</option>
                         )
