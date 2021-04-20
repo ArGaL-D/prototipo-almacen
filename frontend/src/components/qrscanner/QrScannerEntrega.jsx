@@ -20,7 +20,15 @@ const QrScannerEntrega = ( {closeModalQr, getQrResults} ) => {
             const equipo = qrJSON.equipo;
             const fechaSalida = qrJSON.fechaSalida;
         
-            getQrResults(nombre,equipo,serial,fechaSalida);            
+            if (nombre === undefined || serial === undefined || equipo === undefined || fechaSalida === undefined){
+                Swal.fire({
+                    icon: 'error',
+                    title: `QR`,
+                    text: `Se detectó inconsistencias en el código QR`,
+                  })
+            }else{
+                getQrResults(nombre,equipo,serial,fechaSalida); 
+            }            
         }catch(error){
             Swal.fire({
                 icon: 'error',

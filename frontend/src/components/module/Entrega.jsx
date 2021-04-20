@@ -59,6 +59,7 @@ export default function Entrega({setTitle}) {
                         icon = {<FaIcons.FaUserFriends/>}                        
                         onChange = {handleInputText}
                         placeholder = "Nombre"
+                        defaultValue = {formData.nombre}
                     />
                 </div>
                 <div className="inpt">
@@ -68,6 +69,7 @@ export default function Entrega({setTitle}) {
                         icon = {<GiIcons.GiWifiRouter/>}                        
                         onChange = {handleInputText}
                         placeholder = "Equipo"
+                        defaultValue = {formData.equipo}
                     />
                 </div>
                 <div className="inpt">
@@ -76,7 +78,8 @@ export default function Entrega({setTitle}) {
                         name = "serial"
                         icon = {<BiIcons.BiBarcodeReader/>}                        
                         onChange = {handleInputText}
-                        placeholder = "Serial"                    
+                        placeholder = "Serial"
+                        defaultValue = {formData.serial}           
                     />   
                 </div>
                 <div className="inpt">
@@ -86,7 +89,8 @@ export default function Entrega({setTitle}) {
                         icon = {<MdIcons.MdDateRange/>}   
                         type = "date"
                         onChange = {handleInputText}                        
-                        placeholder = "Fecha de salida"                    
+                        placeholder = "Fecha de salida"
+                        defaultValue = {formData.fechaSalida}                 
                     /> 
                 </div>
                 <div className="inpt">
