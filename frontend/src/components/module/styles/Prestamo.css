@@ -10,71 +10,98 @@
     justify-content: center;
 }
 
-
-.formulario{
-    width : 35%;
-    height: 90%;
-
-    padding: 1em;
-    z-index: 0;
-
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+#formPrestamo{
+    overflow: auto;
 
     background: whitesmoke;
     box-shadow: 0px 1px 5px 0px rgba(185, 185, 185, 0.75);
 
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+
     position: relative;
 }
+#formPrestamo .selects{
+    display: flex;
+}
+#formPrestamo h3{
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-/* MODAL - QR */
-.qrModal{
+/* MODAL QR-SCANNER */
+.qrScanner{
     width : 100%;
     height: 100%;
-    z-index: 80;
-    
+
     position: absolute;
     top: 0;
 
-    visibility: hidden;
-    background: whitesmoke;
+    background: rgba(0, 0, 0, 0.5);
 
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-}
-.qrModal.active{
-    visibility: visible;
-}
+    justify-content: center;
 
-.qrModal .marco{
-    border: 2px solid rgb(72, 166, 224);
+    z-index: 20;
 }
 
 
 /* FOR MOBILES */
-@media screen and (max-width:610px) {
-    .module_prestamo .select-form{
-        width: 90%;
+@media screen and (max-width:600px) {
+    /* FORMULARIO */
+    #formPrestamo{                        
+        width : 85%;
+        height: 98%;
+
+        padding: 0 1em 0 1em;
     }
-    .module_prestamo .formulario{
-        padding: 1em 0 1em 0;
-        width: 95%;
+
+    #formPrestamo .selects{
+        justify-content: space-between;
     }
 }
-@media screen and (orientation: landscape) and (max-height:610px) {
-    .module_prestamo .formulario{
-        overflow: auto;
-    }
-}
-
-
-
 /* FOR TABLETS */
-@media screen and (min-width:610px) and (max-width:1100px) {
-    .module_prestamo .formulario{
-        width: 70%;
+@media screen and (min-width: 600px) {
+    #formPrestamo{
+        width : 75%;
+        height: 90%;
+
+        padding: 1em;
+    }
+    #formPrestamo .input{
+        margin: .5em 0 .6em 0;
+    }
+    #formPrestamo h3{
+        margin-left: 40%;
+    }
+    #formPrestamo .select{
+        width: 99%;
+    }
+
+}
+
+/* FOR DESKTOPS */
+@media screen and (min-width:1100px) {
+    #formPrestamo{
+        width : 35%;
+        height: 85%;
+
+        padding: 1em;
+    }
+    #formPrestamo h3{
+        margin: 0 0 .5em 0;
+    }
+    #formPrestamo .input{
+        margin: .5em 0 .5em 0;
+    }
+    #formPrestamo .selects{
+        display: flex;
+    }
+    #formPrestamo .select{
+        width: 100%;
+    }
+    #formPrestamo .select:not(:first-child):not(:last-child){
+        margin: 0 .5em 0 .5em;
     }
 }
