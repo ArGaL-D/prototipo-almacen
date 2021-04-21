@@ -175,7 +175,6 @@ server.post('/entrega', (req, res) => {
             }else{
                 res.json({existe_equipo:false});
             }
-            console.log(results)
         });
     });
 
