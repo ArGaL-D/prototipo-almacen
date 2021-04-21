@@ -141,7 +141,6 @@ export const almacenPiso = [0,1,2];
 export const reparacion = [
     'Reparación',
     'Mantenimiento',
-    'Inservible',
     'Disponible'
 ];
 

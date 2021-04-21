@@ -8,6 +8,7 @@ import Hilo from '../Hilo';
 import Datatable from '../Datatable';
 import InputDark from '../field/InputDark';
 
+import * as BsIcons from "react-icons/bs";
 import * as BiIcons from "react-icons/bi";
 import * as RiIcons from "react-icons/ri";
 import * as GiIcons from "react-icons/gi";
@@ -59,59 +60,39 @@ export default function Reparacion({setTitle}) {
 
     return (
         <div className="module-reparacion">
-            
-            <div className="containerRep1">
-                <h1>Opciones</h1>
-                <Link to = "/page/reparacion/hilo">
+            {/* NARVAR */} 
+            <div className="navbar_reparacion">
+                <Link to = "/page/reparacion">
                     <div className="link-option">
                         <div className="icon1">
-                            <BiIcons.BiGitBranch/>
-                        </div>
-                        <div className="text">
-                            <span>Generar hilo</span>
-                        </div>
-                        <div className="icon2">
-                            <RiIcons.RiArrowRightSFill/>
-                        </div>          
-                    </div>
-                </Link>
-                <Link to = "/page/reparacion/reporte">
-                    <div className="link-option">
-                        <div className="icon1">
-                            <GrIcons.GrTextAlignLeft/>
+                            <BsIcons.BsFileText/>
                         </div>
                         <div className="text">
                             <span>Hacer reporte</span>
-                        </div>
-                        <div className="icon2">
-                            <RiIcons.RiArrowRightSFill/>
-                        </div>          
+                        </div>        
                     </div>
                 </Link>
                 <Link to = "/page/reparacion/seguimiento">
                     <div className="link-option">
                         <div className="icon1">
-                           <GiIcons.GiArchiveResearch/>
+                            <BiIcons.BiSearchAlt2/>
                         </div>
                         <div className="text">
                             <span>Seguimiento</span>
-                        </div>
-                        <div className="icon2">
-                            <RiIcons.RiArrowRightSFill/>
-                        </div>          
+                        </div>         
                     </div>
                 </Link>
+                <div className="avisoNav">
+                    <span>Aviso</span>
+                </div>
+                <div className="hiloNav">
+                    <span>Hilo</span>
+                </div>
             </div>
 
-            <div className="containerRep2">
+            <div className="content">
                 <Switch>
-                    <Route path="/page/reparacion/hilo">
-                        <div className="card-hilo">
-                            <Hilo/>                            
-                        </div>
-                    </Route>
-                   
-                    <Route path="/page/reparacion/reporte">
+                    <Route path="/page/reparacion">
                         <div className="box-reporte">
                             <Form
                                 type = "REPORTE"
@@ -120,6 +101,9 @@ export default function Reparacion({setTitle}) {
                             <div className="aviso" onClick={warning}>
                                 <IoIcons.IoMdWarning/>
                             </div>
+                            <div className="hilo">
+                                <BiIcons.BiGitBranch/>
+                            </div>
                             <Modal open={modal} onClose={openModal} center>
                                 <Datatable
                                     type = 'HILO'
@@ -127,26 +111,9 @@ export default function Reparacion({setTitle}) {
                                 />
                             </Modal>
                         </div>
-                    </Route>
-
-                    <Route path="/page/reparacion/seguimiento">
-                        <div className="seguimiento">
-                            <div className="inpt-buscar">
-                                <InputDark
-                                    icon = {<GoIcons.GoSearch/>}
-                                    placeholder = "Hilo de seguimiento"
-                                />
-                            </div>
-                            <div className="table-seguimiento">
-                                <Datatable 
-                                    rows = {null}
-                                    columns = {columnasSeg}                                
-                                />
-                            </div>
-                        </div>
-                    </Route>
+                    </Route>                   
                 </Switch>
-            </div>
+            </div>            
         </div>
     )
 }

@@ -300,6 +300,7 @@ function FormReparacion (props){
                         placeholder = "Reparación"
                     />
                 </div>
+                <br/>
                 <div className="select">
                     <Select
                         id = "selectEtapa"

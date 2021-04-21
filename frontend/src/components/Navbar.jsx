@@ -12,6 +12,9 @@ export default function Navbar(props) {
             <div className="title">
                 {props.title}
             </div>
+            <div>
+                
+            </div>
             <button onClick={props.onClick}>
                 {props.title_btn}
             </button>

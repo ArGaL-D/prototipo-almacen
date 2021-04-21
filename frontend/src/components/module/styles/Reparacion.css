@@ -3,105 +3,69 @@
 .module-reparacion{
     width : calc(100vw - 5em);
     height: 100%;
-
-    display : flex; 
     overflow: auto;   
     position: relative;
-}
 
-/* 
-    CONTENEDOR 1 
-*/
-.module-reparacion .containerRep1{
-    width : 15em;
-    height: 100%;
-    
-    font-family: 'Nunito', sans-serif;
-    background: whitesmoke;
-}
-
-.containerRep1 h1{
-    color: #555e66;
-    margin: .5em 0 .5em .5em;
-    font-size: clamp(1rem, 2vw, 1.4rem);    
     font-family: 'Roboto', sans-serif;
 }
 
-.containerRep1 a{
-    width: 100%;
-    text-decoration: none;
-}
+/* NAVBAR */
+.navbar_reparacion{
+    width : 100%;
+    height: 4em;
 
-/* OPCIONES DEL CONTENEDOR - LINK */
-.containerRep1 .link-option{
-    width : 90%;
-    height: 2em;
-    margin: .5em 0 .5em 1em;
-    color :lightslategray;
+    background: whitesmoke;
+    box-shadow: 0px 1px 5px 0px rgba(185, 185, 185, 0.45);
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+}
 
-    font-weight: 500;
-    transition: 300ms ease-in-out;
+.link-option{
+    color : black;
+    margin: 0 .5em 0 .5em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+.link-option .icon1{
+    font-size: 1.5rem;
+
+    display: flex;
 }
 
 .link-option .text{
-    width: 100%;
-    margin-left: .5em;
-    text-align: left;
-}
-/* ICONS */
-.containerRep1 .icon1,
-.containerRep1 .icon2{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.containerRep1 .icon1 svg,
-.containerRep1 .icon2 svg{
-    padding: 0 0 0 .2em;
-    font-size: clamp(1rem, 2vw,1.5rem);
+    padding-left: .5em;
+    font-size: clamp(.9rem, 2vw, 1rem);
 }
 
-
-/* ANIMACIONES  */
-.containerRep1 .link-option:hover{
-    color:  #34495e;
-    transform: translateX(1em);
+/* *CONTEIDO */
+.module-reparacion .content{
+    position: relative;
 }
-.containerRep1 .link-option:active{
-    color:  #2b88e4;
-    transform: translateX(1em);
-    transition: 100ms;
-}
-
-/* 
-    CONTENEDOR 2 
-*/
-.module-reparacion .containerRep2{    
-    width: calc(100% - 15em);
-    height: 100%;    
-    display: flex;
-    justify-content: center;
-
-}
-
-/* COTENEDOR - FORMULARIO - reporte */
-.module-reparacion .box-reporte{
-    width : 50%;
-    height: 90%;
-
+.content .card-hilo{
+    width : 25em;
+    height: 20em;
     margin: auto;
-    background: whitesmoke;
-    box-shadow: 0px 1px 5px 0px rgba(154, 154, 156, 0.75);
-    overflow: auto;
 }
 
-/* BUTTON - aviso */
-.aviso{
+.content .box-reporte{
+    width: 50%;
+    height: 40em;
+
+    margin: 1em auto auto auto;
+    padding: 1.5em;
+
+    background: whitesmoke;
+    box-shadow: 0px 1px 5px 0px rgba(185, 185, 185, 0.45);    
+}
+
+/* BOTÓN - AVISO */
+
+.box-reporte .aviso,.hilo{
     width : 2em;
     height: 2em;
     cursor: pointer;
@@ -110,142 +74,98 @@
     align-items: center;
     justify-content: center;
 
-    font-size: 2rem;
-
-    position: absolute;
-    right: 3%;
-    top: 6%;
-
-    color: yellow;
+    position : absolute;
+    font-size: 2rem;    
+   
     border-radius: 50%;
     background: #20232a;
-    box-shadow: 0px 1px 5px 0px rgba(154, 154, 156, 0.75);    
+    box-shadow: 0px 1px 5px 0px rgba(154, 154, 156, 0.75);
+
+    transition: 100ms ease-in-out;
+}
+
+.hilo{
+    top: 12%;
+    right: 2%;
+    color: rgb(170, 221, 253);
+}
+.aviso{
+    top: 0;
+    right: 2%;
+    color: rgb(236, 236, 140);
+}
+.hilo:hover{
+    width: 2.1em;
+    height: 2.1em;
+    box-shadow: 0px 1px 5px 2px lightskyblue;
 }
 .aviso:hover{
     width: 2.1em;
     height: 2.1em;
-    box-shadow: 0px 1px 5px 2px rgb(238, 238, 127);
-    transition: 300ms ease-in-out;
-}
-.swal-modal .swal-text {
-    text-align: justify;
-}
-/* VENTANA EMERGENTE - aviso*/
-.format-pre{
-    font-family: 'Roboto', sans-serif;
-    text-align: justify;
+    box-shadow: 0px 1px 5px 2px lightgoldenrodyellow;
 }
 
-/* MODAL - TABLA - HILOS */
-
-
-/* TARJETA - HILO */
-.module-reparacion .containerRep2 .card-hilo{
-    width : 50%;
-    height: 60%;
-    margin: auto;    
+.hiloNav,
+.avisoNav{
+    visibility: hidden;
+    color: tomato;
 }
-
-/* COTENEDOR - TABLE */
-.module-reparacion .seguimiento{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-/* CONTENEDOR - Input*/
-.seguimiento .inpt-buscar{
-    width: 45%;
-    margin: 2em 0 1em 0;
-}
-.module-reparacion .table-seguimiento{
-    width: 100%;
-    overflow: auto;
-}
-
-
-
 
 
 /* FOR MOBILES */
 @media screen and (max-width: 600px) {
-    .module-reparacion{
-        flex-direction: column;
+    .navbar_reparacion{
+        overflow: auto;
+        justify-content: space-between;
     }
-    /* 
-        CONTENEDOR 1 
-    */
-    .module-reparacion .containerRep1{
-        width: 10%;
-        height: auto;
+    .hiloNav,
+    .avisoNav{
+        visibility: visible;
+        margin: 0 .5em 0 .5em;
     }
-    /* Menú de opciones */
-    .module-reparacion .containerRep1{
-        width : 10%;
-        height: auto;
-
-        display: flex;
-
-        background: transparent;
-        position: absolute;
-        bottom: 0;
-        left: 26%;
-    }
-    .module-reparacion .containerRep1 .text, .icon2{
-        visibility: hidden;
-    }
-    .module-reparacion h1{
-        position: absolute;
-        visibility: hidden;
-    }
-    /* Opciones - link */
-    .containerRep1 .link-option{        
-        color: lightgreen;
-        background: transparent;
-    }
-
-    /* 
-        CONTENEDOR 2
-    */
-    .module-reparacion .containerRep2{
-        width: 100%;        
-    }
-    /* Formulario */
-    .module-reparacion .containerRep2 .box-reporte{
-        width: 98%;
-        margin-top: .6em;
-    }
-    /* Tarjeta hilo */
-    .module-reparacion .containerRep2 .card-hilo{
-        width : 100%;
-        height: 100%;
-    }
-    /* Tabla - seguimiento*/
-    .module-reparacion .seguimiento .inpt-buscar{
-        width: 95%;
-        margin: 1.5em 0 1em 0; 
-    }
-    .module-reparacion .seguimiento .table-seguimiento{
-        height: 80%;
-        background: lightpink;
-    }
-    /* BUTTON - Aviso */
+    .hilo,
     .aviso{
-        font-size: 1rem;
-        top: 1em;
+        visibility: hidden;
+    }
+
+    .content{
+        width: 100%;                
+    }
+    .content .box-reporte{
+        padding: 0 .5em 0 .5em;
+        width: 90%;
+    }
+    .link-option .icon1{
+        position: absolute;
+        visibility: hidden;
     }
 }
 
-@media screen and (min-width:600px) and (max-width:1000px) {
-    /* Formulario */
-    .module-reparacion .containerRep2 .box-reporte{
-        width: 98%;
+/* FOR TABLETS */
+@media screen and (min-width:600px) and (max-width:1100px) {
+    .content{
+        height: 100%;
+        display: flex;
     }
-    /* BUTTON - Aviso */
+
     .aviso{
-        font-size: 1rem;
-        top: 2.5em;
+        top: 2%;
     }
-    .module-reparacion .containerRep2 .card-hilo{
-        width: 90%;
+    .box-reporte .hilo,
+    .box-reporte .aviso{        
+        font-size: 1.5rem;
+    }
+    .content .box-reporte{
+        width: 70%;
+        height: 85%;
+    }
+}
+
+/* FOR DESKTOPS */
+@media screen and (min-width: 1400px) {
+    .box-reporte{
+        width: 50%;
+
+        background: cornflowerblue;
     }
 }
