@@ -9,6 +9,8 @@ import "./styles/Ubicacion.css";
 
 export default function Ubicacion({setTitle}) {
 
+    const [text,setText] = useState("");
+    const [num, setNum] = useState( {edificio:"", piso:"", aula:""} );
     const [showSelects, setShowSelects] = useState(false);
     const [rowData, setRowData] = useState([]);
     const columnasUbicacion = [
@@ -26,12 +28,12 @@ export default function Ubicacion({setTitle}) {
     // Obtener datos (filas) desde el servidor
     
     useEffect(() => {
-        // Deshabilitar tag selects 
-        
+        // Deshabilitar tag selects         
         document.getElementById('dropdown-edificio').disabled = !showSelects;
         document.getElementById('dropdown-piso').disabled = !showSelects;
         document.getElementById('dropdown-aula').disabled = !showSelects;
-
+        
+        // Pedir datos 'filas' al servidor
         axios.get('http://localhost:3001/ubicacion')
              .then( res => {
                  setRowData(res.data)
@@ -41,6 +43,67 @@ export default function Ubicacion({setTitle}) {
              })
        
     }, [showSelects])
+
+    // Bloquear índice 0 - tag-select - tipo de formulario
+    useEffect( ()=> {
+        const select1 = document.getElementById('dropdown-edificio');
+        const select2 = document.getElementById('dropdown-piso');
+        const select3 = document.getElementById('dropdown-aula')
+
+        select1.options[0].disabled = true;
+        select2.options[0].disabled = true;
+        select3.options[0].disabled = true;
+    });
+
+    //Obtener texto del buscador
+    const handleText = (e) =>{
+        setText(e.target.value.toUpperCase());
+    }
+
+    // Obtener valor de los selects
+    const handleSelect = (e) =>{
+        const tag = e.target;
+        if ( tag.name === "aula"){
+            setNum({...num,[tag.name]: tag.options[tag.selectedIndex].text});    
+        } else{
+            setNum({...num,[tag.name]: tag.selectedIndex});
+        }        
+    }
+
+    //Bloquear y desbloqueat -selects
+    const handleCheck = e => {
+        const select1 = document.getElementById('dropdown-edificio');
+        const select2 = document.getElementById('dropdown-piso');
+        const select3 = document.getElementById('dropdown-aula');
+
+        setShowSelects(e.target.checked);
+        console.log(showSelects)
+
+        if (!e.target.checked){
+            select1.options[0].selected = true;
+            select2.options[0].selected = true;
+            select3.options[0].selected = true;
+        }
+    }
+
+    // Buscar  equipo(nombre)
+    const search = (rows) => {
+    
+        if (showSelects===false){
+            return rows.filter( row => 
+                row.equipo.indexOf(text) > -1     ||
+                row.num_serie.indexOf(text) > -1  ||
+                row.aula.toString().indexOf(text) > -1 
+            )
+        }else{
+            return rows.filter( row => 
+                row.equipo.indexOf(text) > -1    &&
+                row.edificio.toString().indexOf(num.edificio.toString() ) > -1 &&
+                row.piso.toString().indexOf(num.piso.toString() ) > -1   &&
+                row.aula.toString().indexOf(num.aula.toString() ) > -1   
+            )
+        } 
+    } 
     
     return (
         <div className="module-ubicacion">            
@@ -49,6 +112,7 @@ export default function Ubicacion({setTitle}) {
                     <InputDark
                         icon = {<GoIcons.GoSearch/>}
                         placeholder = "Palabra clave"
+                        onChange = {handleText}
                     />
                 </div>
 
@@ -58,6 +122,7 @@ export default function Ubicacion({setTitle}) {
                             id = "checkbox"
                             name = "checkbox"
                             type = "checkbox"
+                            onChange = {handleCheck}
                         />
                         <label htmlFor="checkbox">Habilitar</label>
                     </div>
@@ -68,19 +133,30 @@ export default function Ubicacion({setTitle}) {
                         <div className="select">
                             <Select
                                 id ="dropdown-edificio"
+                                name = "edificio"
                                 type = "EDIFICIO"
+                                onChange = {handleSelect}
+                                numEdificio = {num.edificio}
                             />
                         </div>
                         <div className="select">
                             <Select
                                 id ="dropdown-piso"
-                                type = "PISO"
+                                name = "piso"
+                                type = "PISO"                                
+                                onChange = {handleSelect}
+                                numPiso = {num.piso}
+                                numEdificio = {num.edificio}                                
                             />
                         </div>
                         <div className="select">
                             <Select
                                 id ="dropdown-aula"
+                                name = "aula"
                                 type = "AULA"
+                                numPiso = {num.piso}
+                                numEdificio = {num.edificio}
+                                onChange = {handleSelect}
                             /> 
                         </div>
                     </div>
@@ -92,7 +168,7 @@ export default function Ubicacion({setTitle}) {
                     <Datatable
                         type = "UBICACION"
                         columns = {columnasUbicacion}
-                        rows = {rowData}
+                        rows = {search(rowData)}
                     />
                 </div>
             </div>
