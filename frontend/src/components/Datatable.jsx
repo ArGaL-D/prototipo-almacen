@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import Swal from 'sweetalert2';
+
 import * as AiIcons   from "react-icons/ai";
 import * as MdIcons   from "react-icons/md";
 import * as ImIcons   from "react-icons/im";
@@ -7,7 +9,12 @@ import * as GrIcons   from "react-icons/gr";
 import "./styles/Datatable.css";
 
 
-export default function Datatable({columns, rows ,type,openModal,deleteData}) {
+export default function Datatable({columns, rows ,type}) {
+
+    const mostrarDescrpcn = () =>{
+      Swal.fire("hola")
+    }
+
     return (
         <table className="table-equipo">
             <thead>
@@ -20,69 +27,65 @@ export default function Datatable({columns, rows ,type,openModal,deleteData}) {
                     })
                   }
                 </tr>
-            </thead>            
-            {
+            </thead>  
+            
+            <tbody>
+              {
                 {
-                    BUSCAR: <tbodyBuscar 
-                                rows={rows}
-                                openModal={openModal}
-                                deleteData={deleteData}
-                            />,
-                    UBICACION: <tbodyUbicacion rows={rows} />,
-                    HILO: <tbodyHilo rows={rows}/>,
-                    USUARIOS: <tbodyUsuarios rows={rows}/>
+                    BUSCAR: rows.map( (row,index) =>{
+                            return(
+                              <tr key={index}>
+                                <td>{index + 1 }</td>  
+                                <td>{row.num_serie}</td>  
+                                <td>{row.equipo}</td>  
+                                <td>{row.marca}</td>  
+                                <td>{row.modelo}</td>
+                                <td>{row.estatus}</td>
+                                <td>
+                                   <div className="td-descrip">
+                                        {<GrIcons.GrTextAlignFull/>}
+                                        <TooltipText text={row.descripcion===""? "Sin descriṕción.":row.descripcion} />
+                                    </div>  
+                                </td>  
+                                <td>{row.almacen}</td> 
+                                <td>{row.edificio}</td>
+                                <td>{row.piso}</td>
+                                <td>
+                                  <button className="btn-qr">
+                                      <ImIcons.ImQrcode/>
+                                  </button>  
+                                </td>  
+                              </tr>  
+                            )  
+                          })
                 }[type]
-            }
-
+              }
+            </tbody>
+              {
+                  {
+                      BUSCAR: <tbodyBuscar rows={rows} />,
+                      UBICACION: <tbodyUbicacion rows={rows} />,
+                      HILO: <tbodyHilo rows={rows}/>,
+                      USUARIOS: <tbodyUsuarios rows={rows}/>
+                  }[type]
+              }         
         </table>
     )
 }
 
 
-function tbodyBuscar (props){
+function tbodyBuscar ({rows}){
     return(
         <tbody>
         {
-          props.rows.map( (row,index) =>{
+          rows.map( (row,index) =>{
             return(
               <tr key={index}>
                  <td>{row.num_serie}</td>  
-                 <td>{row.equipo}</td>  
-                 <td>{row.marca}</td>  
-                 <td>{row.modelo}</td>  
-                 <td>{row.estatus}</td>  
-                 <td>
-                    <div className="td-descrip">
-                        {<GrIcons.GrTextAlignFull/>}
-                        <TooltipText 
-                            text={row.descripcion===""
-                                ? "Sin descriṕción."
-                                :row.descripcion}
-                        />
-                    </div>                                    
-                 </td>
-                 <td>{row.almacen}</td>
-                 <td>{row.edificio}</td>
-                 <td>{row.piso}</td>
-                 <td>
-                    <button className="btn-qr"  onClick={props.openModal}>
-                        <ImIcons.ImQrcode/>
-                    </button>
-                 </td>                                
-                 <td>
-                    <button className="btn-edit" onClick={props.openModal}>
-                        <AiIcons.AiTwotoneEdit/>
-                    </button>
-                 </td>
-                 <td>
-                    <button className="btn-del"  onClick={props.deleteData}>
-                        <MdIcons.MdDelete/>
-                    </button>
-                 </td>                 
               </tr>  
             )  
           })
-        }  
+        }          
       </tbody>
     )
 }

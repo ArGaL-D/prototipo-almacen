@@ -28,7 +28,7 @@
 /* FILAS - TABLA */
 .table-equipo tr{
     background: #ebedef; 
-    transition: 400ms ease-in-out;       
+    transition: 200ms ease-in-out;       
 }
 .table-equipo tr:nth-child(even){
     background: #c7c5c5;
@@ -48,8 +48,7 @@
 }
 
 .table-equipo tr td{
-    padding: 1em;
-    
+    padding: 1em;    
 }
 
 .btn-qr{
@@ -59,8 +58,7 @@
 }
 
 .btn-qr,
-.btn-del,
-.btn-edit{
+.btn-descrp{
     width : 100%;
     border: 1px solid #1B2631;
     border-radius: 5px;
@@ -70,10 +68,12 @@
 
     font-size: clamp(12px, 2vw,1.2rem);
 }
+.btn-descrp{
+    width: 70%;
+}
 
 .btn-qr:active,
-.btn-del:active,
-.btn-edit:active{
+.btn-descrp:active{
     color: lightskyblue;
 }
 
