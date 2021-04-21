@@ -2,77 +2,126 @@
     width : calc(100vw - 5em);
     height: 100%;
 
-    display : flex;    
     justify-content: center;
     position: relative;
-}
 
-/* CONTENEDOR 2 */
-.module-ubicacion .container2{
-    width: 90%;
-    margin-left: .5em;
-
-    background: cornflowerblue;
-}
-
-/* box-Buscar*/
-.container2 .buscador{
-    width : 50%;
-    margin: 2em 0 .5em 0;
-}
-
-.container2 .buscador .input{
-    margin-top: 1em;
-}
-
-.container2 .checkbox{
-    margin: .5em 0 .5em 0;
-
-    display: flex;
-}
-
-.checkbox label{
-    padding-left: .2em;    
     font-family: 'Roboto', sans-serif;
 }
 
-/* box - Selects */
-.container2 .selects{
-    display: flex;
+/* INPUT */
+.container_search .input{
+    width: 90%;  
+    margin: 1.5em auto 0 auto;      
+}
+/* CHECKBOX */
+.checkbox label{
+    padding-left: .5em;
 }
 
-.container2 .selects .select{
-    margin: 0 1em .2em 0;
+/* SELECT */
+.container_search .selects{
+    width: 90%;
+    margin: 0 auto 1em auto;
 }
 
-.container2 .tabla{
+/* TABLE */
+.container_table{
+    height: 70%;
     overflow: auto;
-
-    background: chartreuse;
+}
+.container_table .datatable{
+    width : 90%;
+    height: 100%;
+    
+    margin: 0 auto 0 auto;    
+    overflow: auto;
 }
 
 
 
 /* FOR MOBILES */
-@media screen and (max-width: 800px) {
-    .container1{
-        position: absolute;
-        visibility: hidden;
+@media screen and (max-width: 600px) {
+    .container_search{
+        height: auto;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;        
     }
-    .module-ubicacion .container2{
-        width: 95%;
+    /* CHECKBOX */
+    .container_search .checkbox{
+        margin: 1em 0 .5em 0;        
+        display: flex;
+        justify-content: center;
     }
-    .container2 .buscador{
+
+    .checkbox .marco{
+        width: 90%;
+        display: flex;
+        align-items: center;
+    }
+
+
+    /* SELECT */
+    .container_search .selects{
+        width: 90%;
+        margin: 0 auto 1em auto;
+    }
+    .container_search .selects .marco{        
+        display: flex;
+        justify-content: space-around;        
+    }
+    .marco .select{
         width: 100%;
+    }
+    .marco .select:not(:first-child):not(:last-child){
+        margin: 0 .2em 0 .2em;
+    }
+
+    /* TABLE */
+    .container_table{
+        height: 70%;
+    }
+
+    .container_table .datatable{
+        overflow: auto;
     }
 }
 
-@media screen and (orientation: landscape) and (max-height: 450px){
-    .container1{
-        position: absolute;
-        visibility: hidden;
+/* FOR TABLETS */
+
+@media screen and (min-width: 600px) {
+    
+    /* SELECTS */
+    .container_search .selects .marco{        
+        display: flex;
+        justify-content: space-around;        
     }
-    .module-ubicacion .container2{
-        width: 97%;
+    .marco .select{
+        width: 100%;
+    }
+    .marco .select:not(:first-child):not(:last-child){
+        margin: 0 .2em 0 .2em;
+    }
+    /* CHECKBOX */
+    .container_search .checkbox{
+        margin: 1em 0 .5em 0;        
+        display: flex;
+        justify-content: center;
+    }
+
+    .checkbox .marco{
+        width: 90%;
+        display: flex;
+        align-items: center;
     }
 }
+
+/* FOR DESKTOPS */
+
+@media screen and (min-height: 900px) {
+    .container_table{
+        height: 80%;
+    }
+}
+

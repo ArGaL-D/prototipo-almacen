@@ -12,7 +12,7 @@ export default function Ubicacion({setTitle}) {
     const [showSelects, setShowSelects] = useState(false);
     const [rowData, setRowData] = useState([]);
     const columnasUbicacion = [
-        "EQUIPO", "SERIAL", "EDIFICIO",
+        "#","EQUIPO", "SERIAL", "EDIFICIO",
         "PISO","AULA","FECHA DE SALIDA"
     ];
 
@@ -24,8 +24,10 @@ export default function Ubicacion({setTitle}) {
     })
 
     // Obtener datos (filas) desde el servidor
+    
     useEffect(() => {
         // Deshabilitar tag selects 
+        
         document.getElementById('dropdown-edificio').disabled = !showSelects;
         document.getElementById('dropdown-piso').disabled = !showSelects;
         document.getElementById('dropdown-aula').disabled = !showSelects;
@@ -39,51 +41,54 @@ export default function Ubicacion({setTitle}) {
              })
        
     }, [showSelects])
-
+    
     return (
         <div className="module-ubicacion">            
-            
-            <div className="container2">
-                <div className="buscador">
-                    <div className="input">
-                        <InputDark
-                            icon = {<GoIcons.GoSearch/>}
-                            placeholder = "Palabra clave"
-                        />
-                    </div>
-                    <div className="checkbox">
-                        <input 
+            <div className="container_search">
+                <div className="input">
+                    <InputDark
+                        icon = {<GoIcons.GoSearch/>}
+                        placeholder = "Palabra clave"
+                    />
+                </div>
+
+                <div className="checkbox">
+                    <div className="marco">
+                        <input
                             id = "checkbox"
                             name = "checkbox"
                             type = "checkbox"
                         />
-                        <label htmlFor="checkbox">Desbloquear</label>
+                        <label htmlFor="checkbox">Habilitar</label>
                     </div>
                 </div>
 
-                <div className="selects">
-                    <div className="select">
-                        <Select
-                            id ="dropdown-edificio"
-                            type = "EDIFICIO"
-                        />                        
+                <div className="selects">                
+                    <div className="marco">
+                        <div className="select">
+                            <Select
+                                id ="dropdown-edificio"
+                                type = "EDIFICIO"
+                            />
+                        </div>
+                        <div className="select">
+                            <Select
+                                id ="dropdown-piso"
+                                type = "PISO"
+                            />
+                        </div>
+                        <div className="select">
+                            <Select
+                                id ="dropdown-aula"
+                                type = "AULA"
+                            /> 
+                        </div>
                     </div>
-                    <div className="select">
-                        <Select
-                            id ="dropdown-piso"
-                            type = "PISO"
-                        />                        
-                    </div>
-                    <div className="select">
-                        <Select
-                            id ="dropdown-aula"
-                            type = "AULA"
-                        />                        
-                    </div>
-            
                 </div>
+            </div>
 
-                <div className="tabla">
+            <div className="container_table">
+                <div className="datatable">
                     <Datatable
                         type = "UBICACION"
                         columns = {columnasUbicacion}
@@ -91,10 +96,6 @@ export default function Ubicacion({setTitle}) {
                     />
                 </div>
             </div>
-
-
-
-
 
         </div>
     )

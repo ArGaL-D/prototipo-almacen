@@ -61,6 +61,7 @@ export default function Datatable({columns, rows ,type, onOpenModal}) {
                     UBICACION: rows.map( (row,index) =>{
                               return(
                                 <tr key={index}>
+                                  <td>{index + 1}</td>  
                                   <td>{row.equipo}</td>  
                                   <td>{row.num_serie}</td> 
                                   <td>{row.edificio}</td>                   
