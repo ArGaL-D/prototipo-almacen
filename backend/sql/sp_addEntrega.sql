@@ -33,7 +33,7 @@ BEGIN
 
 		end if;
 	else
-		select @existe_equipo as existe_equipo; # 0, no existe el equipo
+		select @existe_equipo as existe_equipo;
 	end if;
 
 END$$

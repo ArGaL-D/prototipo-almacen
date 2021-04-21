@@ -143,8 +143,8 @@ server.post('/prestamo', (req, res) => {
 /* POST -  Módulo ( ENTREGA ) */
 server.post('/entrega', (req, res) => {
     // Datos del cliente
-    const serial = req.body.serie_equipo;
-    const nombre = req.body.nombre_persona;
+    const serial = req.body.serial;
+    const nombre = req.body.nombre;
     const fechaEntrega = req.body.fechaEntrega;
 
     pool.getConnection((err, connection) => {
@@ -159,7 +159,7 @@ server.post('/entrega', (req, res) => {
             const existeEquipo = results[0][0].existe_equipo;
 
             if (existeEquipo === 1 ){
-                const equipoEntregado = esults[1][0].equipo_entrega;
+                const equipoEntregado = results[1][0].equipo_entregado;
                 
                 if (equipoEntregado === 0){
                     res.json({
