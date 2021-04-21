@@ -9,7 +9,7 @@ import * as GrIcons   from "react-icons/gr";
 import "./styles/Datatable.css";
 
 
-export default function Datatable({columns, rows ,type}) {
+export default function Datatable({columns, rows ,type, onOpenModal}) {
 
     const mostrarDescrpcn = () =>{
       Swal.fire("hola")
@@ -51,24 +51,28 @@ export default function Datatable({columns, rows ,type}) {
                                 <td>{row.edificio}</td>
                                 <td>{row.piso}</td>
                                 <td>
-                                  <button className="btn-qr">
+                                  <button className="btn-qr" onClick={onOpenModal}>
                                       <ImIcons.ImQrcode/>
                                   </button>  
                                 </td>  
                               </tr>  
                             )  
-                          })
+                          }),
+                    UBICACION: rows.map( (row,index) =>{
+                              return(
+                                <tr key={index}>
+                                  <td>{row.equipo}</td>  
+                                  <td>{row.num_serie}</td> 
+                                  <td>{row.edificio}</td>                   
+                                  <td>{row.piso}</td>  
+                                  <td>{row.aula}</td>  
+                                  <td>{row.fecha_salida}</td>  
+                                </tr>  
+                              )  
+                            })   
                 }[type]
               }
-            </tbody>
-              {
-                  {
-                      BUSCAR: <tbodyBuscar rows={rows} />,
-                      UBICACION: <tbodyUbicacion rows={rows} />,
-                      HILO: <tbodyHilo rows={rows}/>,
-                      USUARIOS: <tbodyUsuarios rows={rows}/>
-                  }[type]
-              }         
+            </tbody>     
         </table>
     )
 }

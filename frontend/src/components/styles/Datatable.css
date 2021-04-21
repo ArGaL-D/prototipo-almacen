@@ -27,8 +27,7 @@
 
 /* FILAS - TABLA */
 .table-equipo tr{
-    background: #ebedef; 
-    transition: 200ms ease-in-out;       
+    background: #ebedef;     
 }
 .table-equipo tr:nth-child(even){
     background: #c7c5c5;

@@ -3,21 +3,16 @@
     height: 100%;
 
     display : flex;    
+    justify-content: center;
     position: relative;
 }
 
-/* CONTENEDOR 1 */
-.module-ubicacion .container1{
-    width: 20%;
-    height: 100%;
-    background: #f8f9f9 ;
-}
-
-
 /* CONTENEDOR 2 */
 .module-ubicacion .container2{
-    width: 78%;
+    width: 90%;
     margin-left: .5em;
+
+    background: cornflowerblue;
 }
 
 /* box-Buscar*/
@@ -52,6 +47,8 @@
 
 .container2 .tabla{
     overflow: auto;
+
+    background: chartreuse;
 }
 
 
