@@ -145,27 +145,37 @@ server.post('/entrega', (req, res) => {
     // Datos del cliente
     const serial = req.body.serie_equipo;
     const nombre = req.body.nombre_persona;
-    const fecha = req.body.fecha_entrega;
+    const fechaEntrega = req.body.fechaEntrega;
 
     pool.getConnection((err, connection) => {
         if (err) throw err;
 
-        connection.query('call sp_addEntrega(?, ?, ?)', [serial, nombre, fecha], (error, results) => {
+        connection.query('call sp_addEntrega(?, ?, ?)', [serial, nombre, fechaEntrega], (error, results) => {
             connection.release();
 
             if (error) console.log(error)
 
-            if (results[0][0].equipo_entregado === 1) {
-                res.json({ equipo_entregado: true });
+            // Resultados obtenidos - StoredProcedures
+            const existeEquipo = results[0][0].existe_equipo;
 
-            } else if (results[0][0].equipo_entregado === 0) { // No se entregó el equipo-no está registrado para su prestmao
-                res.json({ equipo_entregado: false });
-
-            } else if (results[0][0].existe_equipo === 0) {
-                res.json({ serial_equipo: false });
-            } else {
-                console.log(results)
+            if (existeEquipo === 1 ){
+                const equipoEntregado = esults[1][0].equipo_entrega;
+                
+                if (equipoEntregado === 0){
+                    res.json({
+                        existe_equipo: true,
+                        equipo_entregado: false,                        
+                    });
+                }else{
+                    res.json({
+                        existe_equipo: true,
+                        equipo_entregado: true                        
+                    });
+                }
+            }else{
+                res.json({existe_equipo:false});
             }
+            console.log(results)
         });
     });
 

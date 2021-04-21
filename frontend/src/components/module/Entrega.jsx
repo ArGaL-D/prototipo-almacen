@@ -1,4 +1,7 @@
-import React,{useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
+import Swal from 'sweetalert2';
+import axios from "axios";
+
 import InputDark from '../field/InputDark';
 import Button from '../field/Button';
 
@@ -23,11 +26,21 @@ export default function Entrega({setTitle}) {
         fechaEntrega: ""
     });
 
-    //Establecer título actual - navbar
+    // Establecer título actual - navbar
     useEffect(() => {
         setTitle('Entrega');
         sessionStorage.setItem('page','entrega');
     })
+
+    // Establecer y bloquear campo fecha-salida
+    useEffect(() =>{
+        const tagFecha = document.getElementById('fecha-salida');
+
+        tagFecha.valueAsDate = new Date(formData.fechaSalida);
+        tagFecha.readOnly = true;
+
+    },[formData]);
+
 
     // Mostrar modal - scanner
     const showScanner = () =>{
@@ -48,9 +61,39 @@ export default function Entrega({setTitle}) {
         setFormData({...formData,[e.target.name]: e.target.value.toUpperCase()});
     }
 
+    const sendingData = async (e) =>{
+        e.preventDefault();
+
+        try {
+            const resp = await axios.post('http://localhost:3001/entrega',formData);
+            const existeEquipo = resp.data.existe_equipo;
+            const equipoEntregado = resp.data.equipo_entregado;
+
+            if (existeEquipo === false){
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: `El equipo no se encuentra registrado.`,
+                })
+            }else{
+                if (equipoEntregado === false){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: `No se puedo registrar la entrega del equipo [${formData.serial}]. Probablemente, el equipo no ha sido préstado.`,
+                    })
+                }
+            }
+            
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <div className="module-entrega">
-            <form>
+            <form onSubmit={sendingData}>
                 <h3>Datos de entrega</h3>
                 <div className="inpt">
                     <InputDark 
@@ -95,7 +138,7 @@ export default function Entrega({setTitle}) {
                 </div>
                 <div className="inpt">
                     <InputDark 
-                        id = "fecha-salida"
+                        id = "fecha-entrega"
                         name = "fechaEntrega"
                         icon = {<MdIcons.MdDateRange/>}   
                         type = "date"                     

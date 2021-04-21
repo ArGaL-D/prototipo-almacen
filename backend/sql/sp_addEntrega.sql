@@ -1,3 +1,4 @@
+
 USE `EQUIPOS_CECYT16`;
 DROP procedure IF EXISTS `sp_addEntrega`;
 
@@ -24,9 +25,12 @@ BEGIN
             delete from UBICACIONES where UBICACIONES.serie_equipo=serial;
             delete from PRESTAMOS where PRESTAMOS.serie_equipo=serial;
 
+            select @existe_equipo as existe_equipo;
             select @equipo_entregado := 1 as equipo_entregado;
 		else
-			select @equipo_entregado as equipo_entregado; # equipo no registrado
+            select @existe_equipo as existe_equipo;
+			select @equipo_entregado as equipo_entregado;
+
 		end if;
 	else
 		select @existe_equipo as existe_equipo; # 0, no existe el equipo
