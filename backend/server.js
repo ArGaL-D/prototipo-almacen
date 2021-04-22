@@ -247,6 +247,7 @@ server.post('/reparacion', (req, res) => {
     }); 
 });
 
+// SEGUIMIENTO - HILO - EQUIPO 
 server.post('/seguimiento', (req, res) => {
     const hilo  = req.body.hilo;
     

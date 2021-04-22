@@ -112,6 +112,19 @@
     box-shadow: 0px 1px 5px 2px lightgoldenrodyellow;
 }
 
+/* SEGUIMIENTO */
+.table_hilo,
+.inpt_hilo{
+    width: 90%;
+    margin: 0 auto 0 auto;
+}
+
+.table_hilo{
+    height: 85%;
+    overflow: auto;
+    background: crimson;
+}
+
 
 /* 
     FOR MOBILES 

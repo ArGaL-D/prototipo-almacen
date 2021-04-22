@@ -11,6 +11,7 @@ export default function InputDark(props) {
                 onChange={props.onChange} 
                 autoComplete="off"
                 defaultValue = {props.defaultValue} 
+                maxLength = {props.maxLength}
                 required
             />
             <label 

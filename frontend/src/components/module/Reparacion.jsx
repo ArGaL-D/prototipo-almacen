@@ -1,7 +1,8 @@
-import React,{useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Link, Switch, Route} from 'react-router-dom';
 import { Modal } from 'react-responsive-modal';
 import Swal from 'sweetalert2';
+import axios from "axios";
 
 import Datatable from '../Datatable';
 import { generarHilo } from "../config/hilo";
@@ -12,6 +13,7 @@ import * as IoIcons from "react-icons/io";
 
 import "./styles/Reparacion.css";
 import 'react-responsive-modal/styles.css';
+import InputDark from '../field/InputDark';
 
 
 
@@ -20,7 +22,8 @@ export default function Reparacion({setTitle}) {
 
     //Columnas-seguimiento-Hilo
     const columnasHilo = [
-        "#", "SERIAL", "EQUIPO", "HILO", "FECHA","HORA"
+        "#", "SERIAL", "EQUIPO", "HILO", "REPORTE","DETALLES",
+        "ESTATUS", "ETAPA", "FECHA", "HORA"
     ];
 
     const [ultimotHilo,setUltimotHilo] = useState('');
@@ -30,10 +33,13 @@ export default function Reparacion({setTitle}) {
     const textHilo = `Último hilo generado: ${ultimotHilo}`
 
     const [modal,setModal] = useState(false);
-    
+    const [rows, setRows] = useState([]);
+    const [clave,setClave] = useState({hilo:""});    
+
     const openModal = () =>{
         setModal(!modal);
     }
+    
 
     const crearHilo = () =>{
         const hilo = generarHilo();
@@ -65,6 +71,38 @@ export default function Reparacion({setTitle}) {
             confirmButtonText: 'ACEPTAR'
         }) 
     }
+
+    const handleText = (e) =>{
+        setClave({...clave, hilo: e.target.value});
+    }
+
+
+    const sendingData = async () =>{
+
+        if (!clave.hilo){
+            Swal.fire({
+                icon : "warning",
+                title: 'Oops...',        
+                text : "Campo vacío",
+                confirmButtonText: 'ACEPTAR'
+            }) 
+        }else{
+            try {
+                const resp = await axios.post('http://localhost:3001/seguimiento',clave)
+                const rowData = resp.data;
+                setRows(rowData);            
+            } catch (error) {
+                console.log(error)
+                Swal.fire({
+                    icon : "error",
+                    title: `${error}`,        
+                    text : "Hubo problemas en buscar el hilo. Probablemente, el servidor esté desactivado o haya conflictos internos en el servidor.",
+                    confirmButtonText: 'ACEPTAR'
+                }) 
+            }
+        }
+    }
+
     // Guardar el último hilo generado
     useEffect( ()=>{
         const lastKey = localStorage.getItem('ultimoHilo');
@@ -107,7 +145,7 @@ export default function Reparacion({setTitle}) {
 
             <div className="content">
                 <Switch>
-                    <Route path="/page/reparacion">
+                    <Route exact path="/page/reparacion">
                         <div className="form_container">
                             <FormReparacion />
                             <div className="btn-aviso" onClick={warning}>
@@ -116,14 +154,30 @@ export default function Reparacion({setTitle}) {
                             <div className="btn-hilo" onClick={nuevoHilo}>
                                 <BiIcons.BiGitBranch/>
                             </div>
-                            <Modal open={modal} onClose={openModal} center>
-                                <Datatable
-                                    type = 'HILO'
-                                    columns = {columnasHilo}
-                                />
-                            </Modal>
                         </div>
-                    </Route>                   
+                    </Route>    
+                    <Route path="/page/reparacion/seguimiento">
+                        <br/>
+                        <div className="inpt_hilo">
+                            <InputDark
+                                icon = {<BiIcons.BiSearch/>}
+                                onClick = {sendingData}
+                                onChange = {handleText}
+                                maxLength = {"9"}
+                                placeholder = "Hilo de seguimiento"
+                                cursorPointer = {true}
+                            />
+                        </div>
+                        <br/>                        
+                        <div className="table_hilo">
+                            <Datatable
+                                type = 'SEGUIMIENTO'
+                                rows = {rows}
+                                columns = {columnasHilo}
+                            />  
+                        </div>
+                      
+                    </Route>               
                 </Switch>
             </div>            
         </div>

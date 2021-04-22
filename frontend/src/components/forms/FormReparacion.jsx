@@ -193,7 +193,7 @@ function TablaHilo ({numSerie}){
     
 
     return(
-        <div>
+        <div className="">
             <div className="inpt_container">
                 <div className="boxInput">
                     <InputDark
@@ -209,7 +209,7 @@ function TablaHilo ({numSerie}){
                     </button>
                 </div>
             </div>
-            <div className="table_hilo">
+            <div className="table-hilo">
                      <table className="table-equipo">
                         <thead>
                             <tr>

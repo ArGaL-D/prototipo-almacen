@@ -20,14 +20,15 @@
 
 
 /* MODAL TABLA - HILO */
-.table_hilo{
-    padding-top: 1em;
+.table-hilo{
+    padding: 1em 2em;
+    overflow: auto;
 }
 .inpt_container{
     display: flex;
     align-items: center;
     
-    padding-top: 1em;
+    padding: 1em 0 0 2em;
 }
 .boxBtn{    
     padding-left: 2em;

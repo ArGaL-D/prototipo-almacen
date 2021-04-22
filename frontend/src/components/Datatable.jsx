@@ -64,7 +64,28 @@ export default function Datatable({columns, rows ,type, onOpenModal}) {
                                   <td>{row.fecha_salida}</td>  
                                 </tr>  
                               )  
-                            })  
+                            }),
+                    SEGUIMIENTO: rows.map( (row,index) => {
+                      return(
+                          <tr key={index}>
+                              <td>{index+1}</td>
+                              <td>{row.serial}</td>
+                              <td>{row.equipo}</td>
+                              <td>{row.hilo}</td>
+                              <td>{row.reporte}</td>
+                              <td>
+                                  <div className="td-descrip">
+                                      {<GrIcons.GrTextAlignFull/>}
+                                      <TooltipText text={row.detalles===""? "Sin descriṕción.":row.detalles} />
+                                  </div>                                    
+                              </td>
+                              <td>{row.estatus}</td>
+                              <td>{row.etapa}</td>
+                              <td>{row.fecha}</td>
+                              <td>{row.hora}</td>                                                                
+                          </tr>
+                      )
+                  })
                 }[type]
               }
             </tbody>     
