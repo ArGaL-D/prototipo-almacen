@@ -215,7 +215,7 @@ server.post('/scrapting', (req, res) => {
 
 });
 
-/* POST -  Módulo ( REPARACIÓN ) */
+/* POST - REPARACIÓN - REPORTE  */
 server.post('/reparacion', (req, res) => {
     // Datos del cliente
     const serial    = req.body.serial;
