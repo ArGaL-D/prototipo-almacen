@@ -286,10 +286,10 @@ server.post('/buscar-hilo', (req, res) => {
 });
 
 /* POST -  CREAR USUARIO*/
-server.post('/entrega', (req, res) => {
+server.post('/crear-usuario', (req, res) => {
     // Datos del cliente
 
-    console.log("-> POST")
+    console.log(req.body)
 });
 
 // LOGIN 

@@ -165,3 +165,4 @@ export const tipoPrestamo = [
     'Asignación'
 ];
 
+export const acceso = ["No","Si"]

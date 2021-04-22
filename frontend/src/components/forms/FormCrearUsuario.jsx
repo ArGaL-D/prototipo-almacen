@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import Swal from 'sweetalert2';
+import axios from "axios";
 
 import InputDark from "../field/InputDark";
 import Select from "../field/Select";
@@ -29,14 +30,23 @@ export default function FormCrearUsuario() {
     }
 
     // Enviar datos al servidor
-    const sendingData = (e) =>{
+    const sendingData = async (e) =>{
         e.preventDefault();
 
         const validate = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
         
         if (formUser.password === formUser.repeatPass){
             if (validate.test(formUser.email)){
-                alert("email - true")
+                
+                try {
+                    const resp = await axios.post('http://localhost:3001/crear-usuario',formUser);
+
+                    console.log(resp.data)
+
+                } catch (error) {
+                    console.log(error)
+                }
+
             }else{
                 Swal.fire({
                     icon: 'warning',
@@ -115,11 +125,11 @@ export default function FormCrearUsuario() {
                 />
             </div>
             <div className="select">
-                <span>Permisos</span>
+                <span>Acceso a configuraciones</span>
                 <Select
                     id = "selectEtapa"
                     name = "acceso"
-                    type = "REPARACION_ETAPA"
+                    type = "ACCESO"
                     onChange = {handleSelect}
                     placeholder = "Estatus"
                 />            

@@ -7,7 +7,8 @@ import { edificio,
     almacenPiso,
     reparacion,
     etapaReparacion, 
-    tipoPrestamo
+    tipoPrestamo,
+    acceso
    } from "../config/selectData";
 
 import React from 'react';
@@ -75,6 +76,11 @@ export default function Select(props) {
                         return(
                             <option value={value} key={index}>{value}</option>
                         )
+                    }),
+                    ACCESO: acceso.map((value, index) => {
+                        return(
+                            <option value={value} key={index}>{value}</option>
+                        ) 
                     })
                 }[props.type]
                         
