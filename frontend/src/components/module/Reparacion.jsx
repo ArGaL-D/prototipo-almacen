@@ -173,7 +173,7 @@ export default function Reparacion({setTitle}) {
                                 icon = {<BiIcons.BiSearch/>}
                                 onClick = {sendingData}
                                 onChange = {handleText}
-                                maxLength = {"9"}
+                                maxLength = {"10"}
                                 placeholder = "Hilo de seguimiento"
                                 cursorPointer = {true}
                             />
