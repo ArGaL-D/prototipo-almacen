@@ -53,8 +53,14 @@ export default function FormReparacion(props) {
     const getQrData = (equip0,serie) =>{
         setFormData({...formData,equipo: equip0, serial: serie});
     }
+
+
+    const dataToServer = () =>{
+        
+    }
+
     return(
-        <form className="form_rep">
+        <form className="form_rep" onSubmit={dataToServer}>
             <h2>Reporte</h2>
             <div className="input">
                 <InputDark
@@ -145,7 +151,6 @@ export default function FormReparacion(props) {
                     title = "ACEPTAR"
                 />
             </div>
-
             
             <Modal open={open} onClose={onCloseModal} center>
                 <div className="qr_container">
@@ -163,6 +168,8 @@ export default function FormReparacion(props) {
     )
     
 }
+
+
 
 // Componente-Hilo
 
