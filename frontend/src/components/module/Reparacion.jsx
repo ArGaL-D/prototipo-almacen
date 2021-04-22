@@ -3,31 +3,21 @@ import {Link, Switch, Route} from 'react-router-dom';
 import { Modal } from 'react-responsive-modal';
 import Swal from 'sweetalert2';
 
-import Hilo from '../Hilo';
 import Datatable from '../Datatable';
-import InputDark from '../field/InputDark';
 import { generarHilo } from "../config/hilo";
+import FormReparacion  from '../forms/FormReparacion';
 
-import * as BsIcons from "react-icons/bs";
 import * as BiIcons from "react-icons/bi";
-import * as RiIcons from "react-icons/ri";
-import * as GiIcons from "react-icons/gi";
-import * as GrIcons from "react-icons/gr";
-import * as GoIcons from "react-icons/go";
 import * as IoIcons from "react-icons/io";
 
 import "./styles/Reparacion.css";
 import 'react-responsive-modal/styles.css';
-import FormReparacion from '../forms/FormReparacion';
+
 
 
 export default function Reparacion({setTitle}) {
 
-    //Columnas-seguimiento
-    const columnasSeg = [
-        "#", "SERIAL", "EQUIPO", "HILO", "REPORTE",
-        "DETALLES", "ESTATUS", "ETAPA", "FECHA","HORA"
-    ];
+
     //Columnas-seguimiento-Hilo
     const columnasHilo = [
         "#", "SERIAL", "EQUIPO", "HILO", "FECHA","HORA"
