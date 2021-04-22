@@ -90,7 +90,17 @@ export default function Reparacion({setTitle}) {
             try {
                 const resp = await axios.post('http://localhost:3001/seguimiento',clave)
                 const rowData = resp.data;
-                setRows(rowData);            
+                
+                if (rowData.length === 0 ){
+                    Swal.fire({
+                        icon : "warning",
+                        title: `Oops...`,        
+                        text : "No se encontró el hilo.",
+                        confirmButtonText: 'ACEPTAR'
+                    }) 
+                }else{
+                    setRows(rowData);            
+                }                
             } catch (error) {
                 console.log(error)
                 Swal.fire({
