@@ -158,7 +158,7 @@ export default function FormReparacion(props) {
                 <div className="select">
                     <Select
                         id = "selectReparacion"
-                        name = "reparacion"
+                        name = "estatus"
                         type = "REPARACION"    
                         onChange = {handleSelect}                    
                         placeholder = "Reparación"
@@ -228,7 +228,7 @@ function TablaHilo ({numSerie}){
     const [codigo,setCodigo] = useState({serial: numSerie});
 
     const columns = [
-        "#","EQUIPO","SERIAL","HILO",
+        "#","SERIAL","EQUIPO","HILO",
         "FECHA", "HORA"
     ];
 
@@ -285,7 +285,7 @@ function TablaHilo ({numSerie}){
                                 return(
                                 <tr key={index}>
                                     <td>{index+1}</td>
-                                    <td>{row.num_serie}</td>
+                                    <td>{row.serial}</td>
                                     <td>{row.equipo}</td>
                                     <td>{row.hilo}</td>
                                     <td>{row.fecha}</td>
