@@ -266,7 +266,7 @@ server.post('/seguimiento', (req, res) => {
     console.log("-> POST")
 });
 
-// HILO 
+// BUSCAR HILO 
 server.post('/buscar-hilo', (req, res) => {
     const serial  = req.body.serial;
     

@@ -10,7 +10,7 @@ CREATE PROCEDURE `sp_getEquipoHilo` (
     )
 BEGIN
 
-    select EQUIPOS.num_serie, EQUIPOS.equipo, REPARACIONES.hilo, DATE_FORMAT(REPARACIONES.fecha,"%d-%m-%Y") as fecha, TIME_FORMAT(REPARACIONES.fecha,"%r") as hora from EQUIPOS inner join REPARACIONES on EQUIPOS.num_serie=serial group by REPARACIONES.hilo;
+    select REPARACIONES.serial, EQUIPOS.equipo, REPARACIONES.hilo, DATE_FORMAT(REPARACIONES.fecha,"%d-%m-%Y") as fecha, TIME_FORMAT(REPARACIONES.fecha,"%r") as hora from EQUIPOS inner join REPARACIONES on REPARACIONES.serial=serial group by REPARACIONES.hilo;
 
 END$$
 

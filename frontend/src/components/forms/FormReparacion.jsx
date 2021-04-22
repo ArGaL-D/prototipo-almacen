@@ -1,6 +1,7 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import { Modal } from 'react-responsive-modal';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 import Select from '../field/Select';
 import Button  from '../field/Button';
@@ -24,7 +25,7 @@ export default function FormReparacion(props) {
         serial : "",
         equipo : "",
         hilo   : "", 
-        estatus: "",
+        estatus: "REPARACIÓN",
         etapa  : "",
         fecha  : "",
         detalles: ""
@@ -40,14 +41,20 @@ export default function FormReparacion(props) {
     const onCloseTable = () => setOpenTable(false);
 
     const handleText = (e) =>{
-        setFormData({
-            ...formData, [e.target.name]: e.target.value
-        });
+        if (e.target.name === "hilo"){
+            setFormData({
+                ...formData, [e.target.name]: e.target.value
+            });            
+        }else{
+            setFormData({
+                ...formData, [e.target.name]: e.target.value.toUpperCase()
+            });
+        }
     }
 
     const handleSelect = (e) => {
         const tag = e.target;
-        setFormData({...formData, [tag.name]: tag.options[tag.selectedIndex].text});
+        setFormData({...formData, [tag.name]: tag.options[tag.selectedIndex].text.toUpperCase()});
     }
 
     const getQrData = (equip0,serie) =>{
@@ -55,9 +62,51 @@ export default function FormReparacion(props) {
     }
 
 
-    const dataToServer = () =>{
-        
+    const dataToServer = async (e) =>{
+        e.preventDefault();
+        try {
+            const resp = await axios.post('http://localhost:3001/reparacion',formData);
+            const equipo = resp.data.equipo;
+
+            if (equipo){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Se ha registrado el reporte.',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }else{
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: `El equipo no existe en el almacén, o no se ha registrado aún.`,
+                  })
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
+
+    // Establecer fecha automática
+    useEffect( ()=> {
+        let currentDate = new Date();
+        const inputFecha = document.getElementById('inputFecha');
+
+        let month = currentDate.getUTCMonth() + 1;
+        let day   = currentDate.getDate();
+        let year  = currentDate.getUTCFullYear();
+
+        const today = `${year}-${month}-${day}`;
+
+        inputFecha.valueAsDate = new Date(today);
+        inputFecha.readOnly = true;
+
+        // Guardar fecha actual
+        if (formData.fecha === ""){
+            setFormData({...formData, fecha: today});
+        }
+    },[formData]);
 
     return(
         <form className="form_rep" onSubmit={dataToServer}>
