@@ -40,13 +40,18 @@ function Buscar({setTitle}) {
 
     // Traer datos(filas) del servidor
     useEffect(() => {
+        let unmounted = false;
+
         axios.get('http://localhost:3001/buscar')
              .then(resp => {
-                 setRowData(resp.data);
+                if (!unmounted){
+                    setRowData(resp.data);
+                }                 
              })
              .catch(error => {
                  console.log(`Error en traer datos del servidor: ${error}`)
              })
+        return () => {unmounted = true}
     })
 
     // Abrir modal - Qr

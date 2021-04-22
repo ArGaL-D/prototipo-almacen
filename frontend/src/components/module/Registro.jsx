@@ -21,10 +21,6 @@ export default function Registro({setTitle}) {
             sessionStorage.setItem('page','registro');
         }
         action()
-
-        return() =>{
-            action();
-        }
     })
 
     const [modal,setModal] = useState(false);
