@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import Swal from 'sweetalert2';
 
 import InputDark from "../field/InputDark";
 import Select from "../field/Select";
@@ -10,12 +11,13 @@ import * as MdIcons   from "react-icons/md";
 export default function FormCrearUsuario() {
 
     const [formUser,setFormUser] = useState({
-        usuario: "",
-        nombre : "",
-        apellido: "",
-        email: "",
-        password: "",
-        acceso: ""
+        usuario   : "",
+        nombre    : "",
+        apellido  : "",
+        email     : "",
+        password  : "",
+        repeatPass: "",
+        acceso    : ""
     });
     
     const handleInput = (e) =>{
@@ -29,6 +31,17 @@ export default function FormCrearUsuario() {
     // Enviar datos al servidor
     const sendingData = (e) =>{
         e.preventDefault();
+
+        if (formUser.password === formUser.repeatPass){
+            alert("hla")
+            
+        }else{
+            Swal.fire({
+                icon: 'warning',
+                title: `Las contraseñas`,
+                text: "No coinciden.",
+            })
+        }
     }
 
 
@@ -66,7 +79,7 @@ export default function FormCrearUsuario() {
                 <InputDark 
                     id = 'inputEmail'
                     name = 'email'
-                    type = 'text'
+                    type = 'email'
                     icon = {<MdIcons.MdEmail/>}
                     onChange = {handleInput}                                      
                     placeholder = "Email"

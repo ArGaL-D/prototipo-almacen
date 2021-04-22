@@ -285,6 +285,13 @@ server.post('/buscar-hilo', (req, res) => {
     console.log("-> POST")
 });
 
+/* POST -  CREAR USUARIO*/
+server.post('/entrega', (req, res) => {
+    // Datos del cliente
+
+    console.log("-> POST")
+});
+
 // LOGIN 
 server.post('/login', (req, res) => {
     const usuario   = req.body.username;
