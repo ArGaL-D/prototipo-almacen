@@ -1,11 +1,8 @@
-import Cookies from 'js-cookie';
 import React,{useEffect} from 'react';
 import Rectangle from '../Rectangle';
 import Datatable from "../Datatable";
-import InputDark from "../field/InputDark";
 
 import * as IoIcons from 'react-icons/io5';
-import * as GoIcons from "react-icons/go";
 import * as FaIcons from "react-icons/fa";
 import * as MdIcons from "react-icons/md";
 

@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
 import {Link, Switch, Route} from 'react-router-dom';
-import { Modal } from 'react-responsive-modal';
 import Swal from 'sweetalert2';
 import axios from "axios";
 
@@ -32,14 +31,9 @@ export default function Reparacion({setTitle}) {
 
     const textHilo = `Último hilo generado: ${ultimotHilo}`
 
-    const [modal,setModal] = useState(false);
     const [rows, setRows] = useState([]);
     const [clave,setClave] = useState({hilo:""});    
 
-    const openModal = () =>{
-        setModal(!modal);
-    }
-    
 
     const crearHilo = () =>{
         const hilo = generarHilo();
