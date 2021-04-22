@@ -7,64 +7,167 @@
     position: relative;
 
     font-family: 'Roboto', sans-serif;
+
 }
 
-/* NAVBAR */
-.navbar_reparacion{
+/* CONTAINER 1 */
+.nav_container{
     width : 100%;
-    height: 4em;
-
-    background: whitesmoke;
-    box-shadow: 0px 1px 5px 0px rgba(185, 185, 185, 0.45);
+    height: 2em;
+    
+    background: #545b6b;
+    box-shadow: 0px 1px 5px 0px rgba(105, 105, 105, 0.65);
 
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 10;
+
+    color : whitesmoke;
+    overflow: auto;
+}
+/* Título navbar */
+.nav_container a{
+    color : whitesmoke;
+    margin: 0 1em;
+}
+.nav_container .avisoNav,
+.nav_container .hiloNav{
+    margin: 0 1em;
+    cursor: pointer;
+}
+/* Ocultar título aviso, hilo*/
+.hiloNav,
+.avisoNav{
+    visibility: hidden;
+    position: absolute;
+    color: tomato;
 }
 
-.link-option{
-    color : black;
-    margin: 0 .5em 0 .5em;
+/* CONTAINER 2 */
+.content{
+    height: calc(100% - 2em);
+    overflow: auto;    
+}
+
+.form_container{
+    width : 50%;
+    height: 50em;
+
+    margin : .5em auto;
+    padding: 1em;
+    background: whitesmoke;
+    box-shadow: 0px 1px 5px 0px rgba(185, 185, 185, 0.45);
+}
+
+/* BOTONES -AVISO-HILO */
+.btn-aviso, .btn-hilo{
+    width : 2em;
+    height: 2em;
+    cursor: pointer;
 
     display: flex;
     align-items: center;
-    justify-content: center;    
+    justify-content: center;
+
+    position : absolute;
+    font-size: 2rem;    
+   
+    border-radius: 50%;
+    background: #20232a;
+    box-shadow: 0px 1px 5px 0px rgba(154, 154, 156, 0.75);
+
+    transition: 100ms ease-in-out;
 }
 
-.link-option .icon1{
-    font-size: 1.5rem;
-
-    display: flex;
+.btn-hilo{
+    top: 4em;
+    right: 2%;
+    color: rgb(170, 221, 253);
+}
+.btn-aviso{
+    top: 1.5em;
+    right: 2%;
+    color: rgb(236, 236, 140);
+}
+.btn-hilo:hover{
+    width: 2.1em;
+    height: 2.1em;
+    box-shadow: 0px 1px 5px 2px lightskyblue;
+}
+.btn-aviso:hover{
+    width: 2.1em;
+    height: 2.1em;
+    box-shadow: 0px 1px 5px 2px lightgoldenrodyellow;
 }
 
-.link-option .text{
-    padding-left: .5em;
-    font-size: clamp(.9rem, 2vw, 1rem);
+
+/* 
+    FOR MOBILES 
+*/
+@media screen and (max-width: 600px) {
+    .form_container{
+        width: 80%;
+        height: 100%;
+    }
+
+    /* OCULTAR Botones */
+    .btn-aviso,
+    .btn-hilo{
+        visibility: hidden;
+    }
+    /* Mostrar títulos  - nav */
+    .hiloNav,
+    .avisoNav{
+        position: relative;
+        visibility: visible;
+        font-weight: 600;
+    }
+    /* Primer y último elemento en el Navbar */
+    .nav_container a:first-child{
+        padding-left: 2.5em;
+    }
+    .hiloNav{
+        padding-right: 1em;
+    }
+    
+}
+/*
+    FOR TABLETS
+*/
+@media screen and (min-width:600px) and (max-width:1100px) {
+    
+    .form_container{
+        width : 75%;
+        height: 95%;
+    }
+    /* OCULTAR Botones */
+    .btn-aviso,
+    .btn-hilo{
+        visibility: hidden;
+    }
+    /* Mostrar títulos  - nav */
+    .hiloNav,
+    .avisoNav{
+        position: relative;
+        visibility: visible;
+        font-weight: 600;
+    }
 }
 
-/* *CONTEIDO */
-.module-reparacion .content{
-    position: relative;
-}
-.content .card-hilo{
-    width : 25em;
-    height: 20em;
-    margin: auto;
-}
-
-.content .box-reporte{
-    width: 50%;
-    height: 40em;
-
-    margin: 1em auto auto auto;
-    padding: 1.5em;
-
-    background: whitesmoke;
-    box-shadow: 0px 1px 5px 0px rgba(185, 185, 185, 0.45);    
+@media screen and (min-width:700px) and (max-width: 800px) and (min-height: 1000px){
+    .content{
+        display: flex;
+        align-items: center;
+    }
+    .form_container{
+        height: 70%;
+        
+    }
 }
 
 /* BOTÓN - AVISO */
-
+/*
 .box-reporte .aviso,.hilo{
     width : 2em;
     height: 2em;
@@ -110,62 +213,5 @@
     visibility: hidden;
     color: tomato;
 }
+*/
 
-
-/* FOR MOBILES */
-@media screen and (max-width: 600px) {
-    .navbar_reparacion{
-        overflow: auto;
-        justify-content: space-between;
-    }
-    .hiloNav,
-    .avisoNav{
-        visibility: visible;
-        margin: 0 .5em 0 .5em;
-    }
-    .hilo,
-    .aviso{
-        visibility: hidden;
-    }
-
-    .content{
-        width: 100%;                
-    }
-    .content .box-reporte{
-        padding: 0 .5em 0 .5em;
-        width: 90%;
-    }
-    .link-option .icon1{
-        position: absolute;
-        visibility: hidden;
-    }
-}
-
-/* FOR TABLETS */
-@media screen and (min-width:600px) and (max-width:1100px) {
-    .content{
-        height: 100%;
-        display: flex;
-    }
-
-    .aviso{
-        top: 2%;
-    }
-    .box-reporte .hilo,
-    .box-reporte .aviso{        
-        font-size: 1.5rem;
-    }
-    .content .box-reporte{
-        width: 70%;
-        height: 85%;
-    }
-}
-
-/* FOR DESKTOPS */
-@media screen and (min-width: 1400px) {
-    .box-reporte{
-        width: 50%;
-
-        background: cornflowerblue;
-    }
-}

@@ -3,7 +3,6 @@ import {Link, Switch, Route} from 'react-router-dom';
 import { Modal } from 'react-responsive-modal';
 import Swal from 'sweetalert2';
 
-import Form from '../Form';
 import Hilo from '../Hilo';
 import Datatable from '../Datatable';
 import InputDark from '../field/InputDark';
@@ -18,6 +17,7 @@ import * as IoIcons from "react-icons/io";
 
 import "./styles/Reparacion.css";
 import 'react-responsive-modal/styles.css';
+import FormReparacion from '../forms/FormReparacion';
 
 
 export default function Reparacion({setTitle}) {
@@ -61,27 +61,22 @@ export default function Reparacion({setTitle}) {
     return (
         <div className="module-reparacion">
             {/* NARVAR */} 
-            <div className="navbar_reparacion">
+            <div className="nav_container">
                 <Link to = "/page/reparacion">
                     <div className="link-option">
-                        <div className="icon1">
-                            <BsIcons.BsFileText/>
-                        </div>
                         <div className="text">
-                            <span>Hacer reporte</span>
+                            <span>Reporte</span>
                         </div>        
                     </div>
                 </Link>
                 <Link to = "/page/reparacion/seguimiento">
                     <div className="link-option">
-                        <div className="icon1">
-                            <BiIcons.BiSearchAlt2/>
-                        </div>
                         <div className="text">
                             <span>Seguimiento</span>
                         </div>         
                     </div>
                 </Link>
+
                 <div className="avisoNav">
                     <span>Aviso</span>
                 </div>
@@ -93,15 +88,12 @@ export default function Reparacion({setTitle}) {
             <div className="content">
                 <Switch>
                     <Route path="/page/reparacion">
-                        <div className="box-reporte">
-                            <Form
-                                type = "REPORTE"
-                                showModal = {openModal}
-                            />
-                            <div className="aviso" onClick={warning}>
+                        <div className="form_container">
+                            <FormReparacion />
+                            <div className="btn-aviso" onClick={warning}>
                                 <IoIcons.IoMdWarning/>
                             </div>
-                            <div className="hilo">
+                            <div className="btn-hilo">
                                 <BiIcons.BiGitBranch/>
                             </div>
                             <Modal open={modal} onClose={openModal} center>
