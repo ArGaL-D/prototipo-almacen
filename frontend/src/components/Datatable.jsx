@@ -70,7 +70,19 @@ export default function Datatable({columns, rows ,type, onOpenModal}) {
                                   <td>{row.fecha_salida}</td>  
                                 </tr>  
                               )  
-                            })   
+                            }),
+                    HILO:  rows.map( (row,index) =>{
+                      return(
+                        <tr key={index}>
+                            <td>{index+1}</td>
+                            <td>{row.num_serie}</td>
+                            <td>{row.equipo}</td>
+                            <td>{row.hilo}</td>
+                            <td>{row.fecha}</td>
+                            <td>{row.hora}</td>
+                        </tr>
+                      )                               
+                    })    
                 }[type]
               }
             </tbody>     

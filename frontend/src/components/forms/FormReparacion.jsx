@@ -1,4 +1,5 @@
-import React from 'react';
+import React,{useState} from 'react';
+import { Modal } from 'react-responsive-modal';
 
 import InputDark from '../field/InputDark';
 import Select from '../field/Select';
@@ -14,8 +15,37 @@ import * as MdIcons   from "react-icons/md";
 import * as HiIcons   from "react-icons/hi";
 
 import "./Form.css";
+import Datatable from '../Datatable';
 
 export default function FormReparacion(props) {
+
+
+    const [open, setOpen] = useState(false);
+    const onCloseModal = () => setOpen(false);
+    const onOpenModal = () => setOpen(true);
+
+    const [formData, setFormData] = useState({
+        reporte: "",
+        serial : "",
+        equipo : "",
+        hilo   : "", 
+        estatus: "",
+        etapa  : "",
+        fecha  : "",
+        detalles: ""
+    });
+
+    const handleText = (e) =>{
+        setFormData({
+            ...formData, [e.target.name]: e.target.value
+        });
+    }
+
+    const handleSelect = (e) => {
+        const tag = e.target;
+        setFormData({...formData, [tag.name]: tag.options[tag.selectedIndex].text});
+    }
+
     return(
         <form className="form_rep">
             <h2>Reporte</h2>
@@ -24,6 +54,7 @@ export default function FormReparacion(props) {
                     id = "reporte"
                     name = "reporte"
                     icon = {<HiIcons.HiPencilAlt/>}
+                    onChange = {handleText}
                     placeholder = "Título"
                 />
             </div>
@@ -33,6 +64,9 @@ export default function FormReparacion(props) {
                     name = 'serial'
                     icon = {<BiIcons.BiBarcodeReader/>}                                   
                     placeholder = "Serial"
+                    onClick = {onOpenModal}
+                    onChange = {handleText}
+                    cursorPointer = {true}
                 />
             </div>
             <div className="input">
@@ -40,6 +74,7 @@ export default function FormReparacion(props) {
                     id = 'equipo'
                     name = 'equipo'
                     icon = {<GiIcons.GiWifiRouter/>}                                      
+                    onChange = {handleText}
                     placeholder = "Equipo"
                 />
             </div>
@@ -47,8 +82,8 @@ export default function FormReparacion(props) {
                 <InputDark
                     id = "hilo"
                     name = "hilo"
-                    icon = {<BiIcons.BiGitBranch/>}
-                    onClick = {props.showModal}
+                    icon = {<BiIcons.BiGitBranch/>}                                       
+                    onChange = {handleText}
                     placeholder = "Hilo"
                     cursorPointer = {true}
                 />
@@ -59,7 +94,8 @@ export default function FormReparacion(props) {
                     <Select
                         id = "selectReparacion"
                         name = "reparacion"
-                        type = "REPARACION"
+                        type = "REPARACION"    
+                        onChange = {handleSelect}                    
                         placeholder = "Reparación"
                     />
                 </div>
@@ -68,7 +104,8 @@ export default function FormReparacion(props) {
                     <Select
                         id = "selectEtapa"
                         name = "etapa"
-                        type = "REPARACION_ETAPA"
+                        type = "REPARACION_ETAPA" 
+                        onChange = {handleSelect}                       
                         placeholder = "Estatus"
                     />            
                 </div>
@@ -79,13 +116,16 @@ export default function FormReparacion(props) {
                     id = 'inputFecha'
                     name = 'fecha'
                     type = "date"
-                    icon = {<MdIcons.MdDateRange/>}                                    
+                    icon = {<MdIcons.MdDateRange/>}  
+                    onChange = {handleText}                                  
                     placeholder = "Fecha actual"
                 />
             </div>
 
             <div className="textArea">
                 <TextArea
+                    name = "detalles"
+                    onChange = {handleText}
                     placeholder = "Detalles del reporte."
                 />
             </div>
@@ -95,6 +135,13 @@ export default function FormReparacion(props) {
                     title = "ACEPTAR"
                 />
             </div>
+
+            
+            
+            <Modal open={open} onClose={onCloseModal} center>
+                
+            </Modal>                
+                
 
         </form>
     )
