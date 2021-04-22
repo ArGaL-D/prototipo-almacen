@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import Rectangle from '../Rectangle';
 import Datatable from "../Datatable";
 
@@ -10,21 +10,24 @@ import "./styles/Usuarios.css";
 import PieChart from '../PieChart';
 import { Switch, Route, useRouteMatch, Link } from 'react-router-dom';
 import Form from '../Form';
+import FormCrearUsuario from '../forms/FormCrearUsuario';
 
 export default function Usuarios({setTitle}) {
 
     let {path} = useRouteMatch();
 
+    const [rows, setRows] = useState([]);
     const columns = [
         "Serial", "Equipo","Marca","Modelo","Estatus",
         "Descrip", "Almacén","Edificio","Piso",
         "Editar","Eliminar"        
     ];
-
+    const [userRows, setUserRows] = useState([]);
     const userComlumns = [
         "#", "ID", "USUARIO", "NOMBRE(S)", "APELLIDO(S)",
         "EMAIL", "PERMISOS", "ELIMINAR"
     ]
+
 
     useEffect(() => {
         setTitle('Usuarios');    
@@ -32,8 +35,6 @@ export default function Usuarios({setTitle}) {
         
         console.log(path)
     })
-
-
 
 
     return (
@@ -94,15 +95,13 @@ export default function Usuarios({setTitle}) {
                             </div>
                         </div>
                         <div className="form">
-                            <Form
-                                type = "USUARIO"
-                            />
+                            <FormCrearUsuario />
                         </div>
                     </Route>
                     <Route path={`${path}/usuarios`}>
                         <div className="table">
                             <Datatable
-                                rows = {null}
+                                rows = {userRows}
                                 columns = {userComlumns}
                             />
                         </div>                        
@@ -113,7 +112,7 @@ export default function Usuarios({setTitle}) {
                     <Route path={`${path}/equipos`}>
                         <div className="table">
                             <Datatable
-                                rows = {null}
+                                rows = {rows}
                                 columns = {columns}
                             />
                         </div>
