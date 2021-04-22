@@ -16,13 +16,9 @@ import * as HiIcons   from "react-icons/hi";
 
 import "./Form.css";
 import Datatable from '../Datatable';
+import QrScannerEquipo from '../qrscanner/QrScannerEquipo';
 
 export default function FormReparacion(props) {
-
-
-    const [open, setOpen] = useState(false);
-    const onCloseModal = () => setOpen(false);
-    const onOpenModal = () => setOpen(true);
 
     const [formData, setFormData] = useState({
         reporte: "",
@@ -35,6 +31,15 @@ export default function FormReparacion(props) {
         detalles: ""
     });
 
+    const [open, setOpen] = useState(false);
+    const [openTable, setOpenTable] = useState(false);
+
+    const onCloseModal = () => setOpen(false);
+    const onOpenModal  = () => setOpen(true);
+
+    const onOpenTable  = () => setOpenTable(true);
+    const onCloseTable = () => setOpenTable(false);
+
     const handleText = (e) =>{
         setFormData({
             ...formData, [e.target.name]: e.target.value
@@ -46,6 +51,9 @@ export default function FormReparacion(props) {
         setFormData({...formData, [tag.name]: tag.options[tag.selectedIndex].text});
     }
 
+    const getQrData = (equip0,serie) =>{
+        setFormData({...formData,equipo: equip0, serial: serie});
+    }
     return(
         <form className="form_rep">
             <h2>Reporte</h2>
@@ -66,6 +74,7 @@ export default function FormReparacion(props) {
                     placeholder = "Serial"
                     onClick = {onOpenModal}
                     onChange = {handleText}
+                    defaultValue = {formData.serial}
                     cursorPointer = {true}
                 />
             </div>
@@ -75,6 +84,7 @@ export default function FormReparacion(props) {
                     name = 'equipo'
                     icon = {<GiIcons.GiWifiRouter/>}                                      
                     onChange = {handleText}
+                    defaultValue = {formData.equipo}
                     placeholder = "Equipo"
                 />
             </div>
@@ -82,7 +92,8 @@ export default function FormReparacion(props) {
                 <InputDark
                     id = "hilo"
                     name = "hilo"
-                    icon = {<BiIcons.BiGitBranch/>}                                       
+                    icon = {<BiIcons.BiGitBranch/>}      
+                    onClick = {onOpenTable}                                 
                     onChange = {handleText}
                     placeholder = "Hilo"
                     cursorPointer = {true}
@@ -137,11 +148,18 @@ export default function FormReparacion(props) {
             </div>
 
             
-            
             <Modal open={open} onClose={onCloseModal} center>
-                
-            </Modal>                
-                
+                <div className="qr_container">
+                    <QrScannerEquipo
+                        closeModalQr = {setOpen}
+                        getQrResults = {getQrData}
+                    />
+                </div>                
+            </Modal>     
+
+            <Modal open={openTable} onClose={onCloseTable} center>
+                    ABLE             
+            </Modal>       
 
         </form>
     )
