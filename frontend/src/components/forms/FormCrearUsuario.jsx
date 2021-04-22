@@ -32,9 +32,18 @@ export default function FormCrearUsuario() {
     const sendingData = (e) =>{
         e.preventDefault();
 
+        const validate = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+        
         if (formUser.password === formUser.repeatPass){
-            alert("hla")
-            
+            if (validate.test(formUser.email)){
+                alert("email - true")
+            }else{
+                Swal.fire({
+                    icon: 'warning',
+                    title: `Email`,
+                    text: "Formato de correo electrónico inválido.",
+                })
+            }
         }else{
             Swal.fire({
                 icon: 'warning',
