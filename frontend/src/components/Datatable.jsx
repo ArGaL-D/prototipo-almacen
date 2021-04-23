@@ -8,7 +8,7 @@ import * as MdIcons   from "react-icons/md";
 import "./styles/Datatable.css";
 
 
-export default function Datatable({columns, rows ,type, onOpenModal,onClick}) {
+export default function Datatable({columns, rows ,type, onOpenModal,updateRow,deleteRow}) {
 
 
     return (
@@ -98,12 +98,12 @@ export default function Datatable({columns, rows ,type, onOpenModal,onClick}) {
                             <td>{row.email}</td>
                             <td>{row.acceso}</td>
                             <td>
-                                <div className="td-descrip" style={{cursor: 'pointer'}} onClick={onClick} >
+                                <div className="td-descrip" style={{cursor: 'pointer'}} onClick={updateRow} >
                                     {<FaIcons.FaUserEdit/>}                                    
                                 </div>                                    
                             </td>
                             <td>
-                                <div className="td-descrip" style={{cursor: 'pointer'}}>
+                                <div className="td-descrip" style={{cursor: 'pointer'}} onClick={deleteRow}>
                                     {<MdIcons.MdDelete/>}                                    
                                 </div>                                    
                             </td>                          

@@ -1,7 +1,8 @@
 import React,{useEffect, useState} from 'react';
 import { Switch, Route, useRouteMatch, Link } from 'react-router-dom';
-import PieChart from '../PieChart';
+import Swal from 'sweetalert2';
 import axios from 'axios';
+import PieChart from '../PieChart';
 
 import Rectangle from '../Rectangle';
 import Datatable from "../Datatable";
@@ -65,6 +66,35 @@ export default function Usuarios({setTitle}) {
         setOpen(true);
     }
 
+    const deleteRow = async (e) =>{
+        e.preventDefault();
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Se eliminará completamente el usuario.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Si, eliminarlo!',
+            cancelButtonColor: '#d33'
+           
+          }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Contraseña',
+                    input: 'password',
+                    inputPlaceholder: 'Ingrese contraseña',
+                    inputAttributes: {
+                        autocapitalize: 'off',
+                        autocorrect: 'off'
+                    }
+                }).then((result) => {
+                    console.log(result.value)
+                })
+                
+            }
+          })
+    }
 
     useEffect(() => {
         setTitle('Usuarios');    
@@ -154,7 +184,8 @@ export default function Usuarios({setTitle}) {
                                 type = "USUARIOS"
                                 rows = {userRows}
                                 columns = {userComlumns}
-                                onClick = {updateRow}
+                                updateRow = {updateRow}
+                                deleteRow ={deleteRow}
                             />
                         </div>   
 
@@ -162,15 +193,15 @@ export default function Usuarios({setTitle}) {
                             open={open}
                             onCloseModal={onCloseModal}
                             updateUser = {updateUser}
-                            setUpdateUser = {setUpdateUser}
+                            setUpdateUser = {setUpdateUser}                            
                         />                
                     </Route>
 
                     <Route path={`${path}/equipos`}>
                         <div className="table">
-                            <Datatable                                
+                            <Datatable                                                            
                                 rows = {deviceRows}
-                                columns = {columns}                                
+                                columns = {columns}                                                                
                             />
                         </div>
                     </Route>

@@ -122,6 +122,7 @@ export default function ModalForm({open,onCloseModal, updateUser, setUpdateUser}
                 <InputDark
                     icon = {<MdIcons.MdEmail/>}
                     name = "email"
+                    type = "email"
                     placeholder = "Email"
                     onChange = {handleText}
                     defaultValue = {updateUser.email}
