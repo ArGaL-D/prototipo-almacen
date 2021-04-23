@@ -29,6 +29,10 @@ export default function FormCrearUsuario() {
         setFormUser({...formUser, acceso: tag.options[tag.selectedIndex].value});
     }
 
+    const reloadPage = () =>{
+        window.location.reload();
+    }
+
     // Enviar datos al servidor
     const sendingData = async (e) =>{
         e.preventDefault();
@@ -58,15 +62,26 @@ export default function FormCrearUsuario() {
                                 html:`El email <strong>[${formUser.email}]</strong> ya existe.`
                             })
                         }else{
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Se ha registrado correctamente.',
+                                showConfirmButton: false,
+                                timer: 1600
+                              })
                             
+                            setTimeout(reloadPage,2400);
                         }
                     }
-
-
                     console.log(resp.data)
 
                 } catch (error) {
                     console.log(error)
+                    Swal.fire({
+                        icon: 'error',                            
+                        title: `${error}`,                            
+                        text: "Probablemente, el servidor esté desactivado, o haya problemas internos en el servidor."
+                    })
                 }
 
             }else{

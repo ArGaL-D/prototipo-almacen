@@ -328,8 +328,6 @@ server.post('/crear-usuario', (req, resp) => {
                         });
                     }
                 }
-                console.log(results)
-
             });
         }); 
     });
