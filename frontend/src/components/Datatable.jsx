@@ -89,7 +89,7 @@ export default function Datatable({columns, rows ,type, onOpenModal}) {
                   USUARIOS: rows.map( (row,index) => {
                     return(
                         <tr key={index}>
-                            <td>{row.id}</td>
+                            <td>{row.id_usuario}</td>
                             <td>{row.usuario}</td>
                             <td>{row.nombre}</td>
                             <td>{row.apellido}</td>
@@ -107,7 +107,7 @@ export default function Datatable({columns, rows ,type, onOpenModal}) {
                             </td>                          
                         </tr>
                     )
-                }),
+                })
                 }[type]
               }
             </tbody>     

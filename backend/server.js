@@ -57,12 +57,13 @@ server.get('/ubicacion', (req, res) => {
     });
 });
 
-server.get('/usuario', (req, res) => {
+// USUARIOS 
+server.get('/usuarios', (req, res) => {
 
     pool.getConnection((err, connection) => {
         if (err) throw err;
 
-        connection.query("call sp_getUbicacion()", (error, results) => {
+        connection.query("call sp_getUsuarios()", (error, results) => {
             connection.release();
 
             if (error) console.log(error)

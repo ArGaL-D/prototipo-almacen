@@ -11,18 +11,21 @@ import PieChart from '../PieChart';
 import { Switch, Route, useRouteMatch, Link } from 'react-router-dom';
 import Form from '../Form';
 import FormCrearUsuario from '../forms/FormCrearUsuario';
+import axios from 'axios';
 
 export default function Usuarios({setTitle}) {
 
     let {path} = useRouteMatch();
 
-    const [rows, setRows] = useState([]);
+    const [deviceRows, setDeviceRows] = useState([]);
+    const [userRows, setUserRows] = useState([]);
+
     const columns = [
         "Serial", "Equipo","Marca","Modelo","Estatus",
         "Descrip", "Almacén","Edificio","Piso",
         "Editar","Eliminar"        
     ];
-    const [userRows, setUserRows] = useState([]);
+    
     const userComlumns = [
         "ID", "USUARIO", "NOMBRE(S)", "APELLIDO(S)",
         "EMAIL", "ACCESO", "CONTRASEÑA", "ELIMINAR"
@@ -32,9 +35,22 @@ export default function Usuarios({setTitle}) {
     useEffect(() => {
         setTitle('Usuarios');    
         sessionStorage.setItem('page','usuarios');
-        
-        console.log(path)
     })
+
+    useEffect(() =>{
+        let unmounted = false;
+
+        axios.get('http://localhost:3001/usuarios')
+             .then((resp)=>{
+                 if(!unmounted){
+                     setUserRows(resp.data);
+                 }
+             })
+             .catch((error)=>{
+                 console.log(error)
+             })
+        return () => { unmounted = true; }
+    });
 
 
     return (
@@ -101,6 +117,7 @@ export default function Usuarios({setTitle}) {
                     <Route path={`${path}/usuarios`}>
                         <div className="table">
                             <Datatable
+                                type = "USUARIOS"
                                 rows = {userRows}
                                 columns = {userComlumns}
                             />
@@ -109,9 +126,9 @@ export default function Usuarios({setTitle}) {
 
                     <Route path={`${path}/equipos`}>
                         <div className="table">
-                            <Datatable
-                                rows = {rows}
-                                columns = {columns}
+                            <Datatable                                
+                                rows = {deviceRows}
+                                columns = {columns}                                
                             />
                         </div>
                     </Route>
