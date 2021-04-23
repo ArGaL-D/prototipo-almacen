@@ -1,5 +1,8 @@
 import { useState} from 'react'
 import { Modal } from 'react-responsive-modal';
+import Swal from 'sweetalert2';
+import axios from "axios"
+
 import InputDark from '../field/InputDark';
 import Select from '../field/Select';
 import Button from '../field/Button';
@@ -23,9 +26,31 @@ export default function ModalForm({open,onCloseModal, updateUser, setUpdateUser}
         }
     }
 
+    const sendingData = async (e) =>{
+        e.preventDefault();
+
+        const { value: password } = await Swal.fire({
+            title: 'Contraseña',
+            input: 'password',
+            inputPlaceholder: 'Ingrese contraseña',
+            inputAttributes: {
+                maxlength: 10,
+                autocapitalize: 'off',
+                autocorrect: 'off'
+            }
+            })
+
+        try{
+            
+        }catch(error){
+            console.log(error)
+        }    
+
+    }
+
     return (
         <Modal open={open} onClose={onCloseModal} center>                            
-        <form className="row_form">
+        <form className="row_form" onSubmit={sendingData}>
             <div className="user">
                 <InputDark
                     icon = {<FaIcons.FaUserEdit/>}
