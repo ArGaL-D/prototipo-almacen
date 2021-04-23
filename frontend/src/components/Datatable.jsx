@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as ImIcons   from "react-icons/im";
 import * as GrIcons   from "react-icons/gr";
-import * as AiIcons   from "react-icons/ai";
+import * as FaIcons   from "react-icons/fa";
 import * as MdIcons   from "react-icons/md";
 
 import "./styles/Datatable.css";
@@ -99,7 +99,7 @@ export default function Datatable({columns, rows ,type, onOpenModal,onClick}) {
                             <td>{row.acceso}</td>
                             <td>
                                 <div className="td-descrip" style={{cursor: 'pointer'}} onClick={onClick} >
-                                    {<AiIcons.AiFillEdit/>}                                    
+                                    {<FaIcons.FaUserEdit/>}                                    
                                 </div>                                    
                             </td>
                             <td>

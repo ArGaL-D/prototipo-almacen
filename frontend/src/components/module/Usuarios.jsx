@@ -33,7 +33,7 @@ export default function Usuarios({setTitle}) {
         nombre:  "",
         apellido: "",
         email: "",
-        acceso: "",
+        acceso: "No",
         password: ""
     });
 
@@ -77,7 +77,7 @@ export default function Usuarios({setTitle}) {
             });            
         }else{
             setUpdateUser({...updateUser,
-                [e.tag.name]: tag.value
+                [tag.name]: tag.value
             });
         }
 
@@ -180,31 +180,35 @@ export default function Usuarios({setTitle}) {
                             <form className="row_form">
                                 <div className="user">
                                     <InputDark
+                                        icon = {<FaIcons.FaUserEdit/>}
                                         name = "usuario"
                                         placeholder = "Usuario"
                                         onChange = {handleText}
                                         defaultValue = {updateUser.usuario}
                                     />
                                 </div>
-                                <br/>
+                                <br/><br/>
                                 <div className="fullName">
                                     <InputDark
+                                        icon = {<FaIcons.FaUserEdit/>}
                                         name = "nombre"
                                         placeholder = "Nombre(s)"
                                         onChange = {handleText}
                                         defaultValue = {updateUser.nombre}
                                     />
-                                    <br/>
+                                    <br/><br/>
                                     <InputDark
+                                        icon = {<FaIcons.FaUserEdit/>}
                                         name = "apellido"
                                         placeholder = "Apellido(s)"
                                         onChange = {handleText}
                                         defaultValue = {updateUser.apellido}
                                     />
                                 </div>
-                                <br/>
+                                <br/><br/>
                                 <div className="email">
                                     <InputDark
+                                        icon = {<MdIcons.MdEmail/>}
                                         name = "email"
                                         placeholder = "Email"
                                         onChange = {handleText}
@@ -213,13 +217,14 @@ export default function Usuarios({setTitle}) {
                                 </div>
                                 <br/>
                                 <div className="acces">
+                                    <label>Acceso</label>
                                     <Select
                                         name = "acceso"
                                         type = "ACCESO"
-                                        onChange = {updateUser.acceso}
+                                        onChange = {handleText}
                                     />
                                 </div>
-                                <br/>
+                                <br/><br/>
                                 <div className="button">
                                     <Button
                                         title = "ACTUALIZAR"

@@ -33,8 +33,12 @@ a{
 .row_form{
     width: 20em;
     padding: 2em 1em;
+    font-family: 'Roboto',sans-serif;
 }
-
+.row_form .acces{
+    font-size: .8rem;
+    font-weight: 600;
+}
 
 
 
