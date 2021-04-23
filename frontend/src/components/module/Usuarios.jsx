@@ -69,6 +69,9 @@ export default function Usuarios({setTitle}) {
     const deleteRow = async (e) =>{
         e.preventDefault();
 
+        const tag_td = e.currentTarget.parentNode.parentNode.childNodes;
+        const idUser = tag_td[0].textContent;
+
         Swal.fire({
             title: '¿Estás seguro?',
             text: "Se eliminará completamente el usuario.",
@@ -89,7 +92,19 @@ export default function Usuarios({setTitle}) {
                         autocorrect: 'off'
                     }
                 }).then((result) => {
-                    console.log(result.value)
+                 
+                    // Verificar contraseña
+                    const data = {id: idUser, password: result.value}
+                   
+                    axios.post('http://localhost:3001/usuario-pass',data)
+                        .then( (res) => {
+                            const checkingPass = res.data.succesful_password;
+                            console.log(checkingPass)
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+
                 })
                 
             }
