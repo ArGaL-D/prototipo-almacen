@@ -47,7 +47,11 @@ export default function ModalForm({open,onCloseModal, updateUser, setUpdateUser}
             if (checkPass){
 
             }else{
-                
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Veifique su contraseña."
+                });
             }
         }catch(error){
             console.log(error)

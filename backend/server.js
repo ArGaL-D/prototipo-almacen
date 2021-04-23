@@ -377,8 +377,6 @@ server.post('/usuario-pass', (req, resServer) => {
 
         });
     }); 
-
-    console.log(req.body)
 });
 
 
