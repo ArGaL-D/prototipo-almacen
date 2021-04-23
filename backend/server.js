@@ -413,6 +413,7 @@ server.post('/login', (req, res) => {
    #    PUT     #
    ##############
 */
+// ACTUALIZAR EQUIPO
 server.put('/editarEquipo', (req, res) => {
     // Datos del cliente
     const editedSerial = req.body.editedSerial;
@@ -462,6 +463,36 @@ server.put('/editarEquipo', (req, res) => {
     console.log("-> PUT")
 });
 
+
+// ACTUALIZAR USUARIO
+server.put('/editar-usuario', (req, res) => {
+
+    const idUser    = req.body.id;
+    const usuario   = req.body.usuario;
+    const nombre    = req.body.nombre;
+    const apellido  = req.body.apellido;
+    const email     = req.body.email;
+    const acceso    = req.body.acceso;
+
+    console.log(req.body)
+
+    pool.getConnection((err, connection) => {
+        if (err) throw err;
+
+        connection.query('call sp_updateUsuario(?,?,?,?,?,?);', [idUser,usuario,nombre,apellido,email,acceso], (error, results) => {
+            connection.release();
+
+            if (error){
+                console.log(error)
+                res.json({updated_user: false});
+            }else{
+                res.json({updated_user: true});
+            }
+            
+        });
+    });
+
+});
 
 /* ##############
    #  DELETE    #

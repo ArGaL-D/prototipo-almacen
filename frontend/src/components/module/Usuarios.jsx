@@ -26,13 +26,12 @@ export default function Usuarios({setTitle}) {
     const [open,setOpen] = useState(false);
 
     const [updateUser,setUpdateUser] = useState({
-        id: "",
-        usuario: "",
-        nombre:  "",
+        id      : "",
+        usuario : "",
+        nombre  :  "",
         apellido: "",
-        email: "",
-        acceso: "No",
-        password: ""
+        email   : "",
+        acceso  : "No"
     });
 
     const columns = [

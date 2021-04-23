@@ -29,7 +29,7 @@ export default function ModalForm({open,onCloseModal, updateUser, setUpdateUser}
     const sendingData = async (e) =>{
         e.preventDefault();
 
-        const { value: passw0rd } = await Swal.fire({
+        const { value: pass} = await Swal.fire({
             title: 'Contraseña',
             input: 'password',
             inputPlaceholder: 'Ingrese contraseña',
@@ -38,17 +38,36 @@ export default function ModalForm({open,onCloseModal, updateUser, setUpdateUser}
                 autocorrect: 'off'
             }
             })
+        
         // Verificar password
         try{
-            const data = {id:updateUser.id, password: passw0rd}
+            const data  = {id:updateUser.id, password: pass}
             const resp1 = await axios.post('http://localhost:3001/usuario-pass',data);
             const checkPass = resp1.data.succesful_password;
 
             if (checkPass){
-                try {
-                    
+                try {                
+                    const userData = Object.assign(updateUser,data);
+                    const resp2 = await axios.put('http://localhost:3001/editar-usuario',userData);
+
+                    const updatedUser = resp2.data.updated_user;
+
+                    if (updatedUser){
+                        onCloseModal();
+                    }else{
+                        Swal.fire({
+                            icon: "warning",
+                            title: "AVISO",
+                            text: "Hay problemas en actualizar los datos, probablemente la estructrua de la Base Datos ha cambiado."
+                        });
+                    }
                 } catch (error) {
                     console.log(error)
+                    Swal.fire({
+                        icon: "error",
+                        title: `${error}`,
+                        text: "Probablemente, el servidor esté desactivado, o haya problemas internos en el servidor."
+                    });
                 }
             }else{
                 Swal.fire({

@@ -44,11 +44,11 @@ CREATE TABLE ENTREGA_EQUIPO(
 
 CREATE TABLE USUARIOS(
     id_usuario  INT AUTO_INCREMENT NOT NULL,
-    usuario     VARCHAR(100) NOT NULL,
+    usuario     VARCHAR(50) NOT NULL,
     nombre      VARCHAR(50)  NOT NULL,
     apellido    VARCHAR(50)  NOT NULL,
     email       VARCHAR(100) NOT NULL,
-    password    VARCHAR(150) NOT NULL,
+    password    VARCHAR(100) NOT NULL,
     acceso      CHAR(2)  NOT NULL,
     PRIMARY KEY(id_usuario)
 );
