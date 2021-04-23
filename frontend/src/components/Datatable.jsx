@@ -2,13 +2,13 @@ import React from 'react';
 
 import * as ImIcons   from "react-icons/im";
 import * as GrIcons   from "react-icons/gr";
+import * as AiIcons   from "react-icons/ai";
 import * as MdIcons   from "react-icons/md";
-import * as GoIcons   from "react-icons/go";
 
 import "./styles/Datatable.css";
 
 
-export default function Datatable({columns, rows ,type, onOpenModal, onClick}) {
+export default function Datatable({columns, rows ,type, onOpenModal,onClick}) {
 
 
     return (
@@ -92,18 +92,18 @@ export default function Datatable({columns, rows ,type, onOpenModal, onClick}) {
                     return(
                         <tr key={index}>
                             <td>{row.id_usuario}</td>
-                            <td onClick={onClick} style={{cursor:'pointer'}}>{row.usuario}</td>
-                            <td onClick={onClick} style={{cursor:'pointer'}}>{row.nombre}</td>
-                            <td onClick={onClick} style={{cursor:'pointer'}}>{row.apellido}</td>
-                            <td onClick={onClick} style={{cursor:'pointer'}}>{row.email}</td>
-                            <td onClick={onClick} style={{cursor:'pointer'}}>{row.acceso}</td>
-                            <td onClick={onClick} style={{cursor:'pointer'}}>
-                                <div className="td-descrip">
-                                    {<GoIcons.GoKey/>}                                    
+                            <td>{row.usuario}</td>
+                            <td>{row.nombre}</td>
+                            <td>{row.apellido}</td>
+                            <td>{row.email}</td>
+                            <td>{row.acceso}</td>
+                            <td>
+                                <div className="td-descrip" style={{cursor: 'pointer'}} onClick={onClick} >
+                                    {<AiIcons.AiFillEdit/>}                                    
                                 </div>                                    
                             </td>
-                            <td onClick={onClick}>
-                                <div className="td-descrip">
+                            <td>
+                                <div className="td-descrip" style={{cursor: 'pointer'}}>
                                     {<MdIcons.MdDelete/>}                                    
                                 </div>                                    
                             </td>                          

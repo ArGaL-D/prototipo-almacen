@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import Rectangle from '../Rectangle';
 import Datatable from "../Datatable";
+import { Modal } from 'react-responsive-modal';
 
 import Swal from 'sweetalert2';
 
@@ -21,6 +22,7 @@ export default function Usuarios({setTitle}) {
 
     const [deviceRows, setDeviceRows] = useState([]);
     const [userRows, setUserRows] = useState([]);
+    const [open,setOpen] = useState(false);
 
     const columns = [
         "Serial", "Equipo","Marca","Modelo","Estatus",
@@ -30,23 +32,16 @@ export default function Usuarios({setTitle}) {
     
     const userComlumns = [
         "ID", "USUARIO", "NOMBRE(S)", "APELLIDO(S)",
-        "EMAIL", "ACCESO", "CONTRASEÑA", "ELIMINAR"
+        "EMAIL", "ACCESO", "EDITAR", "ELIMINAR"
     ]
 
-    // Cambiar valores de cada fila
-    const getNodeTD = (e) =>{
-        Swal.fire({
-            icon: 'warning',
-            title: `Email`,
-            input: 'text',
-            showCancelButton: true,
-        }).then((result) => {
-            
-              Swal.fire({
-                title: result.value
-              })
-            
-          })
+
+    const onCloseModal = () => setOpen(false);
+    const onOpenModal  = () => setOpen(true);
+
+    // Actualizar fila(tabla) - usuario
+    const updateRow = (e) =>{
+
     }
 
     useEffect(() => {
@@ -137,9 +132,12 @@ export default function Usuarios({setTitle}) {
                                 type = "USUARIOS"
                                 rows = {userRows}
                                 columns = {userComlumns}
-                                onClick = {getNodeTD}
+                                onClick = {onOpenModal}
                             />
-                        </div>                        
+                        </div>     
+                        <Modal open={open} onClose={onCloseModal} center>
+                            <h1>HOLA</h1>
+                        </Modal>                   
                     </Route>
 
                     <Route path={`${path}/equipos`}>
