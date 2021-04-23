@@ -2,11 +2,13 @@ import React from 'react';
 
 import * as ImIcons   from "react-icons/im";
 import * as GrIcons   from "react-icons/gr";
+import * as MdIcons   from "react-icons/md";
+import * as GoIcons   from "react-icons/go";
 
 import "./styles/Datatable.css";
 
 
-export default function Datatable({columns, rows ,type, onOpenModal}) {
+export default function Datatable({columns, rows ,type, onOpenModal, onClick}) {
 
 
     return (
@@ -90,19 +92,19 @@ export default function Datatable({columns, rows ,type, onOpenModal}) {
                     return(
                         <tr key={index}>
                             <td>{row.id_usuario}</td>
-                            <td>{row.usuario}</td>
-                            <td>{row.nombre}</td>
-                            <td>{row.apellido}</td>
-                            <td>{row.email}</td>
-                            <td>{row.acceso}</td>
-                            <td>
+                            <td onClick={onClick} style={{cursor:'pointer'}}>{row.usuario}</td>
+                            <td onClick={onClick} style={{cursor:'pointer'}}>{row.nombre}</td>
+                            <td onClick={onClick} style={{cursor:'pointer'}}>{row.apellido}</td>
+                            <td onClick={onClick} style={{cursor:'pointer'}}>{row.email}</td>
+                            <td onClick={onClick} style={{cursor:'pointer'}}>{row.acceso}</td>
+                            <td onClick={onClick} style={{cursor:'pointer'}}>
                                 <div className="td-descrip">
-                                    {<GrIcons.GrTextAlignFull/>}                                    
+                                    {<GoIcons.GoKey/>}                                    
                                 </div>                                    
                             </td>
-                            <td>
+                            <td onClick={onClick}>
                                 <div className="td-descrip">
-                                    {<GrIcons.GrTextAlignFull/>}                                    
+                                    {<MdIcons.MdDelete/>}                                    
                                 </div>                                    
                             </td>                          
                         </tr>

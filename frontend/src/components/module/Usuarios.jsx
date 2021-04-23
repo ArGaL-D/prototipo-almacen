@@ -2,6 +2,8 @@ import React,{useEffect, useState} from 'react';
 import Rectangle from '../Rectangle';
 import Datatable from "../Datatable";
 
+import Swal from 'sweetalert2';
+
 import * as IoIcons from 'react-icons/io5';
 import * as FaIcons from "react-icons/fa";
 import * as MdIcons from "react-icons/md";
@@ -31,6 +33,21 @@ export default function Usuarios({setTitle}) {
         "EMAIL", "ACCESO", "CONTRASEÑA", "ELIMINAR"
     ]
 
+    // Cambiar valores de cada fila
+    const getNodeTD = (e) =>{
+        Swal.fire({
+            icon: 'warning',
+            title: `Email`,
+            input: 'text',
+            showCancelButton: true,
+        }).then((result) => {
+            
+              Swal.fire({
+                title: result.value
+              })
+            
+          })
+    }
 
     useEffect(() => {
         setTitle('Usuarios');    
@@ -120,6 +137,7 @@ export default function Usuarios({setTitle}) {
                                 type = "USUARIOS"
                                 rows = {userRows}
                                 columns = {userComlumns}
+                                onClick = {getNodeTD}
                             />
                         </div>                        
                     </Route>
