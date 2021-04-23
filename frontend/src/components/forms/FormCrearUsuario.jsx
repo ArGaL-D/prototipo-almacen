@@ -40,6 +40,28 @@ export default function FormCrearUsuario() {
                 
                 try {
                     const resp = await axios.post('http://localhost:3001/crear-usuario',formUser);
+                    
+                    const existeUsuario = resp.data.existe_usuario;
+                    const existeEmail = resp.data.existe_email;
+
+                    if (existeUsuario){
+                        Swal.fire({
+                            icon: 'error',                            
+                            title: `Ups...`,                            
+                            html:`El nombre de usuario <strong>[${formUser.usuario}]</strong> ya existe.`
+                        })
+                    }else{
+                        if (existeEmail){
+                            Swal.fire({
+                                icon: 'error',                            
+                                title: `Ups...`,                            
+                                html:`El email <strong>[${formUser.email}]</strong> ya existe.`
+                            })
+                        }else{
+                            
+                        }
+                    }
+
 
                     console.log(resp.data)
 

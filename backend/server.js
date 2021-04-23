@@ -305,7 +305,7 @@ server.post('/crear-usuario', (req, resp) => {
         pool.getConnection((errCn, connection) => {
             if (errCn) throw errCn;
             //SQL
-            connection.query("call sp_addUsuario(?,?,?,?,?,?)",[usuario,nombre,apellido,email,password,acceso],(errSql, results) => {
+            connection.query("call sp_addUsuario(?,?,?,?,?,?)",[usuario,nombre,apellido,email,hash,acceso],(errSql, results) => {
                 connection.release();
     
                 if (errSql) console.log(errSql)                
