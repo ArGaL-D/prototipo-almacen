@@ -29,19 +29,26 @@ export default function ModalForm({open,onCloseModal, updateUser, setUpdateUser}
     const sendingData = async (e) =>{
         e.preventDefault();
 
-        const { value: password } = await Swal.fire({
+        const { value: passw0rd } = await Swal.fire({
             title: 'Contraseña',
             input: 'password',
             inputPlaceholder: 'Ingrese contraseña',
             inputAttributes: {
-                maxlength: 10,
                 autocapitalize: 'off',
                 autocorrect: 'off'
             }
             })
 
         try{
-            
+            const data = {id:updateUser.id, password: passw0rd}
+            const resp1 = await axios.post('http://localhost:3001/usuario-pass',data);
+            const checkPass = resp1.data.succesful_password;
+
+            if (checkPass){
+
+            }else{
+                
+            }
         }catch(error){
             console.log(error)
         }    

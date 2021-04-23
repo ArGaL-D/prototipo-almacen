@@ -351,6 +351,35 @@ server.post('/crear-usuario', (req, resp) => {
 });
 
 
+// USUARIO - PASSWORD (verificación de password)
+server.post('/usuario-pass', (req, resServer) => {
+
+    const idUser = req.body.id;
+    const password = req.body.password;
+    
+    const query = 'SELECT password FROM USUARIOS WHERE id_usuario=?;';
+
+    pool.getConnection((err, connection) => {
+        if (err) throw err;
+
+        connection.query(query, [idUser],(error, results) => {
+            connection.release();
+
+            if (error) throw error;
+            
+            bcrypt.compare(password,results[0].password, (error, result) =>{                
+                if (result){
+                    resServer.json({succesful_password: true});
+                }else{
+                    resServer.json({succesful_password: false});
+                }
+            });
+
+        });
+    }); 
+
+    console.log(req.body)
+});
 
 
 // LOGIN 
