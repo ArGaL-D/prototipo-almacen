@@ -44,20 +44,20 @@ CREATE TABLE ENTREGA_EQUIPO(
 
 CREATE TABLE USUARIO(
     id_usuario  INT AUTO_INCREMENT NOT NULL,
+    usuario     VARCHAR(100) NOT NULL,
     nombre      VARCHAR(50)  NOT NULL,
     apellido    VARCHAR(50)  NOT NULL,
     email       VARCHAR(100) NOT NULL,
-    tipo_acceso VARCHAR(30)  NOT NULL,
     password    VARCHAR(150) NOT NULL,
+    acceso      CHAR(2)  NOT NULL,
     PRIMARY KEY(id_usuario)
 );
 
 /*
 CREATE TABLE ADMINISTRADOR(
     id_admin    INT NOT NULL,
-    id_usuario  INT NOT NULL,
-    PRIMARY KEY(id_admin),
-    FOREIGN KEY(id_usuario) REFERENCES USUARIO(id_usuario)
+
+    FOREIGN KEY(id_admin) REFERENCES USUARIO(id_usuario)
 );
 
 */

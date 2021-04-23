@@ -18,7 +18,7 @@ export default function FormCrearUsuario() {
         email     : "",
         password  : "",
         repeatPass: "",
-        acceso    : ""
+        acceso    : "No"
     });
     
     const handleInput = (e) =>{
