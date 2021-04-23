@@ -38,14 +38,18 @@ export default function ModalForm({open,onCloseModal, updateUser, setUpdateUser}
                 autocorrect: 'off'
             }
             })
-
+        // Verificar password
         try{
             const data = {id:updateUser.id, password: passw0rd}
             const resp1 = await axios.post('http://localhost:3001/usuario-pass',data);
             const checkPass = resp1.data.succesful_password;
 
             if (checkPass){
-
+                try {
+                    
+                } catch (error) {
+                    console.log(error)
+                }
             }else{
                 Swal.fire({
                     icon: "error",
@@ -55,6 +59,11 @@ export default function ModalForm({open,onCloseModal, updateUser, setUpdateUser}
             }
         }catch(error){
             console.log(error)
+            Swal.fire({
+                icon: "error",
+                title: `${error}`,
+                text: "Probablemente, el servidor esté desactivado, o haya problemas internos en el servidor."
+            });
         }    
 
     }
