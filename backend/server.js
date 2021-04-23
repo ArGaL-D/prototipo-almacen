@@ -3,6 +3,9 @@ const express = require('express');
 const mySql = require('mysql');
 const cors = require('cors');
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 // Configuración Servidor - MySql
 const server = express();
 
@@ -286,11 +289,54 @@ server.post('/buscar-hilo', (req, res) => {
 });
 
 /* POST -  CREAR USUARIO*/
-server.post('/crear-usuario', (req, res) => {
+server.post('/crear-usuario', (req, resp) => {
     // Datos del cliente
+    const usuario  = req.body.usuario;
+    const nombre   = req.body.nombre;
+    const apellido = req.body.apellido;
+    const email    = req.body.email;
+    const password = req.body.password;
+    const acceso   = req.body.acceso;
 
-    console.log(req.body)
+    bcrypt.hash(password,saltRounds, (err, hash) => {
+
+        if (err) throw err;
+
+        pool.getConnection((errCn, connection) => {
+            if (errCn) throw errCn;
+            //SQL
+            connection.query("call sp_addUsuario(?,?,?,?,?,?)",[usuario,nombre,apellido,email,password,acceso],(errSql, results) => {
+                connection.release();
+    
+                if (errSql) console.log(errSql)                
+                
+                const existeUsuario = results[0][0].existe_usuario;
+                
+                if (existeUsuario === 1){
+                    resp.json({existe_usuario:true});
+                }else{
+                    const existe_email = results[1][0].existe_email;
+                    if (existe_email === 1){
+                        resp.json({
+                            existe_usuario: false,
+                            existe_email: true
+                        });
+                    }else{
+                        resp.json({
+                            existe_usuario: false,
+                            existe_email: false
+                        });
+                    }
+                }
+                console.log(results)
+
+            });
+        }); 
+    });
 });
+
+
+
 
 // LOGIN 
 server.post('/login', (req, res) => {
