@@ -1,23 +1,21 @@
 import React,{useEffect, useState} from 'react';
+import { Switch, Route, useRouteMatch, Link } from 'react-router-dom';
+import PieChart from '../PieChart';
+import axios from 'axios';
+
 import Rectangle from '../Rectangle';
 import Datatable from "../Datatable";
-import { Modal } from 'react-responsive-modal';
+import ModalForm from './Modal';
+import Form from '../Form';
+import FormCrearUsuario from '../forms/FormCrearUsuario';
 
-import Swal from 'sweetalert2';
 
 import * as IoIcons from 'react-icons/io5';
 import * as FaIcons from "react-icons/fa";
 import * as MdIcons from "react-icons/md";
 
 import "./styles/Usuarios.css";
-import PieChart from '../PieChart';
-import { Switch, Route, useRouteMatch, Link } from 'react-router-dom';
-import Form from '../Form';
-import FormCrearUsuario from '../forms/FormCrearUsuario';
-import axios from 'axios';
-import InputDark from '../field/InputDark';
-import Select from '../field/Select';
-import Button from '../field/Button';
+
 
 export default function Usuarios({setTitle}) {
 
@@ -50,7 +48,6 @@ export default function Usuarios({setTitle}) {
 
 
     const onCloseModal = () => setOpen(false);
-    const onOpenModal  = () => setOpen(true);
 
     // Actualizar fila(tabla) - usuario
     const updateRow = (e) =>{
@@ -67,20 +64,6 @@ export default function Usuarios({setTitle}) {
         });
         // Abrir Modal
         setOpen(true);
-    }
-
-    const handleText = (e) =>{
-        const tag = e.target;
-        if (tag.name === "acceso"){
-            setUpdateUser({...updateUser,
-                [tag.name]: tag.options[tag.selectedIndex].text
-            });            
-        }else{
-            setUpdateUser({...updateUser,
-                [tag.name]: tag.value
-            });
-        }
-
     }
 
 
@@ -176,62 +159,12 @@ export default function Usuarios({setTitle}) {
                             />
                         </div>   
 
-                        <Modal open={open} onClose={onCloseModal} center>                            
-                            <form className="row_form">
-                                <div className="user">
-                                    <InputDark
-                                        icon = {<FaIcons.FaUserEdit/>}
-                                        name = "usuario"
-                                        placeholder = "Usuario"
-                                        onChange = {handleText}
-                                        defaultValue = {updateUser.usuario}
-                                    />
-                                </div>
-                                <br/><br/>
-                                <div className="fullName">
-                                    <InputDark
-                                        icon = {<FaIcons.FaUserEdit/>}
-                                        name = "nombre"
-                                        placeholder = "Nombre(s)"
-                                        onChange = {handleText}
-                                        defaultValue = {updateUser.nombre}
-                                    />
-                                    <br/><br/>
-                                    <InputDark
-                                        icon = {<FaIcons.FaUserEdit/>}
-                                        name = "apellido"
-                                        placeholder = "Apellido(s)"
-                                        onChange = {handleText}
-                                        defaultValue = {updateUser.apellido}
-                                    />
-                                </div>
-                                <br/><br/>
-                                <div className="email">
-                                    <InputDark
-                                        icon = {<MdIcons.MdEmail/>}
-                                        name = "email"
-                                        placeholder = "Email"
-                                        onChange = {handleText}
-                                        defaultValue = {updateUser.email}
-                                    />
-                                </div>
-                                <br/>
-                                <div className="acces">
-                                    <label>Acceso</label>
-                                    <Select
-                                        name = "acceso"
-                                        type = "ACCESO"
-                                        onChange = {handleText}
-                                    />
-                                </div>
-                                <br/><br/>
-                                <div className="button">
-                                    <Button
-                                        title = "ACTUALIZAR"
-                                    />
-                                </div>
-                            </form>
-                        </Modal>                   
+                        <ModalForm
+                            open={open}
+                            onCloseModal={onCloseModal}
+                            updateUser = {updateUser}
+                            setUpdateUser = {setUpdateUser}
+                        />                
                     </Route>
 
                     <Route path={`${path}/equipos`}>
