@@ -57,6 +57,22 @@ server.get('/ubicacion', (req, res) => {
     });
 });
 
+server.get('/usuario', (req, res) => {
+
+    pool.getConnection((err, connection) => {
+        if (err) throw err;
+
+        connection.query("call sp_getUbicacion()", (error, results) => {
+            connection.release();
+
+            if (error) console.log(error)
+            res.json(results[0])
+        });
+    });
+});
+
+
+
 
 /* ##############
    #    POST    #

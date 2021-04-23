@@ -24,8 +24,8 @@ export default function Usuarios({setTitle}) {
     ];
     const [userRows, setUserRows] = useState([]);
     const userComlumns = [
-        "#", "ID", "USUARIO", "NOMBRE(S)", "APELLIDO(S)",
-        "EMAIL", "PERMISOS", "ELIMINAR"
+        "ID", "USUARIO", "NOMBRE(S)", "APELLIDO(S)",
+        "EMAIL", "ACCESO", "CONTRASEÑA", "ELIMINAR"
     ]
 
 
@@ -106,9 +106,7 @@ export default function Usuarios({setTitle}) {
                             />
                         </div>                        
                     </Route>
-                    <Route path={`${path}/administrador`}>
-                        <h2>Administrador</h2>
-                    </Route>
+
                     <Route path={`${path}/equipos`}>
                         <div className="table">
                             <Datatable

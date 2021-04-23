@@ -30,7 +30,7 @@ export default function FormCrearUsuario() {
     }
 
     const reloadPage = () =>{
-        window.location.reload();
+        window.location.reload();        
     }
 
     // Enviar datos al servidor
@@ -52,7 +52,7 @@ export default function FormCrearUsuario() {
                         Swal.fire({
                             icon: 'error',                            
                             title: `Ups...`,                            
-                            html:`El nombre de usuario <strong>[${formUser.usuario}]</strong> ya existe.`
+                            html:`El nombre de usuario <strong>[${formUser.usuario}]</strong> ya se registró.`
                         })
                     }else{
                         if (existeEmail){
@@ -83,7 +83,6 @@ export default function FormCrearUsuario() {
                         text: "Probablemente, el servidor esté desactivado, o haya problemas internos en el servidor."
                     })
                 }
-
             }else{
                 Swal.fire({
                     icon: 'warning',
