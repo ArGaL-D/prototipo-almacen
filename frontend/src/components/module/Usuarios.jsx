@@ -15,6 +15,9 @@ import { Switch, Route, useRouteMatch, Link } from 'react-router-dom';
 import Form from '../Form';
 import FormCrearUsuario from '../forms/FormCrearUsuario';
 import axios from 'axios';
+import InputDark from '../field/InputDark';
+import Select from '../field/Select';
+import Button from '../field/Button';
 
 export default function Usuarios({setTitle}) {
 
@@ -23,6 +26,16 @@ export default function Usuarios({setTitle}) {
     const [deviceRows, setDeviceRows] = useState([]);
     const [userRows, setUserRows] = useState([]);
     const [open,setOpen] = useState(false);
+
+    const [updateUser,setUpdateUser] = useState({
+        id: "",
+        usuario: "",
+        nombre:  "",
+        apellido: "",
+        email: "",
+        acceso: "",
+        password: ""
+    });
 
     const columns = [
         "Serial", "Equipo","Marca","Modelo","Estatus",
@@ -41,8 +54,35 @@ export default function Usuarios({setTitle}) {
 
     // Actualizar fila(tabla) - usuario
     const updateRow = (e) =>{
+        const tag_td = e.currentTarget.parentNode.parentNode.childNodes;
+
+        setUpdateUser({
+            ...updateUser,
+            id      : tag_td[0].textContent,
+            usuario : tag_td[1].textContent,
+            nombre  : tag_td[2].textContent,
+            apellido: tag_td[3].textContent,
+            email   : tag_td[4].textContent,
+            acceso  : tag_td[5].textContent
+        });
+        // Abrir Modal
+        setOpen(true);
+    }
+
+    const handleText = (e) =>{
+        const tag = e.target;
+        if (tag.name === "acceso"){
+            setUpdateUser({...updateUser,
+                [tag.name]: tag.options[tag.selectedIndex].text
+            });            
+        }else{
+            setUpdateUser({...updateUser,
+                [e.tag.name]: tag.value
+            });
+        }
 
     }
+
 
     useEffect(() => {
         setTitle('Usuarios');    
@@ -132,11 +172,60 @@ export default function Usuarios({setTitle}) {
                                 type = "USUARIOS"
                                 rows = {userRows}
                                 columns = {userComlumns}
-                                onClick = {onOpenModal}
+                                onClick = {updateRow}
                             />
-                        </div>     
-                        <Modal open={open} onClose={onCloseModal} center>
-                            <h1>HOLA</h1>
+                        </div>   
+
+                        <Modal open={open} onClose={onCloseModal} center>                            
+                            <form className="row_form">
+                                <div className="user">
+                                    <InputDark
+                                        name = "usuario"
+                                        placeholder = "Usuario"
+                                        onChange = {handleText}
+                                        defaultValue = {updateUser.usuario}
+                                    />
+                                </div>
+                                <br/>
+                                <div className="fullName">
+                                    <InputDark
+                                        name = "nombre"
+                                        placeholder = "Nombre(s)"
+                                        onChange = {handleText}
+                                        defaultValue = {updateUser.nombre}
+                                    />
+                                    <br/>
+                                    <InputDark
+                                        name = "apellido"
+                                        placeholder = "Apellido(s)"
+                                        onChange = {handleText}
+                                        defaultValue = {updateUser.apellido}
+                                    />
+                                </div>
+                                <br/>
+                                <div className="email">
+                                    <InputDark
+                                        name = "email"
+                                        placeholder = "Email"
+                                        onChange = {handleText}
+                                        defaultValue = {updateUser.email}
+                                    />
+                                </div>
+                                <br/>
+                                <div className="acces">
+                                    <Select
+                                        name = "acceso"
+                                        type = "ACCESO"
+                                        onChange = {updateUser.acceso}
+                                    />
+                                </div>
+                                <br/>
+                                <div className="button">
+                                    <Button
+                                        title = "ACTUALIZAR"
+                                    />
+                                </div>
+                            </form>
                         </Modal>                   
                     </Route>
 
