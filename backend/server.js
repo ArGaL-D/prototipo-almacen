@@ -381,7 +381,7 @@ server.post('/usuario-pass', (req, resServer) => {
 });
 
 
-// LOGIN - COMPROBAR SI EXISTE USUARIO
+// LOGIN - COMPROBAR SI EXISTE USUARIO y CREAR UN TOKEN de 'Autenticación'
 server.post('/login', (req, res) => {
     const usuario   = req.body.username;
     const password  = req.body.userpass;
@@ -395,14 +395,28 @@ server.post('/login', (req, res) => {
 
             if (error) console.log(error)
 
-            if (results[0][0].existe_usuario === 1){
-                res.json({existe_usuario: true});
+            const existeUsuario = results[0][0].existe_usuario;
+            if (existeUsuario){
+                const userData = results[1][0];
+
+                //res.json(userData);
+                
+                jwt.sign({userData},'secretKey', (err, token) => {
+                    res.json({token});
+                });
+
+                console.log(userData)
             }else{
                 res.json({existe_usuario: false});
             }
-            console.log(results)
         });
     });
+    console.log("-> POST")
+});
+
+server.post('/verificar', (req, res) => {
+
+ 
     console.log("-> POST")
 });
 

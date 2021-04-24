@@ -10,7 +10,7 @@ CREATE PROCEDURE `sp_getUsuario` (
 	in user  VARCHAR(50)
     )
 BEGIN
-	set @existe_usuario := (select exists (select * from USUARIOS where USUARIOS.usuario=user) );
+	set @existe_usuario := (select exists (select * from USUARIOS where USUARIOS.usuario = user) );
 
     if @existe_equipo = 0 then
 		select @existe_usuario as existe_usuario;
