@@ -37,7 +37,7 @@ export default function Usuarios({setTitle}) {
 
     const columns = [
         "Serial", "Equipo","Marca","Modelo","Estatus",
-        "Descrip", "Almacén","Edificio","Piso",
+        "Desc", "Almacén","Edificio","Piso",
         "Editar","Eliminar"        
     ];
     
