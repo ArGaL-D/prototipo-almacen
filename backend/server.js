@@ -399,13 +399,17 @@ server.post('/login', (req, res) => {
             if (existeUsuario){
                 const userData = results[1][0];
 
-                //res.json(userData);
-                
-                jwt.sign({userData},'secretKey', (err, token) => {
-                    res.json({token});
-                });
+                // COMPROBAR CONTRASEÑA
+                bcrypt.compare(password,userData.password, (error, result) =>{                
+                    if (result){
 
-                console.log(userData)
+                        // GENERAR TOKEN
+                        const token = jwt.sign({userData},'secretKey',{expiresIn: '5h'});
+                        res.json({auth: true, token});
+                    }else{
+                        res.json({succesful_password: false});
+                    }
+                });
             }else{
                 res.json({existe_usuario: false});
             }
@@ -414,11 +418,37 @@ server.post('/login', (req, res) => {
     console.log("-> POST")
 });
 
-server.post('/verificar', (req, res) => {
+// VERIFICAR - TOKEN (El cliente envia el Token)
+server.post('/login/verificar', verifyToken,(req, res) => {
 
- 
-    console.log("-> POST")
+    jwt.verify(req.token, 'secretKey', (err, authData) => {
+        if (err){
+            res.sendStatus(403);
+        } else{
+            res.json({
+                authData
+            });
+        }
+    })
 });
+// Authorization: Bearer <token>
+function verifyToken (req, res, next) {
+    const bearerHeader = req.headers["authorization"];
+
+    if (typeof bearerHeader !== 'undefined'){
+        const bearerToken = bearerHeader.split(' ')[1];
+        req.token = bearerToken;
+        next();
+    }else {
+        res.sendStatus(403);
+    }
+} 
+ 
+
+
+
+
+
 
 
 /* ##############
