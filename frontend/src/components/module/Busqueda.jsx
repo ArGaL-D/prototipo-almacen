@@ -42,7 +42,7 @@ function Buscar({setTitle}) {
     useEffect(() => {
         let unmounted = false;
 
-        axios.get('http://localhost:3001/buscar')
+        axios.get('http://localhost:3001/equipos')
              .then(resp => {
                 if (!unmounted){
                     setRowData(resp.data);
@@ -107,7 +107,7 @@ function Buscar({setTitle}) {
                 </div>
                 <div className="table">
                     <Datatable 
-                        type = "BUSCAR"
+                        type = "EQUIPOS_BUSCAR"
                         rows = {filteringData(rowData)}
                         columns={columnasBuscar}
                         onOpenModal = {onOpenModal}

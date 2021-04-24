@@ -28,7 +28,7 @@ const pool = mySql.createPool(config_db);
    ##############
 */
 
-server.get('/buscar', (req, res) => {
+server.get('/equipos', (req, res) => {
 
     pool.getConnection((err, connection) => {
         if (err) throw err;

@@ -65,7 +65,7 @@ export default function Usuarios({setTitle}) {
         // Abrir Modal
         setOpen(true);
     }
-
+    // Eliminar fila (tabla)
     const deleteRow = async (e) =>{
         e.preventDefault();
 
@@ -150,6 +150,23 @@ export default function Usuarios({setTitle}) {
         sessionStorage.setItem('page','usuarios');
     })
 
+    // Obtener los datos (filas) de los equipos
+    useEffect(() =>{
+        let unmounted = false;
+
+        axios.get('http://localhost:3001/equipos')
+             .then((resp)=>{
+                 if(!unmounted){
+                     setDeviceRows(resp.data);
+                 }
+             })
+             .catch((error)=>{
+                 console.log(error)
+             })
+        return () => { unmounted = true; }
+    });
+
+    // Obtener los datos (filas) de los usuarios
     useEffect(() =>{
         let unmounted = false;
 
@@ -248,9 +265,10 @@ export default function Usuarios({setTitle}) {
 
                     <Route path={`${path}/equipos`}>
                         <div className="table">
-                            <Datatable                                                            
+                            <Datatable     
+                                type = "EQUIPOS"                  
                                 rows = {deviceRows}
-                                columns = {columns}                                                                
+                                columns = {columns}                   
                             />
                         </div>
                     </Route>

@@ -4,6 +4,7 @@ import * as ImIcons   from "react-icons/im";
 import * as GrIcons   from "react-icons/gr";
 import * as FaIcons   from "react-icons/fa";
 import * as MdIcons   from "react-icons/md";
+import * as AiIcons   from "react-icons/ai";
 
 import "./styles/Datatable.css";
 
@@ -28,7 +29,7 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
             <tbody>
               {
                 {
-                    BUSCAR: rows.map( (row,index) =>{
+                    EQUIPOS_BUSCAR: rows.map( (row,index) =>{
                             return(
                               <tr key={index}>
                                 <td>{index + 1 }</td>  
@@ -51,6 +52,36 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
                                       <ImIcons.ImQrcode/>
                                   </button>  
                                 </td>  
+                              </tr>  
+                            )  
+                          }),
+                    EQUIPOS: rows.map( (row,index) =>{
+                            return(
+                              <tr key={index}>
+                                <td>{row.num_serie}</td>  
+                                <td>{row.equipo}</td>  
+                                <td>{row.marca}</td>  
+                                <td>{row.modelo}</td>
+                                <td>{row.estatus}</td>
+                                <td>
+                                    <div className="td-descrip">
+                                        {<GrIcons.GrTextAlignFull/>}
+                                        <TooltipText text={row.descripcion===""? "Sin descriṕción.":row.descripcion} />
+                                    </div>  
+                                </td>  
+                                <td>{row.almacen}</td> 
+                                <td>{row.edificio}</td>
+                                <td>{row.piso}</td>
+                                <td>
+                                  <button className="btn-qr" onClick={onOpenModal}>
+                                      <AiIcons.AiTwotoneEdit/>
+                                  </button>  
+                                </td>
+                                <td>
+                                  <button className="btn-qr" onClick={onOpenModal}>
+                                      <MdIcons.MdDelete/>
+                                  </button>  
+                                </td>    
                               </tr>  
                             )  
                           }),
