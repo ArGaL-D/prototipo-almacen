@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const jwt = require('jsonwebtoken');
 const express = require('express');
 const mySql = require('mysql');
 const cors = require('cors');
@@ -380,7 +381,7 @@ server.post('/usuario-pass', (req, resServer) => {
 });
 
 
-// LOGIN 
+// LOGIN - COMPROBAR SI EXISTE USUARIO
 server.post('/login', (req, res) => {
     const usuario   = req.body.username;
     const password  = req.body.userpass;
@@ -389,20 +390,17 @@ server.post('/login', (req, res) => {
     pool.getConnection((err, connection) => {
         if (err) throw err;
 
-        connection.query("call sp_getUsuario(?,?)",[usuario,password],(error, results) => {
+        connection.query("call sp_getUsuario(?)",[usuario],(error, results) => {
             connection.release();
 
             if (error) console.log(error)
 
-            if (results[0][0].existe_usuario){
-                res.json({
-                        existe_usuario: true, 
-                        idUser:  results[1][0].id_usuario,
-                        userName:results[1][0].usuario
-                    });
+            if (results[0][0].existe_usuario === 1){
+                res.json({existe_usuario: true});
             }else{
                 res.json({existe_usuario: false});
             }
+            console.log(results)
         });
     });
     console.log("-> POST")

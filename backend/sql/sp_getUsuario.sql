@@ -7,8 +7,7 @@ DELIMITER ;
 DELIMITER $$
 USE `EQUIPOS_CECYT16`$$
 CREATE PROCEDURE `sp_getUsuario` (
-	in user        VARCHAR(50),
-	in password    VARCHAR(50)
+	in user  VARCHAR(50)
     )
 BEGIN
 	set @existe_usuario := (select exists (select * from USUARIOS where USUARIOS.usuario=user) );
@@ -17,7 +16,7 @@ BEGIN
 		select @existe_usuario as existe_usuario;
 	else
 		select @existe_usuario as existe_usuario;
-		select USUARIOS.id_usuario, USUARIOS.usuario from USUARIOS where USUARIOS.usuario=user;
+		select * from USUARIOS where USUARIOS.usuario = user;
 	end if;
 END$$
 
