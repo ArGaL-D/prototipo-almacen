@@ -12,14 +12,13 @@ import { useHistory, Redirect } from 'react-router-dom';
 
 export default function Login() {
 
-
     let history = useHistory();
 
     const [formData,setFormData] = useState({
         username: "",
         userpass: ""
     });
-    const [field,setField] = useState(false);
+    const [warning,setWarning] = useState(false);
 
 
     const handleInputText = (e) =>{
@@ -28,46 +27,34 @@ export default function Login() {
 
     const handleOnSubmit = async (e) =>{
         e.preventDefault();
-        /*
-        try{
-            const resp = await axios.post('http://localhost:3001/login',formData);
-            const user_id = resp.data.idUser;
-            const user_name = resp.data.userName;
-            const user_exist = resp.data.existe_usuario;
-            const inHalfADay = 0.5;
+        
+        // Verificar usuario
 
-            if(user_exist){
-                
-                setAuthToken(user_name);
-                setCookieName(user_name);             
-                Cookies.set(
-                    user_name,
-                    user_id,
-                    {
-                        sameSite: 'strict', 
-                        secure: true, 
-                        expires: inHalfADay
-                    });      
-                                     
+        try {
+            const resp = await axios.post('http://localhost:3001/login',formData);
+            const existeUsuario = resp.data.existe_usuario;
+            const passCorrecto  = resp.data.successful_password;
+            const token = resp.data;
+
+            if (existeUsuario){
+                if (passCorrecto){
+                    localStorage.setItem("token",token);
+                }else{
+                    setWarning(true);
+                }
             }else{
-                setField(true);
-                console.log(user_exist)                
-            }
-        }catch(error){
-            console.log(`-> ${error}`)
-        } 
-        */
-        const inHalfADay = 0.5;
-        Cookies.set(
-            "tester",
-             "tester123",
-            {
-                sameSite: 'strict', 
-                secure: true, 
-                expires: inHalfADay
-            }); 
-        history.push('/page'); 
+                setWarning(true);
+            }        
+        } catch (error) {
+            console.log(error)
+        }
+
+        //history.push('/page'); 
     }
+
+
+
+
     const session = sessionStorage.getItem('page')
     
     // Regresar a la misma pág. al 'refrescar' el navegador
@@ -114,7 +101,7 @@ export default function Login() {
                     placeholder = "Contraseña"
                 />
                 {
-                    field ?
+                    warning ?
                         <div className="warning">
                             <span>Verifique usuario y/o contraseña</span>
                         </div>

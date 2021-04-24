@@ -396,6 +396,7 @@ server.post('/login', (req, res) => {
             if (error) console.log(error)
 
             const existeUsuario = results[0][0].existe_usuario;
+
             if (existeUsuario){
                 const userData = results[1][0];
 
@@ -405,9 +406,17 @@ server.post('/login', (req, res) => {
 
                         // GENERAR TOKEN
                         const token = jwt.sign({userData},'secretKey',{expiresIn: '5h'});
-                        res.json({auth: true, token});
+                        res.json({
+                            auth: true, 
+                            token, 
+                            existe_usuario: true,
+                            successful_password: true,
+                        });
                     }else{
-                        res.json({succesful_password: false});
+                        res.json({
+                            successful_password: false,
+                            existe_usuario: true},
+                        );
                     }
                 });
             }else{
@@ -436,7 +445,7 @@ function verifyToken (req, res, next) {
     const bearerHeader = req.headers["authorization"];
 
     if (typeof bearerHeader !== 'undefined'){
-        const bearerToken = bearerHeader.split(' ')[1];
+        const bearerToken = bearerHeader;
         req.token = bearerToken;
         next();
     }else {
