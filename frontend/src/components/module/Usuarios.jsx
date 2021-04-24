@@ -130,7 +130,6 @@ export default function Usuarios({setTitle}) {
                                     text: "Veifique su contraseña."
                                 });
                             }
-
                         })
                         .catch((error) => {
                             Swal.fire({
