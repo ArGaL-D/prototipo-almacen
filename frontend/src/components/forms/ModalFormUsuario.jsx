@@ -11,7 +11,7 @@ import * as FaIcons from "react-icons/fa";
 import * as MdIcons from "react-icons/md";
 
 
-export default function ModalForm({open,onCloseModal, updateUser, setUpdateUser}) {
+export default function ModalFormUsuario({open,onCloseModal, updateUser, setUpdateUser}) {
 
     const handleText = (e) =>{
         const tag = e.target;

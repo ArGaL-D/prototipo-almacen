@@ -56,7 +56,7 @@
     color: rgb(83, 69, 216);
 }
 .content p{
-    margin: .2em 0 0 1.3em;
+    margin: .2em 0 0 1em;
     font-size: clamp(.8rem, 2vw, .9rem);
     font-weight: 600;
     font-family: 'Roboto', sans-serif;

@@ -6,7 +6,7 @@ import PieChart from '../PieChart';
 
 import Rectangle from '../Rectangle';
 import Datatable from "../Datatable";
-import ModalForm from './Modal';
+import ModalFormUsuario from '../forms/ModalFormUsuario';
 import Form from '../Form';
 import FormCrearUsuario from '../forms/FormCrearUsuario';
 
@@ -16,6 +16,7 @@ import * as FaIcons from "react-icons/fa";
 import * as MdIcons from "react-icons/md";
 
 import "./styles/Usuarios.css";
+import ModalFormEquipo from '../forms/ModalFormEquipo';
 
 
 export default function Usuarios({setTitle}) {
@@ -33,6 +34,18 @@ export default function Usuarios({setTitle}) {
         apellido: "",
         email   : "",
         acceso  : "No"
+    });
+
+    const [updateDevice, setUpdateDevice] = useState({
+        serial      : "",
+        equipo      : "",
+        marca       : "",
+        modelo      : "",
+        estatus     : "",
+        descripcion : "",
+        almacen     : "",
+        edificio    : "",
+        piso        : ""
     });
 
     const columns = [
@@ -65,6 +78,26 @@ export default function Usuarios({setTitle}) {
         // Abrir Modal
         setOpen(true);
     }
+
+    // Actualizar fila(tabla) - equipo
+    /*
+    const updateRow = (e) =>{
+        const tag_td = e.currentTarget.parentNode.parentNode.childNodes;
+
+        setUpdateUser({
+            ...updateUser,
+            id      : tag_td[0].textContent,
+            usuario : tag_td[1].textContent,
+            nombre  : tag_td[2].textContent,
+            apellido: tag_td[3].textContent,
+            email   : tag_td[4].textContent,
+            acceso  : tag_td[5].textContent
+        });
+        // Abrir Modal
+        setOpen(true);
+    }
+    */
+
     // Eliminar fila (tabla)
     const deleteRow = async (e) =>{
         e.preventDefault();
@@ -255,7 +288,7 @@ export default function Usuarios({setTitle}) {
                             />
                         </div>   
 
-                        <ModalForm
+                        <ModalFormUsuario
                             open={open}
                             onCloseModal={onCloseModal}
                             updateUser = {updateUser}
@@ -271,6 +304,14 @@ export default function Usuarios({setTitle}) {
                                 columns = {columns}                   
                             />
                         </div>
+                        {/* 
+                        <ModalFormEquipo
+                            open={open}
+                            onCloseModal={onCloseModal}
+                            updateDevice = {updateDevice}
+                            setUpdateDevice = {setUpdateDevice} 
+                        />
+                        */}
                     </Route>
                     <Route path={`${path}/*`}>
                         <div className="table">
