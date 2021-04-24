@@ -499,6 +499,7 @@ server.put('/editar-usuario', (req, res) => {
    ##############
 */
 
+// ELMINAR - EQUIPO 
 server.delete('/equipo/:serial', (req, res) => {
 
     pool.getConnection((err, connection) => {
@@ -520,8 +521,27 @@ server.delete('/equipo/:serial', (req, res) => {
     console.log("-> DELETE")
 });
 
+// ELMINAR - USUARIO
+server.delete('/usuario/:idUser', (req, res) => {
 
+    pool.getConnection((err, connection) => {
+        if (err) throw err;
 
+        connection.query('call sp_deleteUsuario(?)', [req.params.idUser], (error, results) => {
+            connection.release();
+
+            if (error){
+                console.log(error)
+                res.json({deleted_user: false});
+            }else{
+                res.json({deleted_user: true});
+            }
+            
+        });
+    });
+    
+    console.log("-> DELETE")
+});
 
 
 // Iniciar servidor

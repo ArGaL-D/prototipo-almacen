@@ -71,7 +71,7 @@ export default function Usuarios({setTitle}) {
 
         const tag_td = e.currentTarget.parentNode.parentNode.childNodes;
         const idUser = tag_td[0].textContent;
-
+        // Confirmar antes de eliminar
         Swal.fire({
             title: '¿Estás seguro?',
             text: "Se eliminará completamente el usuario.",
@@ -83,6 +83,7 @@ export default function Usuarios({setTitle}) {
            
           }).then((result) => {
             if (result.isConfirmed) {
+                // Solicitar contraseña
                 Swal.fire({
                     title: 'Contraseña',
                     input: 'password',
@@ -91,20 +92,54 @@ export default function Usuarios({setTitle}) {
                         autocapitalize: 'off',
                         autocorrect: 'off'
                     }
-                }).then((result) => {
-                 
+                }).then((result) => {                 
                     // Verificar contraseña
                     const data = {id: idUser, password: result.value}
                    
-                    axios.post('http://localhost:3001/usuario-pass',data)
+                    axios.post("http://localhost:3001/usuario-pass",data)
                         .then( (res) => {
                             const checkingPass = res.data.succesful_password;
-                            console.log(checkingPass)
+                                                
+                            if (checkingPass){
+                                // Eliminar usuario        
+                                axios.delete(`http://localhost:3001/usuario/${idUser}`)
+                                    .then( (resp) => {
+                                        const deletedUser = resp.data.deleted_user;
+
+                                        if (deletedUser){
+                                            onCloseModal();
+                                        }else{
+                                            Swal.fire({
+                                                icon: "warning",
+                                                title: "Oops!",
+                                                text: "No se pudo eliminar el usuario."
+                                            }); 
+                                        }
+                                    })
+                                    .catch(error => {
+                                        Swal.fire({
+                                            icon: "error",
+                                            title: error,
+                                            text: "Probablemente, hay conflictos internos en el servidor. "
+                                        });
+                                    })
+                            }else{
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Error",
+                                    text: "Veifique su contraseña."
+                                });
+                            }
+
                         })
                         .catch((error) => {
+                            Swal.fire({
+                                icon: "error",
+                                title: error,
+                                text: "Probablemente, el servidor esté desactivado, o haya conflictos internos en el servidor."
+                            });
                             console.log(error)
                         })
-
                 })
                 
             }
