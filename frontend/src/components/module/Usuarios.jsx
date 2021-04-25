@@ -105,13 +105,70 @@ export default function Usuarios({setTitle}) {
         console.log(open)
     }
     
-    const deleteRowDevice = (e) => {
+    // Eliminar fila (Equipo)
+    const deleteRowDevice = async (e) => {
         e.preventDefault();
+
+        // Obtener el serial
+        const tag_td = e.currentTarget.parentNode.parentNode.childNodes;
+
+        setUpdateDevice({
+            ...updateDevice,      
+            serial : tag_td[0].textContent,
+        })   
+
+        const { value: password} = await Swal.fire({
+            title: 'Contraseña',
+            input: 'password',
+            inputPlaceholder: 'Ingrese contraseña',
+            inputAttributes: {
+                autocapitalize: 'off',
+                autocorrect: 'off'
+            }
+        })
+        // Verificar password
+        try {
+            const token = localStorage.getItem('token');
+            const resp1 = await axios.post('http://localhost:3001/verificar-usuario', {token, password});
+            
+            if (resp1.data.isAuth){
+                if (resp1.data.successful_password){
+                    const resp2 = await axios.delete(`http://localhost:3001/delete-equipo/${updateDevice.serial}`);
+
+                    if(resp2.data.successful_delete === false){
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Problemas en eliminar",
+                            text: "Probablemente, la estructura (código) de la BD ha cambiado."
+                        });  
+                    }
+                }else{
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Contraseña",
+                        text: "Incorrecta."
+                    });
+                }
+            }else{
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Hay problemas de autenticación de usuario."
+                });
+            }
+
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: error,
+                text: "Probablemente, el servidor esté desactivado, o haya problemas internos en el servidor."
+            });
+        }
 
         console.log("delete ")
     }
 
-    // Eliminar fila (tabla) - Button
+    // Eliminar fila (Usuario) - Button
     const deleteRow = async (e) =>{
         e.preventDefault();
 

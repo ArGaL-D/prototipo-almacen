@@ -478,7 +478,6 @@ server.post('/verificar-usuario',(req, res) => {
 });
 
 
-
 /* ##############
    #    PUT     #
    ##############
@@ -573,7 +572,7 @@ server.put('/editar-usuario', (req, res) => {
 */
 
 // ELMINAR - EQUIPO 
-server.delete('/equipo/:serial', (req, res) => {
+server.delete('/delete-equipo/:serial', (req, res) => {
 
     pool.getConnection((err, connection) => {
         if (err) throw err;
@@ -583,9 +582,9 @@ server.delete('/equipo/:serial', (req, res) => {
 
             if (error){
                 console.log(error)
-                res.json({deleted: false});
+                res.json({successful_delete: false});
             }else{
-                res.json({deleted: true});
+                res.json({successful_delete: true});
             }
             
         });
