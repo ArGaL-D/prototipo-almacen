@@ -83,7 +83,12 @@ server.get('/total-equipos', (req, res) => {
             connection.release();
 
             if (error) console.log(error)
-            res.json(results[0])
+
+            res.json({
+                equipos_disponibles: results[0][0].equipos_disponibles,
+                equipos_prestados  : results[1][0].equipos_prestados,
+                equipos_reparacion : results[2][0].equipos_reparacion
+            });
         });
     });
 });

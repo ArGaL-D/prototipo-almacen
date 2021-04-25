@@ -7,7 +7,7 @@ export const status = [
     'Disponible',
     'Prestado',
     'Inservible',
-    'En reparación'
+    'Reparación'
 ];
 
 // DropDown - ubicación (Edificio)

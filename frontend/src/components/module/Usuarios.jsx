@@ -6,9 +6,8 @@ import PieChart from '../PieChart';
 
 import Rectangle from '../Rectangle';
 import Datatable from "../Datatable";
-import ModalFormUsuario from '../forms/ModalFormUsuario';
 import ModalFormEquipo from '../forms/ModalFormEquipo';
-import Form from '../Form';
+import ModalFormUsuario from '../forms/ModalFormUsuario';
 import FormCrearUsuario from '../forms/FormCrearUsuario';
 
 
