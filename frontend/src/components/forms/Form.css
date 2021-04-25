@@ -34,3 +34,15 @@
     padding-left: 2em;
     
 }
+/* MODAL TABLA - EQUIPOS */
+.row_form .selects{
+    display: flex;
+    font-size: .8rem;
+}
+
+.row_form .selects .box-select{
+    width: 100%;
+}
+.row_form .selects .box-select.num2{
+    margin-left: .5em;
+}

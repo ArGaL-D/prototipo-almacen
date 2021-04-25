@@ -91,7 +91,10 @@ export default function Usuarios({setTitle}) {
             equipo   : tag_td[1].textContent,
             marca    : tag_td[2].textContent,
             modelo   : tag_td[3].textContent,
-            estatus  : tag_td[4].textContent   
+            estatus  : tag_td[4].textContent,
+            almacen  : tag_td[6].textContent,  
+            edificio : tag_td[7].textContent,  
+            piso     : tag_td[8].textContent,  
 
         });
         // Abrir Modal
