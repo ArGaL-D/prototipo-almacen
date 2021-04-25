@@ -25,15 +25,74 @@ export default function ModalFormEquipo({open,onCloseModal, updateDevice, setUpd
     return (
         <Modal open={open} onClose={onCloseModal} center>
         <form className="row_form" onSubmit={sendingData}>
-             <div className="user">
+            <div className="user">
                 <InputDark
                     icon = {<FaIcons.FaUserEdit/>}
                     name = "usuario"
                     placeholder = "Serial"
                     defaultValue = {updateDevice.serial}
                 />
+            </div>            
+            <br/>
+            <div className="user">
+                <InputDark
+                    icon = {<FaIcons.FaUserEdit/>}
+                    name = "usuario"
+                    placeholder = "equipo"
+                    defaultValue = {updateDevice.equipo}
+                />
+            </div>            
+            <br/>
+            <div className="user">
+                <InputDark
+                    icon = {<FaIcons.FaUserEdit/>}
+                    name = "usuario"
+                    placeholder = "marca"
+                    defaultValue = {updateDevice.marca}
+                />
+            </div>            
+            <br/>
+            <div className="user">
+                <InputDark
+                    icon = {<FaIcons.FaUserEdit/>}
+                    name = "usuario"
+                    placeholder = "modelo"
+                    defaultValue = {updateDevice.modelo}
+                />
+            </div>            
+            <br/>
+            <div className="acces">
+                <label>Estatus del equipo</label>
+                <Select
+                    name = "estatus"
+                    type = "STATUS"
+                />
             </div>
             <br/>
+            <div className="acces">
+                <label>Almacén</label>
+                <Select
+                    name = "estatus"
+                    type = "ALMACEN"
+                />
+            </div>
+            <br/>
+            <div className="acces">
+                <div className="box-selects">
+                    <label>Edificio</label>
+                    <Select
+                        name = "estatus"
+                        type = "ALMACEN_EDIFICIO"
+                    />
+                </div>
+                <div className="box-selects">
+                    <label>Piso</label>
+                    <Select
+                        name = "estatus"
+                        type = "ALMACEN_PISO"
+                    />
+                </div>
+            </div>
         </form>
     </Modal>
     )
