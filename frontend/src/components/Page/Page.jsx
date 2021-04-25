@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { withRouter,useRouteMatch,Switch, Route } from 'react-router-dom'
 import Busqueda from '../module/Busqueda';
 import Entrega from '../module/Entrega';
@@ -21,7 +21,6 @@ function Page() {
   const showSidebar = () =>{
     setSidebar(!sidebar);
   }
-
 
 
   return (

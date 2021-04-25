@@ -407,7 +407,6 @@ server.post('/login', (req, res) => {
                         // GENERAR TOKEN
                         const token = jwt.sign({userData},'secretKey',{expiresIn: '5h'});
                         res.json({
-                            auth: true, 
                             token, 
                             existe_usuario: true,
                             successful_password: true,
@@ -428,14 +427,15 @@ server.post('/login', (req, res) => {
 });
 
 // VERIFICAR - TOKEN (El cliente envia el Token)
-server.post('/login/verificar', verifyToken,(req, res) => {
+server.get('/login/verificar', verifyToken,(req, res) => {
 
     jwt.verify(req.token, 'secretKey', (err, authData) => {
         if (err){
             res.sendStatus(403);
         } else{
             res.json({
-                authData
+                authData,
+                isAuth: true
             });
         }
     })

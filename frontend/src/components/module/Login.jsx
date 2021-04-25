@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import Cookies from 'js-cookie';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import * as FaIcons from 'react-icons/fa';
 
 import Input from "../field/Input";
+import AuthContext from "../authContext/AuthContext";
 
 import "./styles/Login.css";
 import { useHistory, Redirect } from 'react-router-dom';
@@ -13,6 +13,8 @@ import { useHistory, Redirect } from 'react-router-dom';
 export default function Login() {
 
     let history = useHistory();
+
+    const {authToken} = useContext(AuthContext);
 
     const [formData,setFormData] = useState({
         username: "",
@@ -34,11 +36,14 @@ export default function Login() {
             const resp = await axios.post('http://localhost:3001/login',formData);
             const existeUsuario = resp.data.existe_usuario;
             const passCorrecto  = resp.data.successful_password;
-            const token = resp.data;
+            const token = resp.data.token;
 
             if (existeUsuario){
                 if (passCorrecto){
                     localStorage.setItem("token",token);
+
+                    history.push('/page'); 
+                    
                 }else{
                     setWarning(true);
                 }
@@ -47,38 +52,13 @@ export default function Login() {
             }        
         } catch (error) {
             console.log(error)
-        }
-
-        //history.push('/page'); 
+        }   
     }
 
+    if (authToken){
+        return <Redirect to="/page" />
+    }
 
-
-
-    const session = sessionStorage.getItem('page')
-    
-    // Regresar a la misma pág. al 'refrescar' el navegador
-    if(session === "buscar"){
-        return <Redirect to="/page/buscar" />
-    }
-    else if(session === "registro"){
-        return <Redirect to="/page/registro" />
-    }
-    else if(session === "prestamo"){
-        return <Redirect to="/page/prestamo" />
-    }
-    else if(session === "entrega"){
-        return <Redirect to="/page/entrega" />
-    }
-    else if(session === "ubicacion"){
-        return <Redirect to="/page/ubicacion" />
-    }
-    else if(session === "usuarios"){
-        return <Redirect to="/page/usuarios" />
-    }
-    else if(session === "reparacion"){
-        return <Redirect to="/page/reparacion" />
-    }
 
 
     return (
