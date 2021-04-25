@@ -73,12 +73,12 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
                                 <td>{row.edificio}</td>
                                 <td>{row.piso}</td>
                                 <td>
-                                  <button className="btn-qr" onClick={updateRow}>
+                                  <button className="btn-qr" onClick={updateRow} style={{cursor: 'pointer'}} >
                                       <AiIcons.AiTwotoneEdit/>
                                   </button>  
                                 </td>
                                 <td>
-                                  <button className="btn-qr" onClick={deleteRow}>
+                                  <button className="btn-qr" onClick={deleteRow} style={{cursor: 'pointer'}} >
                                       <MdIcons.MdDelete/>
                                   </button>  
                                 </td>    
