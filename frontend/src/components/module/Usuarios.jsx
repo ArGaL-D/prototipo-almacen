@@ -7,6 +7,7 @@ import PieChart from '../PieChart';
 import Rectangle from '../Rectangle';
 import Datatable from "../Datatable";
 import ModalFormUsuario from '../forms/ModalFormUsuario';
+import ModalFormEquipo from '../forms/ModalFormEquipo';
 import Form from '../Form';
 import FormCrearUsuario from '../forms/FormCrearUsuario';
 
@@ -16,7 +17,6 @@ import * as FaIcons from "react-icons/fa";
 import * as MdIcons from "react-icons/md";
 
 import "./styles/Usuarios.css";
-import ModalFormEquipo from '../forms/ModalFormEquipo';
 
 
 export default function Usuarios({setTitle}) {
@@ -63,7 +63,7 @@ export default function Usuarios({setTitle}) {
 
     const onCloseModal = () => setOpen(false);
 
-    // Actualizar fila(tabla) - usuario
+    // Actualizar fila(tabla) - usuario - Button
     const updateRow = (e) =>{
         const tag_td = e.currentTarget.parentNode.parentNode.childNodes;
 
@@ -74,32 +74,34 @@ export default function Usuarios({setTitle}) {
             nombre  : tag_td[2].textContent,
             apellido: tag_td[3].textContent,
             email   : tag_td[4].textContent,
-            acceso  : tag_td[5].textContent
+            acceso  : tag_td[5].textContent          
         });
         // Abrir Modal
         setOpen(true);
     }
 
-    // Actualizar fila(tabla) - equipo
-    /*
-    const updateRow = (e) =>{
+    // Actualizar fila(tabla) - equipo - Button 
+    const updateRowDevice = (e) =>{        
+        
         const tag_td = e.currentTarget.parentNode.parentNode.childNodes;
 
-        setUpdateUser({
-            ...updateUser,
-            id      : tag_td[0].textContent,
-            usuario : tag_td[1].textContent,
-            nombre  : tag_td[2].textContent,
-            apellido: tag_td[3].textContent,
-            email   : tag_td[4].textContent,
-            acceso  : tag_td[5].textContent
+        setUpdateDevice({
+            ...updateDevice,
+            serial   : tag_td[0].textContent,
+            equipo   : tag_td[1].textContent,
+            marca    : tag_td[2].textContent,
+            modelo   : tag_td[3].textContent,
+            estatus  : tag_td[4].textContent   
+
         });
         // Abrir Modal
+        
         setOpen(true);
+        console.log(open)
     }
-    */
+    
 
-    // Eliminar fila (tabla)
+    // Eliminar fila (tabla) - Button
     const deleteRow = async (e) =>{
         e.preventDefault();
 
@@ -306,17 +308,18 @@ export default function Usuarios({setTitle}) {
                             <Datatable     
                                 type = "EQUIPOS"                  
                                 rows = {deviceRows}
-                                columns = {columns}                   
+                                columns = {columns}    
+                                updateRow = {updateRowDevice}               
                             />
                         </div>
-                        {/* 
+                        
                         <ModalFormEquipo
                             open={open}
                             onCloseModal={onCloseModal}
                             updateDevice = {updateDevice}
                             setUpdateDevice = {setUpdateDevice} 
                         />
-                        */}
+                        
                     </Route>
                     <Route path={`${path}/*`}>
                         <div className="table">

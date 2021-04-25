@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import * as FaIcons from 'react-icons/fa';
@@ -12,6 +12,7 @@ import "./styles/Login.css";
 
 export default function Login() {
 
+    let history = useHistory();
     const {authToken} = useContext(AuthContext);
 
     const [formData,setFormData] = useState({
@@ -37,7 +38,8 @@ export default function Login() {
 
             if (existeUsuario){
                 if (passCorrecto){
-                    localStorage.setItem("token",token);                  
+                    localStorage.setItem("token",token);  
+                    history.location("/page")
                 }else{
                     setWarning(true);
                 }

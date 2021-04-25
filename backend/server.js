@@ -431,7 +431,8 @@ server.get('/login/verificar', verifyToken,(req, res) => {
 
     jwt.verify(req.token, 'secretKey', (err, authData) => {
         if (err){
-            res.sendStatus(403);
+            //res.sendStatus(403);
+            res.json({isAuth: false})
         } else{
             res.json({
                 authData,
