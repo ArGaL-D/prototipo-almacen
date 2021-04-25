@@ -57,7 +57,8 @@ export default function ModalFormEquipo({open,onCloseModal, updateDevice, setUpd
                             icon: "warning",
                             title: "Problemas en actualizar",
                             text: "Probablemente, la estructura (código) de la BD ha cambiado."
-                        });                    }
+                        });                   
+                    }
                 }else{
                     Swal.fire({
                         icon: "warning",
@@ -139,7 +140,7 @@ export default function ModalFormEquipo({open,onCloseModal, updateDevice, setUpd
                 <div className="acces">
                     <label>Almacén actual ({updateDevice.almacen})</label>
                     <Select
-                        name = "estatus"
+                        name = "almacen"
                         type = "ALMACEN"
                         onChange = {handleSelect}
                     />
