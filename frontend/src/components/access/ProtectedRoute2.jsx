@@ -7,9 +7,15 @@ const ProtectedRoute2 = ({children,path}) => {
     const {authToken} = useContext(AuthContext);
 
     if(!authToken){
-        return <Redirect to="/login"/>
-    }
+        const currentPath = sessionStorage.getItem('currentPage');
 
+        if(currentPath){
+            return <Redirect to={currentPath} />        
+        }else{
+            return <Redirect to='/login' />        
+        }        
+    } 
+    
     return (
         <Route path={path}>
              {children}

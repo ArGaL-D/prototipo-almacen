@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react';
-import { Switch, Route, useRouteMatch, Link } from 'react-router-dom';
+import { Switch, Route, useRouteMatch, Link, useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import PieChart from '../PieChart';
@@ -22,6 +22,7 @@ import ModalFormEquipo from '../forms/ModalFormEquipo';
 export default function Usuarios({setTitle}) {
 
     let {path} = useRouteMatch();
+    const location = useLocation();
 
     const [deviceRows, setDeviceRows] = useState([]);
     const [userRows, setUserRows] = useState([]);
@@ -215,6 +216,10 @@ export default function Usuarios({setTitle}) {
         return () => { unmounted = true; }
     });
 
+    // Guardar la ruta actual del componente
+    useEffect(()=> {
+        sessionStorage.setItem('currentPage',location.pathname);        
+    });
 
     return (
         <div className="module-usuarios">

@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import { useLocation } from 'react-router-dom';
 import axios from "axios";
 import InputDark from '../field/InputDark';
 import Datatable from '../Datatable';
@@ -8,6 +9,8 @@ import * as GoIcons from "react-icons/go";
 import "./styles/Ubicacion.css";
 
 export default function Ubicacion({setTitle}) {
+
+    const location = useLocation();
 
     const [text,setText] = useState("");
     const [num, setNum] = useState( {edificio:"", piso:"", aula:""} );
@@ -55,6 +58,12 @@ export default function Ubicacion({setTitle}) {
         select3.options[0].disabled = true;
     });
 
+    // Guardar la ruta actual del componente
+    useEffect(()=> {
+        sessionStorage.setItem('currentPage',location.pathname);        
+    });
+    
+    
     //Obtener texto del buscador
     const handleText = (e) =>{
         setText(e.target.value.toUpperCase());

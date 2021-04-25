@@ -1,4 +1,5 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState} from 'react';
+import { useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from "axios";
 
@@ -16,6 +17,8 @@ import "./styles/Entrega.css";
 import QrScannerEntrega from '../qrscanner/QrScannerEntrega';
 
 export default function Entrega({setTitle}) {
+
+    const location = useLocation();
 
     const [openScanner, setOpenScanner] = useState(false);
     const [formData,setFormData] = useState({
@@ -41,6 +44,10 @@ export default function Entrega({setTitle}) {
 
     },[formData]);
 
+    // Guardar la ruta actual del componente
+    useEffect(()=> {
+        sessionStorage.setItem('currentPage',location.pathname);        
+    });    
 
     // Mostrar modal - scanner
     const showScanner = () =>{

@@ -12,8 +12,6 @@ import { useHistory, Redirect } from 'react-router-dom';
 
 export default function Login() {
 
-    let history = useHistory();
-
     const {authToken} = useContext(AuthContext);
 
     const [formData,setFormData] = useState({
@@ -31,7 +29,6 @@ export default function Login() {
         e.preventDefault();
         
         // Verificar usuario
-
         try {
             const resp = await axios.post('http://localhost:3001/login',formData);
             const existeUsuario = resp.data.existe_usuario;
@@ -40,10 +37,7 @@ export default function Login() {
 
             if (existeUsuario){
                 if (passCorrecto){
-                    localStorage.setItem("token",token);
-
-                    history.push('/page'); 
-                    
+                    localStorage.setItem("token",token);                  
                 }else{
                     setWarning(true);
                 }
@@ -55,11 +49,10 @@ export default function Login() {
         }   
     }
 
+
     if (authToken){
-        return <Redirect to="/page" />
+        return <Redirect to="/page/buscar" />
     }
-
-
 
     return (
         <div className="login">            

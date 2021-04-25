@@ -1,4 +1,5 @@
 import {useEffect,useState} from 'react'
+import { useLocation } from 'react-router-dom';
 import {QRCode} from 'react-qrcode-logo';
 import Swal from 'sweetalert2';
 import axios from "axios";
@@ -14,6 +15,8 @@ import "./styles/Registro.css";
 
 export default function Registro({setTitle}) {
 
+    const location = useLocation();
+
     //Establecer título actual - navbar
     useEffect(() => {
         const action = () =>{
@@ -22,6 +25,11 @@ export default function Registro({setTitle}) {
         }
         action()
     })
+    
+    // Guardar la ruta actual del componente
+    useEffect(()=> {
+        sessionStorage.setItem('currentPage',location.pathname);        
+    });
 
     const [modal,setModal] = useState(false);
 

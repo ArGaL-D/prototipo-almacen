@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom';
 import {QRCode} from 'react-qrcode-logo';
 import axios from "axios";
 import Swal from 'sweetalert2';
@@ -19,6 +20,7 @@ import QrScannerEquipo from '../qrscanner/QrScannerEquipo';
 
 export default function Prestamo({setTitle}) {
 
+    const location = useLocation();
 
     const [openScanner1,setOpenScaner1] = useState(false);
     const [openScanner2,setOpenScaner2] = useState(false);
@@ -68,6 +70,13 @@ export default function Prestamo({setTitle}) {
             setFormData({...formData, fecha: today});
         }
     },[formData]);
+
+
+    // Guardar la ruta actual del componente
+    useEffect(()=> {
+        sessionStorage.setItem('currentPage',location.pathname);        
+    });
+
 
     //Abrir ventana modal Qr-scanner
     const showModalScanner1 = () =>{

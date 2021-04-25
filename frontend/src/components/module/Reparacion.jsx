@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {Link, Switch, Route} from 'react-router-dom';
+import {Link, Switch, Route, useLocation} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from "axios";
 
@@ -18,6 +18,7 @@ import InputDark from '../field/InputDark';
 
 export default function Reparacion({setTitle}) {
 
+    const location = useLocation();
 
     //Columnas-seguimiento-Hilo
     const columnasHilo = [
@@ -119,6 +120,11 @@ export default function Reparacion({setTitle}) {
         setTitle('Reparación');
         sessionStorage.setItem('page','reparacion');
     })
+
+    // Guardar la ruta actual del componente
+    useEffect(()=> {
+        sessionStorage.setItem('currentPage',location.pathname);        
+    });
 
     return (
         <div className="module-reparacion">

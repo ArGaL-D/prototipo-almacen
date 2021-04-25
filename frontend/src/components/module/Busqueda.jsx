@@ -3,7 +3,7 @@ import { Modal } from 'react-responsive-modal';
 import { QRCode} from 'react-qrcode-logo';
 
 import axios from "axios";
-import {withRouter} from 'react-router-dom'
+import {withRouter, useLocation} from 'react-router-dom'
 import InputDark from "../field/InputDark";
 import Datatable from "../Datatable";
 
@@ -12,6 +12,8 @@ import * as GoIcons from "react-icons/go";
 import "./styles/Busqueda.css";
 
 function Buscar({setTitle}) {
+
+    const location = useLocation();
 
     const [showQr, setShowQr] = useState(false);
     const [open, setOpen] = useState(false);
@@ -53,6 +55,11 @@ function Buscar({setTitle}) {
              })
         return () => {unmounted = true}
     })
+
+    // Guardar la ruta actual del componente
+    useEffect(()=> {
+        sessionStorage.setItem('currentPage',location.pathname);        
+    });
 
     // Abrir modal - Qr
     const onOpenModal = (e) => {
