@@ -594,7 +594,7 @@ server.delete('/delete-equipo/:serial', (req, res) => {
 });
 
 // ELMINAR - USUARIO
-server.delete('/usuario/:idUser', (req, res) => {
+server.delete('/delete-usuario/:idUser', (req, res) => {
 
     pool.getConnection((err, connection) => {
         if (err) throw err;

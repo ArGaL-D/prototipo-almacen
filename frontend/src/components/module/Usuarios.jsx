@@ -164,18 +164,17 @@ export default function Usuarios({setTitle}) {
                 text: "Probablemente, el servidor esté desactivado, o haya problemas internos en el servidor."
             });
         }
-
-        console.log("delete ")
     }
 
     // Eliminar fila (Usuario) - Button
-    const deleteRow = async (e) =>{
+    const deleteRowUser = async (e) =>{
         e.preventDefault();
-
+        // Obtener ID
         const tag_td = e.currentTarget.parentNode.parentNode.childNodes;
         const idUser = tag_td[0].textContent;
+        
         // Confirmar antes de eliminar
-        Swal.fire({
+        const result = await Swal.fire({
             title: '¿Estás seguro?',
             text: "Se eliminará completamente el usuario.",
             icon: 'warning',
@@ -184,69 +183,64 @@ export default function Usuarios({setTitle}) {
             confirmButtonText: 'Si, eliminarlo!',
             cancelButtonColor: '#d33'
            
-          }).then((result) => {
-            if (result.isConfirmed) {
-                // Solicitar contraseña
-                Swal.fire({
-                    title: 'Contraseña',
-                    input: 'password',
-                    inputPlaceholder: 'Ingrese contraseña',
-                    inputAttributes: {
-                        autocapitalize: 'off',
-                        autocorrect: 'off'
-                    }
-                }).then((result) => {                 
-                    // Verificar contraseña
-                    const data = {id: idUser, password: result.value}
-                   
-                    axios.post("http://localhost:3001/usuario-pass",data)
-                        .then( (res) => {
-                            const checkingPass = res.data.succesful_password;
-                                                
-                            if (checkingPass){
-                                // Eliminar usuario        
-                                axios.delete(`http://localhost:3001/usuario/${idUser}`)
-                                    .then( (resp) => {
-                                        const deletedUser = resp.data.deleted_user;
+        })
 
-                                        if (deletedUser){
-                                            onCloseModal();
-                                        }else{
-                                            Swal.fire({
-                                                icon: "warning",
-                                                title: "Oops!",
-                                                text: "No se pudo eliminar el usuario."
-                                            }); 
-                                        }
-                                    })
-                                    .catch(error => {
-                                        Swal.fire({
-                                            icon: "error",
-                                            title: error,
-                                            text: "Probablemente, hay conflictos internos en el servidor. "
-                                        });
-                                    })
-                            }else{
-                                Swal.fire({
-                                    icon: "error",
-                                    title: "Error",
-                                    text: "Veifique su contraseña."
-                                });
-                            }
-                        })
-                        .catch((error) => {
+        if (result.isConfirmed){
+            const { value: password} = await Swal.fire({
+                title: 'Contraseña',
+                input: 'password',
+                inputPlaceholder: 'Ingrese contraseña',
+                inputAttributes: {
+                    autocapitalize: 'off',
+                    autocorrect: 'off'
+                }
+            })
+
+            try {
+                const token = localStorage.getItem('token');
+                const resp1 = await axios.post('http://localhost:3001/verificar-usuario', {token, password});
+
+                if (resp1.data.isAuth){   
+                    if (resp1.data.successful_password){
+
+                        const resp2 = await axios.delete(`http://localhost:3001/delete-usuario/${idUser}`);                
+                        
+                        if (resp2.data.deleted_user === false){
                             Swal.fire({
-                                icon: "error",
-                                title: error,
-                                text: "Probablemente, el servidor esté desactivado, o haya conflictos internos en el servidor."
-                            });
-                            console.log(error)
-                        })
-                })
-                
+                                icon: "warning",
+                                title: "Problemas en eliminar",
+                                text: "Probablemente, la estructura (código) de la BD ha cambiado."
+                            });  
+                        }
+
+                    }else{
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Contraseña",
+                            text: "Incorrecta."
+                        });
+                    }
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: "Hay problemas de autenticación de usuario."
+                    });
+                }
+            } catch (error) {
+                console.log(error)
+                Swal.fire({
+                    icon: "error",
+                    title: error,
+                    text: "Probablemente, el servidor esté desactivado, o haya problemas internos en el servidor."
+                });
             }
-          })
+        }
     }
+
+
+
+// -- - - --- - -- - -- -- --- --- --- -- 
 
     useEffect(() => {
         setTitle('Usuarios');    
@@ -358,7 +352,7 @@ export default function Usuarios({setTitle}) {
                                 rows = {userRows}
                                 columns = {userComlumns}
                                 updateRow = {updateRow}
-                                deleteRow ={deleteRow}
+                                deleteRow ={deleteRowUser}
                             />
                         </div>   
 
