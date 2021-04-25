@@ -37,7 +37,7 @@ export default function ModalFormUsuario({open,onCloseModal, updateUser, setUpda
                 autocapitalize: 'off',
                 autocorrect: 'off'
             }
-            })
+        })
         
         // Verificar password
         try{

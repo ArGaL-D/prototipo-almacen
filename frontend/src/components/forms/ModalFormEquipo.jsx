@@ -30,6 +30,42 @@ export default function ModalFormEquipo({open,onCloseModal, updateDevice, setUpd
     
     const sendingData = async (e) =>{
         e.preventDefault();
+
+        const { value: password} = await Swal.fire({
+            title: 'Contraseña',
+            input: 'password',
+            inputPlaceholder: 'Ingrese contraseña',
+            inputAttributes: {
+                autocapitalize: 'off',
+                autocorrect: 'off'
+            }
+        })
+
+        try {
+            const token = localStorage.getItem('token');
+            const resp = await axios.post('http://localhost:3001/verificar-usuario', {token, password});
+            
+            if (resp.data.isAuth){                
+                if (resp.data.successful_password){
+                    onCloseModal();
+                }else{
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Contraseña",
+                        text: "Incorrecta."
+                    });
+                }
+            }else{
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Hay problemas de autenticación de usuario."
+                });
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
     }
 
 

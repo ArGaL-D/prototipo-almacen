@@ -426,7 +426,7 @@ server.post('/login', (req, res) => {
     console.log("-> POST")
 });
 
-// VERIFICAR - TOKEN (El cliente envia el Token)
+// VERIFICAR - TOKEN - acceso a rutas
 server.get('/login/verificar', verifyToken,(req, res) => {
 
     jwt.verify(req.token, 'secretKey', (err, authData) => {
@@ -454,10 +454,28 @@ function verifyToken (req, res, next) {
     }
 } 
  
+// VERIFICAR USUARIO - TOKEN -  Editar usuario
+server.post('/verificar-usuario',(req, res) => {
 
+    const token = req.body.token;
+    const userPass = req.body.password;
 
-
-
+    jwt.verify(token, 'secretKey', (err, authData) => {
+        if (err){
+            //res.sendStatus(403);
+            res.json({isAuth: false})            
+        } else{
+            // Verificar contraseña
+            bcrypt.compare(userPass, authData.userData.password, (error, result) =>{                
+                if (result){
+                    res.json({isAuth: true, succesful_password: true});
+                }else{
+                    res.json({isAuth: true, succesful_password: false});
+                }
+            });
+        }
+    })
+});
 
 
 
@@ -465,8 +483,10 @@ function verifyToken (req, res, next) {
    #    PUT     #
    ##############
 */
+
+
 // ACTUALIZAR EQUIPO
-server.put('/editarEquipo', (req, res) => {
+server.put('/editar-equipo', (req, res) => {
     // Datos del cliente
     const editedSerial = req.body.editedSerial;
     const serial  = req.body.serial;
