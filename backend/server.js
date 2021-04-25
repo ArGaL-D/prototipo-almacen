@@ -73,6 +73,20 @@ server.get('/usuarios', (req, res) => {
     });
 });
 
+/* TOTAL DE EQUIPOS [Disponibles,reparación,prestados]*/
+server.get('/total-equipos', (req, res) => {
+
+    pool.getConnection((err, connection) => {
+        if (err) throw err;
+
+        connection.query("call sp_countEquipos()", (error, results) => {
+            connection.release();
+
+            if (error) console.log(error)
+            res.json(results[0])
+        });
+    });
+});
 
 
 
