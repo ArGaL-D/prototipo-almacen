@@ -38,6 +38,7 @@ export default function Usuarios({setTitle}) {
     });
 
     const [updateDevice, setUpdateDevice] = useState({
+        editedSerial : "",
         serial      : "",
         equipo      : "",
         marca       : "",
@@ -68,7 +69,7 @@ export default function Usuarios({setTitle}) {
         const tag_td = e.currentTarget.parentNode.parentNode.childNodes;
 
         setUpdateUser({
-            ...updateUser,
+            ...updateUser,            
             id      : tag_td[0].textContent,
             usuario : tag_td[1].textContent,
             nombre  : tag_td[2].textContent,
@@ -86,7 +87,8 @@ export default function Usuarios({setTitle}) {
         const tag_td = e.currentTarget.parentNode.parentNode.childNodes;
 
         setUpdateDevice({
-            ...updateDevice,
+            ...updateDevice,      
+            editedSerial : tag_td[0].textContent,      
             serial   : tag_td[0].textContent,
             equipo   : tag_td[1].textContent,
             marca    : tag_td[2].textContent,
@@ -103,6 +105,11 @@ export default function Usuarios({setTitle}) {
         console.log(open)
     }
     
+    const deleteRowDevice = (e) => {
+        e.preventDefault();
+
+        console.log("delete ")
+    }
 
     // Eliminar fila (tabla) - Button
     const deleteRow = async (e) =>{
@@ -312,7 +319,8 @@ export default function Usuarios({setTitle}) {
                                 type = "EQUIPOS"                  
                                 rows = {deviceRows}
                                 columns = {columns}    
-                                updateRow = {updateRowDevice}               
+                                updateRow = {updateRowDevice}       
+                                deleteRow = {deleteRowDevice}        
                             />
                         </div>
                         

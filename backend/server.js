@@ -488,16 +488,17 @@ server.post('/verificar-usuario',(req, res) => {
 // ACTUALIZAR EQUIPO
 server.put('/editar-equipo', (req, res) => {
     // Datos del cliente
+    
     const editedSerial = req.body.editedSerial;
     const serial  = req.body.serial;
     const equipo  = req.body.equipo;
     const marca   = req.body.marca;
     const modelo  = req.body.modelo;
     const estatus = req.body.estatus;
-    let almacen   = req.body.almacen;
-    const descrip = req.body.descripcion;
-    let edificio = 0;
-    let piso     = 0;   
+    let   almacen  = req.body.almacen;
+    const descrip  = req.body.descripcion;
+    let   edificio = 0;
+    let   piso     = 0;   
 
     const ubicacion = [
         "DIRECCIÓN",
@@ -524,9 +525,9 @@ server.put('/editar-equipo', (req, res) => {
 
             if (error){
                 console.log(error)
-                res.json({updated: false});
+                res.json({successful_update: false});
             }else{
-                res.json({updated: true});
+                res.json({successful_update: true});
             }
             
         });

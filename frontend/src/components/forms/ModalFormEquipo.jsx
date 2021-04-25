@@ -47,7 +47,18 @@ export default function ModalFormEquipo({open,onCloseModal, updateDevice, setUpd
             
             if (resp.data.isAuth){   
                 if (resp.data.successful_password){
-                    onCloseModal();
+                    
+                    const resp2 = await axios.put('http://localhost:3001/editar-equipo', updateDevice);
+                    const successfulUpdate = resp2.data.successful_update;
+
+                    if (successfulUpdate){
+                      onCloseModal();    
+                    }else {
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Problemas en actualizar",
+                            text: "Probablemente, la estructura (código) de la BD ha cambiado."
+                        });                    }
                 }else{
                     Swal.fire({
                         icon: "warning",
@@ -65,6 +76,11 @@ export default function ModalFormEquipo({open,onCloseModal, updateDevice, setUpd
 
         } catch (error) {
             console.log(error)
+            Swal.fire({
+                icon: "error",
+                title: error,
+                text: "Probablemente, el servidor esté desactivado, o haya problemas internos en el servidor."
+            });
         }
     }
 
@@ -75,7 +91,7 @@ export default function ModalFormEquipo({open,onCloseModal, updateDevice, setUpd
                 <div className="user">
                     <InputDark
                         icon = {<BiIcons.BiBarcodeReader />}
-                        name = "serial"
+                        name = "editedSerial"
                         placeholder = "Serial"
                         defaultValue = {updateDevice.serial}
                         onChange = {handleInput}
