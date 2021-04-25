@@ -45,7 +45,7 @@ export default function ModalFormEquipo({open,onCloseModal, updateDevice, setUpd
             const token = localStorage.getItem('token');
             const resp = await axios.post('http://localhost:3001/verificar-usuario', {token, password});
             
-            if (resp.data.isAuth){                
+            if (resp.data.isAuth){   
                 if (resp.data.successful_password){
                     onCloseModal();
                 }else{

@@ -468,9 +468,9 @@ server.post('/verificar-usuario',(req, res) => {
             // Verificar contraseña
             bcrypt.compare(userPass, authData.userData.password, (error, result) =>{                
                 if (result){
-                    res.json({isAuth: true, succesful_password: true});
+                    res.json({isAuth: true, successful_password: true});
                 }else{
-                    res.json({isAuth: true, succesful_password: false});
+                    res.json({isAuth: true, successful_password: false});
                 }
             });
         }
