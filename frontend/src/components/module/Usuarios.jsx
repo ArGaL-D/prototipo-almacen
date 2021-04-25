@@ -100,9 +100,7 @@ export default function Usuarios({setTitle}) {
 
         });
         // Abrir Modal
-        
         setOpen(true);
-        console.log(open)
     }
     
     // Eliminar fila (Equipo)

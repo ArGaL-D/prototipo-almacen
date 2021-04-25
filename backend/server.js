@@ -546,8 +546,6 @@ server.put('/editar-usuario', (req, res) => {
     const email     = req.body.email;
     const acceso    = req.body.acceso;
 
-    console.log(req.body)
-
     pool.getConnection((err, connection) => {
         if (err) throw err;
 
@@ -556,11 +554,10 @@ server.put('/editar-usuario', (req, res) => {
 
             if (error){
                 console.log(error)
-                res.json({updated_user: false});
+                res.json({successful_update: false});
             }else{
-                res.json({updated_user: true});
-            }
-            
+                res.json({successful_update: true});
+            }            
         });
     });
 

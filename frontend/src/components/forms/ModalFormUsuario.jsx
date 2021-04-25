@@ -28,7 +28,7 @@ export default function ModalFormUsuario({open,onCloseModal, updateUser, setUpda
     const sendingData = async (e) =>{
         e.preventDefault();
 
-        const { value: pass} = await Swal.fire({
+        const { value: password} = await Swal.fire({
             title: 'Contraseña',
             input: 'password',
             inputPlaceholder: 'Ingrese contraseña',
@@ -40,32 +40,27 @@ export default function ModalFormUsuario({open,onCloseModal, updateUser, setUpda
         
         // Verificar password
         try{
-            const data  = {id:updateUser.id, password: pass}
-            const resp1 = await axios.post('http://localhost:3001/usuario-pass',data);
-            const checkPass = resp1.data.succesful_password;
+            const token = localStorage.getItem('token');
+            const resp1 = await axios.post('http://localhost:3001/verificar-usuario', {token, password});
+            
+            if (resp1.data.isAuth){
 
-            if (checkPass){
-                try {                
-                    const userData = Object.assign(updateUser,data);
-                    const resp2 = await axios.put('http://localhost:3001/editar-usuario',userData);
-
-                    const updatedUser = resp2.data.updated_user;
-
-                    if (updatedUser){
+                if (resp1.data.successful_password){                    
+                    const resp2 = await axios.put('http://localhost:3001/editar-usuario', updateUser);
+ 
+                    if (resp2.data.successful_update){
                         onCloseModal();
-                    }else{
+                    }else {
                         Swal.fire({
                             icon: "warning",
-                            title: "AVISO",
-                            text: "Hay problemas en actualizar los datos, probablemente la estructrua de la Base Datos ha cambiado."
-                        });
-                    }
-                } catch (error) {
-                    console.log(error)
+                            title: "Problemas en actualizar",
+                            text: "Probablemente, la estructura (código) de la BD ha cambiado."
+                        });                    }
+                }else{
                     Swal.fire({
-                        icon: "error",
-                        title: `${error}`,
-                        text: "Probablemente, el servidor esté desactivado, o haya problemas internos en el servidor."
+                        icon: "warning",
+                        title: "Contraseña",
+                        text: "Incorrecta."
                     });
                 }
             }else{
