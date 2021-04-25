@@ -1,13 +1,13 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+
 import * as FaIcons from 'react-icons/fa';
 
 import Input from "../field/Input";
 import AuthContext from "../authContext/AuthContext";
 
 import "./styles/Login.css";
-import { useHistory, Redirect } from 'react-router-dom';
-//import { Redirect } from 'react-router-dom';
 
 
 export default function Login() {

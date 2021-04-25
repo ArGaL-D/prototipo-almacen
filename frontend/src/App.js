@@ -1,13 +1,11 @@
-import { useState,useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
-import Error from "./components/module/Error";
-import Login from "./components/module/Login";
-import Page from "./components/Page/Page";
-import ProtectedRoute2 from "./components/access/ProtectedRoute2";
-import Slider from "./components/Slider";
-
 import { AuthProvider } from "./components/authContext/AuthContext.js";
+import ProtectedRoute2 from "./components/access/ProtectedRoute2";
+
+import Error  from "./components/module/Error";
+import Login  from "./components/module/Login";
+import Page   from "./components/Page/Page";
+import Slider from "./components/Slider";
 
 
 function App() {

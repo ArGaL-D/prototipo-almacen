@@ -1,14 +1,14 @@
-import React, {useState, useEffect} from 'react'
+import { useState } from 'react'
 import { withRouter,useRouteMatch,Switch, Route } from 'react-router-dom'
-import Busqueda from '../module/Busqueda';
-import Entrega from '../module/Entrega';
-import Prestamo from '../module/Prestamo';
-import Registro from '../module/Registro';
+import Busqueda   from '../module/Busqueda';
+import Entrega    from '../module/Entrega';
+import Prestamo   from '../module/Prestamo';
+import Registro   from '../module/Registro';
 import Reparacion from '../module/Reparacion';
-import Ubicacion from '../module/Ubicacion';
-import Usuarios from '../module/Usuarios';
-import Navbar from "../Navbar";
-import Sidebar from '../Sidebar';
+import Ubicacion  from '../module/Ubicacion';
+import Usuarios   from '../module/Usuarios';
+import Navbar     from "../Navbar";
+import Sidebar    from '../Sidebar';
 
 import "./Page.css";
 
