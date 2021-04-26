@@ -1,11 +1,12 @@
 .input_field{
     width : 100%;
-    height: clamp(2em, 2vw, 3.5em);
+    height: clamp(2.6em, 3vw, 4em);
 
     display : flex;
     position: relative;
 
     border: 2px solid rgb(187, 196, 204);
+    border-radius: 2px;
     transition: 500ms ease-in;
 
     color: whitesmoke;
@@ -25,7 +26,7 @@
 .input_field .title{    
     position: absolute;
     left: .5em;    
-    top : 27%;
+    top : 35%;
 
     transition: 300ms ease-in-out;
     font-family: 'Roboto', sans-serif;
@@ -60,7 +61,8 @@
 .input_field input:valid ~ .title,
 .input_field input:focus ~ .title,
 .input_field input:hover ~ .title{
-    top: -50%;
+    top: -20%;
     color: lightskyblue;
     font-weight: 700;
+    background: rgba(32, 35, 42, 1);
 }

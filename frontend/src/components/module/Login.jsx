@@ -5,6 +5,7 @@ import axios from 'axios';
 import * as FaIcons from 'react-icons/fa';
 
 import Input from "../field/Input";
+import Button from "../field/Button";
 import AuthContext from "../authContext/AuthContext";
 
 import "./styles/Login.css";
@@ -82,7 +83,9 @@ export default function Login() {
                         </div>
                         : null
                 }   
-                <button>INGRESAR</button>
+                <Button
+                    title = "INGRESAR"
+                />
              </form>
         </div>
     )
