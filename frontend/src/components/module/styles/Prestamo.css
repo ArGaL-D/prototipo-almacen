@@ -120,6 +120,11 @@
     }
     #formPrestamo .input{
         margin: .5em 0 .5em 0;
+        visibility: hidden;
+    }
+    #formPrestamo .input.active{
+        margin: .5em 0 .5em 0;
+        visibility: visible;
     }
     #formPrestamo .selects{
         display: flex;

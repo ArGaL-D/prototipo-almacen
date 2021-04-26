@@ -26,7 +26,7 @@ export default function Prestamo({setTitle}) {
     const [openScanner2,setOpenScaner2] = useState(false);
     const [openModalQr ,setOpenModalQr] = useState(false);
 
-    const [typeForm,setTypeForm] = useState('Aumno');
+    const [typeForm,setTypeForm] = useState('');
 
     const [formData, setFormData] = useState({
         nombre:     "",
@@ -77,6 +77,14 @@ export default function Prestamo({setTitle}) {
         sessionStorage.setItem('currentPage',location.pathname);        
     });
 
+    // Actualizar NOMBRE/CLAVE(BOLETA) después del escaneo
+    useEffect(() => {
+        const inputName  = document.getElementById('input-name');
+        const inputClave = document.getElementById('input-clave');
+
+        inputName.value = formData.nombre;
+        inputClave.value = formData.clave;
+    },[formData]);
 
     //Abrir ventana modal Qr-scanner
     const showModalScanner1 = () =>{
@@ -182,7 +190,7 @@ export default function Prestamo({setTitle}) {
                     />
                 </div>      
                 <h3>{typeForm}</h3>
-                <div className="input">
+                <div className={typeForm.length === 0? "input": "input active"}>
                     <InputDark
                         id = "input-name"
                         name = "nombre"
@@ -190,22 +198,20 @@ export default function Prestamo({setTitle}) {
                         onClick = {showModalScanner1}
                         onChange = {handleText}
                         placeholder = "Nombre"
-                        defaultValue = {formData.nombre}
                         cursorPointer = {true}                        
                     />
                 </div>
-                <div className="input">
+                <div className={typeForm.length === 0? "input": "input active"}>
                     <InputDark
                         id = 'input-clave'
                         name = 'clave'
                         icon = {<FaIcons.FaIdCardAlt/>}
                         onChange = {handleText}                        
                         placeholder = {typeForm === "Alumno" ? "Boleta" : "Clave" }                        
-                        defaultValue = {formData.clave}
                     />
                 </div>
                 <h3>Equipo</h3>
-                <div className="input">
+                <div className={typeForm.length === 0? "input": "input active"}>
                     <InputDark
                         id = 'input-serial'
                         name = 'serial'
@@ -217,7 +223,7 @@ export default function Prestamo({setTitle}) {
                         cursorPointer = {true}
                     />
                 </div>
-                <div className="input">
+                <div className={typeForm.length === 0? "input": "input active"}>
                     <InputDark
                         id = 'input-equipo'
                         name = 'equipo'
@@ -228,7 +234,7 @@ export default function Prestamo({setTitle}) {
                     />
                 </div>
 
-                <div className="input">
+                <div className={typeForm.length === 0? "input": "input active"}>
                     <InputDark
                         id = 'input-date'
                         name = 'fecha'
