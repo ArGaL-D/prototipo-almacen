@@ -2,14 +2,16 @@
     width : 5em;
     height: 100%;
 
+    position: fixed;
     
     z-index: 20;
     background: #091738;    
 
     transform: translateX(-100%);
-    transition: 300ms ease-in-out;    
+    transition: 300ms ease-in-out; 
 }
 .sidebar.active{
+    position: relative;
     transform: translateX(0%);
 }
 
@@ -64,8 +66,13 @@
 }
 
 
-/* FOR DESKTOPS */
+@media screen and (max-width: 800px) {
+    .sidebar.active{
+        position: fixed;
+    }
+}
 
+/* FOR DESKTOPS */
 @media screen and (min-height: 800px) {
     .sidebar ul li{
         height: 8%;

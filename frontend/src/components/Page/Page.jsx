@@ -30,53 +30,50 @@ function Page() {
             title={title}
             hiddenSidebar = {showSidebar}
         />
+
         <div className="container">
-
-          <Sidebar showSidebar={sidebar} />
-          
-              <Switch>
-                  <Route exact path={path}/>
-                  <Route 
-                      path={`${path}/buscar`}     
-                      children={<Busqueda   
-                      setTitle={setTitle}/>}
-                  />              
-                  <Route 
-                      path={`${path}/registro`}   
-                      children={<Registro   
-                      setTitle={setTitle}/>}
-                  />
-                  <Route 
-                      path={`${path}/prestamo`}   
-                      children={<Prestamo   
-                      setTitle={setTitle}/>}
-                  />
-                  <Route 
-                      path={`${path}/entrega`}    
-                      children={<Entrega    
-                      setTitle={setTitle}/>}
-                  />              
-                  <Route 
-                      path={`${path}/ubicacion`}  
-                      children={<Ubicacion  
-                      setTitle={setTitle}/>}
-                  />
-                  <Route 
-                      path={`${path}/reparacion`} 
-                      children={<Reparacion 
-                      setTitle={setTitle}/>}
-                  />
-                  <Route 
-                      path={`${path}/usuarios`}   
-                      children={<Usuarios   
-                      setTitle={setTitle}/>}
-                  />
-                  <Route path="/*">
-                        <Error />
-                  </Route>
-              </Switch>
-          
-
+          <Sidebar showSidebar={sidebar} />          
+          <Switch>
+              <Route exact path={path}/>
+              <Route 
+                  path={`${path}/buscar`}     
+                  children={<Busqueda   
+                  setTitle={setTitle}/>}
+              />              
+              <Route 
+                  path={`${path}/registro`}   
+                  children={<Registro   
+                  setTitle={setTitle}/>}
+              />
+              <Route 
+                  path={`${path}/prestamo`}   
+                  children={<Prestamo   
+                  setTitle={setTitle}/>}
+              />
+              <Route 
+                  path={`${path}/entrega`}    
+                  children={<Entrega    
+                  setTitle={setTitle}/>}
+              />              
+              <Route 
+                  path={`${path}/ubicacion`}  
+                  children={<Ubicacion  
+                  setTitle={setTitle}/>}
+              />
+              <Route 
+                  path={`${path}/reparacion`} 
+                  children={<Reparacion 
+                  setTitle={setTitle}/>}
+              />
+              <Route 
+                  path={`${path}/usuarios`}   
+                  children={<Usuarios   
+                  setTitle={setTitle}/>}
+              />
+              <Route path="/*">
+                    <Error />
+              </Route>
+          </Switch>
         </div>
     </div>
   )

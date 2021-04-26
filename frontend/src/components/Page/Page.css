@@ -11,8 +11,8 @@
 }
 
 .page .container{
+    
     height: calc(100vh - 4em);
-
     display: flex;
 }
 

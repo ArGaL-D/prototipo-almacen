@@ -1,5 +1,6 @@
 .module-ubicacion{
-    width : calc(100vw - 5em);
+    /*width : calc(100vw - 5em);*/
+    width : 100%;
     height: 100%;
 
     justify-content: center;
