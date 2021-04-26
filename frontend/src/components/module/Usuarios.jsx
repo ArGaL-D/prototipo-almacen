@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Switch, Route, useRouteMatch, Link, useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from 'axios';
@@ -18,90 +18,90 @@ import * as MdIcons from "react-icons/md";
 import "./styles/Usuarios.css";
 
 
-export default function Usuarios({setTitle}) {
+export default function Usuarios({ setTitle }) {
 
-    let {path} = useRouteMatch();
+    let { path } = useRouteMatch();
     const location = useLocation();
 
     const [deviceRows, setDeviceRows] = useState([]);
     const [userRows, setUserRows] = useState([]);
-    const [open,setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
 
-    const [updateUser,setUpdateUser] = useState({
-        id      : "",
-        usuario : "",
-        nombre  :  "",
+    const [updateUser, setUpdateUser] = useState({
+        id: "",
+        usuario: "",
+        nombre: "",
         apellido: "",
-        email   : "",
-        acceso  : "No"
+        email: "",
+        acceso: "No"
     });
 
     const [updateDevice, setUpdateDevice] = useState({
-        editedSerial : "",
-        serial      : "",
-        equipo      : "",
-        marca       : "",
-        modelo      : "",
-        estatus     : "",
-        descripcion : "",
-        almacen     : "",
-        edificio    : "",
-        piso        : ""
+        editedSerial: "",
+        serial: "",
+        equipo: "",
+        marca: "",
+        modelo: "",
+        estatus: "",
+        descripcion: "",
+        almacen: "",
+        edificio: "",
+        piso: ""
     });
 
     const columns = [
-        "Serial", "Equipo","Marca","Modelo","Estatus",
-        "Desc", "Almacén","Edificio","Piso",
-        "Editar","Eliminar"        
+        "Serial", "Equipo", "Marca", "Modelo", "Estatus",
+        "Desc", "Almacén", "Edificio", "Piso",
+        "Editar", "Eliminar"
     ];
-    
+
     const userComlumns = [
         "ID", "USUARIO", "NOMBRE(S)", "APELLIDO(S)",
-        "EMAIL", "ACCESO", "CONTRASEÑA","EDITAR", "ELIMINAR"
+        "EMAIL", "ACCESO", "CONTRASEÑA", "EDITAR", "ELIMINAR"
     ]
 
 
     const onCloseModal = () => setOpen(false);
 
     // Actualizar fila(tabla) - usuario - Button
-    const updateRow = (e) =>{
+    const updateRow = (e) => {
         const tag_td = e.currentTarget.parentNode.parentNode.childNodes;
 
         setUpdateUser({
-            ...updateUser,            
-            id      : tag_td[0].textContent,
-            usuario : tag_td[1].textContent,
-            nombre  : tag_td[2].textContent,
+            ...updateUser,
+            id: tag_td[0].textContent,
+            usuario: tag_td[1].textContent,
+            nombre: tag_td[2].textContent,
             apellido: tag_td[3].textContent,
-            email   : tag_td[4].textContent,
-            acceso  : tag_td[5].textContent          
+            email: tag_td[4].textContent,
+            acceso: tag_td[5].textContent
         });
         // Abrir Modal
         setOpen(true);
     }
 
     // Actualizar fila(tabla) - equipo - Button 
-    const updateRowDevice = (e) =>{        
-        
+    const updateRowDevice = (e) => {
+
         const tag_td = e.currentTarget.parentNode.parentNode.childNodes;
 
         setUpdateDevice({
-            ...updateDevice,      
-            editedSerial : tag_td[0].textContent,      
-            serial   : tag_td[0].textContent,
-            equipo   : tag_td[1].textContent,
-            marca    : tag_td[2].textContent,
-            modelo   : tag_td[3].textContent,
-            estatus  : tag_td[4].textContent,
-            almacen  : tag_td[6].textContent,  
-            edificio : tag_td[7].textContent,  
-            piso     : tag_td[8].textContent,  
+            ...updateDevice,
+            editedSerial: tag_td[0].textContent,
+            serial: tag_td[0].textContent,
+            equipo: tag_td[1].textContent,
+            marca: tag_td[2].textContent,
+            modelo: tag_td[3].textContent,
+            estatus: tag_td[4].textContent,
+            almacen: tag_td[6].textContent,
+            edificio: tag_td[7].textContent,
+            piso: tag_td[8].textContent,
 
         });
         // Abrir Modal
         setOpen(true);
     }
-    
+
     // Eliminar fila (Equipo)
     const deleteRowDevice = async (e) => {
         e.preventDefault();
@@ -110,11 +110,11 @@ export default function Usuarios({setTitle}) {
         const tag_td = e.currentTarget.parentNode.parentNode.childNodes;
 
         setUpdateDevice({
-            ...updateDevice,      
-            serial : tag_td[0].textContent,
-        })   
+            ...updateDevice,
+            serial: tag_td[0].textContent,
+        })
 
-        const { value: password} = await Swal.fire({
+        const { value: password } = await Swal.fire({
             title: 'Contraseña',
             input: 'password',
             inputPlaceholder: 'Ingrese contraseña',
@@ -126,27 +126,27 @@ export default function Usuarios({setTitle}) {
         // Verificar password
         try {
             const token = localStorage.getItem('token');
-            const resp1 = await axios.post('http://localhost:3001/verificar-usuario', {token, password});
-            
-            if (resp1.data.isAuth){
-                if (resp1.data.successful_password){
+            const resp1 = await axios.post('http://localhost:3001/verificar-usuario', { token, password });
+
+            if (resp1.data.isAuth) {
+                if (resp1.data.successful_password) {
                     const resp2 = await axios.delete(`http://localhost:3001/delete-equipo/${updateDevice.serial}`);
 
-                    if(resp2.data.successful_delete === false){
+                    if (resp2.data.successful_delete === false) {
                         Swal.fire({
                             icon: "warning",
                             title: "Problemas en eliminar",
                             text: "Probablemente, la estructura (código) de la BD ha cambiado."
-                        });  
+                        });
                     }
-                }else{
+                } else {
                     Swal.fire({
                         icon: "warning",
                         title: "Contraseña",
                         text: "Incorrecta."
                     });
                 }
-            }else{
+            } else {
                 Swal.fire({
                     icon: "error",
                     title: "Error",
@@ -164,12 +164,12 @@ export default function Usuarios({setTitle}) {
     }
 
     // Eliminar fila (Usuario) - Button
-    const deleteRowUser = async (e) =>{
+    const deleteRowUser = async (e) => {
         e.preventDefault();
         // Obtener ID
         const tag_td = e.currentTarget.parentNode.parentNode.childNodes;
         const idUser = tag_td[0].textContent;
-        
+
         // Confirmar antes de eliminar
         const result = await Swal.fire({
             title: '¿Estás seguro?',
@@ -179,11 +179,11 @@ export default function Usuarios({setTitle}) {
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Si, eliminarlo!',
             cancelButtonColor: '#d33'
-           
+
         })
 
-        if (result.isConfirmed){
-            const { value: password} = await Swal.fire({
+        if (result.isConfirmed) {
+            const { value: password } = await Swal.fire({
                 title: 'Contraseña',
                 input: 'password',
                 inputPlaceholder: 'Ingrese contraseña',
@@ -195,22 +195,22 @@ export default function Usuarios({setTitle}) {
 
             try {
                 const token = localStorage.getItem('token');
-                const resp1 = await axios.post('http://localhost:3001/verificar-usuario', {token, password});
+                const resp1 = await axios.post('http://localhost:3001/verificar-usuario', { token, password });
 
-                if (resp1.data.isAuth){   
-                    if (resp1.data.successful_password){
+                if (resp1.data.isAuth) {
+                    if (resp1.data.successful_password) {
 
-                        const resp2 = await axios.delete(`http://localhost:3001/delete-usuario/${idUser}`);                
-                        
-                        if (resp2.data.deleted_user === false){
+                        const resp2 = await axios.delete(`http://localhost:3001/delete-usuario/${idUser}`);
+
+                        if (resp2.data.deleted_user === false) {
                             Swal.fire({
                                 icon: "warning",
                                 title: "Problemas en eliminar",
                                 text: "Probablemente, la estructura (código) de la BD ha cambiado."
-                            });  
+                            });
                         }
 
-                    }else{
+                    } else {
                         Swal.fire({
                             icon: "warning",
                             title: "Contraseña",
@@ -235,42 +235,95 @@ export default function Usuarios({setTitle}) {
         }
     }
 
+    // Actualizar contraseña - USUARIO
+    const updatePass = async (e) => {
+        e.preventDefault();
+
+        const { value: formValues } = await Swal.fire({
+            title: 'Contraseña Nueva',
+            html:
+                '<input id="swal-input1" type="password" class="swal2-input">' +
+                '<lbel>Repetir Contraseña</label><input id="swal-input2" type="password" class="swal2-input">',
+            focusConfirm: false,
+            cancelButtonColor: '#d33',
+            showCancelButton: true,
+            
+            preConfirm: () => {
+                return [
+                    document.getElementById('swal-input1').value,
+                    document.getElementById('swal-input2').value
+                ]
+            }
+        })
+
+        if (formValues) {
+            // Verificar el nuevo password
+            if (formValues[0] === formValues[1]){
+                // Ingresar el password actual
+                const { value: password } = await Swal.fire({
+                    title: 'Ingrese su contraseña',
+                    input: 'password',
+                    
+                    inputPlaceholder: 'Ingrese contraseña',
+                    cancelButtonColor: '#d33',
+                    showCancelButton: true,
+                    inputAttributes: {
+                      autocapitalize: 'off',
+                      autocorrect: 'off'
+                    }
+                  })
+                  // Validar password actual del usuario
+                  const token = localStorage.getItem('token');
+                  const resp1 = await axios.put('http://localhost:3001/editar-pass',{token,password, newPass: formValues[0]}); 
 
 
-// -- - - --- - -- - -- -- --- --- --- -- 
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Las Contraseñas',
+                    text: 'No coinciden.'
+                  })
+            }
+        }
+    }
+
+
+
+
+    // -- - - --- - -- - -- -- --- --- --- -- 
 
     useEffect(() => {
-        setTitle('Usuarios');    
-        sessionStorage.setItem('page','usuarios');
+        setTitle('Usuarios');
+        sessionStorage.setItem('page', 'usuarios');
     })
 
     // Obtener los datos (filas) de los equipos
-    useEffect(() =>{
+    useEffect(() => {
 
         axios.get('http://localhost:3001/equipos')
-             .then((resp)=>{
+            .then((resp) => {
                 setDeviceRows(resp.data);
-             })
-             .catch((error)=>{
-                 console.log(error)
-             })
-    },[]);
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }, []);
 
     // Obtener los datos (filas) de los usuarios
-    useEffect(() =>{
+    useEffect(() => {
 
         axios.get('http://localhost:3001/usuarios')
-             .then((resp)=>{
+            .then((resp) => {
                 setUserRows(resp.data);
-             })
-             .catch((error)=>{
-                 console.log(error)
-             })
-    },[]);
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }, []);
 
     // Guardar la ruta actual del componente
-    useEffect(()=> {
-        sessionStorage.setItem('currentPage',location.pathname);        
+    useEffect(() => {
+        sessionStorage.setItem('currentPage', location.pathname);
     });
 
     return (
@@ -280,48 +333,48 @@ export default function Usuarios({setTitle}) {
                 <div className="rectangle">
                     <Link to={`${path}`}>
                         <Rectangle
-                            icon = {<FaIcons.FaChartPie />}
-                            title = "Gráfica"
-                            content = "Información"
+                            icon={<FaIcons.FaChartPie />}
+                            title="Gráfica"
+                            content="Información"
                         />
                     </Link>
-                </div>    
+                </div>
                 <div className="rectangle">
                     <Link to={`${path}/equipos`}>
                         <Rectangle
-                            icon = {<MdIcons.MdImportantDevices />}
-                            title = "Equipos"
-                            content = "Editar los equipos"
+                            icon={<MdIcons.MdImportantDevices />}
+                            title="Equipos"
+                            content="Editar los equipos"
                         />
                     </Link>
-                </div>        
+                </div>
                 <div className="rectangle">
                     <Link to={`${path}/crear-usuario`}>
                         <Rectangle
-                            icon = {<IoIcons.IoPersonAdd />}
-                            title = "Crear suario"
-                            content = "Total de usuarios"
+                            icon={<IoIcons.IoPersonAdd />}
+                            title="Crear suario"
+                            content="Total de usuarios"
                         />
                     </Link>
                 </div>
                 <div className="rectangle">
                     <Link to={`${path}/usuarios`}>
                         <Rectangle
-                            icon = {<FaIcons.FaUserFriends />}
-                            title = "Usuarios"
-                            content = "Total de usuarios"
+                            icon={<FaIcons.FaUserFriends />}
+                            title="Usuarios"
+                            content="Total de usuarios"
                         />
                     </Link>
                 </div>
             </div>
 
-            
+
             {/* CONTENEDOR 2 */}
-            <div className="container_2">                
+            <div className="container_2">
                 <Switch>
                     <Route path={`${path}`} exact>
                         <div className="donut">
-                            <PieChart/>
+                            <PieChart />
                         </div>
                     </Route>
                     <Route path={`${path}/crear-usuario`}>
@@ -337,40 +390,41 @@ export default function Usuarios({setTitle}) {
                     <Route path={`${path}/usuarios`}>
                         <div className="table">
                             <Datatable
-                                type = "USUARIOS"
-                                rows = {userRows}
-                                columns = {userComlumns}
-                                updateRow = {updateRow}
-                                deleteRow ={deleteRowUser}
+                                type="USUARIOS"
+                                rows={userRows}
+                                columns={userComlumns}
+                                updateRow={updateRow}
+                                deleteRow={deleteRowUser}
+                                updatePass={updatePass}
                             />
-                        </div>   
+                        </div>
 
                         <ModalFormUsuario
                             open={open}
                             onCloseModal={onCloseModal}
-                            updateUser = {updateUser}
-                            setUpdateUser = {setUpdateUser}                            
-                        />                
+                            updateUser={updateUser}
+                            setUpdateUser={setUpdateUser}
+                        />
                     </Route>
 
                     <Route path={`${path}/equipos`}>
                         <div className="table">
-                            <Datatable     
-                                type = "EQUIPOS"                  
-                                rows = {deviceRows}
-                                columns = {columns}    
-                                updateRow = {updateRowDevice}       
-                                deleteRow = {deleteRowDevice}        
+                            <Datatable
+                                type="EQUIPOS"
+                                rows={deviceRows}
+                                columns={columns}
+                                updateRow={updateRowDevice}
+                                deleteRow={deleteRowDevice}
                             />
                         </div>
-                        
+
                         <ModalFormEquipo
                             open={open}
                             onCloseModal={onCloseModal}
-                            updateDevice = {updateDevice}
-                            setUpdateDevice = {setUpdateDevice} 
+                            updateDevice={updateDevice}
+                            setUpdateDevice={setUpdateDevice}
                         />
-                        
+
                     </Route>
                     <Route path={`${path}/*`}>
                         <div className="table">
