@@ -2,7 +2,7 @@
     width : 100vw;
     height: 100vh;
 
-    background: lightslategrey;
+    background: #ebedef;
 }
 
 .slider header{
@@ -13,22 +13,49 @@
     align-items: center;
     justify-content: right;
 
-    background: lightyellow;
+    background:#20232a;
+}
+
+/* BUTTON */
+header button{
+    color: lightskyblue;
+    background: transparent;
+
+    border: 1px solid lightskyblue;
+    border-radius: 3px;
+    outline-style: none;
+    
+    padding: .3em 1.5em .3em 1.5em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+
+    transition: 100ms ease-in;
+    position: absolute;
+    right: 1.5em;
+}
+
+/* ANIMACIONES */
+header button:active{
+    color: #20232a;
+}
+header button:hover{  
+    box-shadow: 0px 0px 8px -1px rgba(128, 191, 216, 0.75);
 }
 
 .content{
-    width : 100%;
+    width : 100vw;
     height: calc(100% - 4em);
     display: flex;
     align-items: center;
 }
 
 .content .carousel{
-    width: 70%;
-    height: auto;
+    width : 85%;
+    height: 100%;
     margin: auto;
 
-    background: rgb(77, 46, 134);
+    display: flex;
+    align-items: center;
 }
 
 

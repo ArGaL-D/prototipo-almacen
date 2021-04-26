@@ -3,7 +3,7 @@ import { Carousel } from "react-bootstrap";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import image1 from "../imgs/edif01.jpg";
+import image1 from "../imgs/background.jpg";
 import image2 from "../imgs/edif02.jpg";
 import image3 from "../imgs/edif03.jpg";
 
@@ -36,7 +36,7 @@ export default function ControlledCarousel() {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src={image3}
+            src={image1}
             alt="Third slide"
           />
           <Carousel.Caption>
