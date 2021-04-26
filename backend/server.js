@@ -584,26 +584,27 @@ server.put('/editar-usuario', (req, res) => {
 
 // EDITAR Contraseña
 server.put('/editar-pass', (req, res) => {
-    const newPass  = req.body.newPass;
-    const password = req.body.password;
-    const token    = req.body.token;
+    const newPass = req.body.newPass;
+    const idUser  = req.body.idUser;
 
-    /*
-    pool.getConnection((err, connection) => {
+    bcrypt.hash(newPass,saltRounds, (err, hashPass) => {
         if (err) throw err;
 
-        connection.query('call sp_updatePass(?);', [password], (error, results) => {
-            connection.release();
-
-            if (error){
-                console.log(error)
-                res.json({successful_update: false});
-            }else{
-                res.json({successful_update: true});
-            }            
+        pool.getConnection((err, connection) => {
+            if (err) throw err;
+    
+            connection.query('call sp_updatePass(?,?);', [hashPass, idUser], (error, results) => {
+                connection.release();
+    
+                if (error){
+                    console.log(error)
+                    res.json({successful_update: false});
+                }else{
+                    res.json({successful_update: true});
+                }            
+            });
         });
-    });
-    */
+    });    
    console.log(req.body)
 });
 

@@ -239,6 +239,10 @@ export default function Usuarios({ setTitle }) {
     const updatePass = async (e) => {
         e.preventDefault();
 
+        // Id del usuario para actualizar pass
+        const tag_td = e.currentTarget.parentNode.parentNode.childNodes;
+        const idUser = tag_td[0].textContent;
+
         const { value: formValues } = await Swal.fire({
             title: 'Contraseña Nueva',
             html:
@@ -274,8 +278,32 @@ export default function Usuarios({ setTitle }) {
                   })
                   // Validar password actual del usuario
                   const token = localStorage.getItem('token');
-                  const resp1 = await axios.put('http://localhost:3001/editar-pass',{token,password, newPass: formValues[0]}); 
+                  const resp1 = await axios.post('http://localhost:3001/verificar-usuario', { token, password });                  
+                
+                  if (resp1.data.isAuth){
+                    if (resp1.data.successful_password) {
 
+                        const newPass = formValues[0];
+                        const resp2 = await axios.put('http://localhost:3001/editar-pass',{newPass, idUser}); 
+
+                        if (resp2.data.successful_update === false) {
+                            Swal.fire({
+                                icon: "warning",
+                                title: "Problemas en eliminar",
+                                text: "Probablemente, la estructura (código) de la BD ha cambiado."
+                            });
+                        }
+
+                    } else {
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Contraseña",
+                            text: "Incorrecta."
+                        });
+                    }
+                  }else{
+
+                  }
 
             }else{
                 Swal.fire({
