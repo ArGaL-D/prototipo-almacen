@@ -57,7 +57,7 @@ export default function Usuarios({setTitle}) {
     
     const userComlumns = [
         "ID", "USUARIO", "NOMBRE(S)", "APELLIDO(S)",
-        "EMAIL", "ACCESO", "EDITAR", "ELIMINAR"
+        "EMAIL", "ACCESO", "CONTRASEÑA","EDITAR", "ELIMINAR"
     ]
 
 

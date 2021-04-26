@@ -9,7 +9,7 @@ import * as AiIcons   from "react-icons/ai";
 import "./styles/Datatable.css";
 
 
-export default function Datatable({columns, rows ,type, onOpenModal,updateRow,deleteRow}) {
+export default function Datatable({columns, rows ,type, onOpenModal,updateRow,deleteRow, updatePass}) {
 
 
     return (
@@ -128,6 +128,11 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
                             <td>{row.apellido}</td>
                             <td>{row.email}</td>
                             <td>{row.acceso}</td>
+                            <td>
+                                <div className="td-descrip" style={{cursor: 'pointer'}} onClick={updatePass} >
+                                    {<ImIcons.ImKey/>}                                    
+                                </div>                                    
+                            </td>
                             <td>
                                 <div className="td-descrip" style={{cursor: 'pointer'}} onClick={updateRow} >
                                     {<FaIcons.FaUserEdit/>}                                    
