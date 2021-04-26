@@ -15,3 +15,25 @@
 
     background: lightyellow;
 }
+
+.content{
+    width : 100%;
+    height: calc(100% - 4em);
+    display: flex;
+    align-items: center;
+}
+
+.content .carousel{
+    width: 70%;
+    height: auto;
+    margin: auto;
+
+    background: rgb(77, 46, 134);
+}
+
+
+@media screen and (max-width: 1000px) {
+    .content .carousel{
+        width: 99%;
+    }
+}
