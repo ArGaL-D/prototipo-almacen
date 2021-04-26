@@ -266,8 +266,7 @@ export default function Usuarios({ setTitle }) {
                 // Ingresar el password actual
                 const { value: password } = await Swal.fire({
                     title: 'Ingrese su contraseña',
-                    input: 'password',
-                    
+                    input: 'password',                    
                     inputPlaceholder: 'Ingrese contraseña',
                     cancelButtonColor: '#d33',
                     showCancelButton: true,
@@ -278,31 +277,44 @@ export default function Usuarios({ setTitle }) {
                   })
                   // Validar password actual del usuario
                   const token = localStorage.getItem('token');
-                  const resp1 = await axios.post('http://localhost:3001/verificar-usuario', { token, password });                  
-                
-                  if (resp1.data.isAuth){
-                    if (resp1.data.successful_password) {
-
-                        const newPass = formValues[0];
-                        const resp2 = await axios.put('http://localhost:3001/editar-pass',{newPass, idUser}); 
-
-                        if (resp2.data.successful_update === false) {
+                  try {
+                        const resp1 = await axios.post('http://localhost:3001/verificar-usuario', { token, password });                  
+                    
+                        if (resp1.data.isAuth){
+                        if (resp1.data.successful_password) {
+    
+                            const newPass = formValues[0];
+                            const resp2 = await axios.put('http://localhost:3001/editar-pass', { newPass, idUser } ); 
+    
+                            if (resp2.data.successful_update === false) {
+                                Swal.fire({
+                                    icon: "warning",
+                                    title: "Problemas en actualizar",
+                                    text: "Probablemente, la estructura (código) de la BD ha cambiado."
+                                });
+                            }
+    
+                        } else {
                             Swal.fire({
                                 icon: "warning",
-                                title: "Problemas en eliminar",
-                                text: "Probablemente, la estructura (código) de la BD ha cambiado."
+                                title: "Contraseña",
+                                text: "Incorrecta."
                             });
                         }
-
-                    } else {
-                        Swal.fire({
-                            icon: "warning",
-                            title: "Contraseña",
-                            text: "Incorrecta."
-                        });
-                    }
-                  }else{
-
+                        }else{
+                            Swal.fire({
+                                icon: "error",
+                                title: "Error",
+                                text: "Hay problemas de autenticación de usuario."
+                            });
+                        }
+                  } catch (error) {
+                      console.log(error)
+                      Swal.fire({
+                        icon: "error",
+                        title: error,
+                        text: "Probablemente, el servidor esté desactivado, o haya problemas internos en el servidor."
+                    });
                   }
 
             }else{
