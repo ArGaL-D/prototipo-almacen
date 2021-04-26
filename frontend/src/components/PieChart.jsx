@@ -38,9 +38,9 @@ export default function PieChart() {
           label: 'EQUIPOS',
           data: [equipos.disponibles,equipos.prestados, equipos.reparacion],
           backgroundColor: [
-            'rgb(64, 192, 146)',
-            'rgb(196, 69, 106)',
-            'rgb(69, 106, 196)'
+            'rgb(64, 192, 146)',           
+            'rgb(69, 106, 196)',
+            'rgb(196, 69, 106)'
           ],    
           responsive: true,
           borderWidth: 2,

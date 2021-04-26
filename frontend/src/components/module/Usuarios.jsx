@@ -246,35 +246,27 @@ export default function Usuarios({setTitle}) {
 
     // Obtener los datos (filas) de los equipos
     useEffect(() =>{
-        let unmounted = false;
 
         axios.get('http://localhost:3001/equipos')
              .then((resp)=>{
-                 if(!unmounted){
-                     setDeviceRows(resp.data);
-                 }
+                setDeviceRows(resp.data);
              })
              .catch((error)=>{
                  console.log(error)
              })
-        return () => { unmounted = true; }
-    });
+    },[]);
 
     // Obtener los datos (filas) de los usuarios
     useEffect(() =>{
-        let unmounted = false;
 
         axios.get('http://localhost:3001/usuarios')
              .then((resp)=>{
-                 if(!unmounted){
-                     setUserRows(resp.data);
-                 }
+                setUserRows(resp.data);
              })
              .catch((error)=>{
                  console.log(error)
              })
-        return () => { unmounted = true; }
-    });
+    },[]);
 
     // Guardar la ruta actual del componente
     useEffect(()=> {

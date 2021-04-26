@@ -16,8 +16,6 @@
     justify-content: center;    
 
     transition: 300ms ease-in-out;
-    /*transition-delay: .5s;*/
-    /* visibility: hidden; */
 }
  /* Animación del toolTip - mover hacia la derecha */
 li:hover .boxTooltip{
