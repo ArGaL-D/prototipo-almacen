@@ -56,11 +56,13 @@ header button:hover{
 
     display: flex;
     align-items: center;
+
+    overflow: auto;
 }
 
 
 @media screen and (max-width: 1000px) {
     .content .carousel{
-        width: 99%;
+        width: 100%;
     }
 }

@@ -82,10 +82,12 @@ export default function Login() {
                             <span>Verifique usuario y/o contraseña</span>
                         </div>
                         : null
-                }   
-                <Button
-                    title = "INGRESAR"
-                />
+                } 
+                <div className="button">
+                    <Button
+                        title = "INGRESAR"
+                    />
+                </div>  
              </form>
         </div>
     )
