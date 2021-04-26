@@ -17,12 +17,12 @@ export default function Sidebar(props) {
         // Pintar tag (a) al dar click
         const customizeTagA = (e) => {
             const tag_a = e.currentTarget;
-            
 
             li_tags.forEach( li => {
                 if (li.firstChild === tag_a){
                     tag_a.style.background = 'rgb(250, 210, 135)';
                     tag_a.firstChild.style.color = '#20232a';
+                    localStorage.setItem('currentTag',li.className);
                 }else{
                     li.firstChild.style.background = '';
                     li.firstChild.firstChild.style.color = '';
@@ -33,6 +33,11 @@ export default function Sidebar(props) {
 
         li_tags.forEach( li => {
             const tag_a = li.firstChild;
+            // Mantener el fondo, después de haber recargado la pág.
+            if (li.className === localStorage.getItem('currentTag')){
+                tag_a.style.background = 'rgb(250, 210, 135)';
+                tag_a.firstChild.style.color = '#20232a';     
+            }
             tag_a.addEventListener('click',customizeTagA);
         });
 
