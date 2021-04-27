@@ -1,4 +1,4 @@
-.navbar{
+.nav-bar{
     width: 100vw;
     height: 4em;
 
@@ -13,7 +13,7 @@
 }
 
 /* ICON - NAVBAR */
-.navbar .icon{
+.nav-bar .icon{
     width: 5em;
     height: 100%;
 
@@ -26,19 +26,19 @@
 }
 
 
-.navbar .icon:hover{
+.nav-bar .icon:hover{
     color: lightskyblue;
 }
 
 /* TITLE - NAVBAR */
-.navbar .title{    
+.nav-bar .title{    
     font-size: clamp(1rem, 2vw, 1.5rem);
     font-weight: 700;
 }
 
 
 /* BUTTON */
-.navbar button{
+.nav-bar button{
     color: lightskyblue;
     background: transparent;
 
@@ -56,11 +56,11 @@
 }
 
 /* ANIMACIONES */
-.navbar button:active{
+.nav-bar button:active{
     color: #20232a;
     background: rgb(117, 184, 226);
 }
-.navbar button:hover{  
+.nav-bar button:hover{  
     box-shadow: 0px 0px 8px -1px rgba(128, 191, 216, 0.75);
 }
 

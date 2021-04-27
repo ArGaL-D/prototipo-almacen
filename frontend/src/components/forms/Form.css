@@ -62,7 +62,7 @@
 }
 
 #form h3{
-    font-size: 1rem;
+    font-size: .9rem;
     font-family: 'Roboto', sans-serif;
     margin-left: 1rem;
 }
@@ -76,6 +76,29 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.subtitle_reporte{
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.inputs_reportes{
+    display: flex;
+}
+.inputs_reportes .input{
+    width: 99%;
+}
+.inputs_reportes .input.equipo{
+    margin-left: 1em;
+}
+.select_reporte{
+    display: flex;
+}
+.select_reporte .select{
+    width: 99%;
+}
+.select_reporte .select.etapa{
+    margin-left: 1em;
+}
 
 
 /* MÓDULO USUARIOS - CREAR USUARIO - */
@@ -108,9 +131,6 @@
     #form{
         width: 100%;
     }
-    #form .input{
-        
-    }
 
     #form .selects{
         flex-direction: column;
@@ -124,6 +144,20 @@
         width: 90%;
         margin: 0 auto 0 auto;
     }
+
+    /* MÓDULO - REPARACIÓN */
+    .form_rep{
+        overflow: auto;
+    }
+    .inputs_reportes{
+        flex-direction: column;
+    }
+    .inputs_reportes .input{
+        width: 100%;
+    }
+    .inputs_reportes .input.equipo{
+        margin: 1em 0 0 0;
+    }
 }
 
 @media screen and (orientation: landscape) and (max-height:610px) {
@@ -135,5 +169,18 @@
     }
     #form h3{
         margin-left: 40%;
+    }
+    /* MÓDULO - REPARACIÓN */
+    .inputs_reportes{
+        flex-direction: column;
+    }
+    .form_rep .input{
+        margin: 1em 0;
+    }
+    .inputs_reportes .input{
+        width: 100%;
+    }
+    .inputs_reportes .input.equipo{
+        margin: 1em 0 0 0;
     }
 }

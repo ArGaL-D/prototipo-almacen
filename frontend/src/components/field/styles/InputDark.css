@@ -1,11 +1,10 @@
 .input_dark{
     width : 99.5%;
-    height: clamp(2em, 2vw, 3.5em);
+    height: clamp(2.5em, 3vw, 4em);
 
     display : flex;
     position: relative;
-
-    border: 2px solid #747272;
+    
     border-radius: 3px;
     transition: 500ms ease-in;
 
@@ -15,29 +14,30 @@
 /* ICON */
 .input_dark .icon{
     width: 15%;
-    color:rgb(133, 171, 221);
+    color:#cacaca;
     
-    background: transparent;
     background: #20232a;
-
+    
     display: flex;
     align-items: center;
     justify-content: center;
 
+    border: 2px solid #20232a;
     font-size: 1.2rem;
+    transition: 300ms;
 }
 
 /* TITLE */
 .input_dark .title{    
     position: absolute;
-    left: .5em;    
-    top : 27%;
+    left: 1em;    
+    top : 25%;
 
-    transition: 300ms ease-in-out;
+    transition : 300ms ease-in-out;
     font-family: 'Roboto', sans-serif;
     font-weight: 600;
-    font-size: 14px;
-    color:rgb(133, 171, 221);
+    font-size  : .9rem;
+    color:#d4d4d4;
 }
 /* Sólo para input-dates */
 .input_dark.active .title{
@@ -55,33 +55,45 @@
 
     padding-left: 10px;
     background: transparent;
+
+    border: 2px solid #cacaca;
+    border-right: 0;
+
+    font-size: .9rem;
+    transition: 300ms;
 }
 
 /* EFECTOS  */
-.input_dark:hover{
-    border: 2px solid #20232a;
+.input_dark input:valid, 
+.input_dark input:focus, 
+.input_dark input:hover{
+   border: 2px solid #20232a;
+   border-right: 0;
 }
 
 .input_dark input:valid ~ .icon,
 .input_dark input:focus ~ .icon,
 .input_dark input:hover ~ .icon{
-    color: rgb(111, 168, 243);
+    color: #fad287;    
 }
 
 .input_dark input:valid ~ .title,
 .input_dark input:focus ~ .title,
 .input_dark input:hover ~ .title{
-    top: -56%;
+    top: -20%;
+
     color: #20232a;
-    font-size: .8rem;
+    font-size  : .8rem;
     font-weight: 800;
+
+    z-index: 20;
+    /*background: #ebedef */
+    background: whitesmoke;
 }
 
 
 /* FOR MOBILES */
 @media screen and (max-width: 450px) {
-    .input_dark{
-        height: 1.8em;
-    }
+
 }
 

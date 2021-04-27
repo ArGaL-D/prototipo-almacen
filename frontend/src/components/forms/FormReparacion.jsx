@@ -110,7 +110,7 @@ export default function FormReparacion(props) {
 
     return(
         <form className="form_rep" onSubmit={dataToServer}>
-            <h2>Reporte</h2>
+            <span className="subtitle_reporte">Reporte</span>
             <div className="input">
                 <InputDark
                     id = "reporte"
@@ -120,28 +120,32 @@ export default function FormReparacion(props) {
                     placeholder = "Título"
                 />
             </div>
-            <div className="input">
-                <InputDark 
-                    id = 'serial'
-                    name = 'serial'
-                    icon = {<BiIcons.BiBarcodeReader/>}                                   
-                    placeholder = "Serial"
-                    onClick = {onOpenModal}
-                    onChange = {handleText}
-                    defaultValue = {formData.serial}
-                    cursorPointer = {true}
-                />
+
+            <div className="inputs_reportes">
+                <div className="input">
+                    <InputDark 
+                        id = 'serial'
+                        name = 'serial'
+                        icon = {<BiIcons.BiBarcodeReader/>}                                   
+                        placeholder = "Serial"
+                        onClick = {onOpenModal}
+                        onChange = {handleText}
+                        defaultValue = {formData.serial}
+                        cursorPointer = {true}
+                    />
+                </div>
+                <div className="input equipo">
+                    <InputDark 
+                        id = 'equipo'
+                        name = 'equipo'
+                        icon = {<GiIcons.GiWifiRouter/>}                                      
+                        onChange = {handleText}
+                        defaultValue = {formData.equipo}
+                        placeholder = "Equipo"
+                    />
+                </div>
             </div>
-            <div className="input">
-                <InputDark 
-                    id = 'equipo'
-                    name = 'equipo'
-                    icon = {<GiIcons.GiWifiRouter/>}                                      
-                    onChange = {handleText}
-                    defaultValue = {formData.equipo}
-                    placeholder = "Equipo"
-                />
-            </div>
+
             <div className="input">
                 <InputDark
                     id = "hilo"
@@ -154,8 +158,8 @@ export default function FormReparacion(props) {
                 />
             </div>
 
-            <div className="select-options">
-                <div className="select">
+            <div className="select_reporte">
+                <div className="select fase">
                     <Select
                         id = "selectReparacion"
                         name = "estatus"
@@ -164,8 +168,8 @@ export default function FormReparacion(props) {
                         placeholder = "Reparación"
                     />
                 </div>
-                <br/>
-                <div className="select">
+                
+                <div className="select etapa">
                     <Select
                         id = "selectEtapa"
                         name = "etapa"

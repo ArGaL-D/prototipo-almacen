@@ -5,7 +5,7 @@ import "./styles/Navbar.css";
 
 export default function Navbar(props) {
     return (
-        <header className="navbar">
+        <header className="nav-bar">
             <div className="icon" onClick={props.hiddenSidebar}>
                 <FaIcons.FaBars/>
             </div>

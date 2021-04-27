@@ -15,9 +15,10 @@
 .container_1 .rectangle{
     height: 4em;
 }
-a{
+.container_1 .rectangle a:hover{
     text-decoration: none;
 }
+
 /* CONTENEDOR 2 */
 .container_2 .donut{
     margin: auto;

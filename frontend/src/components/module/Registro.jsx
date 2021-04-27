@@ -118,16 +118,13 @@ export default function Registro({setTitle}) {
                 icon: 'error',
                 title: `${error}`,
                 text: `Hubo problemas en registrar el equipo. Probablemente, el servidor esté desactivado o haya conflictos internos en el servidor.`,
-              })
+            })
         }
     }
 
     return (
-        <div className="module_registrar">
-            
-            <form onSubmit={sendingData}>
-                <div className="container">
-                    <h3>Datos</h3>
+        <div className="module_registrar">            
+            <form onSubmit={sendingData} className="form_registrar">                
                     {
                         inputData.map((value,index)=>{
                         return(
@@ -146,28 +143,30 @@ export default function Registro({setTitle}) {
                         })  
                     }
 
-                    <div className="select">
-                        <h5>Estado</h5> 
-                        <Select 
-                            id = "status-equipo"
-                            name = "estatus"
-                            type = "STATUS"
-                            onChange = {handleSelectChange}
-                        />
-                    </div>
+                    <div className="form_selects">
+                        <div className="select">
+                            <span className="select_subtitle">Estado</span> 
+                            <Select 
+                                id = "status-equipo"
+                                name = "estatus"
+                                type = "STATUS"
+                                onChange = {handleSelectChange}
+                            />
+                        </div>
 
-                    <div className="select almacen">
-                        <h5>Almacén</h5> 
-                        <Select 
-                            id = "status-equipo"
-                            name = "almacen"
-                            type = "ALMACEN"
-                            onChange = {handleSelectChange}
-                        />
+                        <div className="select almacen">
+                            <span className="select_subtitle">Almacén</span> 
+                            <Select 
+                                id = "status-equipo"
+                                name = "almacen"
+                                type = "ALMACEN"
+                                onChange = {handleSelectChange}
+                            />
+                        </div>
                     </div>
-
-                    <div className="text-area">
-                        <h3 className="h3title">Descripción</h3>
+                    
+                    <div className="form_textArea">
+                        <span className="txtArea_subtitle">Descripción</span>
                         <TextArea 
                             name = {"descripcion"} 
                             onChange = {handleInputChange}
@@ -175,12 +174,11 @@ export default function Registro({setTitle}) {
                         />                        
                     </div>
 
-                    <div className="btn">
+                    <div className="btn_qrCode">
                         <Button
                             title = "QR-CODE"                            
                         />
                     </div>                                
-                </div>  
             </form>
 
             <div className={modal?"qr-modal active": "qr-modal"}>

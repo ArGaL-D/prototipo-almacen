@@ -11,45 +11,49 @@
 
 
 /* CONTENEDOR 1 */
-.module_registrar form{
-    width : 98%;
+.form_registrar{
+    width : 90%;
     height: 95%;
     margin: auto 0 auto 0;  
 
-    background: whitesmoke;
+    background:whitesmoke;
     box-shadow: 0px 1px 5px 0px rgba(185, 185, 185, 0.75);
     font-family: 'Roboto', sans-serif;
-}
 
-/* campos-form*/
-.module_registrar form .container{
     
-    width : 100%;
-    height: 100%;
-    margin: auto;
-
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+
+    overflow: auto;
 }
 
-.module_registrar form .select{
-    width : 100%;
-    height: 2em;
+
+.form_registrar .select{
+    width: 99%;
+}
+.form_selects .select.almacen{
+    margin-left: .5em;
 }
 
-.module_registrar form .text-area{
+.form_selects{
+    display: flex;    
+}
+.txtArea_subtitle,
+.select_subtitle{
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+
+
+.btn_qrCode{
     width: 100%;
-}
-.module_registrar form .text-area h3{
-    padding: 1em 0 .2em 0;
-    font-size: 1rem;
-}
-.module_registrar form .btn{
-    width : 100%;
+    background: tomato;
 }
 
-/* CONTENEDOR 2 */
+
+/* QRCODE */
 .module_registrar .qr-modal{
     width : 95%;
     height: 96%;
@@ -97,71 +101,46 @@
 
 
 /* FOR MOBILES */
-@media screen and (max-width:450px) {
+@media screen and (max-width:600px) {
     /* CONTENDOR 1 */
-    .module_registrar form .container{
-        width: 90%;
-    }
-    form h3{
-        font-size: 1rem;
-    }
-    form .select.almacen{
-        padding-bottom: .5em;
-    }
-    .text-area .h3title{
-        padding-bottom: .5em;
-    }
-    /* CONTENEDOR 2 */
-    .module_registrar .qr-modal{
-        width : 98%;
+    .form_registrar{
+        width : 95%;
         height: 95%;
-        margin: 1em 0 0 0;
+        padding: 0em 1em;
+    }
+    .form_registrar .input:first-child{
+        margin-top: 1em;
+    }
+    .form_registrar .form_selects{
+        flex-direction: column;
+    }
+    .form_selects .select.almacen{
+        margin: 0;
     }
 }
 
-@media screen and (orientation: landscape) and (max-height:450px) {
-    .module_registrar form{
-        overflow: auto;
-
+@media screen and (min-width: 600px) and (max-width:1100px){
+    .form_registrar{
+        width: 90%;
+        padding: 0 2em;
     }
-    .module_registrar form .container{
-        display: block;
+    .form_registrar .input:first-child{
+        margin-top: 1.5em;
     }
-    form .container .input{
-        margin: 1.5em 0 0 0;
-    }
-    form .container .select{
-        margin: 0em 0 0 0;
-    }
-    form .container h3,h5{
-        margin: 2em 0 0 0;
+    .form_registrar .btn_qrCode{
+        margin-bottom: 1.5em;
     }
 }
 
-/* FOR TABLETS */
-@media screen and (min-width:600px) and (max-width: 1100px) {
-    /* CONTENEDOR 1 */
-    .module_registrar form{
-        width: 80%;
+@media screen and (min-width: 1100px) {
+    .form_registrar{
+        width: 35%;
+        padding: 0 2em;
     }
-    .module_registrar form .container{
-        width: 85%;
+    .form_registrar .input:first-child{
+        margin-top: 1.5em;
     }
-    /* CONTENEDOR 2 */
-    .module_registrar .qr-modal{
-        width: 95%;
-    }
-}
-
-
-/* FOR DESKTOPS */
-@media screen and (min-width:1000px) {
-    /* CONTENDOR 2*/
-    .module_registrar form{
-        width: 40%;
-    }
-    .module_registrar form .container{
-        width: 80%;
-        
+    .form_registrar .btn_qrCode{
+        margin-bottom: 1.5em;
     }
 }

@@ -11,6 +11,7 @@
 }
 
 #formPrestamo{
+    
     overflow: auto;
 
     background: whitesmoke;
@@ -29,6 +30,9 @@
     font-family: 'Roboto',sans-serif;
 }
 
+.subtitle_prestamo{
+    font-weight: 600;
+}
 /* MODAL QR-SCANNER */
 .qrScanner{
     width : 100%;
@@ -86,6 +90,13 @@
     #formPrestamo .selects{
         justify-content: space-between;
     }
+
+    #formPrestamo .select-form{
+        margin-top: 1em;
+    }
+    #formPrestamo .button{
+        margin-bottom: 1em;
+    }
 }
 /* FOR TABLETS */
 @media screen and (min-width: 600px) {
@@ -111,7 +122,7 @@
 @media screen and (min-width:1100px) {
     #formPrestamo{
         width : 35%;
-        height: 85%;
+        height: 95%;
 
         padding: 1em;
     }
@@ -120,11 +131,14 @@
     }
     #formPrestamo .input{
         margin: .5em 0 .5em 0;
-        visibility: hidden;
+        opacity: .4;
+        pointer-events: none;
     }
     #formPrestamo .input.active{
         margin: .5em 0 .5em 0;
         visibility: visible;
+        opacity: 1;
+        pointer-events: fill;
     }
     #formPrestamo .selects{
         display: flex;

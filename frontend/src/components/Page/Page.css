@@ -9,13 +9,13 @@
     flex-direction: column;
 }
 
-.page .container{
+.page .container_page{
     
     height: calc(100vh - 4em);
     display: flex;
 }
 
-.container .option{
+.container_page .option{
     background: lightpink;
     width: 50%;
 }

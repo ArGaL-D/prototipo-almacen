@@ -8,7 +8,7 @@ export default function Rectangle({icon, title, content}) {
             <div className="bar">
                 {icon}
             </div>
-            <div className="content">
+            <div className="content_option">
                 <h2>{title}</h2>
                 <p>{content}</p>
             </div>

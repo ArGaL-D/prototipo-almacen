@@ -1,7 +1,7 @@
 /* BUTTON */
 .generic-btn button{
     width : 100%;
-    height: clamp(3em, 5vw, 3.5em);
+    height: clamp(2.5em, 4vw, 3em);
 
     color: lightskyblue;
     background: #20232a;

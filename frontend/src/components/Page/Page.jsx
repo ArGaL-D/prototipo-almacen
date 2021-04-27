@@ -31,7 +31,7 @@ function Page() {
             hiddenSidebar = {showSidebar}
         />
 
-        <div className="container">
+        <div className="container_page">
           <Sidebar showSidebar={sidebar} />          
           <Switch>
               <Route exact path={path}/>

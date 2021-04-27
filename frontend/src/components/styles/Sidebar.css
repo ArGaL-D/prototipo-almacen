@@ -1,31 +1,33 @@
-.sidebar{
+.side-bar{
     width : 5em;
     height: 100%;
 
     position: fixed;
     
-    z-index: 20;
+    z-index: 80;
     background: #091738;    
 
     transform: translateX(-100%);
     transition: 300ms ease-in-out; 
 }
-.sidebar.active{
+.side-bar.active{
     position: relative;
     transform: translateX(0%);
 }
 
 /* BARRA VERTICAL - SIDEBAR*/
-.sidebar ul{
+.side-bar ul{
     height: 100%;
 
     display: flex;
     flex-direction: column;    
-    justify-content: space-between;
+    justify-content: space-around;
     background: #20232a;
+
+    margin: 0;
 }
 /* CONTENEDOR - ICONS */
-.sidebar ul li{
+.side-bar ul li{
     width : 100%;
     height: 10%;
 
@@ -35,7 +37,7 @@
 
 }
 /* TAG -> LINK -> a */
-.sidebar ul li a{
+.side-bar ul li a{
     width : 100%;
     height: 100%;
 
@@ -45,11 +47,13 @@
 
     transition: 400ms ease-in-out;
     background: #20232a;
+
+    text-decoration: none;
 }
 
 
 /* ICON */
-.sidebar ul li svg{
+.side-bar ul li svg{
     color: whitesmoke;
     font-size: clamp(1.2rem, 2vw, 1.5rem);   
     transition: 200ms ease-in; 
@@ -58,23 +62,23 @@
 
 
 /* ANIMACIONES */
-.sidebar ul li:hover svg{
+.side-bar ul li:hover svg{
     color:#20232a;
 }
-.sidebar ul li a:hover{
+.side-bar ul li a:hover{
     background: lightskyblue;
 }
 
 
 @media screen and (max-width: 800px) {
-    .sidebar.active{
+    .side-bar.active{
         position: fixed;
     }
 }
 
 /* FOR DESKTOPS */
 @media screen and (min-height: 800px) {
-    .sidebar ul li{
+    .side-bar ul li{
         height: 8%;
     }
 }

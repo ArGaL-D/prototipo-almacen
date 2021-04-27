@@ -6,6 +6,9 @@
 
     font-family: 'Roboto', sans-serif;
 
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
 /* CONTAINER 1 */
@@ -31,10 +34,12 @@
     font-weight: 600;
 
     transition: 200ms;
+    text-decoration: none;
 }
 
 .nav_container a:hover{
     color: lightblue;
+    text-decoration: none;
 }
 
 .nav_container a:active{
@@ -54,19 +59,24 @@
 }
 
 /* CONTAINER 2 */
-.content{
-    height: calc(100% - 2em);
-    overflow: auto;    
+.content_repair{
+    width : 100%;
+    height: 100%;
+    
+    overflow: auto;  
+    
+    display: flex;
+    align-items: center;
 }
 
 .form_container{
-    width : 50%;
-    height: 50em;
-
+    width  : 40%;
+    height : 96%;
     margin : .5em auto;
     padding: 1em;
+
     background: whitesmoke;
-    box-shadow: 0px 1px 5px 0px rgba(185, 185, 185, 0.45);
+    box-shadow: 0px 1px 5px 0px rgba(185, 185, 185, 0.65);
 }
 
 /* BOTONES -AVISO-HILO */
@@ -85,8 +95,6 @@
     border-radius: 50%;
     background: #20232a;
     box-shadow: 0px 1px 5px 0px rgba(154, 154, 156, 0.75);
-
-    transition: 100ms ease-in-out;
 }
 
 .btn-hilo{
@@ -103,14 +111,21 @@
     width: 2.1em;
     height: 2.1em;
     box-shadow: 0px 1px 5px 2px lightskyblue;
+    transition: 100ms ease-in-out;
 }
 .btn-aviso:hover{
     width: 2.1em;
     height: 2.1em;
     box-shadow: 0px 1px 5px 2px lightgoldenrodyellow;
+    transition: 100ms ease-in-out;
 }
 
 /* SEGUIMIENTO */
+.tabla_seguimiento{
+    width : 100%;
+    height: 95%;
+}
+
 .table_hilo,
 .inpt_hilo{
     width: 90%;
@@ -128,7 +143,7 @@
 */
 @media screen and (max-width: 599px) {
     .form_container{
-        width: 80%;
+        width: 90%;
         height: 100%;
     }
 
@@ -150,9 +165,15 @@
     }
     .hiloNav{
         padding-right: 1em;
-    }
-    
+    }    
 }
+
+@media screen and (orientation: landscape) and (max-height:600px) {
+    .form_container{
+        overflow: auto;
+    }
+}
+
 /*
     FOR TABLETS
 */
@@ -177,12 +198,12 @@
 }
 
 @media screen and (min-width:700px) and (max-width: 800px) and (min-height: 1000px){
-    .content{
+    .content_repair{
         display: flex;
         align-items: center;
     }
     .form_container{
-        height: 70%;
+        height: 75%;
         
     }
 }

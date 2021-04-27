@@ -47,8 +47,8 @@ export default function Sidebar(props) {
     
 
     return (
-        <div className={props.showSidebar ? "sidebar" : "sidebar active"}>
-           <ul id="sidebar">
+        <div className={props.showSidebar ? "side-bar" : "side-bar active"}>
+           <ul id="sidebar" className="box-li">
                {
                    routes.map( (route,index) =>{
                     return(

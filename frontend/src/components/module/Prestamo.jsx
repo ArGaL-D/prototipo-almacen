@@ -179,8 +179,7 @@ export default function Prestamo({setTitle}) {
 
 
     return (
-        <div className="module_prestamo">
-            
+        <div className="module_prestamo">            
             <form id="formPrestamo" onSubmit={sendingData}>      
                 <div className="select-form">
                     <Select
@@ -189,7 +188,7 @@ export default function Prestamo({setTitle}) {
                         onChange = {handleSelectForm}
                     />
                 </div>      
-                <h3>{typeForm}</h3>
+                <span className="subtitle_prestamo">{typeForm}</span>
                 <div className={typeForm.length === 0? "input": "input active"}>
                     <InputDark
                         id = "input-name"
@@ -210,7 +209,7 @@ export default function Prestamo({setTitle}) {
                         placeholder = {typeForm === "Alumno" ? "Boleta" : "Clave" }                        
                     />
                 </div>
-                <h3>Equipo</h3>
+                <span className="subtitle_prestamo">Equipo</span>
                 <div className={typeForm.length === 0? "input": "input active"}>
                     <InputDark
                         id = 'input-serial'
@@ -244,7 +243,7 @@ export default function Prestamo({setTitle}) {
                         placeholder = "Fecha de salida"
                     />
                 </div>
-                <h3>Ubicación</h3>
+                <span className="subtitle_prestamo">Ubicación</span>
                 <div className="selects">
                     <div className="select">
                         <Select

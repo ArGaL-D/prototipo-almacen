@@ -152,11 +152,11 @@ export default function Reparacion({setTitle}) {
                     <span>Hilo</span>
                 </div>
             </div>
-
-            <div className="content">
+            
+            <div className="content_repair">
                 <Switch>
-                    <Route exact path="/page/reparacion">
-                        <div className="form_container">
+                    <Route exact path="/page/reparacion">                        
+                        <div className="form_container">                            
                             <FormReparacion />
                             <div className="btn-aviso" onClick={warning}>
                                 <IoIcons.IoMdWarning/>
@@ -167,26 +167,27 @@ export default function Reparacion({setTitle}) {
                         </div>
                     </Route>    
                     <Route path="/page/reparacion/seguimiento">
-                        <br/>
-                        <div className="inpt_hilo">
-                            <InputDark
-                                icon = {<BiIcons.BiSearch/>}
-                                onClick = {sendingData}
-                                onChange = {handleText}
-                                maxLength = {"10"}
-                                placeholder = "Hilo de seguimiento"
-                                cursorPointer = {true}
-                            />
-                        </div>
-                        <br/>                        
-                        <div className="table_hilo">
-                            <Datatable
-                                type = 'SEGUIMIENTO'
-                                rows = {rows}
-                                columns = {columnasHilo}
-                            />  
-                        </div>
-                      
+                        <div className="tabla_seguimiento">
+                            <br/>
+                            <div className="inpt_hilo">
+                                <InputDark
+                                    icon = {<BiIcons.BiSearch/>}
+                                    onClick = {sendingData}
+                                    onChange = {handleText}
+                                    maxLength = {"10"}
+                                    placeholder = "Hilo de seguimiento"
+                                    cursorPointer = {true}
+                                />
+                            </div>
+                            <br/>                        
+                            <div className="table_hilo">
+                                <Datatable
+                                    type = 'SEGUIMIENTO'
+                                    rows = {rows}
+                                    columns = {columnasHilo}
+                                />  
+                            </div>         
+                        </div>                 
                     </Route>               
                 </Switch>
             </div>            
