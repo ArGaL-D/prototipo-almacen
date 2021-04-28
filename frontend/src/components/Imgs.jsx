@@ -123,6 +123,9 @@ export default function Imgs() {
             .then(resp => {
                 setImage(resp.data);                
             })
+            .catch(error => {
+                console.log(error)
+            })
     },[]);
 
     return (

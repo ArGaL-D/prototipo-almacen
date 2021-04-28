@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
+import Swal  from 'sweetalert2';
 import axios from 'axios';
 
 import * as FaIcons from 'react-icons/fa';
@@ -13,6 +14,7 @@ import "./styles/Login.css";
 
 export default function Login() {
 
+    const history = useHistory();
     const {authToken} = useContext(AuthContext);
 
     const [count,setCount] = useState(0);
@@ -58,49 +60,65 @@ export default function Login() {
                 setRandomColor(color);
             }        
         } catch (error) {
-            console.log(error)
+            Swal.fire({
+                icon: 'error',
+                title: 'LOGIN',
+                text: `No se puedo iniciar sesión. Probablemente, el servidor esté desactivo, o tenga conflictos internos.`,
+            })
         }   
     }
 
+    const imgCarousel = () =>{
+        history.push('/');
+    }
 
     if (authToken){
         return <Redirect to="/page" />
     }
 
     return (
-        <div className="login">            
-            <form onSubmit={handleOnSubmit}>
-                <Input 
-                    id = "login"
-                    name = "username"
-                    type = "text"
-                    icon = {<FaIcons.FaUserAlt/>}
-                    onChange = {handleInputText}
-                    placeholder = "Usuario"
-                />
-                <Input 
-                    id = "login"
-                    name = "userpass"
-                    type = "password"
-                    icon = {<FaIcons.FaKey/>}
-                    onChange = {handleInputText}
-                    placeholder = "Contraseña"
-                />
-                {
-                    warning ?
-                        <div className="warning">
-                            <span style={count > 1 ? {color: randomColor}: null}>
-                                Verifique usuario y/o contraseña
-                            </span>
-                        </div>
-                        : null
-                } 
-                <div className="button">
-                    <Button
-                        title = "INGRESAR"
+        <div className="login">    
+            <header className="login_header">
+                <span 
+                    className="login_menu"
+                    onClick = {imgCarousel}>
+                    Imágenes
+                </span>
+            </header>        
+            <div className="login_container">
+                <form onSubmit={handleOnSubmit}>
+                    <Input 
+                        id = "login"
+                        name = "username"
+                        type = "text"
+                        icon = {<FaIcons.FaUserAlt/>}
+                        onChange = {handleInputText}
+                        placeholder = "Usuario"
                     />
-                </div>  
-             </form>
+                    <Input 
+                        id = "login"
+                        name = "userpass"
+                        type = "password"
+                        icon = {<FaIcons.FaKey/>}
+                        onChange = {handleInputText}
+                        placeholder = "Contraseña"
+                    />
+                    {
+                        warning ?
+                            <div className="warning">
+                                <span style={count > 1 ? {color: randomColor}: null}>
+                                    Verifique usuario y/o contraseña
+                                </span>
+                            </div>
+                            : null
+                    } 
+                    <div className="button">
+                        <Button
+                            title = "INGRESAR"
+                        />
+                    </div>  
+                </form>
+            </div>
         </div>
     )
 }

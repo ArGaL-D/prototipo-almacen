@@ -3,11 +3,44 @@
     height: 100vh;
 
     display: flex;
-    align-items: center;
-    justify-content: center;
-    
+    flex-direction: column;
+
     /*background: #ebedef;*/
     background: linear-gradient(225deg, rgb(62, 77, 92) 7%, rgba(32, 35, 42, 1) 53%);
+}
+
+/* CONTAINERS */
+.login_header{
+    width : 100%;
+    height: 3em;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.login_container{
+    width : 100%;
+    height: calc(100% - 3em);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Título - Header */
+.login_menu{
+    color : rgb(241, 241, 241);
+    cursor: pointer;
+
+    padding-right: 2em;
+
+    font-size  : 1rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    transition : 360ms;
+}
+.login_menu:active,
+.login_menu:hover{
+    color: lightskyblue;
 }
 
 .login form{

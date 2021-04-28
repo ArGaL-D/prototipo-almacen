@@ -71,7 +71,7 @@ export default function ControlledCarousel() {
               {
                 images.map((image,index) => {
                   return(
-                    <Carousel.Item interval={8000} key={index}>   
+                    <Carousel.Item interval={7000} key={index}>   
                       <img                        
                           src = {`http://localhost:3001/${image}`}
                           alt = "First slide"

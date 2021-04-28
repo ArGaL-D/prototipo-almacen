@@ -8,13 +8,11 @@ const ProtectedRoute2 = ({children,path}) => {
    
     if(!authToken){
         const currentPath = sessionStorage.getItem('currentPage');
-        console.log(currentPath)
         if(currentPath){
             return <Redirect to={currentPath} />        
         }else{
             return <Redirect to='/login' />        
-        }        
-        
+        }                
     } 
     
     return (
