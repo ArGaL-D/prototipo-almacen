@@ -86,6 +86,15 @@ export default function Prestamo({setTitle}) {
         inputClave.value = formData.clave;
     },[formData]);
 
+    useEffect(() => {
+        const inputSerial = document.getElementById('input-serial');
+        const inputEquipo = document.getElementById('input-equipo');
+
+        inputSerial.value = formData.serial;
+        inputEquipo.value = formData.equipo;
+
+    },[formData]);
+
     //Abrir ventana modal Qr-scanner
     const showModalScanner1 = () =>{
         setOpenScaner1(true);
@@ -218,7 +227,6 @@ export default function Prestamo({setTitle}) {
                         onClick = {showModalScanner2}
                         onChange = {handleText}
                         placeholder = "Serial"
-                        defaultValue = {formData.serial}
                         cursorPointer = {true}
                     />
                 </div>
@@ -229,7 +237,6 @@ export default function Prestamo({setTitle}) {
                         icon = {<GiIcons.GiWifiRouter/>}
                         onChange = {handleText}
                         placeholder = "Equipo"
-                        defaultValue = {formData.equipo}
                     />
                 </div>
 
