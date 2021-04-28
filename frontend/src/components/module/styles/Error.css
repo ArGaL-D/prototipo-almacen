@@ -1,0 +1,45 @@
+.error_container{
+    width : 100vw;
+    height: 100vh;
+
+    background: #20232a;
+    
+    display: flex;    
+    align-items: center;
+    justify-content: center;    
+    flex-direction : column;
+}
+
+/* TITLE - 404 */
+.error_404{    
+    color: whitesmoke;
+    font-size  : clamp(9rem, 5vw, 20rem);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+/* SUBTITLE - TEXT */
+.text_error{
+    color: whitesmoke;
+    font-size: clamp(2.5rem, 2vw, 3rem);
+    
+    text-align: center;
+}
+/* BUTTON */
+.btn_error{
+    padding: 2em;    
+}
+#btn_regresar{
+    padding: 1em 5em;    
+    
+    border: 2px solid lightgoldenrodyellow;
+    border-radius: 5px;
+
+    color: lightgoldenrodyellow;
+    background: transparent;
+
+    font-weight: 600;
+    transition: 500ms ease-in-out;
+}
+#btn_regresar:hover{
+    color: #20232a;
+    background: lightgoldenrodyellow;
+}
