@@ -10,7 +10,6 @@ export default function Imgs() {
 
     const [file,setFile] = useState(null);
     const [filename,setFilename] = useState('');
-    const [uploadFile,setUploadFile] = useState({});
     const [image,setImage] = useState([]);
 
     const handleFile = (e) => {
@@ -26,11 +25,45 @@ export default function Imgs() {
         formData.append('file',file);
 
         // Revisar extensión
-        const result = filename.lastIndexOf('.');
+        const result = filename.lastIndexOf('.')+1;
         const extension = filename.substring(result);
 
         if (extension === 'jpg' || extension === 'png' || extension === 'jpeg'){
-
+            if (file.size <= 1024 * 1024 * 2){
+                // Guardar imágen
+                try {
+                    const resp = await axios.post('http://localhost:3001/subir-img',formData,{
+                        headers: {'Content-Type': 'multipart/form-data'}
+                    });
+                    
+                    if (resp.data.uploaded_file){
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Se ha guardado la imagen correctamente',
+                            showConfirmButton: false,
+                            timer: 1700
+                          })
+                    }else{
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Hubo problemas, en subir la imagen. Probablemente, el servidor tiene conflictos internos, o esté desactivado el servidor.',
+                            showConfirmButton: false,
+                            timer: 1700
+                          })
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
+            }else{
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Ups...',
+                    html: 'Sólo se admite archivos menores a <strong>2Mb</strong>.'                
+                    })
+            }
+            
         }else{
             Swal.fire({
                 icon: 'warning',
@@ -38,7 +71,6 @@ export default function Imgs() {
                 html: 'Sólo se admite extensiones <strong>jpg, jpeg y png</strong>.'                
                 })
         }
-
         /*
         try {
             const resp = await axios.post('http://localhost:3001/subir-img',formData,{

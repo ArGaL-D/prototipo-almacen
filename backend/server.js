@@ -514,11 +514,10 @@ server.post('/subir-img',(req, res) => {
     file.mv(`./dbimages/${filename}`, error => {
         if (error){
             console.error(error);
-            return res.status(500).send(error)
+            return res.status(500).json({uploaded_file: false})
         }else{
             res.json({
-                fileName: file.name, 
-                filePath: `./dbimages/${filename}`
+                uploaded_file: true
             });
         }
     });
