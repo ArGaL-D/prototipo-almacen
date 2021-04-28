@@ -15,6 +15,9 @@ export default function Login() {
 
     const {authToken} = useContext(AuthContext);
 
+    const [count,setCount] = useState(0);
+    const [randomColor,setRandomColor] = useState('');
+
     const [formData,setFormData] = useState({
         username: "",
         userpass: ""
@@ -45,6 +48,14 @@ export default function Login() {
                 }
             }else{
                 setWarning(true);
+                setCount(count + 1);
+                // Rnadom colors
+                const letters = '0123456789ABCDEF';
+                let color  = '#';
+                for (let i=0; i<6; i++){
+                    color +=letters[Math.floor(Math.random()*16)];                    
+                }
+                setRandomColor(color);
             }        
         } catch (error) {
             console.log(error)
@@ -78,7 +89,9 @@ export default function Login() {
                 {
                     warning ?
                         <div className="warning">
-                            <span>Verifique usuario y/o contraseña</span>
+                            <span style={count > 1 ? {color: randomColor}: null}>
+                                Verifique usuario y/o contraseña
+                            </span>
                         </div>
                         : null
                 } 
