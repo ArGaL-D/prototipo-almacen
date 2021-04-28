@@ -520,7 +520,6 @@ server.post('/subir-img',(req, res) => {
                 fileName: file.name, 
                 filePath: `./dbimages/${filename}`
             });
-           // const data = fs.readFileSync(`${__dirname}/imgs/${req.files.file.name}`);
         }
     });
 });

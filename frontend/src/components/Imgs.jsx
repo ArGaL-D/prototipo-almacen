@@ -2,7 +2,6 @@ import React,{useState, useEffect} from 'react';
 import axios from 'axios';
 
 import "./styles/Imgs.css";
-import Button from './field/Button';
 
 export default function Imgs() {
 
@@ -36,6 +35,22 @@ export default function Imgs() {
             
     }
 
+    const deleteImg = async (e) => {
+        e.preventDefault();
+
+        const fullPath = e.target.src;
+        const filename = fullPath.replace(/^.*[\\\/]/, '');
+
+        console.log(filename)
+        /*
+        try {
+            const resp = await axios.delete();
+        } catch (error) {
+            console.log(error)
+        }
+        */
+    }
+
     useEffect(()=>{
         axios.get('http://localhost:3001/imagenes')
             .then(resp => {
@@ -57,7 +72,12 @@ export default function Imgs() {
                     image.map((image,index) => {
                         return(
                             <div key={index} className="cardImg">
-                               <img src={`http://localhost:3001/${image}`} className="imgSlider" alt=""/>
+                               <img 
+                                    src={`http://localhost:3001/${image}`} 
+                                    className="imgSlider" 
+                                    alt=""
+                                    onClick={deleteImg}    
+                                />
                             </div>
                         )
                     })
