@@ -1,8 +1,12 @@
 const puppeteer = require('puppeteer');
 const jwt = require('jsonwebtoken');
 const express = require('express');
+const fileUpload = require('express-fileupload');
 const mySql = require('mysql');
 const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
+
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -10,6 +14,8 @@ const saltRounds = 10;
 // Configuración Servidor - MySql
 const server = express();
 
+server.use(express.static(path.join(__dirname,'dbimages')));
+server.use(fileUpload());
 server.use(cors());
 server.use(express.json());
 server.set('port', 3001);
@@ -494,6 +500,35 @@ server.post('/verificar-usuario',(req, res) => {
             });
         }
     })
+});
+
+// SUBIR - Imgs
+server.post('/subir-img',(req, res) => {
+    if (require.files === null){
+        return res.status(400).json({msg: 'Archivos no subidos.'});
+    }
+
+    const file = req.files.file;
+    const filename = file.name;
+
+    file.mv(`./dbimages/${filename}`, error => {
+        if (error){
+            console.error(error);
+            return res.status(500).send(error)
+        }else{
+            res.json({
+                fileName: file.name, 
+                filePath: `./dbimages/${filename}`
+            });
+           // const data = fs.readFileSync(`${__dirname}/imgs/${req.files.file.name}`);
+        }
+    });
+});
+
+server.get('/imagenes',(req, res) => {
+    const imagenes = fs.readdirSync(path.join(__dirname,'dbimages'));
+
+    res.json(imagenes)
 });
 
 

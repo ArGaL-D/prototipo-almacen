@@ -1,0 +1,32 @@
+.images{
+    background: lightslategray;    
+
+    height: 100%;
+}
+
+
+
+/* CAJA contendora de IMÁGENES */
+.box_images{
+    width : 100%;
+    height: 80%;
+
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    overflow: auto;
+    background: rgb(116, 110, 99);
+}
+
+/* Tarjeta imágen */
+.cardImg{
+    width: 30%;
+    margin: 1em;
+}
+
+.imgSlider{
+  width: 100%;
+  max-width: 500px;
+  height: auto;  
+}

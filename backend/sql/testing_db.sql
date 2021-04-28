@@ -62,6 +62,12 @@ CREATE TABLE ADMINISTRADOR(
 
 */
 
+CREATE TABLE IMAGENES(
+    id_img  INT AUTO_INCREMENT,
+    filename  VARCHAR(100),
+    data     LONGBLOB,
+    PRIMARY KEY (id_img)
+);
 
 #INSERT INTO USUARIO VALUES(1,"Augurio","Hernández Chávez","auhernandezc@ipn.mx","administrador","admin");
 INSERT INTO USUARIO VALUES(2,"admin","admin","admin@admin.mx","administrador","admin");

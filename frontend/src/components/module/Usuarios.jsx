@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import PieChart from '../PieChart';
 
+import Imgs from '../Imgs';
 import Rectangle from '../Rectangle';
 import Datatable from "../Datatable";
 import ModalFormEquipo from '../forms/ModalFormEquipo';
@@ -14,6 +15,7 @@ import FormCrearUsuario from '../forms/FormCrearUsuario';
 import * as IoIcons from 'react-icons/io5';
 import * as FaIcons from "react-icons/fa";
 import * as MdIcons from "react-icons/md";
+import * as BiIcons from "react-icons/bi";
 
 import "./styles/Usuarios.css";
 
@@ -60,6 +62,9 @@ export default function Usuarios({ setTitle }) {
         "EMAIL", "ACCESO", "CONTRASEÑA", "EDITAR", "ELIMINAR"
     ]
 
+    const [file,setFile] = useState(null);
+    const [filename,setFilename] = useState('Selecciona las imágenes');
+    const [uploadFile,setUploadFile] = useState({});
 
     const onCloseModal = () => setOpen(false);
 
@@ -88,14 +93,14 @@ export default function Usuarios({ setTitle }) {
         setUpdateDevice({
             ...updateDevice,
             editedSerial: tag_td[0].textContent,
-            serial: tag_td[0].textContent,
-            equipo: tag_td[1].textContent,
-            marca: tag_td[2].textContent,
-            modelo: tag_td[3].textContent,
-            estatus: tag_td[4].textContent,
-            almacen: tag_td[6].textContent,
+            serial  : tag_td[0].textContent,
+            equipo  : tag_td[1].textContent,
+            marca   : tag_td[2].textContent,
+            modelo  : tag_td[3].textContent,
+            estatus : tag_td[4].textContent,
+            almacen : tag_td[6].textContent,
             edificio: tag_td[7].textContent,
-            piso: tag_td[8].textContent,
+            piso    : tag_td[8].textContent,
 
         });
         // Abrir Modal
@@ -366,6 +371,31 @@ export default function Usuarios({ setTitle }) {
         sessionStorage.setItem('currentPage', location.pathname);
     });
 
+    const handleFile = (e) => {
+        setFile(e.target.files[0]);
+        setFilename(e.target.files[0].name)
+    }
+
+    // Abrir y seleccionar imágenes
+    const readFileImg = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('file',file);
+
+        try {
+            const resp = await axios.post('http://localhost:3001/subir-img',formData,{
+                headers: {'Content-Type': 'multipart/form-data'}
+            });
+
+            const {fileName,filePath} = resp.data; 
+            setUploadFile({fileName, filePath});
+        } catch (error) {
+            console.log(error)
+        }    
+            
+    }
+
     return (
         <div className="module-usuarios">
             {/* CONTENEDOR 1 */}
@@ -403,6 +433,15 @@ export default function Usuarios({ setTitle }) {
                             icon={<FaIcons.FaUserFriends />}
                             title="Usuarios"
                             content="Total de usuarios"
+                        />
+                    </Link>
+                </div>
+                <div className="rectangle">
+                    <Link to={`${path}/slider-imgs`}>
+                        <Rectangle
+                            icon={<FaIcons.FaImages />}
+                            title="Slider"
+                            content="Imágenes"
                         />
                     </Link>
                 </div>
@@ -464,8 +503,14 @@ export default function Usuarios({ setTitle }) {
                             updateDevice={updateDevice}
                             setUpdateDevice={setUpdateDevice}
                         />
-
                     </Route>
+
+                    <Route path={`${path}/slider-imgs`}>
+                        <div className="container_images">
+                            <Imgs />
+                        </div>                        
+                    </Route>
+
                     <Route path={`${path}/*`}>
                         <div className="table">
                             ERROR
