@@ -43,7 +43,7 @@ export default function Imgs() {
                             title: 'Se ha guardado la imagen correctamente',
                             showConfirmButton: false,
                             timer: 1700
-                          })
+                        })
                     }else{
                         Swal.fire({
                             position: 'top-end',
@@ -51,7 +51,7 @@ export default function Imgs() {
                             title: 'Hubo problemas, en guardar la imagen. Probablemente, el servidor tiene conflictos internos, o esté desactivado el servidor.',
                             showConfirmButton: false,
                             timer: 1700
-                          })
+                      })
                     }
                 } catch (error) {
                     console.log(error)
@@ -61,7 +61,7 @@ export default function Imgs() {
                     icon: 'warning',
                     title: 'Ups...',
                     html: 'Sólo se admite archivos menores a <strong>2Mb</strong>.'                
-                    })
+                })
             }
             
         }else{
@@ -79,18 +79,6 @@ export default function Imgs() {
                 })
             }
         }
-        /*
-        try {
-            const resp = await axios.post('http://localhost:3001/subir-img',formData,{
-                headers: {'Content-Type': 'multipart/form-data'}
-            });
-
-            const {fileName,filePath} = resp.data; 
-            setUploadFile({fileName, filePath});
-        } catch (error) {
-            console.log(error)
-        }    
-        */
     }
 
     const deleteImg = async (e) => {
@@ -99,24 +87,35 @@ export default function Imgs() {
         // Nombre de la imágen
         const image    = e.currentTarget.parentNode.firstChild;        
         const fullPath = image.src;
-        const filename = fullPath.replace(/^.*[\\\/]/, '');
-
-
-
+        const filename = fullPath.replace(/^.*[\\/]/, '');        
         
-        /*
         try {
             const resp = await axios.delete(`http://localhost:3001/delete-image/${filename}`);
-            if (resp.data.eleted_image){
-
+            if (resp.data.deleted_image){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Se ha eliminado correctamente la imagen',
+                    showConfirmButton: false,
+                    timer: 1700
+                })
             }else{
-                
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'No se pudo eliminar la imagen.',
+                    showConfirmButton: false,
+                    timer: 1700
+                })
             }
         } catch (error) {
             console.log(error)
-        }
-        */
-        
+            Swal.fire({
+                icon: 'warning',
+                title: error,
+                html: 'Probablemente, el servidor esté desactivado, o haya conflictos internos en el srvidor.'                
+            })
+        }  
     }
 
     useEffect(()=>{

@@ -7,15 +7,13 @@ import PieChart from '../PieChart';
 import Imgs from '../Imgs';
 import Rectangle from '../Rectangle';
 import Datatable from "../Datatable";
-import ModalFormEquipo from '../forms/ModalFormEquipo';
+import ModalFormEquipo  from '../forms/ModalFormEquipo';
 import ModalFormUsuario from '../forms/ModalFormUsuario';
 import FormCrearUsuario from '../forms/FormCrearUsuario';
-
 
 import * as IoIcons from 'react-icons/io5';
 import * as FaIcons from "react-icons/fa";
 import * as MdIcons from "react-icons/md";
-import * as BiIcons from "react-icons/bi";
 
 import "./styles/Usuarios.css";
 
@@ -61,10 +59,6 @@ export default function Usuarios({ setTitle }) {
         "ID", "USUARIO", "NOMBRE(S)", "APELLIDO(S)",
         "EMAIL", "ACCESO", "CONTRASEÑA", "EDITAR", "ELIMINAR"
     ]
-
-    const [file,setFile] = useState(null);
-    const [filename,setFilename] = useState('Selecciona las imágenes');
-    const [uploadFile,setUploadFile] = useState({});
 
     const onCloseModal = () => setOpen(false);
 
@@ -371,30 +365,6 @@ export default function Usuarios({ setTitle }) {
         sessionStorage.setItem('currentPage', location.pathname);
     });
 
-    const handleFile = (e) => {
-        setFile(e.target.files[0]);
-        setFilename(e.target.files[0].name)
-    }
-
-    // Abrir y seleccionar imágenes
-    const readFileImg = async (e) => {
-        e.preventDefault();
-
-        const formData = new FormData();
-        formData.append('file',file);
-
-        try {
-            const resp = await axios.post('http://localhost:3001/subir-img',formData,{
-                headers: {'Content-Type': 'multipart/form-data'}
-            });
-
-            const {fileName,filePath} = resp.data; 
-            setUploadFile({fileName, filePath});
-        } catch (error) {
-            console.log(error)
-        }    
-            
-    }
 
     return (
         <div className="module-usuarios">
