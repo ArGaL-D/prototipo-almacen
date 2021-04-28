@@ -48,7 +48,7 @@ export default function Imgs() {
                         Swal.fire({
                             position: 'top-end',
                             icon: 'error',
-                            title: 'Hubo problemas, en subir la imagen. Probablemente, el servidor tiene conflictos internos, o esté desactivado el servidor.',
+                            title: 'Hubo problemas, en guardar la imagen. Probablemente, el servidor tiene conflictos internos, o esté desactivado el servidor.',
                             showConfirmButton: false,
                             timer: 1700
                           })
