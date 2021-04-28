@@ -95,7 +95,7 @@
 
 .cardImg:hover{
     cursor: pointer;
-    box-shadow:  0px 0px 10px 1px #ffc14f
+    box-shadow:  0px 0px 10px 1px #4f69ff
 }
 .cardImg:active{
     box-shadow:  0px 0px 10px 1px #ffc14f;

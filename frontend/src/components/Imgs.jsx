@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 import * as MdIcons from 'react-icons/md';
 
@@ -8,7 +9,7 @@ import "./styles/Imgs.css";
 export default function Imgs() {
 
     const [file,setFile] = useState(null);
-    const [filename,setFilename] = useState('Selecciona las imágenes');
+    const [filename,setFilename] = useState('');
     const [uploadFile,setUploadFile] = useState({});
     const [image,setImage] = useState([]);
 
@@ -24,6 +25,21 @@ export default function Imgs() {
         const formData = new FormData();
         formData.append('file',file);
 
+        // Revisar extensión
+        const result = filename.lastIndexOf('.');
+        const extension = filename.substring(result);
+
+        if (extension === 'jpg' || extension === 'png' || extension === 'jpeg'){
+
+        }else{
+            Swal.fire({
+                icon: 'warning',
+                title: 'Ups...',
+                html: 'Sólo se admite extensiones <strong>jpg, jpeg y png</strong>.'                
+                })
+        }
+
+        /*
         try {
             const resp = await axios.post('http://localhost:3001/subir-img',formData,{
                 headers: {'Content-Type': 'multipart/form-data'}
@@ -34,7 +50,7 @@ export default function Imgs() {
         } catch (error) {
             console.log(error)
         }    
-            
+        */
     }
 
     const deleteImg = async (e) => {
@@ -44,7 +60,11 @@ export default function Imgs() {
         const image    = e.currentTarget.parentNode.firstChild;        
         const fullPath = image.src;
         const filename = fullPath.replace(/^.*[\\\/]/, '');
+
+
+
         
+        /*
         try {
             const resp = await axios.delete(`http://localhost:3001/delete-image/${filename}`);
             if (resp.data.eleted_image){
@@ -55,7 +75,7 @@ export default function Imgs() {
         } catch (error) {
             console.log(error)
         }
-        
+        */
         
     }
 
