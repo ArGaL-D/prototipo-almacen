@@ -34,32 +34,6 @@ function Buscar({setTitle}) {
         almacen : ""
     });
 
-    // Establecer título actual - navbar
-    useEffect(() => {
-        setTitle('Búsqueda');
-        sessionStorage.setItem('page','buscar');
-    })
-
-    // Traer datos(filas) del servidor
-    useEffect(() => {
-        let unmounted = false;
-
-        axios.get('http://localhost:3001/equipos')
-             .then(resp => {
-                if (!unmounted){
-                    setRowData(resp.data);
-                }                 
-             })
-             .catch(error => {
-                 console.log(`Error en traer datos del servidor: ${error}`)
-             })
-        return () => {unmounted = true}
-    })
-
-    // Guardar la ruta actual del componente
-    useEffect(()=> {
-        sessionStorage.setItem('currentPage',location.pathname);        
-    });
 
     // Abrir modal - Qr
     const onOpenModal = (e) => {
@@ -101,6 +75,32 @@ function Buscar({setTitle}) {
                     row.piso.toString().indexOf(text) > -1 
         )
     }    
+    // Establecer título actual - navbar
+    useEffect(() => {
+        setTitle('Búsqueda');
+        sessionStorage.setItem('page','buscar');
+    })
+
+    // Traer datos(filas) del servidor
+    useEffect(() => {
+        let unmounted = false;
+
+        axios.get('http://localhost:3001/equipos')
+                .then(resp => {
+                if (!unmounted){
+                    setRowData(resp.data);
+                }                 
+                })
+                .catch(error => {
+                    console.log(`Error en traer datos del servidor: ${error}`)
+                })
+        return () => {unmounted = true}
+    })
+
+    // Guardar la ruta actual del componente
+    useEffect(()=> {
+        sessionStorage.setItem('currentPage',location.pathname);        
+    });
 
     return (
         <div className="module_buscar">

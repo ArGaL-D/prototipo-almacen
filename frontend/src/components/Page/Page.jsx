@@ -22,6 +22,11 @@ function Page() {
     setSidebar(!sidebar);
   }
 
+  const cerrarSesion = () => {
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.reload();
+  }
 
   return (
     <div className="page">
@@ -29,6 +34,7 @@ function Page() {
             title_btn="Salir" 
             title={title}
             hiddenSidebar = {showSidebar}
+            onClick = {cerrarSesion}
         />
 
         <div className="container_page">
