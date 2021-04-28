@@ -695,8 +695,8 @@ server.delete('/delete-usuario/:idUser', (req, res) => {
 // ELIMINAR - IMÁGEN
 server.delete('/delete-image/:nameImg', (req, res) => {
 
-    const path = `${__dirname}/${req.params.nameImg}`
-
+    const path = `${__dirname}/dbimages/${req.params.nameImg}`;
+    
     try {
         fs.unlinkSync(path);
         res.json({deleted_image: true});
@@ -704,7 +704,6 @@ server.delete('/delete-image/:nameImg', (req, res) => {
         console.log(error)
         res.json({deleted_image: false});
     }
-    console.log("-> DELETE")
 });
 
 

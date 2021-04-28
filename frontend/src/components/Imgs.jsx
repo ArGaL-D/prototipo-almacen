@@ -41,17 +41,21 @@ export default function Imgs() {
         e.preventDefault();
 
         // Nombre de la imágen
-        const fullPath = e.target.src;
+        const image    = e.currentTarget.parentNode.firstChild;        
+        const fullPath = image.src;
         const filename = fullPath.replace(/^.*[\\\/]/, '');
-
-        console.log(filename)
         
         try {
-            const resp = await axios.delete(`'http://localhost:3001/imagenes/${filename}`);
-            console.log(resp.data.deleted_image)
+            const resp = await axios.delete(`http://localhost:3001/delete-image/${filename}`);
+            if (resp.data.eleted_image){
+
+            }else{
+                
+            }
         } catch (error) {
             console.log(error)
         }
+        
         
     }
 
@@ -77,12 +81,12 @@ export default function Imgs() {
                         return(
                             <div key={index} className="cardImg">
                                <img 
+                                    id = {`image_${index}`}
                                     src={`http://localhost:3001/${image}`} 
                                     className="imgSlider" 
-                                    alt=""
-                                    onClick={deleteImg}    
+                                    alt=""                                      
                                 />
-                                <div className="delete_img">
+                                <div className="delete_img" onClick={deleteImg} >
                                     <MdIcons.MdDelete/>
                                 </div>
                             </div>
