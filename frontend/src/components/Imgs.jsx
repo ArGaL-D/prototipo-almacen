@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react';
 import axios from 'axios';
 
 import "./styles/Imgs.css";
+import Button from './field/Button';
 
 export default function Imgs() {
 
@@ -44,12 +45,12 @@ export default function Imgs() {
 
     return (
         <div className="images">
-            <br/>
-            <form className="addImgs">                
+            <form className="form_imgs">                
                 <input type="file" className="file" multiple onChange={handleFile}/>                
-                <button  onClick={readFileImg}>Subir</button>
+                <div className="btn_subir">
+                    <button onClick={readFileImg}>Guardar</button>
+                </div>
             </form>
-            <br/>
 
             <div className="box_images">
                 {
