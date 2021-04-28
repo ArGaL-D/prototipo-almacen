@@ -61,10 +61,22 @@
 
 /* Tarjeta imágen */
 .cardImg{
-    width: 30%;
+    width : 30%;
+    height: 35%;
     margin: 1em;
     position: relative;
+
+    background: #0e101c;
+
+    display: flex;
 }
+/* IMAGE */
+.imgSlider{
+    width : 100%;
+    height: auto;  
+    max-width: 600px;  
+  }
+  
 /* DELETE-ICON */
 .delete_img{
     position: absolute;
@@ -83,32 +95,35 @@
 
 .cardImg:hover{
     cursor: pointer;
-    box-shadow:  0px 0px 10px 1px rgb(122, 54, 248);
+    box-shadow:  0px 0px 10px 1px #ffc14f
 }
 .cardImg:active{
-    box-shadow:  0px 0px 10px 1px rgb(122, 54, 248);
+    box-shadow:  0px 0px 10px 1px #ffc14f;
 }
 
-.imgSlider{
-  width: 100%;
-  max-width: 500px;
-  height: auto;  
-}
 
 /* FOR MOBILES */
 @media screen and (max-width: 600px) {
     .form_imgs input{
         width: 100%;
     }
+    .cardImg{
+        height: 35%;
+        width : 80%;
+    }
 }
 
 /* FOR TABLETS */
-@media screen and (min-width: 600px) and (max-width: 1100px) {
+@media screen and (min-width: 600px) and (max-width: 1100px) and (min-height:1000px){
     .form_imgs{
         justify-content: center;
     }
     .form_imgs input{
         width: 60%;
+    }
+    .cardImg{      
+        width : 35%;
+        height: 20%;
     }
 }
 /* FOR DESKTOPS */
