@@ -65,11 +65,19 @@ export default function Imgs() {
             }
             
         }else{
-            Swal.fire({
-                icon: 'warning',
-                title: 'Ups...',
-                html: 'Sólo se admite extensiones <strong>jpg, jpeg y png</strong>.'                
+            if (filename.length === 0){
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Ups...',
+                    html: 'Seleccione una imagen.'                
                 })
+            }else{
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Ups...',
+                    html: 'Sólo se admite extensiones <strong>jpg, jpeg y png</strong>.'                
+                })
+            }
         }
         /*
         try {
