@@ -63,7 +63,24 @@
 .cardImg{
     width: 30%;
     margin: 1em;
+    position: relative;
 }
+/* DELETE-ICON */
+.delete_img{
+    position: absolute;
+    right : 1em;
+    bottom: .5em;
+
+    color: rgb(192, 192, 192);
+    font-size: 1.5rem;
+
+    transition: 250ms;
+    
+}
+.delete_img:hover{
+    color: rgb(255, 0, 43);
+}
+
 .cardImg:hover{
     cursor: pointer;
     box-shadow:  0px 0px 10px 1px rgb(122, 54, 248);

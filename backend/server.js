@@ -692,6 +692,23 @@ server.delete('/delete-usuario/:idUser', (req, res) => {
     console.log("-> DELETE")
 });
 
+// ELIMINAR - IMÁGEN
+server.delete('/delete-image/:nameImg', (req, res) => {
+
+    const path = `${__dirname}/${req.params.nameImg}`
+
+    try {
+        fs.unlinkSync(path);
+        res.json({deleted_image: true});
+    } catch (error) {
+        console.log(error)
+        res.json({deleted_image: false});
+    }
+    console.log("-> DELETE")
+});
+
+
+
 
 // Iniciar servidor
 server.listen(server.get('port'), () => {

@@ -1,6 +1,8 @@
 import React,{useState, useEffect} from 'react';
 import axios from 'axios';
 
+import * as MdIcons from 'react-icons/md';
+
 import "./styles/Imgs.css";
 
 export default function Imgs() {
@@ -38,17 +40,19 @@ export default function Imgs() {
     const deleteImg = async (e) => {
         e.preventDefault();
 
+        // Nombre de la imágen
         const fullPath = e.target.src;
         const filename = fullPath.replace(/^.*[\\\/]/, '');
 
         console.log(filename)
-        /*
+        
         try {
-            const resp = await axios.delete();
+            const resp = await axios.delete(`'http://localhost:3001/imagenes/${filename}`);
+            console.log(resp.data.deleted_image)
         } catch (error) {
             console.log(error)
         }
-        */
+        
     }
 
     useEffect(()=>{
@@ -78,6 +82,9 @@ export default function Imgs() {
                                     alt=""
                                     onClick={deleteImg}    
                                 />
+                                <div className="delete_img">
+                                    <MdIcons.MdDelete/>
+                                </div>
                             </div>
                         )
                     })
