@@ -77,7 +77,7 @@ export default function Reparacion({setTitle}) {
         if (!clave.hilo){
             Swal.fire({
                 icon : "warning",
-                title: 'Oops...',        
+                title: 'Uups...',        
                 text : "Campo vacío",
                 confirmButtonText: 'ACEPTAR'
             }) 
@@ -89,7 +89,7 @@ export default function Reparacion({setTitle}) {
                 if (rowData.length === 0 ){
                     Swal.fire({
                         icon : "warning",
-                        title: `Oops...`,        
+                        title: `Uups...`,        
                         text : "No se encontró el hilo.",
                         confirmButtonText: 'ACEPTAR'
                     }) 

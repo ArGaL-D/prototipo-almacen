@@ -75,13 +75,14 @@ export default function FormReparacion(props) {
                     title: 'Se ha registrado el reporte.',
                     showConfirmButton: false,
                     timer: 1500
-                  })
+                })
+                //setTimeout(1600,window.location.reload());
             }else{
                 Swal.fire({
                     icon: 'warning',
                     title: 'Oops...',
                     text: `El equipo no existe en el almacén, o no se ha registrado aún.`,
-                  })
+                })
             }
         } catch (error) {
             console.log(error)
