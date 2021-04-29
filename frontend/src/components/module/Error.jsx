@@ -1,10 +1,15 @@
-import { withRouter, useLocation } from 'react-router-dom'
+import { withRouter, useLocation, useHistory } from 'react-router-dom'
 
 import "./styles/Error.css";
 
 function Error() {
     
     const location = useLocation();
+    const history  = useHistory();
+
+    const menuPage = () => {
+        history.push("/");
+    }
 
     return (
         <div className="error_container">
@@ -21,7 +26,9 @@ function Error() {
             
             <div className="btn_error">
                 <br/>
-                <button id="btn_regresar">
+                <button 
+                    id="btn_regresar"
+                    onClick = {menuPage}>
                     REGRESAR
                 </button>
             </div>
