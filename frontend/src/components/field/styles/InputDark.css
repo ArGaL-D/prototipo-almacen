@@ -31,17 +31,21 @@
 .input_dark .title{    
     position: absolute;
     left: 1em;    
-    top : 25%;
+    top : -25%;
 
+    z-index: 40;
     transition : 300ms ease-in-out;
     font-family: 'Roboto', sans-serif;
     font-weight: 600;
     font-size  : .9rem;
-    color:#d4d4d4;
+        
+    color:#afabab;
+    background: whitesmoke;
+    
 }
 /* Sólo para input-dates */
 .input_dark.active .title{
-    color: transparent;
+    color:#afabab;
 }
 
 /* INPUT-TAg*/
@@ -80,9 +84,10 @@
 .input_dark input:valid ~ .title,
 .input_dark input:focus ~ .title,
 .input_dark input:hover ~ .title{
-    top: -20%;
-
+    top  : -20%;
     color: #20232a;
+    cursor: none;
+
     font-size  : .8rem;
     font-weight: 800;
 
@@ -91,9 +96,4 @@
     background: whitesmoke;
 }
 
-
-/* FOR MOBILES */
-@media screen and (max-width: 450px) {
-
-}
 

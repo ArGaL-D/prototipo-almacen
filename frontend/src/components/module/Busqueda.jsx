@@ -1,9 +1,11 @@
 import {useEffect, useState} from 'react';
 import { Modal } from 'react-responsive-modal';
 import { QRCode} from 'react-qrcode-logo';
+import { withRouter, useLocation} from 'react-router-dom'
 
+import Swal from 'sweetalert2';
 import axios from "axios";
-import {withRouter, useLocation} from 'react-router-dom'
+
 import InputDark from "../field/InputDark";
 import Datatable from "../Datatable";
 
@@ -93,6 +95,11 @@ function Buscar({setTitle}) {
                 })
                 .catch(error => {
                     console.log(`Error en traer datos del servidor: ${error}`)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Uups...',
+                        text: `No se pudo traer los datos de la tabla; probablemente hay conflictos en el servidor.`,
+                    })
                 })
         return () => {unmounted = true}
     })

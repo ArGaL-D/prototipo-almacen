@@ -1,9 +1,12 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState} from 'react';
 import { useLocation } from 'react-router-dom';
+
 import axios from "axios";
+import Swal  from 'sweetalert2';
+
 import InputDark from '../field/InputDark';
 import Datatable from '../Datatable';
-import Select from '../field/Select';
+import Select    from '../field/Select';
 
 import * as GoIcons from "react-icons/go";
 import "./styles/Ubicacion.css";
@@ -43,6 +46,11 @@ export default function Ubicacion({setTitle}) {
              })
              .catch( err => {
                  console.log(`-> ${err}`)
+                 Swal.fire({
+                    icon: 'error',
+                    title: 'Uups...',
+                    text: `No se pudo traer los datos de la tabla; probablemente hay conflictos en el servidor.`,
+                })
              })
        
     }, [showSelects])

@@ -345,6 +345,11 @@ export default function Usuarios({ setTitle }) {
             })
             .catch((error) => {
                 console.log(error)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Uups...',
+                    text: `No se pudo traer los datos de la tabla; probablemente hay conflictos en el servidor.`,
+                })
             })
     }, []);
 
@@ -357,6 +362,11 @@ export default function Usuarios({ setTitle }) {
             })
             .catch((error) => {
                 console.log(error)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Uups...',
+                    text: `No se pudo traer los datos de la tabla; probablemente hay conflictos en el servidor.`,
+                })
             })
     }, []);
 

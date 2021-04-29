@@ -1,5 +1,5 @@
 .boxTooltip{
-    width : 15em;
+    width : 10em;
     height: 1em;
     
     border-radius: 0 2px 2px 0px;
@@ -8,7 +8,7 @@
     /* Ocultar el tooltip */
     position: absolute;
     z-index : -1;
-    left: -100%;
+    left: -120%;
     top: 30%;
 
     display: flex;
@@ -20,7 +20,7 @@
 }
  /* Animación del toolTip - mover hacia la derecha */
 li:hover .boxTooltip{
-    transform: translateX(50%);
+    transform : translateX(100%);
     background: #20232a;
 }
 

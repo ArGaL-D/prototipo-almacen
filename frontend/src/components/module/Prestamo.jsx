@@ -163,13 +163,13 @@ export default function Prestamo({setTitle}) {
                         icon: 'warning',
                         title: 'Uups...',
                         text: `El equipo ${formData.equipo}-${formData.serial} no está registrado en el almacén. Verifique el equipo. `,
-                      })
+                    })
                 }else if (equipoDisponible===false){
                     Swal.fire({
                         icon: 'warning',
                         title: 'Uups...',
                         text: `El equipo [${formData.serial}] no está disponible por el momento. ESTATUS: '${equipoStatus}'. `,
-                      })
+                    })
                 }else{
                     setOpenModalQr(true);
                 }
