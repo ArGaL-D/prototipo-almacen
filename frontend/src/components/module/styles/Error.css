@@ -44,6 +44,9 @@
     font-weight: 600;
     transition: 500ms ease-in-out;
 }
+.page_not_found{
+    color: rgb(241, 165, 184);
+}
 #btn_regresar:active,
 #btn_regresar:hover{
     color: #20232a;
