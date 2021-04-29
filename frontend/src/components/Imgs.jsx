@@ -30,29 +30,64 @@ export default function Imgs() {
 
         if (extension === 'jpg' || extension === 'png' || extension === 'jpeg'){
             if (file.size <= 1024 * 1024 * 2){
-                // Guardar imágen
+
+                // Validar password actual del usuario
+                const { value: password } = await Swal.fire({
+                    title: 'Ingrese su contraseña',
+                    input: 'password',                    
+                    inputPlaceholder: 'Ingrese contraseña',
+                    cancelButtonColor: '#d33',
+                    showCancelButton: true,
+                    inputAttributes: {
+                      autocapitalize: 'off',
+                      autocorrect: 'off'
+                    }
+                  })
+                // Verificar contraseña
                 try {
-                    const resp = await axios.post('http://localhost:3001/subir-img',formData,{
-                        headers: {'Content-Type': 'multipart/form-data'}
-                    });
-                    
-                    if (resp.data.uploaded_file){
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Se ha guardado la imagen correctamente',
-                            showConfirmButton: false,
-                            timer: 1700
-                        })
+                    const token = localStorage.getItem('token');
+                    const resp1 = await axios.post('http://localhost:3001/verificar-usuario', { token, password });
+                    if (resp1.data.isAuth){
+                        // Guargar imagen
+                        if (resp1.data.successful_password) {
+                            
+                            const resp = await axios.post('http://localhost:3001/subir-img',formData,{
+                                headers: {'Content-Type': 'multipart/form-data'}
+                            });
+                            
+                            if (resp.data.uploaded_file){
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Se ha guardado la imagen correctamente',
+                                    showConfirmButton: false,
+                                    timer: 1700
+                                })
+                            }else{
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'error',
+                                    title: 'Hubo problemas, en guardar la imagen. Probablemente, el servidor tiene conflictos internos, o esté desactivado el servidor.',
+                                    showConfirmButton: false,
+                                    timer: 1700
+                              })
+                            }
+    
+    
+                        } else {
+                            Swal.fire({
+                                icon: "warning",
+                                title: "Contraseña",
+                                text: "Incorrecta."
+                            });
+                        }
                     }else{
                         Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'Hubo problemas, en guardar la imagen. Probablemente, el servidor tiene conflictos internos, o esté desactivado el servidor.',
-                            showConfirmButton: false,
-                            timer: 1700
-                      })
-                    }
+                            icon: "error",
+                            title: "Error",
+                            text: "Hay problemas de autenticación de usuario."
+                        });
+                    }                    
                 } catch (error) {
                     console.log(error)
                 }
@@ -68,13 +103,13 @@ export default function Imgs() {
             if (filename.length === 0){
                 Swal.fire({
                     icon: 'warning',
-                    title: 'Ups...',
+                    title: 'Uups...',
                     html: 'Seleccione una imagen.'                
                 })
             }else{
                 Swal.fire({
                     icon: 'warning',
-                    title: 'Ups...',
+                    title: 'Uups...',
                     html: 'Sólo se admite extensiones <strong>jpg, jpeg y png</strong>.'                
                 })
             }
