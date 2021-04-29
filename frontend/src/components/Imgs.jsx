@@ -50,7 +50,7 @@ export default function Imgs() {
                     if (resp1.data.isAuth){
                         // Guargar imagen
                         if (resp1.data.successful_password) {
-                            
+
                             const resp = await axios.post('http://localhost:3001/subir-img',formData,{
                                 headers: {'Content-Type': 'multipart/form-data'}
                             });
@@ -72,8 +72,6 @@ export default function Imgs() {
                                     timer: 1700
                               })
                             }
-    
-    
                         } else {
                             Swal.fire({
                                 icon: "warning",

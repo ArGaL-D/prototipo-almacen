@@ -103,7 +103,7 @@ export default function ModalFormEquipo({open,onCloseModal, updateDevice, setUpd
                     <InputDark
                         icon = {<GiIcons.GiWifiRouter />}
                         name = "equipo"
-                        placeholder = "equipo"
+                        placeholder = "Equipo"
                         defaultValue = {updateDevice.equipo}
                         onChange = {handleInput}
                     />
@@ -113,7 +113,7 @@ export default function ModalFormEquipo({open,onCloseModal, updateDevice, setUpd
                     <InputDark
                         icon = {<MdIcons.MdBorderColor />}
                         name = "marca"
-                        placeholder = "marca"
+                        placeholder = "Marca"
                         defaultValue = {updateDevice.marca}
                         onChange = {handleInput}
                     />
@@ -123,7 +123,7 @@ export default function ModalFormEquipo({open,onCloseModal, updateDevice, setUpd
                     <InputDark
                         icon = {<MdIcons.MdBorderColor />}
                         name = "modelo"
-                        placeholder = "modelo"
+                        placeholder = "Modelo"
                         defaultValue = {updateDevice.modelo}
                         onChange = {handleInput}
                     />

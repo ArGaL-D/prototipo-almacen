@@ -31,10 +31,14 @@
     padding: 1em 0 0 2em;
 }
 .boxBtn{    
-    padding-left: 2em;
-    
+    padding-left: 2em;   
 }
 /* MODAL FORM - EQUIPOS */
+.row_form{
+    width: auto;
+    background: whitesmoke;
+    box-shadow: 0px 1px 5px 0px rgba(185, 185, 185, 0.75);
+}
 .row_form .selects{
     display: flex;
     font-size: .8rem;
