@@ -73,12 +73,12 @@ export default function Usuarios({ setTitle }) {
 
         setUpdateUser({
             ...updateUser,
-            id: tag_td[0].textContent,
-            usuario: tag_td[1].textContent,
-            nombre: tag_td[2].textContent,
+            id      : tag_td[0].textContent,
+            usuario : tag_td[1].textContent,
+            nombre  : tag_td[2].textContent,
             apellido: tag_td[3].textContent,
-            email: tag_td[4].textContent,
-            acceso: tag_td[5].textContent
+            email   : tag_td[4].textContent,
+            acceso  : tag_td[5].textContent
         });
         // Abrir Modal
         setOpen(true);
@@ -377,12 +377,19 @@ export default function Usuarios({ setTitle }) {
         sessionStorage.setItem('currentPage', location.pathname);
     });
 
-    // Escanear código QR
+    // Escanear código QR y obtener resultados
     const scanQrCode = () => {
         setScanQr(!scanQr);
     }
     const getQrResults = (equip0, seriaL) => {
         setQrData({...qrData, serial: seriaL, equipo: equip0});
+    }
+
+    // Filtrar equipos por SERIAL
+    const filteringData = (rows) => {
+        return rows.filter( row => 
+            row.num_serie.indexOf(qrData.serial) > -1
+        )
     }
 
 
@@ -391,7 +398,7 @@ export default function Usuarios({ setTitle }) {
             {/* CONTENEDOR 1 */}
             <div className="container_1">
                 <div className="rectangle">
-                    <Link to={`${path}`}>
+                    <Link to={`${path}`}> 
                         <Rectangle
                             icon={<FaIcons.FaChartPie />}
                             title="Gráfica"
@@ -483,7 +490,7 @@ export default function Usuarios({ setTitle }) {
                             </div>
                             <Datatable
                                 type="EQUIPOS"
-                                rows={deviceRows}
+                                rows={filteringData(deviceRows)}
                                 columns={columns}
                                 updateRow={updateRowDevice}
                                 deleteRow={deleteRowDevice}
