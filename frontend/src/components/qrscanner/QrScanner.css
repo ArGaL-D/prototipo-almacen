@@ -1,4 +1,6 @@
 .qr-scanner{
     width : 60%;
-    height: 60%;    
+    height: 60%;   
+
+    z-index: 100;
 }

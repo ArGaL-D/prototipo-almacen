@@ -14,8 +14,10 @@ import FormCrearUsuario from '../forms/FormCrearUsuario';
 import * as IoIcons from 'react-icons/io5';
 import * as FaIcons from "react-icons/fa";
 import * as MdIcons from "react-icons/md";
+import * as ImIcons from "react-icons/im";
 
 import "./styles/Usuarios.css";
+import QrScannerEquipo from '../qrscanner/QrScannerEquipo';
 
 
 export default function Usuarios({ setTitle }) {
@@ -25,7 +27,10 @@ export default function Usuarios({ setTitle }) {
 
     const [deviceRows, setDeviceRows] = useState([]);
     const [userRows, setUserRows] = useState([]);
-    const [open, setOpen] = useState(false);
+    const [scanQr,setScanQr] = useState(false);
+    const [open, setOpen] = useState(false);    
+
+    const [qrData,setQrData] = useState({serial: "", equipo: ""});
 
     const [updateUser, setUpdateUser] = useState({
         id: "",
@@ -59,7 +64,7 @@ export default function Usuarios({ setTitle }) {
         "ID", "USUARIO", "NOMBRE(S)", "APELLIDO(S)",
         "EMAIL", "ACCESO", "CONTRASEÑA", "EDITAR", "ELIMINAR"
     ]
-
+    
     const onCloseModal = () => setOpen(false);
 
     // Actualizar fila(tabla) - usuario - Button
@@ -372,6 +377,14 @@ export default function Usuarios({ setTitle }) {
         sessionStorage.setItem('currentPage', location.pathname);
     });
 
+    // Escanear código QR
+    const scanQrCode = () => {
+        setScanQr(!scanQr);
+    }
+    const getQrResults = (equip0, seriaL) => {
+        setQrData({...qrData, serial: seriaL, equipo: equip0});
+    }
+
 
     return (
         <div className="module-usuarios">
@@ -465,6 +478,9 @@ export default function Usuarios({ setTitle }) {
 
                     <Route path={`${path}/equipos`}>
                         <div className="table">
+                            <div className="btn_scanQr" onClick={scanQrCode}>
+                                <ImIcons.ImQrcode/>
+                            </div>
                             <Datatable
                                 type="EQUIPOS"
                                 rows={deviceRows}
@@ -480,6 +496,17 @@ export default function Usuarios({ setTitle }) {
                             updateDevice={updateDevice}
                             setUpdateDevice={setUpdateDevice}
                         />
+                                                    
+                        {
+                            scanQr ? 
+                                <div className="modal_qrScanner">
+                                    <QrScannerEquipo
+                                        closeModalQr = {setScanQr}
+                                        getQrResults = {getQrResults}
+                                    />
+                                </div>
+                            : null                                
+                        }                                             
                     </Route>
 
                     <Route path={`${path}/slider-imgs`}>

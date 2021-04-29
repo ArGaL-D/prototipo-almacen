@@ -39,12 +39,14 @@
 }
 
 
-/* BOTÓN - ADD-Imgs */
-/*
-.addImgs{
+/* BOTÓN - SCAN QR */
+
+.btn_scanQr{
     width : 2em;
     height: 2em;
     cursor: pointer;
+
+    z-index: 20;
 
     display: flex;
     align-items: center;
@@ -54,23 +56,39 @@
     font-size: 2rem;    
    
     border-radius: 50%;
-    background: #20232a;
+    background: #282b33;
     box-shadow: 0px 1px 5px 0px rgba(154, 154, 156, 0.75);
 
-    top: 1.5em;
-    right: 2%;
-    color: rgb(236, 236, 140);
+    bottom: 2em;
+    left: 5%;
+    color: tomato;    
 }
-.addImgs:hover{
-    width: 2.1em;
-    height: 2.1em;
-    box-shadow: 0px 1px 5px 2px lightgoldenrodyellow;
-    transition: 100ms ease-in-out;
+.btn_scanQr:hover{
+    box-shadow: 0px 1px 5px 2px lightskyblue;    
 }
-.addImgs:hover svg{
-    color: rgb(253, 253, 66);
+.btn_scanQr:active svg,
+.btn_scanQr:hover svg{
+    color: lightskyblue;
+    transition: 450ms ease-in-out;
 }
-*/
+
+/* MODAL - QR Sanner */
+
+.modal_qrScanner{
+    width : 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
 .container_2{
     height: 100%;
     
