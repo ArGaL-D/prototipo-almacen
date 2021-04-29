@@ -37,7 +37,7 @@ export const routes = [
     {
         id   : 'ubicacion',
         path : "/ubicacion",
-        title: 'Ubicación',
+        title: 'Ubicación-préstamos',
         icon :  <ImIcons.ImLocation/>
     },
     {
@@ -49,7 +49,7 @@ export const routes = [
     {
         id   : 'usuarios',
         path : "/usuarios",
-        title: 'Usuarios',
+        title: 'Administrador',
         icon :  <FaIcons.FaUserCog/>
     }
 ];

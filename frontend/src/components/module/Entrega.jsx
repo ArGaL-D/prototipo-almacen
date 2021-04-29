@@ -79,16 +79,18 @@ export default function Entrega({setTitle}) {
             if (existeEquipo === false){
                 Swal.fire({
                     icon: 'warning',
-                    title: 'Oops...',
-                    text: `El equipo [${formData.serial}] no ha sido registrado en la BD.`,
+                    title: 'Uups...',
+                    html: `El equipo <strong>[${formData.serial}]</strong> no ha sido registrado por el administrador.`,
                 })
             }else{
                 if (equipoEntregado === false){
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: `No se puedo registrar la entrega del equipo [${formData.serial}]. Probablemente, el equipo no ha sido préstado, o está en reparación.`,
+                        html: `No se puedo registrar la entrega del equipo <strong>[${formData.serial}]</strong>. Probablemente, el equipo no ha sido préstado, o está en reparación.`,
                     })
+                }else{
+                    window.location.reload();
                 }
             }
             

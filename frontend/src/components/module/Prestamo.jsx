@@ -161,14 +161,14 @@ export default function Prestamo({setTitle}) {
                 if (existeEquipo===false){
                     Swal.fire({
                         icon: 'warning',
-                        title: 'Oops...',
-                        text: `El equipo ${formData.equipo}-${formData.serial} no se encuentra registrado en el almacén. Seleccione otro equipo. `,
+                        title: 'Uups...',
+                        text: `El equipo ${formData.equipo}-${formData.serial} no está registrado en el almacén. Verifique el equipo. `,
                       })
                 }else if (equipoDisponible===false){
                     Swal.fire({
                         icon: 'warning',
-                        title: 'Oops...',
-                        text: `El equipo [${formData.serial}] no se encuentra disponible por el momento. ESTATUS: '${equipoStatus}'. `,
+                        title: 'Uups...',
+                        text: `El equipo [${formData.serial}] no está disponible por el momento. ESTATUS: '${equipoStatus}'. `,
                       })
                 }else{
                     setOpenModalQr(true);

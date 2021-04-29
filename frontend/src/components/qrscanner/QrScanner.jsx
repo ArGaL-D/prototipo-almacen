@@ -23,9 +23,17 @@ const QrScanner = ( {closeModalQr, getQrResults, type} ) => {
                     const resp = await axios.post('http://localhost:3001/scrapting', pagina);
                     const alumno = resp.data;
     
+                    if (resp.data.error){
+
+                    }
                     getQrResults(alumno.nombre,alumno.boleta);     
                 }catch(error){
                     console.log(error)
+                    Swal.fire({
+                        icon: 'error',
+                        title: `${error}`,
+                        text: `Hay problemas en extraer la información del alumno.`,
+                    })
                 }
             }else{
                 Swal.fire({
@@ -35,6 +43,7 @@ const QrScanner = ( {closeModalQr, getQrResults, type} ) => {
                 })
             }
         }
+
         //PROFESOR o ASIGNACIÓN
         if (type === "Profesor" || type === "Asignación"){
             let credencial   = result.data;

@@ -230,15 +230,13 @@ server.post('/entrega', (req, res) => {
 /* POST - WEB SCRAPTING - (Préstamo-Formulario-alumno) */
 server.post('/scrapting', (req, res) => {
     let pagina = req.body;
-
     // Función auto-ejecutada
-    (async () => {
-        const browser = await puppeteer.launch();
+    (async () => {                
 
+        const browser = await puppeteer.launch();
         const page = await browser.newPage();
 
-        // Verificar que todo se ha cargado correctamente
-        await page.goto(pagina.url, { waitUntil: 'networkidle2' });
+        await page.goto(pagina.url);
 
         try {
             const alumno = await page.evaluate(() => {
