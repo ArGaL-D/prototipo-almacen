@@ -89,7 +89,7 @@ export default function Login() {
                 <span 
                     className="login_menu"
                     onClick = {imgCarousel}>
-                    Imágenes
+                    Slider
                 </span>
             </header>        
             <div className="login_container">
@@ -102,6 +102,7 @@ export default function Login() {
                         onChange = {handleInputText}
                         placeholder = "Usuario"
                     />
+                    <br/>
                     <Input 
                         id = "login"
                         name = "userpass"
@@ -119,6 +120,7 @@ export default function Login() {
                             </div>
                             : null
                     } 
+                    <br/>
                     <div className="button">
                         <Button
                             title = "INGRESAR"
