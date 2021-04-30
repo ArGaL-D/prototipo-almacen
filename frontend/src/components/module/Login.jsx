@@ -33,7 +33,8 @@ export default function Login() {
 
     const handleOnSubmit = async (e) =>{
         e.preventDefault();
-        
+        setCount(count + 1);
+        console.log(count)
         // Verificar usuario
         try {
             const resp = await axios.post('http://localhost:3001/login',formData);
@@ -47,17 +48,23 @@ export default function Login() {
                     window.location.reload();
                 }else{
                     setWarning(true);
+                    // Random colors
+                    const letters = '0123456789ABCDEF';
+                    let color  = '#';
+                    for (let i=0; i<6; i++){
+                        color +=letters[Math.floor(Math.random()*16)];                    
+                    }
+                    setRandomColor(color);
                 }
-            }else{
-                setWarning(true);
-                setCount(count + 1);
-                // Rnadom colors
+            }else{                                
+                setWarning(true);   
+                // Random colors
                 const letters = '0123456789ABCDEF';
                 let color  = '#';
                 for (let i=0; i<6; i++){
                     color +=letters[Math.floor(Math.random()*16)];                    
                 }
-                setRandomColor(color);
+                setRandomColor(color);             
             }        
         } catch (error) {
             Swal.fire({
@@ -65,7 +72,7 @@ export default function Login() {
                 title: 'LOGIN',
                 text: `No se puedo iniciar sesión. Probablemente, el servidor esté desactivo, o tenga conflictos internos.`,
             })
-        }   
+        }           
     }
 
     const imgCarousel = () =>{
