@@ -173,8 +173,8 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
                             <td >
                                 <div 
                                     className="td-descrip" 
-                                    style   = {typeOfUser.user === "admin"? {cursor: 'pointer'}: {cursor: 'not-allowed'}} 
-                                    onClick = {typeOfUser.user === "admin"? deleteRow : null} >
+                                    style   = {typeOfUser.user === row.usuario? {cursor: 'not-allowed'}:{cursor: 'pointer'}} 
+                                    onClick = {typeOfUser.user === row.usuario? null: deleteRow} >
                                     {<MdIcons.MdDelete/>}                                    
                                 </div>                                    
                             </td>                          
