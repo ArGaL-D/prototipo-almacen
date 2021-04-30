@@ -657,9 +657,10 @@ server.delete('/delete-equipo/:serial', (req, res) => {
                 console.log(error)
                 res.json({successful_delete: false});
             }else{
-                res.json({successful_delete: true});
-            }
-            
+                res.json({
+                    successful_delete: true,
+                });
+            }            
         });
     });
     

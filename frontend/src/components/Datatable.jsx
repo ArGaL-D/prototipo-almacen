@@ -56,7 +56,16 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
                                 <td>{row.equipo}</td>  
                                 <td>{row.marca}</td>  
                                 <td>{row.modelo}</td>
-                                <td>{row.estatus}</td>
+                                <td style = {
+                                  {
+                                    DISPONIBLE: {color: '#07bd78', fontFamily: 'Arial'},
+                                    REPARACIÓN: {color: '#ecb11c', fontFamily: 'Arial'},
+                                    INSERVIBLE: {color: '#f21f3a', fontFamily: 'Arial'},
+                                    PRESTADO  : {color: '#3c93fd', fontFamily: 'Arial'}
+                                  }[row.estatus]}
+                                  >
+                                  {row.estatus}
+                                </td>
                                 <td>
                                    <div className="td-descrip">
                                         {<GrIcons.GrTextAlignFull/>}
@@ -81,7 +90,16 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
                                 <td>{row.equipo}</td>  
                                 <td>{row.marca}</td>  
                                 <td>{row.modelo}</td>
-                                <td>{row.estatus}</td>
+                                <td style = {
+                                  {
+                                    DISPONIBLE: {color: '#07bd78', fontFamily: 'Arial'},
+                                    REPARACIÓN: {color: '#ecb11c', fontFamily: 'Arial'},
+                                    INSERVIBLE: {color: '#f21f3a', fontFamily: 'Arial'},
+                                    PRESTADO  : {color: '#3c93fd', fontFamily: 'Arial'}
+                                  }[row.estatus]
+                                }>
+                                  {row.estatus}
+                                </td>
                                 <td>
                                     <div className="td-descrip">
                                         {<GrIcons.GrTextAlignFull/>}

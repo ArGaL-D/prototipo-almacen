@@ -115,62 +115,78 @@ export default function Usuarios({ setTitle }) {
         const tag_td = e.currentTarget.parentNode.parentNode.childNodes;
         const serial = tag_td[0].textContent;
         
-        const { value: password } = await Swal.fire({
-            title: 'Contraseña',
-            input: 'password',
-            inputPlaceholder: 'Ingrese contraseña',
-            inputAttributes: {
-                autocapitalize: 'off',
-                autocorrect: 'off'
-            }
-        })        
-        // Verificar password        
-        try {
-            const token = localStorage.getItem('token');
-            const resp1 = await axios.post('http://localhost:3001/verificar-usuario', { token, password });
-            
-            if (resp1.data.isAuth) {
-                if (resp1.data.successful_password) {
-                    const resp2 = await axios.delete(`http://localhost:3001/delete-equipo/${serial}`);
+        // Confirmar antes de eliminar
+        const result = await Swal.fire({
+            title: '¿Estás seguro?',
+            html: `<strong>Nota:</strong> si eliminas un equipo, ten encuenta que perderás información de otros módulos. Principalmente, de los equipos con estatus en <strong>REPARACIÓN</strong> y <strong>PRESTADO</strong>.`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Si, eliminarlo!',
+            cancelButtonColor: '#d33'
 
-                    if (resp2.data.successful_delete === false) {
+        })
+
+        if (result.isConfirmed) {
+            const { value: password } = await Swal.fire({
+                title: 'Contraseña',
+                input: 'password',
+                inputPlaceholder: 'Ingrese contraseña',
+                inputAttributes: {
+                    autocapitalize: 'off',
+                    autocorrect: 'off'
+                }
+            })
+            // Verificar password        
+            try {
+                const token = localStorage.getItem('token');
+                const resp1 = await axios.post('http://localhost:3001/verificar-usuario', { token, password });
+                
+                if (resp1.data.isAuth) {
+                    if (resp1.data.successful_password) {
+                        const resp2 = await axios.delete(`http://localhost:3001/delete-equipo/${serial}`);
+
+                        if (resp2.data.successful_delete === false) {
+                            Swal.fire({
+                                icon: "warning",
+                                title: "Problemas en eliminar",
+                                text: "Probablemente, la estructura (código) de la BD ha cambiado."
+                            });
+                        }else{
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Se ha eliminado correctamente.',
+                                showConfirmButton: false,
+                                timer: 1600
+                            })
+                            setTimeout(() =>{
+                                window.location.reload()
+                            },2000);
+                        }
+                    } else {
                         Swal.fire({
                             icon: "warning",
-                            title: "Problemas en eliminar",
-                            text: "Probablemente, la estructura (código) de la BD ha cambiado."
+                            title: "Contraseña",
+                            text: "Incorrecta."
                         });
-                    }else{
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Se ha eliminado correctamente.',
-                            showConfirmButton: false,
-                            timer: 1600
-                          })
-                        setTimeout(1710,window.location.reload());
                     }
                 } else {
                     Swal.fire({
-                        icon: "warning",
-                        title: "Contraseña",
-                        text: "Incorrecta."
+                        icon: "error",
+                        title: "Error",
+                        text: "Hay problemas de autenticación de usuario."
                     });
                 }
-            } else {
+
+            } catch (error) {
                 Swal.fire({
                     icon: "error",
-                    title: "Error",
-                    text: "Hay problemas de autenticación de usuario."
+                    title: error,
+                    text: "Probablemente, el servidor esté desactivado, o haya problemas internos en el servidor."
                 });
-            }
-
-        } catch (error) {
-            Swal.fire({
-                icon: "error",
-                title: error,
-                text: "Probablemente, el servidor esté desactivado, o haya problemas internos en el servidor."
-            });
-        }        
+            }            
+        }                      
     }
 
     // Eliminar fila (Usuario) - Button

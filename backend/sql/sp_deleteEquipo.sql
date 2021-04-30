@@ -11,7 +11,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_deleteEquipo`(in serial VARCHAR(
 BEGIN
 
         delete from EQUIPOS where EQUIPOS.num_serie=serial;
-
 END$$
 
 DELIMITER ;
