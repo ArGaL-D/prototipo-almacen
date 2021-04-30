@@ -331,6 +331,22 @@ export default function Usuarios({ setTitle }) {
         }
     }
 
+    // Escanear código QR y obtener resultados
+    const scanQrCode = () => {
+        setScanQr(!scanQr);
+    }
+    const getQrResults = (equip0, seriaL) => {
+        setQrData({...qrData, serial: seriaL, equipo: equip0});
+    }
+
+    // Filtrar equipos por SERIAL
+    const filteringData = (rows) => {
+        return rows.filter( row => 
+            row.num_serie.indexOf(qrData.serial) > -1
+        )
+    }
+    
+
     // -- - - --- - -- - -- -- --- --- --- -- 
 
     useEffect(() => {
@@ -376,21 +392,6 @@ export default function Usuarios({ setTitle }) {
     useEffect(() => {
         sessionStorage.setItem('currentPage', location.pathname);
     });
-
-    // Escanear código QR y obtener resultados
-    const scanQrCode = () => {
-        setScanQr(!scanQr);
-    }
-    const getQrResults = (equip0, seriaL) => {
-        setQrData({...qrData, serial: seriaL, equipo: equip0});
-    }
-
-    // Filtrar equipos por SERIAL
-    const filteringData = (rows) => {
-        return rows.filter( row => 
-            row.num_serie.indexOf(qrData.serial) > -1
-        )
-    }
 
 
     return (
@@ -450,7 +451,9 @@ export default function Usuarios({ setTitle }) {
                 <Switch>
                     <Route path={`${path}`} exact>
                         <div className="donut">
-                            <PieChart />
+                           <div className="pie_chart">
+                                <PieChart />
+                            </div>
                         </div>
                     </Route>
                     <Route path={`${path}/crear-usuario`}>

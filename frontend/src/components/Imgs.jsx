@@ -120,27 +120,59 @@ export default function Imgs() {
         // Nombre de la imágen
         const image    = e.currentTarget.parentNode.firstChild;        
         const fullPath = image.src;
-        const filename = fullPath.replace(/^.*[\\/]/, '');        
+        const filename = fullPath.replace(/^.*[\\/]/, '');      
+        
+        // Solicitar password
+        const { value: password } = await Swal.fire({
+            title: 'Contraseña',
+            input: 'password',
+            inputPlaceholder: 'Ingrese contraseña',
+            inputAttributes: {
+                autocapitalize: 'off',
+                autocorrect: 'off'
+            }
+        })
         
         try {
-            const resp = await axios.delete(`http://localhost:3001/delete-image/${filename}`);
-            if (resp.data.deleted_image){
+            const token = localStorage.getItem('token');
+            const resp1 = await axios.post('http://localhost:3001/verificar-usuario', { token, password });
+
+            if (resp1.data.isAuth) {
+                if (resp1.data.successful_password) {
+                    // Eliminar imagen
+                    const resp = await axios.delete(`http://localhost:3001/delete-image/${filename}`);
+                    if (resp.data.deleted_image){
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Se ha eliminado correctamente la imagen',
+                            showConfirmButton: false,
+                            timer: 1700
+                        })
+                    }else{
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'No se pudo eliminar la imagen.',
+                            showConfirmButton: false,
+                            timer: 1700
+                        })
+                    }
+                } else {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Contraseña",
+                        text: "Incorrecta."
+                    });
+                }
+            } else {
                 Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Se ha eliminado correctamente la imagen',
-                    showConfirmButton: false,
-                    timer: 1700
-                })
-            }else{
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'No se pudo eliminar la imagen.',
-                    showConfirmButton: false,
-                    timer: 1700
-                })
-            }
+                    icon: "error",
+                    title: "Error",
+                    text: "Hay problemas de autenticación de usuario."
+                });
+            }            
+            
         } catch (error) {
             console.log(error)
             Swal.fire({

@@ -34,7 +34,7 @@
     top : -25%;
 
     z-index: 40;
-    transition : 300ms ease-in-out;
+    transition : 100ms ease-in-out;
     font-family: 'Roboto', sans-serif;
     font-weight: 600;
     font-size  : .9rem;
