@@ -256,7 +256,6 @@ server.post('/scrapting', (req, res) => {
 
         await browser.close();
     })()
-
 });
 
 /* POST - REPARACIÓN - REPORTE  */

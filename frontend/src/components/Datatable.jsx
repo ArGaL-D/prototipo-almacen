@@ -9,7 +9,7 @@ import * as AiIcons   from "react-icons/ai";
 import "./styles/Datatable.css";
 
 
-export default function Datatable({columns, rows ,type, onOpenModal,updateRow,deleteRow, updatePass}) {
+export default function Datatable({columns, rows ,type, onOpenModal,updateRow,deleteRow, updatePass, typeOfUser}) {
 
 
     return (
@@ -73,12 +73,12 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
                                 <td>{row.edificio}</td>
                                 <td>{row.piso}</td>
                                 <td>
-                                  <button className="btn-qr" onClick={updateRow} style={{cursor: 'pointer'}} >
-                                      <AiIcons.AiTwotoneEdit/>
+                                  <button className="btn-qr" onClick={ updateRow }  style={{cursor: 'pointer'}} >
+                                      <AiIcons.AiTwotoneEdit/>  
                                   </button>  
                                 </td>
                                 <td>
-                                  <button className="btn-qr" onClick={deleteRow} style={{cursor: 'pointer'}} >
+                                  <button className="btn-qr" onClick={ typeOfUser } style={{cursor: 'pointer'}} >
                                       <MdIcons.MdDelete/>
                                   </button>  
                                 </td>    
@@ -121,25 +121,48 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
                   }),
                   USUARIOS: rows.map( (row,index) => {
                     return(
-                        <tr key={index}>
-                            <td>{row.id_usuario}</td>
-                            <td>{row.usuario}</td>
-                            <td>{row.nombre}</td>
-                            <td>{row.apellido}</td>
-                            <td>{row.email}</td>
-                            <td>{row.acceso}</td>
-                            <td>
-                                <div className="td-descrip" style={{cursor: 'pointer'}} onClick={updatePass} >
+                        <tr key={index} style={typeOfUser.id === row.id_usuario?{background:'#20232a', color: '#fad287'}: null}>
+                            <td >
+                              {row.id_usuario}
+                            </td>
+                            <td >
+                              {row.usuario}
+                            </td>
+                            <td >
+                              {row.nombre}
+                            </td>
+                            <td >
+                              {row.apellido}
+                            </td>
+                            <td >
+                              {row.email}
+                            </td>
+                            <td >
+                              {row.acceso}
+                            </td>
+                            <td >
+                                <div 
+                                    className = "td-descrip"      
+                                    style   = {typeOfUser.user === row.usuario || typeOfUser.user === "admin"? {cursor: 'pointer'}: {cursor: 'not-allowed'}}                               
+                                    onClick = {typeOfUser.user === row.usuario || typeOfUser.user === "admin"
+                                      ? updatePass 
+                                      : null} >
                                     {<ImIcons.ImKey/>}                                    
                                 </div>                                    
                             </td>
-                            <td>
-                                <div className="td-descrip" style={{cursor: 'pointer'}} onClick={updateRow} >
+                            <td >
+                                <div 
+                                    className="td-descrip" 
+                                    style   = {typeOfUser.user === row.usuario || typeOfUser.user === "admin"? {cursor: 'pointer'}: {cursor: 'not-allowed'}} 
+                                    onClick = {typeOfUser.user === row.usuario || typeOfUser.user === "admin"? updateRow : null} >
                                     {<FaIcons.FaUserEdit/>}                                    
                                 </div>                                    
                             </td>
-                            <td>
-                                <div className="td-descrip" style={{cursor: 'pointer'}} onClick={deleteRow}>
+                            <td >
+                                <div 
+                                    className="td-descrip" 
+                                    style   = {typeOfUser.user === "admin"? {cursor: 'pointer'}: {cursor: 'not-allowed'}} 
+                                    onClick = {typeOfUser.user === "admin"? deleteRow : null} >
                                     {<MdIcons.MdDelete/>}                                    
                                 </div>                                    
                             </td>                          

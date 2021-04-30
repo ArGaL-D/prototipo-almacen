@@ -51,7 +51,7 @@ export default function FormCrearUsuario() {
                     if (existeUsuario){
                         Swal.fire({
                             icon: 'error',                            
-                            title: `Ups...`,                            
+                            title: `Uups...`,                            
                             html:`El nombre de usuario <strong>[${formUser.usuario}]</strong> ya se registró.`
                         })
                     }else{
