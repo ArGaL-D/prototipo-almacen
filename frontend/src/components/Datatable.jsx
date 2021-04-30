@@ -1,4 +1,5 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
+import axios from "axios";
 
 import * as ImIcons   from "react-icons/im";
 import * as GrIcons   from "react-icons/gr";
@@ -9,7 +10,25 @@ import * as AiIcons   from "react-icons/ai";
 import "./styles/Datatable.css";
 
 
-export default function Datatable({columns, rows ,type, onOpenModal,updateRow,deleteRow, updatePass, typeOfUser}) {
+export default function Datatable({columns, rows ,type, onOpenModal,updateRow,deleteRow, updatePass}) {
+
+  const [typeOfUser, setTypeOfUser] = useState({user:'', id:''});
+  // Obtener el tipo de usuario
+  useEffect(() => {
+    const readToken = async () => {
+        const token = localStorage.getItem('token');
+        try {
+            const resp = await axios.get('http://localhost:3001/login/verificar', { headers: { 'Authorization': token } });
+            const usuario = resp.data.authData.userData.usuario;
+            const idUser  = resp.data.authData.userData.id_usuario;
+            setTypeOfUser({user:usuario, id:idUser});
+            console.log(resp.data.authData.userData)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    readToken();
+}, []);
 
 
     return (
@@ -121,25 +140,18 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
                   }),
                   USUARIOS: rows.map( (row,index) => {
                     return(
-                        <tr key={index} style={typeOfUser.id === row.id_usuario?{background:'#20232a', color: '#fad287'}: null}>
-                            <td >
-                              {row.id_usuario}
-                            </td>
-                            <td >
-                              {row.usuario}
-                            </td>
-                            <td >
-                              {row.nombre}
-                            </td>
-                            <td >
-                              {row.apellido}
-                            </td>
-                            <td >
-                              {row.email}
-                            </td>
-                            <td >
-                              {row.acceso}
-                            </td>
+                        <tr 
+                          key = {index} 
+                          style = { typeOfUser.id === row.id_usuario
+                            ? {background:'#20232a', color: '#fad287'}
+                            : null
+                          }>
+                            <td > {row.id_usuario}</td>
+                            <td > {row.usuario}   </td>
+                            <td > {row.nombre}    </td>
+                            <td > {row.apellido}  </td>
+                            <td > {row.email}     </td>
+                            <td > {row.acceso}    </td>
                             <td >
                                 <div 
                                     className = "td-descrip"      

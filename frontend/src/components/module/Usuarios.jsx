@@ -54,7 +54,6 @@ export default function Usuarios({ setTitle }) {
         piso: ""
     });
 
-    const [typeOfUser, setTypeOfUser] = useState({user:'', id:''});
 
     const columns = [
         "Serial", "Equipo", "Marca", "Modelo", "Estatus",
@@ -396,22 +395,7 @@ export default function Usuarios({ setTitle }) {
         sessionStorage.setItem('currentPage', location.pathname);
     });
 
-    // Obtener el tipo de usuario
-    useEffect(() => {
-        const readToken = async () => {
-            const token = localStorage.getItem('token');
-            try {
-                const resp = await axios.get('http://localhost:3001/login/verificar', { headers: { 'Authorization': token } });
-                const usuario = resp.data.authData.userData.usuario;
-                const idUser  = resp.data.authData.userData.id_usuario;
-                setTypeOfUser({user:usuario, id:idUser});
-                console.log(resp.data.authData.userData)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        readToken();
-    }, []);
+
 
     return (
         <div className="module-usuarios">
@@ -494,7 +478,7 @@ export default function Usuarios({ setTitle }) {
                                 updateRow={updateRow}
                                 deleteRow={deleteRowUser}
                                 updatePass={updatePass}
-                                typeOfUser={typeOfUser}
+                                
                             />
                         </div>
 
@@ -517,6 +501,7 @@ export default function Usuarios({ setTitle }) {
                                 columns={columns}
                                 updateRow={updateRowDevice}
                                 deleteRow={deleteRowDevice}
+                                
                             />
                         </div>
 
