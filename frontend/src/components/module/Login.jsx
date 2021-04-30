@@ -34,7 +34,7 @@ export default function Login() {
     const handleOnSubmit = async (e) =>{
         e.preventDefault();
         setCount(count + 1);
-        console.log(count)
+        
         // Verificar usuario
         try {
             const resp = await axios.post('http://localhost:3001/login',formData);

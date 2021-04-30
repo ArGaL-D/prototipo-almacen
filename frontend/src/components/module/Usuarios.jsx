@@ -74,12 +74,12 @@ export default function Usuarios({ setTitle }) {
 
         setUpdateUser({
             ...updateUser,
-            id: tag_td[0].textContent,
-            usuario: tag_td[1].textContent,
-            nombre: tag_td[2].textContent,
+            id      : tag_td[0].textContent,
+            usuario : tag_td[1].textContent,
+            nombre  : tag_td[2].textContent,
             apellido: tag_td[3].textContent,
-            email: tag_td[4].textContent,
-            acceso: tag_td[5].textContent
+            email   : tag_td[4].textContent,
+            acceso  : tag_td[5].textContent
         });
         // Abrir Modal
         setOpen(true);
@@ -93,14 +93,14 @@ export default function Usuarios({ setTitle }) {
         setUpdateDevice({
             ...updateDevice,
             editedSerial: tag_td[0].textContent,
-            serial: tag_td[0].textContent,
-            equipo: tag_td[1].textContent,
-            marca: tag_td[2].textContent,
-            modelo: tag_td[3].textContent,
-            estatus: tag_td[4].textContent,
-            almacen: tag_td[6].textContent,
+            serial  : tag_td[0].textContent,
+            equipo  : tag_td[1].textContent,
+            marca   : tag_td[2].textContent,
+            modelo  : tag_td[3].textContent,
+            estatus : tag_td[4].textContent,
+            almacen : tag_td[6].textContent,
             edificio: tag_td[7].textContent,
-            piso: tag_td[8].textContent,
+            piso    : tag_td[8].textContent,
 
         });
         // Abrir Modal
@@ -113,12 +113,8 @@ export default function Usuarios({ setTitle }) {
 
         // Obtener el serial
         const tag_td = e.currentTarget.parentNode.parentNode.childNodes;
-
-        setUpdateDevice({
-            ...updateDevice,
-            serial: tag_td[0].textContent,
-        })
-
+        const serial = tag_td[0].textContent;
+        
         const { value: password } = await Swal.fire({
             title: 'Contraseña',
             input: 'password',
@@ -128,14 +124,14 @@ export default function Usuarios({ setTitle }) {
                 autocorrect: 'off'
             }
         })        
-        // Verificar password
+        // Verificar password        
         try {
             const token = localStorage.getItem('token');
             const resp1 = await axios.post('http://localhost:3001/verificar-usuario', { token, password });
             
             if (resp1.data.isAuth) {
                 if (resp1.data.successful_password) {
-                    const resp2 = await axios.delete(`http://localhost:3001/delete-equipo/${updateDevice.serial}`);
+                    const resp2 = await axios.delete(`http://localhost:3001/delete-equipo/${serial}`);
 
                     if (resp2.data.successful_delete === false) {
                         Swal.fire({
@@ -143,6 +139,15 @@ export default function Usuarios({ setTitle }) {
                             title: "Problemas en eliminar",
                             text: "Probablemente, la estructura (código) de la BD ha cambiado."
                         });
+                    }else{
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Se ha eliminado correctamente.',
+                            showConfirmButton: false,
+                            timer: 1600
+                          })
+                        setTimeout(1710,window.location.reload());
                     }
                 } else {
                     Swal.fire({
@@ -165,7 +170,7 @@ export default function Usuarios({ setTitle }) {
                 title: error,
                 text: "Probablemente, el servidor esté desactivado, o haya problemas internos en el servidor."
             });
-        }
+        }        
     }
 
     // Eliminar fila (Usuario) - Button

@@ -22,7 +22,7 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
             const usuario = resp.data.authData.userData.usuario;
             const idUser  = resp.data.authData.userData.id_usuario;
             setTypeOfUser({user:usuario, id:idUser});
-            console.log(resp.data.authData.userData)
+
         } catch (error) {
             console.log(error)
         }
@@ -97,7 +97,7 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
                                   </button>  
                                 </td>
                                 <td>
-                                  <button className="btn-qr" onClick={ typeOfUser } style={{cursor: 'pointer'}} >
+                                  <button className="btn-qr" onClick={ deleteRow } style={{cursor: 'pointer'}} >
                                       <MdIcons.MdDelete/>
                                   </button>  
                                 </td>    
