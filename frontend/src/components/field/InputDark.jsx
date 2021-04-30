@@ -13,6 +13,7 @@ export default function InputDark(props) {
                 defaultValue = {props.defaultValue} 
                 maxLength = {props.maxLength}
                 required
+                readOnly = {props.readOnly}
             />
             <label 
                 className="title">

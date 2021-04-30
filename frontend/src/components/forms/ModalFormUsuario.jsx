@@ -91,6 +91,7 @@ export default function ModalFormUsuario({open,onCloseModal, updateUser, setUpda
                     placeholder = "Usuario"
                     onChange = {handleText}
                     defaultValue = {updateUser.usuario}
+                    readOnly = {updateUser.usuario === "admin" ? true:false}
                 />
             </div>
             <br/><br/>

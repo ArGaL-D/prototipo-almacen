@@ -164,12 +164,12 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
                             ? {background:'#20232a', color: '#fad287'}
                             : null
                           }>
-                            <td > {row.id_usuario}</td>
-                            <td > {row.usuario}   </td>
-                            <td > {row.nombre}    </td>
-                            <td > {row.apellido}  </td>
-                            <td > {row.email}     </td>
-                            <td > {row.acceso}    </td>
+                            <td >{row.id_usuario}</td>
+                            <td >{row.usuario}</td>
+                            <td >{row.nombre}</td>
+                            <td >{row.apellido}</td>
+                            <td >{row.email}</td>
+                            <td >{row.acceso}</td>
                             <td >
                                 <div 
                                     className = "td-descrip"      
