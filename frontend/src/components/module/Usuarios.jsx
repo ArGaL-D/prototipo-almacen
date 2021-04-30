@@ -127,12 +127,12 @@ export default function Usuarios({ setTitle }) {
                 autocapitalize: 'off',
                 autocorrect: 'off'
             }
-        })
+        })        
         // Verificar password
         try {
             const token = localStorage.getItem('token');
             const resp1 = await axios.post('http://localhost:3001/verificar-usuario', { token, password });
-
+            
             if (resp1.data.isAuth) {
                 if (resp1.data.successful_password) {
                     const resp2 = await axios.delete(`http://localhost:3001/delete-equipo/${updateDevice.serial}`);
