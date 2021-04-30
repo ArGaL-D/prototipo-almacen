@@ -36,6 +36,21 @@
     font-weight: 700;
 }
 
+/* TITLE-USERNAME */
+.user_container{      
+    color : #fad287;
+    height: 100%;  
+    
+    font-size  : clamp(1rem, 3vw, 1.3rem);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+    text-align: center;
+    padding-left: 1em;
+
+    display: flex;
+    align-items: center;
+}
+
 
 /* BUTTON */
 .nav-bar button{
