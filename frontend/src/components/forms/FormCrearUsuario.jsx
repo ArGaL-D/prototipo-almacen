@@ -108,7 +108,8 @@ export default function FormCrearUsuario() {
                     id = 'inputUsuario'
                     name = 'usuario'
                     icon = {<FaIcons.FaUserAlt/>}
-                    onChange = {handleInput}                         
+                    onChange = {handleInput}   
+                    maxLength = {"50"}                      
                     placeholder = "Usuario"
                 />
             </div>
@@ -117,7 +118,8 @@ export default function FormCrearUsuario() {
                     id = 'inputNombres'
                     name = 'nombre'
                     icon = {<FaIcons.FaUserEdit/>}
-                    onChange = {handleInput}                                     
+                    onChange = {handleInput}  
+                    maxLength = {"50"}                                   
                     placeholder = "Nombre(s)"
                 />
             </div>
@@ -126,7 +128,8 @@ export default function FormCrearUsuario() {
                     id = 'inputApellidos'
                     name = 'apellido'
                     icon = {<FaIcons.FaUserEdit/>}
-                    onChange = {handleInput}                                      
+                    onChange = {handleInput}   
+                    maxLength = {"50"}                                   
                     placeholder = "Apellido(s)"
                 />
             </div>
@@ -136,7 +139,8 @@ export default function FormCrearUsuario() {
                     name = 'email'
                     type = 'email'
                     icon = {<MdIcons.MdEmail/>}
-                    onChange = {handleInput}                                      
+                    onChange = {handleInput}     
+                    maxLength = {"100"}                                 
                     placeholder = "Email"
                 />
             </div>
@@ -146,7 +150,8 @@ export default function FormCrearUsuario() {
                     name = 'password'
                     type = 'password'
                     icon = {<FaIcons.FaKey/>} 
-                    onChange = {handleInput}                                    
+                    onChange = {handleInput}     
+                    maxLength = {"100"}                               
                     placeholder = "Contraseña"
                 />
             </div>
@@ -156,7 +161,8 @@ export default function FormCrearUsuario() {
                     name = 'repeatPass'
                     type = 'password'
                     icon = {<FaIcons.FaKey/>} 
-                    onChange = {handleInput}                                    
+                    onChange = {handleInput}       
+                    maxLength = {"50"}                             
                     placeholder = "Confirmar contraseña"
                 />
             </div>

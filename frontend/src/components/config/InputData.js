@@ -15,27 +15,31 @@ export const inputData = [
         title: "Equipo",        
         name : "equipo",
         icon : <GiIcons.GiWifiRouter />,
-        id   :  "idEquipo"
+        id   :  "idEquipo",
+        maxLength: "35"
     },
     {
         placeholder: "Marca del equipo",
         title: "Marca",        
         name : "marca",
         icon : <MdIcons.MdBorderColor />,
-        id   : "idMarca"
+        id   : "idMarca",
+        maxLength: "35"
     },
     {
         placeholder: "Modelo del equipo",
         title: "Modelo",        
         name : "modelo",
         icon : <MdIcons.MdBorderColor />,
-        id   : "idModelo"
+        id   : "idModelo",
+        maxLength: "35"
     },
     {
         placeholder: "No. de serie",
         title: "Serial",        
         name : "serial",
         icon : <BiIcons.BiBarcodeReader />,
-        id   : "idSerie"
+        id   : "idSerie",
+        maxLength: "30"
     }
 ];

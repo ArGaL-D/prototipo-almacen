@@ -118,6 +118,7 @@ export default function FormReparacion(props) {
                     name = "reporte"
                     icon = {<HiIcons.HiPencilAlt/>}
                     onChange = {handleText}
+                    maxLength = {"50"}
                     placeholder = "Título"
                 />
             </div>
@@ -131,6 +132,7 @@ export default function FormReparacion(props) {
                         placeholder = "Serial"
                         onClick = {onOpenModal}
                         onChange = {handleText}
+                        maxLength = {"30"}
                         defaultValue = {formData.serial}
                         cursorPointer = {true}
                     />
@@ -141,6 +143,7 @@ export default function FormReparacion(props) {
                         name = 'equipo'
                         icon = {<GiIcons.GiWifiRouter/>}                                      
                         onChange = {handleText}
+                        maxLength = {"35"}
                         defaultValue = {formData.equipo}
                         placeholder = "Equipo"
                     />
@@ -154,7 +157,8 @@ export default function FormReparacion(props) {
                     icon = {<BiIcons.BiGitBranch/>}      
                     onClick = {onOpenTable}                                 
                     onChange = {handleText}
-                    placeholder = "Hilo"
+                    maxLength = {"10"}
+                    placeholder = "Hilo"                    
                     cursorPointer = {true}
                 />
             </div>

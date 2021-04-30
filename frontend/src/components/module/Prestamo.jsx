@@ -205,6 +205,7 @@ export default function Prestamo({setTitle}) {
                         icon = {<RiIcons.RiBodyScanFill/>}
                         onClick = {showModalScanner1}
                         onChange = {handleText}
+                        maxLength = {"50"}
                         placeholder = "Nombre"
                         cursorPointer = {true}                        
                     />
@@ -214,7 +215,8 @@ export default function Prestamo({setTitle}) {
                         id = 'input-clave'
                         name = 'clave'
                         icon = {<FaIcons.FaIdCardAlt/>}
-                        onChange = {handleText}                        
+                        onChange = {handleText}                    
+                        maxLength = {"15"}    
                         placeholder = {typeForm === "Alumno" ? "Boleta" : "Clave" }                        
                     />
                 </div>
@@ -226,6 +228,7 @@ export default function Prestamo({setTitle}) {
                         icon = {<BiIcons.BiBarcodeReader/>}
                         onClick = {showModalScanner2}
                         onChange = {handleText}
+                        maxLength = {"30"}
                         placeholder = "Serial"
                         cursorPointer = {true}
                     />
@@ -236,6 +239,7 @@ export default function Prestamo({setTitle}) {
                         name = 'equipo'
                         icon = {<GiIcons.GiWifiRouter/>}
                         onChange = {handleText}
+                        maxLength = {"35"}
                         placeholder = "Equipo"
                     />
                 </div>

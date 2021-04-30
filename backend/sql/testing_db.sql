@@ -6,40 +6,45 @@ USE ALMACEN_EQUIPOS;
 
 #CREATE DATABASE ALMACEN_EQUIPOS;
 /*
-CREATE TABLE EQUIPO(
-    num_serie   VARCHAR(20) NOT NULL,
-    marca       VARCHAR(30) NOT NULL,
-    modelo      VARCHAR(30) NOT NULL,
-    nombre      VARCHAR(30) NOT NULL,
-    estado      VARCHAR(20) NOT NULL,
+CREATE TABLE EQUIPOS(
+    num_serie   VARCHAR(30) NOT NULL,
+    equipo      VARCHAR(35) NOT NULL,
+    marca       VARCHAR(35) NOT NULL,
+    modelo      VARCHAR(35) NOT NULL,    
+    estatus     VARCHAR(20) NOT NULL,
     descripcion TEXT,
     PRIMARY KEY(num_serie)
 );
 
-CREATE TABLE PRESTAMO_EQUIPO(
-    num_prestamo      INT NOT NULL,
+CREATE TABLE ALMACEN(
+    serial   VARCHAR(30) NOT NULL,
+    almacen  VARCHAR(30) NOT NULL,
+    edificio TINYINT NOT NULL,
+    piso     TINYINT NOT NULL,
+    FOREIGN KEY(serial) REFERENCES EQUIPOS(num_serie) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE PRESTAMOS(
     nombre_persona    VARCHAR(50) NOT NULL,
-    clave_boleta      VARCHAR(10) NOT NULL,
-    serie_equipo      VARCHAR(20) NOT NULL,
+    clave_boleta      VARCHAR(15) NOT NULL,
+    serie_equipo      VARCHAR(30) NOT NULL,
     fecha_salida      DATE,
-    PRIMARY KEY(num_prestamo),
     FOREIGN KEY(serie_equipo) REFERENCES EQUIPO(num_serie);
 );
 
-CREATE TABLE UBICACION_EQUIPO(
-    edificio     TINYINT NOT NULL,
-    piso         TINYINT NOT NULL,
-    aula         TINYINT NOT NULL,
-    serie_equipo VARCHAR(29) NOT NULL,
+CREATE TABLE UBICACIONES(
+    edificio     TINYINT  NOT NULL,
+    piso         TINYINT  NOT NULL,
+    aula         SMALLINT NOT NULL,
+    serie_equipo VARCHAR(30) NOT NULL,
     FOREIGN kEY(serie_equipo) REFERENCES EQUIPO(num_serie)
 );
 
-CREATE TABLE ENTREGA_EQUIPO(
-    serie_equipo   VARCHAR(20) NOT NULL,
-    nombre_equipo  VARCHAR(30) NOT NULL,
+CREATE TABLE ENTREGAS(
+    serie_equipo   VARCHAR(30) NOT NULL,
     nombre_persona VARCHAR(50) NOT NULL,
     fecha_entrega  DATE,
-    FOREIGN KEY(serie_equipo) REFERENCES EQUIPO(num_serie);
+    FOREIGN KEY(serie_equipo) REFERENCES EQUIPOS(num_serie) 
 );
 
 CREATE TABLE USUARIOS(
@@ -53,32 +58,18 @@ CREATE TABLE USUARIOS(
     PRIMARY KEY(id_usuario)
 );
 
-/*
-CREATE TABLE ADMINISTRADOR(
-    id_admin    INT NOT NULL,
-
-    FOREIGN KEY(id_admin) REFERENCES USUARIO(id_usuario)
+CREATE TABLE REPARACIONES(
+    serial   VARCHAR(30) NOT NULL,
+    hilo     VARCHAR(10) NOT NULL,
+    reporte  VARCHAR(50) NOT NULL,
+    estatus  VARCHAR(20) NOT NULL,
+    etapa    VARCHAR(40) NOT NULL,
+    fecha    DATETIME,
+    detalles TEXT,
+    FOREIGN KEY(serial) REFERENCES EQUIPOS(num_serie)
 );
 
 */
 
-CREATE TABLE IMAGENES(
-    id_img  INT AUTO_INCREMENT,
-    filename  VARCHAR(100),
-    data     LONGBLOB,
-    PRIMARY KEY (id_img)
-);
 
-#INSERT INTO USUARIO VALUES(1,"Augurio","Hernández Chávez","auhernandezc@ipn.mx","administrador","admin");
-INSERT INTO USUARIO VALUES(2,"admin","admin","admin@admin.mx","administrador","admin");
-#INSERT INTO ADMINISTRADOR VALUES(1,1);
-
-
-
-#DELETE FROM USUARIO WHERE id_usuario=1;
-#DELETE FROM USUARIO WHERE id_usuario=2;
-
-UPDATE USUARIO SET nombre="Augurio" WHERE id_usuario=1;
-
-SELECT * FROM USUARIO;
-#SELECT * FROM ADMINISTRADOR;
+#INSERT INTO USUARIO VALUES(1,"admin","Augurio","Hernández Chávez","auhernandezc@ipn.mx","$2b$10$dvl6WVR3wL7C7zwWQamGKueEc8/yK3d2KG/SgyG9.EV0NbnKJgcg6","admin","Si");

@@ -222,8 +222,6 @@ export default function Imgs() {
                 }
 
             </div>
-
-
         </div>
     )
 }

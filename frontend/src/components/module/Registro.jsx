@@ -136,6 +136,7 @@ export default function Registro({setTitle}) {
                                     icon = {value.icon}
                                     onChange = {handleInputChange}
                                     placeholder = {value.title}
+                                    maxLength = {value.maxLength}
                                     cursorPointer = {value.id==="idSerie" ? true : false}
                                 />
                             </div>  

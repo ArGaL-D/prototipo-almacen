@@ -110,6 +110,7 @@ export default function Entrega({setTitle}) {
                         name = "nombre"
                         icon = {<FaIcons.FaUserFriends/>}                        
                         onChange = {handleInputText}
+                        maxLength = {"50"}
                         placeholder = "Nombre"
                         defaultValue = {formData.nombre}
                     />
@@ -120,6 +121,7 @@ export default function Entrega({setTitle}) {
                         name = "equipo"
                         icon = {<GiIcons.GiWifiRouter/>}                        
                         onChange = {handleInputText}
+                        maxLength = {"35"}
                         placeholder = "Equipo"
                         defaultValue = {formData.equipo}
                     />
@@ -130,6 +132,7 @@ export default function Entrega({setTitle}) {
                         name = "serial"
                         icon = {<BiIcons.BiBarcodeReader/>}                        
                         onChange = {handleInputText}
+                        maxLength = {"30"}
                         placeholder = "Serial"
                         defaultValue = {formData.serial}           
                     />   
