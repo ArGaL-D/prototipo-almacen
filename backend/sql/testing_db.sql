@@ -29,7 +29,7 @@ CREATE TABLE PRESTAMOS(
     clave_boleta      VARCHAR(15) NOT NULL,
     serie_equipo      VARCHAR(30) NOT NULL,
     fecha_salida      DATE,
-    FOREIGN KEY(serie_equipo) REFERENCES EQUIPO(num_serie);
+   FOREIGN KEY(serie_equipo) REFERENCES EQUIPOS(num_serie) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE UBICACIONES(
@@ -37,7 +37,7 @@ CREATE TABLE UBICACIONES(
     piso         TINYINT  NOT NULL,
     aula         SMALLINT NOT NULL,
     serie_equipo VARCHAR(30) NOT NULL,
-    FOREIGN kEY(serie_equipo) REFERENCES EQUIPO(num_serie)
+    FOREIGN kEY(serie_equipo) REFERENCES EQUIPOS(num_serie) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE ENTREGAS(
@@ -49,7 +49,7 @@ CREATE TABLE ENTREGAS(
 
 CREATE TABLE USUARIOS(
     id_usuario  INT AUTO_INCREMENT NOT NULL,
-    usuario     VARCHAR(50) NOT NULL,
+    usuario     VARCHAR(50)  NOT NULL,
     nombre      VARCHAR(50)  NOT NULL,
     apellido    VARCHAR(50)  NOT NULL,
     email       VARCHAR(100) NOT NULL,
