@@ -439,14 +439,12 @@ export default function Usuarios({ setTitle }) {
         readToken();
     }, []);
 
-
-
     return (
       <>
        {
         !access 
         ?
-            <AccessDenied />            
+            <AccessDenied />                        
         :            
         <div className="module-usuarios">
             {/* CONTENEDOR 1 */}

@@ -12,11 +12,27 @@
     color: #20232a;
     text-align: center;
     font-size: clamp(3.5rem, 3vw, 5rem);
+    
+    animation-name: title;
+    animation-duration: 3.5s;
 }
 
 .access_subtitle{
+    padding: 1em 1em;
     font-size: 1.5rem;
     text-align: center;
 
-    padding: 1em 1em;
+    animation-name: subtitle;
+    animation-duration: 3.5s;
+}
+
+/* ANIMACACIONES */
+@keyframes title {
+    from{color: whitesmoke}
+    to {color: #20232a;}
+}
+
+@keyframes subtitle {
+    from{color: whitesmoke}
+    to {color: #20232a;}
 }
