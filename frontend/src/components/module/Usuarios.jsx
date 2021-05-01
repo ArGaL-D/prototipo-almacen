@@ -18,16 +18,18 @@ import * as ImIcons from "react-icons/im";
 
 import "./styles/Usuarios.css";
 import QrScannerEquipo from '../qrscanner/QrScannerEquipo';
+import AccessDenied from '../AccessDenied';
 
 
 export default function Usuarios({ setTitle }) {
 
     let { path } = useRouteMatch();
     const location = useLocation();
-
+    
     const [deviceRows, setDeviceRows] = useState([]);
-    const [userRows, setUserRows] = useState([]);
+    const [userRows, setUserRows] = useState([]);    
     const [scanQr, setScanQr] = useState(false);
+    const [access, setAccess] = useState(false);
     const [open, setOpen] = useState(false);
 
     const [qrData, setQrData] = useState({ serial: "", equipo: "" });
@@ -416,9 +418,36 @@ export default function Usuarios({ setTitle }) {
         sessionStorage.setItem('currentPage', location.pathname);
     });
 
+    // Obtener el tipo de usuario y acceso
+    useEffect(() => {
+        const readToken = async () => {
+            const token = localStorage.getItem('token');
+            try {
+                const resp = await axios.get('http://localhost:3001/login/verificar', { headers: { 'Authorization': token } });
+                
+                const userAccess = resp.data.authData.userData.acceso;
+                
+                if(userAccess === "Si"){
+                    setAccess(true)
+                }
+                
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        readToken();
+    }, []);
+
 
 
     return (
+      <>
+       {
+        !access 
+        ?
+            <AccessDenied />            
+        :            
         <div className="module-usuarios">
             {/* CONTENEDOR 1 */}
             <div className="container_1">
@@ -468,7 +497,6 @@ export default function Usuarios({ setTitle }) {
                     </Link>
                 </div>
             </div>
-
 
             {/* CONTENEDOR 2 */}
             <div className="container_2">
@@ -558,6 +586,8 @@ export default function Usuarios({ setTitle }) {
                     </Route>
                 </Switch>
             </div>
-        </div>
+        </div>             
+       }
+      </>
     )
 }

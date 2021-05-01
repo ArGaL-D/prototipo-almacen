@@ -3,13 +3,12 @@
     height: 100%;
 
     overflow: auto;
-    position: relative; 
-    
+    position: relative;    
 }
 /* CONTENEDOR 1 */
 .module-usuarios .container_1{
     background: whitesmoke;
-    box-shadow: 0px 1px 5px 0px rgba(211, 211, 211, 0.75);
+    box-shadow: 0px 1px 5px 0px rgba(211, 211, 211, 0.75);    
 }
 
 .container_1 .rectangle{
@@ -21,7 +20,7 @@
 
 /* CONTENEDOR 2 */
 .container_2 .donut{
-    margin: auto;
+    margin: auto;    
 }
 
 
