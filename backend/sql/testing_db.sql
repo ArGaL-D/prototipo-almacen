@@ -2,9 +2,10 @@
 
 #SHOW EQUIPOS_CECYT16;
 
-USE ALMACEN_EQUIPOS;
+
 
 #CREATE DATABASE EQUIPOS_CECYT16;
+#USE EQUIPOS_CECYT16;
 /*
 CREATE TABLE EQUIPOS(
     num_serie   VARCHAR(30) NOT NULL,
@@ -73,4 +74,4 @@ CREATE TABLE REPARACIONES(
 */
 
 
-#INSERT INTO USUARIO VALUES(1,"admin","Augurio","Hernández Chávez","auhernandezc@ipn.mx","$2b$10$dvl6WVR3wL7C7zwWQamGKueEc8/yK3d2KG/SgyG9.EV0NbnKJgcg6","admin","Si");
+#INSERT INTO USUARIO VALUES(1,"admin","Augurio","Hernández Chávez","auhernandezc@ipn.mx","$2b$10$dvl6WVR3wL7C7zwWQamGKueEc8/yK3d2KG/SgyG9.EV0NbnKJgcg6","Si");
