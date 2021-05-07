@@ -68,10 +68,25 @@
     font-weight: 700;
     background: rgba(32, 35, 42, 1);
 }
+
+/* FOR MOBILES */
+@media screen and (max-width: 600px) {
+    .input_field{
+        height: 3.5em;        
+    }
+}
+
 /* Cuando el teclado aparece del Smartphone */
 @media screen and (max-height:400px){
+    .input_field{
+        height: 3.5em;        
+    }
     .input_field input{
         padding: 1em 0;
         padding-left: .5em;
+    }
+
+    .input_field{
+        
     }
 }

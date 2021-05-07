@@ -25,3 +25,10 @@
 
     box-shadow: 0px 0px 8px -1px rgba(81, 202, 250, 0.75);
 }
+
+/* FOR MOBILES */
+@media screen and (max-width: 600px){
+    .generic-btn button{
+        height: 3em;
+    }
+}
