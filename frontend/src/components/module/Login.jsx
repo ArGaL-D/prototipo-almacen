@@ -100,7 +100,7 @@ export default function Login() {
                         type = "text"
                         icon = {<FaIcons.FaUserAlt/>}
                         onChange = {handleInputText}
-                        placeholder = "Usuario"
+                        placeholder = "Usuario o email"
                     />
                     <br/>
                     <Input 

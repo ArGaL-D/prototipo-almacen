@@ -407,12 +407,13 @@ server.post('/usuario-pass', (req, resServer) => {
 server.post('/login', (req, res) => {
     const usuario   = req.body.username;
     const password  = req.body.userpass;
-
+    // is an email
+    const validate = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
     
     pool.getConnection((err, connection) => {
         if (err) throw err;
 
-        connection.query("call sp_getUsuario(?)",[usuario],(error, results) => {
+        connection.query(validate.test(usuario)?"call sp_getEmail(?)":"call sp_getUsuario(?)",[usuario],(error, results) => {
             connection.release();
 
             if (error) console.log(error)
