@@ -17,20 +17,6 @@ export default function Registro({setTitle}) {
 
     const location = useLocation();
 
-    //Establecer título actual - navbar
-    useEffect(() => {
-        const action = () =>{
-            setTitle('Registro');
-            sessionStorage.setItem('page','registro');
-        }
-        action()
-    })
-    
-    // Guardar la ruta actual del componente
-    useEffect(()=> {
-        sessionStorage.setItem('currentPage',location.pathname);        
-    });
-
     const [modal,setModal] = useState(false);
 
     const [formData,setFormData] = useState({
@@ -68,6 +54,7 @@ export default function Registro({setTitle}) {
             setFormData({...formData,[e.target.name]: e.target.value.toUpperCase()});
         }
     }
+    
     const handleSelectChange = (e) =>{
         const value = e.target.options[e.target.selectedIndex].text.toUpperCase();
 
@@ -121,6 +108,20 @@ export default function Registro({setTitle}) {
             })
         }
     }
+
+    //Establecer título actual - navbar
+    useEffect(() => {
+        const action = () =>{
+            setTitle('Registro');
+            sessionStorage.setItem('page','registro');
+        }
+        action()
+    })
+    
+    // Guardar la ruta actual del componente
+    useEffect(()=> {
+        sessionStorage.setItem('currentPage',location.pathname);        
+    });
 
     return (
         <div className="module_registrar">            

@@ -8,8 +8,6 @@ import InputDark from '../field/InputDark'
 import Select from '../field/Select'
 import Button from '../field/Button'
 
-import "./styles/Prestamo.css";
-
 import * as FaIcons   from "react-icons/fa";
 import * as BiIcons   from "react-icons/bi";
 import * as RiIcons   from "react-icons/ri";
@@ -18,6 +16,8 @@ import * as MdIcons   from "react-icons/md";
 import QrScanner from '../qrscanner/QrScanner';
 import QrScannerEquipo from '../qrscanner/QrScannerEquipo';
 
+import "./styles/Prestamo.css";
+
 export default function Prestamo({setTitle}) {
 
     const location = useLocation();
@@ -25,9 +25,7 @@ export default function Prestamo({setTitle}) {
     const [openScanner1,setOpenScaner1] = useState(false);
     const [openScanner2,setOpenScaner2] = useState(false);
     const [openModalQr ,setOpenModalQr] = useState(false);
-
-    const [typeForm,setTypeForm] = useState('');
-
+    const [typeForm,setTypeForm]  = useState('');
     const [formData, setFormData] = useState({
         nombre:     "",
         clave :     "",
@@ -39,66 +37,11 @@ export default function Prestamo({setTitle}) {
         edificio:   ""
     });
 
-    //Establecer título actual - navbar
-    useEffect(() => {
-        setTitle('Préstamo');
-        sessionStorage.setItem('page','prestamo');
-    })
-
-    // Bloquear índice 0 - tag-select - tipo de formulario
-    useEffect( ()=> {
-        let select1 = document.getElementById('select-form');
-        select1.options[0].disabled = true;
-    });
-
-    // Establecer fecha automática
-    useEffect( ()=> {
-        let currentDate = new Date();
-        const inputFecha = document.getElementById('input-date');
-
-        let month = currentDate.getUTCMonth() + 1;
-        let day   = currentDate.getDate();
-        let year  = currentDate.getUTCFullYear();
-
-        const today = `${year}-${month}-${day}`;
-
-        inputFecha.valueAsDate = new Date(today);
-        inputFecha.readOnly = true;
-
-        // Guardar fecha actual
-        if (formData.fecha === ""){
-            setFormData({...formData, fecha: today});
-        }
-    },[formData]);
-
-
-    // Guardar la ruta actual del componente
-    useEffect(()=> {
-        sessionStorage.setItem('currentPage',location.pathname);        
-    });
-
-    // Actualizar NOMBRE/CLAVE(BOLETA) después del escaneo
-    useEffect(() => {
-        const inputName  = document.getElementById('input-name');
-        const inputClave = document.getElementById('input-clave');
-
-        inputName.value = formData.nombre;
-        inputClave.value = formData.clave;
-    },[formData]);
-
-    useEffect(() => {
-        const inputSerial = document.getElementById('input-serial');
-        const inputEquipo = document.getElementById('input-equipo');
-
-        inputSerial.value = formData.serial;
-        inputEquipo.value = formData.equipo;
-
-    },[formData]);
-
     //Abrir ventana modal Qr-scanner
     const showModalScanner1 = () =>{
         setOpenScaner1(true);
     }
+
     const showModalScanner2 = () =>{
         setOpenScaner2(true);
     }
@@ -113,6 +56,7 @@ export default function Prestamo({setTitle}) {
     const getQrResults = (alumno,boleta) =>{
         setFormData({...formData, nombre:alumno, clave:boleta})
     }
+
     const getQrResults2 = (equipo_nombre,num_serie) =>{
         setFormData({...formData, equipo:equipo_nombre, serial:num_serie})
     }
@@ -138,7 +82,6 @@ export default function Prestamo({setTitle}) {
             setFormData({...formData,[name]: tag.value.toUpperCase()});
         }
     }
-
 
     // Enviar datos al servidor
     const sendingData = async (e) =>{
@@ -186,6 +129,57 @@ export default function Prestamo({setTitle}) {
         }
     }
 
+    //Establecer título actual - navbar
+    useEffect(() => {
+        setTitle('Préstamo');
+        sessionStorage.setItem('page','prestamo');
+    })
+
+    // Bloquear índice 0 - tag-select - tipo de formulario
+    useEffect( ()=> {
+        let select1 = document.getElementById('select-form');
+        select1.options[0].disabled = true;
+    });
+
+    // Establecer fecha automática
+    useEffect( ()=> {
+        let currentDate = new Date();
+        const inputFecha = document.getElementById('input-date');
+
+        let month = currentDate.getUTCMonth() + 1;
+        let day   = currentDate.getDate();
+        let year  = currentDate.getUTCFullYear();
+
+        const today = `${year}-${month}-${day}`;
+
+        inputFecha.valueAsDate = new Date(today);
+        inputFecha.readOnly = true;
+
+        // Guardar fecha actual
+        if (formData.fecha === ""){
+            setFormData({...formData, fecha: today});
+        }
+    },[formData]);
+
+
+    // Guardar la ruta actual del componente
+    useEffect(()=> {
+        sessionStorage.setItem('currentPage',location.pathname);        
+    });
+
+    // Actualizar datos después del escaneo
+    useEffect(() => {
+        const inputName   = document.getElementById('input-name');
+        const inputClave  = document.getElementById('input-clave');
+        const inputSerial = document.getElementById('input-serial');
+        const inputEquipo = document.getElementById('input-equipo');
+
+        inputName.value   = formData.nombre;
+        inputClave.value  = formData.clave;
+        inputSerial.value = formData.serial;
+        inputEquipo.value = formData.equipo;
+    },[formData]);
+    
 
     return (
         <div className="module_prestamo">            

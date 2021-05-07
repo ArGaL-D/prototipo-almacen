@@ -19,7 +19,7 @@ function Buscar({setTitle}) {
 
     const [showQr, setShowQr] = useState(false);
     const [open, setOpen] = useState(false);
-    const [text,setText] = useState("");
+    const [text,setText]  = useState("");
     //Filas -
     const [rowData,setRowData] = useState([]);
     //Columnas - tabla buscar
@@ -35,7 +35,6 @@ function Buscar({setTitle}) {
         modelo  : "",
         almacen : ""
     });
-
 
     // Abrir modal - Qr
     const onOpenModal = (e) => {
@@ -57,7 +56,6 @@ function Buscar({setTitle}) {
     }
     
     const onCloseModal = () => setOpen(false);
-
 
     // Obtener texto del input
     const handleText = (e) =>{

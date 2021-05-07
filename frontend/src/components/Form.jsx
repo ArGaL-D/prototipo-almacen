@@ -3,19 +3,18 @@ import axios from "axios";
 import Swal from 'sweetalert2';
 
 import InputDark from './field/InputDark';
-import Select from './field/Select';
-import Button from './field/Button';
+import Select    from './field/Select';
+import Button    from './field/Button';
+import TextArea  from './field/TextArea';
 
-import * as FaIcons   from "react-icons/fa";
-import * as BiIcons   from "react-icons/bi";
-import * as RiIcons   from "react-icons/ri";
-import * as GiIcons   from "react-icons/gi";
-import * as MdIcons   from "react-icons/md";
-import * as HiIcons   from "react-icons/hi";
+import * as FaIcons  from "react-icons/fa";
+import * as BiIcons  from "react-icons/bi";
+import * as RiIcons  from "react-icons/ri";
+import * as GiIcons  from "react-icons/gi";
+import * as MdIcons  from "react-icons/md";
+import * as HiIcons  from "react-icons/hi";
 
 import "./styles/Form.css";
-import TextArea from './field/TextArea';
-
 
 export default function Form({type,qrData,setQrData,showModal,setOpenModal}) {
     
@@ -250,8 +249,9 @@ function FormPrestamo ({type, qrData, setQrData,setOpenModal}){
     )
 }
 
-// Formulario del módulo REPARACIÓN
 
+
+// Formulario del módulo REPARACIÓN
 function FormReparacion (props){
     return(
         <form id="form">
@@ -338,7 +338,6 @@ function FormReparacion (props){
 }
 
 // Formulario de CREAR USUARIO - módulo Admin
-
 function FormUsuario (){
     return(
         <form id="form">

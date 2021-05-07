@@ -7,9 +7,11 @@ import PieChart from '../PieChart';
 import Imgs from '../Imgs';
 import Rectangle from '../Rectangle';
 import Datatable from "../Datatable";
-import ModalFormEquipo from '../forms/ModalFormEquipo';
+import ModalFormEquipo  from '../forms/ModalFormEquipo';
 import ModalFormUsuario from '../forms/ModalFormUsuario';
 import FormCrearUsuario from '../forms/FormCrearUsuario';
+import AccessDenied     from '../AccessDenied';
+import QrScannerEquipo  from '../qrscanner/QrScannerEquipo';
 
 import * as IoIcons from 'react-icons/io5';
 import * as FaIcons from "react-icons/fa";
@@ -17,9 +19,6 @@ import * as MdIcons from "react-icons/md";
 import * as ImIcons from "react-icons/im";
 
 import "./styles/Usuarios.css";
-import QrScannerEquipo from '../qrscanner/QrScannerEquipo';
-import AccessDenied from '../AccessDenied';
-
 
 export default function Usuarios({ setTitle }) {
 
@@ -55,7 +54,6 @@ export default function Usuarios({ setTitle }) {
         edificio: "",
         piso: ""
     });
-
 
     const columns = [
         "Serial", "Equipo", "Marca", "Modelo", "Estatus",
@@ -263,7 +261,6 @@ export default function Usuarios({ setTitle }) {
         }
     }
 
-
     // Actualizar contraseña - USUARIO
     const updatePass = async (e) => {
         e.preventDefault();
@@ -370,9 +367,6 @@ export default function Usuarios({ setTitle }) {
             row.num_serie.indexOf(qrData.serial) > -1
         )
     }
-
-
-    // -- - - --- - -- - -- -- --- --- --- -- 
 
     useEffect(() => {
         setTitle('Usuarios');

@@ -16,10 +16,8 @@ export default function Login() {
 
     const history = useHistory();
     const {authToken} = useContext(AuthContext);
-
     const [count,setCount] = useState(0);
     const [randomColor,setRandomColor] = useState('');
-
     const [formData,setFormData] = useState({
         username: "",
         userpass: ""

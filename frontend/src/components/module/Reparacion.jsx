@@ -3,6 +3,7 @@ import {Link, Switch, Route, useLocation} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from "axios";
 
+import InputDark from '../field/InputDark';
 import Datatable from '../Datatable';
 import { generarHilo } from "../config/hilo";
 import FormReparacion  from '../forms/FormReparacion';
@@ -12,8 +13,6 @@ import * as IoIcons from "react-icons/io";
 
 import "./styles/Reparacion.css";
 import 'react-responsive-modal/styles.css';
-import InputDark from '../field/InputDark';
-
 
 
 export default function Reparacion({setTitle}) {
@@ -27,14 +26,10 @@ export default function Reparacion({setTitle}) {
     ];
 
     const [ultimotHilo,setUltimotHilo] = useState('');
-
     const textAviso = '<strong>1)</strong> Si es la primera vez en hacer un reporte, genere un HILO de seguimiento; a partir del segundo reporte hasta su finalización, tendrá que ingresar el mismo HILO.</br><strong>2)</strong> Si el equipo ya cuenta con un HILO de seguimiento y no se acuerda cuál es, de clic en el ícono del <strong>campo</strong> hilo.</br><strong>3)</strong> Si el equipo ya cuenta con un HILO de seguimiento y se registra otro HILO diferente, se creará dos o más ramas de seguimientos diferentes.'
-
-    const textHilo = `Último hilo generado: ${ultimotHilo}`
-
-    const [rows, setRows] = useState([]);
+    const textHilo  = `Último hilo generado: ${ultimotHilo}`
+    const [rows, setRows]  = useState([]);
     const [clave,setClave] = useState({hilo:""});    
-
 
     const crearHilo = () =>{
         const hilo = generarHilo();
@@ -70,7 +65,6 @@ export default function Reparacion({setTitle}) {
     const handleText = (e) =>{
         setClave({...clave, hilo: e.target.value});
     }
-
 
     const sendingData = async () =>{
 
@@ -113,7 +107,6 @@ export default function Reparacion({setTitle}) {
         const lastKey = localStorage.getItem('ultimoHilo');
         setUltimotHilo(lastKey);
     },[]);
-
 
     //Establecer título actual - navbar
     useEffect(() => {

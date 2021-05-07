@@ -9,7 +9,6 @@ export default function Sidebar(props) {
 
     let { url } = useRouteMatch();
 
-
     useEffect(() => {
         const sidebar = document.getElementById('sidebar');
         const li_tags = sidebar.childNodes;
@@ -43,8 +42,6 @@ export default function Sidebar(props) {
 
 
     },[]);
-
-    
 
     return (
         <div className={props.showSidebar ? "side-bar" : "side-bar active"}>

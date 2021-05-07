@@ -9,6 +9,7 @@ export default function PieChart() {
       prestados  : 0,
       reparacion : 0
   });
+
   useEffect(()=>{
       const totalEquipos = async () => {
         try {
@@ -26,7 +27,7 @@ export default function PieChart() {
       totalEquipos();
   },[])
 
-    const data = {
+  const data = {
         labels: [
           'Disponiblidad',
           'Prestados',
@@ -48,23 +49,23 @@ export default function PieChart() {
           hoverBorderWidth: 0
         }]
 
-      };
+  };
 
-    return (
-        <Doughnut 
-            data = {data}                
-            width = {600}
-            height = {400}               
-            options = { 
-                {
-                    title: {display: true, text: "EQUIPOS"},
-                    legend: {
-                        position: 'bottom'
-                    }                    
-                }
-            }        
-        /> 
-    )
+  return (
+    <Doughnut 
+        data = {data}                
+        width = {600}
+        height = {400}               
+        options = { 
+            {
+                title: {display: true, text: "EQUIPOS"},
+                legend: {
+                    position: 'bottom'
+                }                    
+            }
+        }        
+    /> 
+  )
 }
 
 //MINUTO 7:05 VIDeO

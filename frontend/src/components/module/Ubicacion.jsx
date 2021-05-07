@@ -16,7 +16,7 @@ export default function Ubicacion({setTitle}) {
     const location = useLocation();
 
     const [text,setText] = useState("");
-    const [num, setNum] = useState( {edificio:"", piso:"", aula:""} );
+    const [num, setNum]  = useState( {edificio:"", piso:"", aula:""} );
     const [showSelects, setShowSelects] = useState(false);
     const [rowData, setRowData] = useState([]);
     const columnasUbicacion = [
@@ -24,54 +24,6 @@ export default function Ubicacion({setTitle}) {
         "PISO","AULA","FECHA DE SALIDA"
     ];
 
-
-    //Establecer título actual - navbar
-    useEffect(() => {
-        setTitle('Ubicación');
-        sessionStorage.setItem('page','ubicacion');
-    })
-
-    // Obtener datos (filas) desde el servidor
-    
-    useEffect(() => {
-        // Deshabilitar tag selects         
-        document.getElementById('dropdown-edificio').disabled = !showSelects;
-        document.getElementById('dropdown-piso').disabled = !showSelects;
-        document.getElementById('dropdown-aula').disabled = !showSelects;
-        
-        // Pedir datos 'filas' al servidor
-        axios.get('http://localhost:3001/ubicacion')
-             .then( res => {
-                 setRowData(res.data)
-             })
-             .catch( err => {
-                 console.log(`-> ${err}`)
-                 Swal.fire({
-                    icon: 'error',
-                    title: 'Uups...',
-                    text: `No se pudo traer los datos de la tabla; probablemente hay conflictos en el servidor.`,
-                })
-             })
-       
-    }, [showSelects])
-
-    // Bloquear índice 0 - tag-select - tipo de formulario
-    useEffect( ()=> {
-        const select1 = document.getElementById('dropdown-edificio');
-        const select2 = document.getElementById('dropdown-piso');
-        const select3 = document.getElementById('dropdown-aula')
-
-        select1.options[0].disabled = true;
-        select2.options[0].disabled = true;
-        select3.options[0].disabled = true;
-    });
-
-    // Guardar la ruta actual del componente
-    useEffect(()=> {
-        sessionStorage.setItem('currentPage',location.pathname);        
-    });
-    
-    
     //Obtener texto del buscador
     const handleText = (e) =>{
         setText(e.target.value.toUpperCase());
@@ -121,6 +73,52 @@ export default function Ubicacion({setTitle}) {
             )
         } 
     } 
+
+    //Establecer título actual - navbar
+    useEffect(() => {
+        setTitle('Ubicación');
+        sessionStorage.setItem('page','ubicacion');
+    })
+
+    // Obtener datos (filas) desde el servidor
+    useEffect(() => {
+        // Deshabilitar tag selects         
+        document.getElementById('dropdown-edificio').disabled = !showSelects;
+        document.getElementById('dropdown-piso').disabled = !showSelects;
+        document.getElementById('dropdown-aula').disabled = !showSelects;
+        
+        // Pedir datos 'filas' al servidor
+        axios.get('http://localhost:3001/ubicacion')
+             .then( res => {
+                 setRowData(res.data)
+             })
+             .catch( err => {
+                 console.log(`-> ${err}`)
+                 Swal.fire({
+                    icon: 'error',
+                    title: 'Uups...',
+                    text: `No se pudo traer los datos de la tabla; probablemente hay conflictos en el servidor.`,
+                })
+             })
+       
+    }, [showSelects])
+
+    // Bloquear índice 0 - tag-select - tipo de formulario
+    useEffect( ()=> {
+        const select1 = document.getElementById('dropdown-edificio');
+        const select2 = document.getElementById('dropdown-piso');
+        const select3 = document.getElementById('dropdown-aula')
+
+        select1.options[0].disabled = true;
+        select2.options[0].disabled = true;
+        select3.options[0].disabled = true;
+    });
+
+    // Guardar la ruta actual del componente
+    useEffect(()=> {
+        sessionStorage.setItem('currentPage',location.pathname);        
+    });
+    
     
     return (
         <div className="module-ubicacion">            

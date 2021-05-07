@@ -18,7 +18,7 @@ import * as HiIcons   from "react-icons/hi";
 import "./Form.css";
 import '../styles/Datatable.css';
 
-export default function FormReparacion(props) {
+export default function FormReparacion() {
 
     const [formData, setFormData] = useState({
         reporte: "",
@@ -60,7 +60,6 @@ export default function FormReparacion(props) {
     const getQrData = (equip0,serie) =>{
         setFormData({...formData,equipo: equip0, serial: serie});
     }
-
 
     const dataToServer = async (e) =>{
         e.preventDefault();
@@ -223,14 +222,12 @@ export default function FormReparacion(props) {
                 <TablaHilo numSerie={formData.serial} />
             </Modal>     
         </form>
-    )
-    
+    )    
 }
 
 
 
 // Componente-Hilo
-
 function TablaHilo ({numSerie}){
     
     const [rows,setRow]  = useState([]);
@@ -306,8 +303,7 @@ function TablaHilo ({numSerie}){
                         </tbody>
                      </table>
                 </div>
-            
-        
+                 
         </div> 
     )
 }

@@ -1,11 +1,11 @@
-const puppeteer = require('puppeteer');
-const jwt = require('jsonwebtoken');
-const express = require('express');
 const fileUpload = require('express-fileupload');
-const mySql = require('mysql');
-const cors = require('cors');
-const fs = require('fs');
-const path = require('path');
+const puppeteer  = require('puppeteer');
+const mySql      = require('mysql');
+const express    = require('express');
+const cors       = require('cors');
+const path       = require('path');
+const jwt        = require('jsonwebtoken');
+const fs         = require('fs');
 
 
 const bcrypt = require('bcrypt');
@@ -49,7 +49,6 @@ server.get('/equipos', (req, res) => {
     })
 })
 
-
 server.get('/ubicacion', (req, res) => {
 
     pool.getConnection((err, connection) => {
@@ -64,7 +63,6 @@ server.get('/ubicacion', (req, res) => {
     });
 });
 
-// USUARIOS 
 server.get('/usuarios', (req, res) => {
 
     pool.getConnection((err, connection) => {
@@ -99,7 +97,41 @@ server.get('/total-equipos', (req, res) => {
     });
 });
 
+server.get('/imagenes',(req, res) => {
+    const imagenes = fs.readdirSync(path.join(__dirname,'dbimages'));
 
+    res.json(imagenes)
+});
+
+// VERIFICAR - TOKEN - acceso a rutas
+server.get('/login/verificar', verifyToken,(req, res) => {
+
+    jwt.verify(req.token, 'secretKey', (err, authData) => {
+        if (err){
+            //res.sendStatus(403);
+            res.json({isAuth: false})
+        } else{
+            res.json({
+                authData,
+                isAuth: true
+            });
+        }
+    })
+});
+
+// Authorization: Bearer <token>
+function verifyToken (req, res, next) {
+    const bearerHeader = req.headers["authorization"];
+
+    if (typeof bearerHeader !== 'undefined'){
+        const bearerToken = bearerHeader;
+        req.token = bearerToken;
+        next();
+    }else {
+        res.sendStatus(403);
+    }
+} 
+ 
 
 /* ##############
    #    POST    #
@@ -137,7 +169,6 @@ server.post('/registrar', (req, res) => {
 
     console.log("-> POST ")
 });
-
 
 /* POST  Módulo ( PRÉSTAMO ) */
 server.post('/prestamo', (req, res) => {
@@ -184,7 +215,6 @@ server.post('/prestamo', (req, res) => {
     
     console.log("-> POST")
 });
-
 
 /* POST -  Módulo ( ENTREGA ) */
 server.post('/entrega', (req, res) => {
@@ -373,7 +403,6 @@ server.post('/crear-usuario', (req, resp) => {
     });
 });
 
-
 // USUARIO - PASSWORD (verificación de password)
 server.post('/usuario-pass', (req, resServer) => {
 
@@ -401,7 +430,6 @@ server.post('/usuario-pass', (req, resServer) => {
         });
     }); 
 });
-
 
 // LOGIN - COMPROBAR SI EXISTE USUARIO y CREAR UN TOKEN de 'Autenticación'
 server.post('/login', (req, res) => {
@@ -449,34 +477,6 @@ server.post('/login', (req, res) => {
     console.log("-> POST")
 });
 
-// VERIFICAR - TOKEN - acceso a rutas
-server.get('/login/verificar', verifyToken,(req, res) => {
-
-    jwt.verify(req.token, 'secretKey', (err, authData) => {
-        if (err){
-            //res.sendStatus(403);
-            res.json({isAuth: false})
-        } else{
-            res.json({
-                authData,
-                isAuth: true
-            });
-        }
-    })
-});
-// Authorization: Bearer <token>
-function verifyToken (req, res, next) {
-    const bearerHeader = req.headers["authorization"];
-
-    if (typeof bearerHeader !== 'undefined'){
-        const bearerToken = bearerHeader;
-        req.token = bearerToken;
-        next();
-    }else {
-        res.sendStatus(403);
-    }
-} 
- 
 // VERIFICAR USUARIO - TOKEN -  Editar usuario
 server.post('/verificar-usuario',(req, res) => {
 
@@ -521,33 +521,25 @@ server.post('/subir-img',(req, res) => {
     });
 });
 
-server.get('/imagenes',(req, res) => {
-    const imagenes = fs.readdirSync(path.join(__dirname,'dbimages'));
-
-    res.json(imagenes)
-});
-
 
 /* ##############
    #    PUT     #
    ##############
 */
 
-
 // ACTUALIZAR EQUIPO
 server.put('/editar-equipo', (req, res) => {
     // Datos del cliente
-    
     const editedSerial = req.body.editedSerial;
-    const serial  = req.body.serial;
-    const equipo  = req.body.equipo;
-    const marca   = req.body.marca;
-    const modelo  = req.body.modelo;
-    const estatus = req.body.estatus;
-    let   almacen  = req.body.almacen;
-    const descrip  = req.body.descripcion;
-    let   edificio = 0;
-    let   piso     = 0;   
+    const serial    = req.body.serial;
+    const equipo    = req.body.equipo;
+    const marca     = req.body.marca;
+    const modelo    = req.body.modelo;
+    const estatus   = req.body.estatus;
+    let   almacen   = req.body.almacen;
+    const descrip   = req.body.descripcion;
+    let   edificio  = 0;
+    let   piso      = 0;   
 
     const ubicacion = [
         "DIRECCIÓN",
@@ -584,7 +576,6 @@ server.put('/editar-equipo', (req, res) => {
     
     console.log("-> PUT")
 });
-
 
 // ACTUALIZAR USUARIO
 server.put('/editar-usuario', (req, res) => {
@@ -638,7 +629,6 @@ server.put('/editar-pass', (req, res) => {
     });    
    console.log(req.body)
 });
-
 
 /* ##############
    #  DELETE    #
@@ -703,7 +693,6 @@ server.delete('/delete-image/:nameImg', (req, res) => {
         res.json({deleted_image: false});
     }
 });
-
 
 
 

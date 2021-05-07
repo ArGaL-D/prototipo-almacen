@@ -15,38 +15,6 @@ import * as MdIcons   from "react-icons/md";
 
 export default function FormPrestamo({type,setFormData,formData,setOpenModal}) {
 
-    // Establecer fecha automática
-    useEffect( ()=> {
-        let currentDate = new Date();
-        const inputFecha = document.getElementById('input-date');
-
-        let month = currentDate.getUTCMonth() + 1;
-        let day   = currentDate.getDate();
-        let year  = currentDate.getUTCFullYear();
-
-        const today = `${year}-${month}-${day}`;
-
-        inputFecha.valueAsDate = new Date(today);
-        inputFecha.readOnly = true;
-
-        // Guardar fecha actual
-        if (formData.fecha === ""){
-            setFormData({...formData, fecha: today});
-        }
-    });
-
-    // Bloquear índice 0 a los tag-select
-    useEffect( ()=> {
-        let select1 = document.getElementById('select-edificio');
-        let select2 = document.getElementById('select-piso');
-        let select3 = document.getElementById('select-aula');
-
-        select1.options[0].disabled = true;
-        select2.options[0].disabled = true;
-        select3.options[0].disabled = true;
-
-    });
-
     //Recoletar datos del formulario
     const handleText = (e) =>{
         const tag  = e.target;
@@ -107,6 +75,39 @@ export default function FormPrestamo({type,setFormData,formData,setOpenModal}) {
             }
         }
     }
+
+    // Establecer fecha automática
+    useEffect( ()=> {
+        let currentDate = new Date();
+        const inputFecha = document.getElementById('input-date');
+
+        let month = currentDate.getUTCMonth() + 1;
+        let day   = currentDate.getDate();
+        let year  = currentDate.getUTCFullYear();
+
+        const today = `${year}-${month}-${day}`;
+
+        inputFecha.valueAsDate = new Date(today);
+        inputFecha.readOnly = true;
+
+        // Guardar fecha actual
+        if (formData.fecha === ""){
+            setFormData({...formData, fecha: today});
+        }
+    });
+
+    // Bloquear índice 0 a los tag-select
+    useEffect( ()=> {
+        let select1 = document.getElementById('select-edificio');
+        let select2 = document.getElementById('select-piso');
+        let select3 = document.getElementById('select-aula');
+
+        select1.options[0].disabled = true;
+        select2.options[0].disabled = true;
+        select3.options[0].disabled = true;
+
+    });
+    
 
     return (
         <form id="form" onSubmit={sendingData}>

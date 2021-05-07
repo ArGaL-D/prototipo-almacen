@@ -3,8 +3,9 @@ import { useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from "axios";
 
-import InputDark from '../field/InputDark';
-import Button from '../field/Button';
+import QrScannerEntrega from '../qrscanner/QrScannerEntrega';
+import InputDark  from '../field/InputDark';
+import Button  from '../field/Button';
 
 import * as FaIcons   from "react-icons/fa";
 import * as GiIcons   from "react-icons/gi";
@@ -12,9 +13,7 @@ import * as MdIcons   from "react-icons/md";
 import * as BiIcons   from "react-icons/bi";
 import * as ImIcons   from "react-icons/im";
 
-
 import "./styles/Entrega.css";
-import QrScannerEntrega from '../qrscanner/QrScannerEntrega';
 
 export default function Entrega({setTitle}) {
 
@@ -28,26 +27,6 @@ export default function Entrega({setTitle}) {
         fechaSalida : "",
         fechaEntrega: ""
     });
-
-    // Establecer título actual - navbar
-    useEffect(() => {
-        setTitle('Entrega');
-        sessionStorage.setItem('page','entrega');
-    })
-
-    // Establecer y bloquear campo fecha-salida
-    useEffect(() =>{
-        const tagFecha = document.getElementById('fecha-salida');
-
-        tagFecha.valueAsDate = new Date(formData.fechaSalida);
-        tagFecha.readOnly = true;
-
-    },[formData]);
-
-    // Guardar la ruta actual del componente
-    useEffect(()=> {
-        sessionStorage.setItem('currentPage',location.pathname);        
-    });    
 
     // Mostrar modal - scanner
     const showScanner = () =>{
@@ -99,6 +78,27 @@ export default function Entrega({setTitle}) {
             console.log(error)
         }
     }
+
+    // Establecer título actual - navbar
+    useEffect(() => {
+        setTitle('Entrega');
+        sessionStorage.setItem('page','entrega');
+    })
+
+    // Establecer y bloquear campo fecha-salida
+    useEffect(() =>{
+        const tagFecha = document.getElementById('fecha-salida');
+
+        tagFecha.valueAsDate = new Date(formData.fechaSalida);
+        tagFecha.readOnly = true;
+
+    },[formData]);
+
+    // Guardar la ruta actual del componente
+    useEffect(()=> {
+        sessionStorage.setItem('currentPage',location.pathname);        
+    });    
+
 
     return (
         <div className="module-entrega">

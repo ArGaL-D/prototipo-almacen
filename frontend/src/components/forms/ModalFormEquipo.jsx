@@ -23,6 +23,7 @@ export default function ModalFormEquipo({open,onCloseModal, updateDevice, setUpd
             setUpdateDevice({...updateDevice, [e.target.name]: e.target.value.toUpperCase()});
         }        
     }
+
     const handleSelect = (e) => {
         const tag = e.target;
         setUpdateDevice({...updateDevice, [tag.name]: tag.options[tag.selectedIndex].text.toUpperCase() });
@@ -84,7 +85,6 @@ export default function ModalFormEquipo({open,onCloseModal, updateDevice, setUpd
             });
         }
     }
-
 
     return (
         <Modal open={open} onClose={onCloseModal} center>

@@ -28,7 +28,7 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
         }
     }
     readToken();
-}, []);
+  }, []);
 
 
     return (
@@ -134,7 +134,7 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
                                   <td>{row.fecha_salida}</td>  
                                 </tr>  
                               )  
-                            }),
+                          }),
                     SEGUIMIENTO: rows.map( (row,index) => {
                       return(
                           <tr key={index}>
@@ -155,8 +155,8 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
                               <td>{row.hora}</td>                                                                
                           </tr>
                       )
-                  }),
-                  USUARIOS: rows.map( (row,index) => {
+                          }),
+                    USUARIOS: rows.map( (row,index) => {
                     return(
                         <tr 
                           key = {index} 

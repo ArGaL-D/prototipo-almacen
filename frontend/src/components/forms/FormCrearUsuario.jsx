@@ -24,6 +24,7 @@ export default function FormCrearUsuario() {
     const handleInput = (e) =>{
         setFormUser({...formUser, [e.target.name]: e.target.value});
     }
+
     const handleSelect = (e) =>{
         const tag = e.target;
         setFormUser({...formUser, acceso: tag.options[tag.selectedIndex].value});
@@ -98,7 +99,6 @@ export default function FormCrearUsuario() {
             })
         }
     }
-
 
     return (
         <form id="form" onSubmit={sendingData}>
