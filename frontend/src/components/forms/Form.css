@@ -162,6 +162,20 @@
     }
 }
 
+/* FOR MOBILES - PORTRAIT */
+@media screen and (max-height:500px) {
+    .form_rep{
+        display: block;
+    }
+    .form_rep .input{
+        padding: .5em 0;
+    }
+    .select_reporte{
+        padding-bottom: 1em;
+    }
+}
+
+
 @media screen and (orientation: landscape) and (max-height:610px) {
     #form{
         display: block;

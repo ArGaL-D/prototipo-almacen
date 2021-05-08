@@ -10,8 +10,7 @@
     justify-content: center;
 }
 
-#formPrestamo{
-    
+#formPrestamo{    
     overflow: auto;
 
     background: whitesmoke;
@@ -116,6 +115,20 @@
         width: 99%;
     }
 
+}
+
+@media screen and (max-height:500px) {
+    /* CONTENDOR 1 */    
+    #formPrestamo{
+        display: block;
+        overflow: auto;
+    }
+    #formPrestamo .select-form{
+        padding-bottom: 1em;
+    }
+    #formPrestamo .input{
+        padding: .5em 0;
+    }
 }
 
 /* FOR DESKTOPS */

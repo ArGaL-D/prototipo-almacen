@@ -117,8 +117,24 @@
     .form_selects .select.almacen{
         margin: 0;
     }
+    .module_registrar .qr-modal{
+        width: 95%;
+    }
 }
 
+@media screen and (max-height:500px) {
+    /* CONTENDOR 1 */
+    .form_registrar{
+        display: block;
+        overflow: auto;
+    }
+    .form_registrar .input{
+        padding-bottom: 1em;
+    }
+}
+
+
+/* FOR TABLETS */
 @media screen and (min-width: 600px) and (max-width:1100px){
     .form_registrar{
         width: 90%;

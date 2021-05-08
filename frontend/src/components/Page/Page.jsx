@@ -17,7 +17,7 @@ function Page() {
   let {path} = useRouteMatch();
 
   const [title,setTitle] = useState('Home');
-  const [sidebar,setSidebar] = useState(false);
+  const [sidebar,setSidebar] = useState(true);
 
   const showSidebar = () =>{
     setSidebar(!sidebar);

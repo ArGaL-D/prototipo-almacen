@@ -93,6 +93,14 @@
     left: 0;
 }
 
+@media screen and (max-height:500px) {
+    .module-entrega form{
+        display: block;
+    }
+    .module-entrega form .inpt{
+        padding: .5em 0;
+    }
+}
 
 @media screen and (orientation: landscape) and (max-height: 450px) {
     .module-entrega form{  
