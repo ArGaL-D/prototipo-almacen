@@ -77,7 +77,7 @@ export default function Reparacion({setTitle}) {
             }) 
         }else{
             try {
-                const resp = await axios.post('http://localhost:3001/seguimiento',clave)
+                const resp = await axios.post('/seguimiento',clave)
                 const rowData = resp.data;
                 
                 if (rowData.length === 0 ){

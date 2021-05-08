@@ -18,7 +18,7 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
     const readToken = async () => {
         const token = localStorage.getItem('token');
         try {
-            const resp = await axios.get('http://localhost:3001/login/verificar', { headers: { 'Authorization': token } });
+            const resp = await axios.get('/login/verificar', { headers: { 'Authorization': token } });
             const usuario = resp.data.authData.userData.usuario;
             const idUser  = resp.data.authData.userData.id_usuario;
             setTypeOfUser({user:usuario, id:idUser});

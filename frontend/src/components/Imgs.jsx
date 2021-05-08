@@ -46,12 +46,12 @@ export default function Imgs() {
                 // Verificar contraseña
                 try {
                     const token = localStorage.getItem('token');
-                    const resp1 = await axios.post('http://localhost:3001/verificar-usuario', { token, password });
+                    const resp1 = await axios.post('/verificar-usuario', { token, password });
                     if (resp1.data.isAuth){
                         // Guargar imagen
                         if (resp1.data.successful_password) {
 
-                            const resp = await axios.post('http://localhost:3001/subir-img',formData,{
+                            const resp = await axios.post('/subir-img',formData,{
                                 headers: {'Content-Type': 'multipart/form-data'}
                             });
                             
@@ -135,12 +135,12 @@ export default function Imgs() {
         
         try {
             const token = localStorage.getItem('token');
-            const resp1 = await axios.post('http://localhost:3001/verificar-usuario', { token, password });
+            const resp1 = await axios.post('/verificar-usuario', { token, password });
 
             if (resp1.data.isAuth) {
                 if (resp1.data.successful_password) {
                     // Eliminar imagen
-                    const resp = await axios.delete(`http://localhost:3001/delete-image/${filename}`);
+                    const resp = await axios.delete(`/delete-image/${filename}`);
                     if (resp.data.deleted_image){
                         Swal.fire({
                             position: 'top-end',
@@ -184,7 +184,7 @@ export default function Imgs() {
     }
 
     useEffect(()=>{
-        axios.get('http://localhost:3001/imagenes')
+        axios.get('/imagenes')
             .then(resp => {
                 setImage(resp.data);                
             })
@@ -209,7 +209,7 @@ export default function Imgs() {
                             <div key={index} className="cardImg">
                                <img 
                                     id = {`image_${index}`}
-                                    src={`http://localhost:3001/${image}`} 
+                                    src={`/${image}`} 
                                     className="imgSlider" 
                                     alt=""                                      
                                 />

@@ -95,7 +95,7 @@ export default function Prestamo({setTitle}) {
               })
         }else{
             try {
-                const resp = await axios.post('http://localhost:3001/prestamo',formData);
+                const resp = await axios.post('/prestamo',formData);
 
                 const existeEquipo = resp.data.existe_serial;
                 const equipoDisponible = resp.data.equipo_disponible;
@@ -160,7 +160,6 @@ export default function Prestamo({setTitle}) {
             setFormData({...formData, fecha: today});
         }
     },[formData]);
-
 
     // Guardar la ruta actual del componente
     useEffect(()=> {

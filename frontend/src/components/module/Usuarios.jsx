@@ -140,11 +140,11 @@ export default function Usuarios({ setTitle }) {
             // Verificar password        
             try {
                 const token = localStorage.getItem('token');
-                const resp1 = await axios.post('http://localhost:3001/verificar-usuario', { token, password });
+                const resp1 = await axios.post('/verificar-usuario', { token, password });
                 
                 if (resp1.data.isAuth) {
                     if (resp1.data.successful_password) {
-                        const resp2 = await axios.delete(`http://localhost:3001/delete-equipo/${serial}`);
+                        const resp2 = await axios.delete(`/delete-equipo/${serial}`);
 
                         if (resp2.data.successful_delete === false) {
                             Swal.fire({
@@ -221,12 +221,12 @@ export default function Usuarios({ setTitle }) {
 
             try {
                 const token = localStorage.getItem('token');
-                const resp1 = await axios.post('http://localhost:3001/verificar-usuario', { token, password });
+                const resp1 = await axios.post('/verificar-usuario', { token, password });
 
                 if (resp1.data.isAuth) {
                     if (resp1.data.successful_password) {
 
-                        const resp2 = await axios.delete(`http://localhost:3001/delete-usuario/${idUser}`);
+                        const resp2 = await axios.delete(`/delete-usuario/${idUser}`);
 
                         if (resp2.data.deleted_user === false) {
                             Swal.fire({
@@ -304,13 +304,13 @@ export default function Usuarios({ setTitle }) {
                 // Validar password actual del usuario
                 const token = localStorage.getItem('token');
                 try {
-                    const resp1 = await axios.post('http://localhost:3001/verificar-usuario', { token, password });
+                    const resp1 = await axios.post('/verificar-usuario', { token, password });
 
                     if (resp1.data.isAuth) {
                         if (resp1.data.successful_password) {
 
                             const newPass = formValues[0];
-                            const resp2 = await axios.put('http://localhost:3001/editar-pass', { newPass, idUser });
+                            const resp2 = await axios.put('/editar-pass', { newPass, idUser });
 
                             if (resp2.data.successful_update === false) {
                                 Swal.fire({
@@ -376,7 +376,7 @@ export default function Usuarios({ setTitle }) {
     // Obtener los datos (filas) de los equipos
     useEffect(() => {
 
-        axios.get('http://localhost:3001/equipos')
+        axios.get('/equipos')
             .then((resp) => {
                 setDeviceRows(resp.data);
             })
@@ -393,7 +393,7 @@ export default function Usuarios({ setTitle }) {
     // Obtener los datos (filas) de los usuarios
     useEffect(() => {
 
-        axios.get('http://localhost:3001/usuarios')
+        axios.get('/usuarios')
             .then((resp) => {
                 setUserRows(resp.data);
             })
@@ -417,15 +417,12 @@ export default function Usuarios({ setTitle }) {
         const readToken = async () => {
             const token = localStorage.getItem('token');
             try {
-                const resp = await axios.get('http://localhost:3001/login/verificar', { headers: { 'Authorization': token } });
-                
+                const resp = await axios.get('/login/verificar', { headers: { 'Authorization': token } });                
                 const userAccess = resp.data.authData.userData.acceso;
                 
                 if(userAccess === "Si"){
                     setAccess(true)
-                }
-                
-
+                }                
             } catch (error) {
                 console.log(error)
             }

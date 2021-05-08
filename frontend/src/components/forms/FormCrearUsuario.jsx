@@ -44,7 +44,7 @@ export default function FormCrearUsuario() {
             if (validate.test(formUser.email)){
                 
                 try {
-                    const resp = await axios.post('http://localhost:3001/crear-usuario',formUser);
+                    const resp = await axios.post('/crear-usuario',formUser);
                     
                     const existeUsuario = resp.data.existe_usuario;
                     const existeEmail = resp.data.existe_email;

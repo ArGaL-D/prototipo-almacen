@@ -1,6 +1,6 @@
 .side-bar{
     width : 5em;
-    height: 100%;
+    height: calc(100vh - 4em);
 
     position: fixed;
     

@@ -41,12 +41,12 @@ export default function ModalFormUsuario({open,onCloseModal, updateUser, setUpda
         // Verificar password
         try{
             const token = localStorage.getItem('token');
-            const resp1 = await axios.post('http://localhost:3001/verificar-usuario', {token, password});
+            const resp1 = await axios.post('/verificar-usuario', {token, password});
             
             if (resp1.data.isAuth){
 
                 if (resp1.data.successful_password){                    
-                    const resp2 = await axios.put('http://localhost:3001/editar-usuario', updateUser);
+                    const resp2 = await axios.put('/editar-usuario', updateUser);
  
                     if (resp2.data.successful_update){
                         onCloseModal();

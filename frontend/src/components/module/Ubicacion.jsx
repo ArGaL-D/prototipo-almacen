@@ -9,6 +9,7 @@ import Datatable from '../Datatable';
 import Select    from '../field/Select';
 
 import * as GoIcons from "react-icons/go";
+
 import "./styles/Ubicacion.css";
 
 export default function Ubicacion({setTitle}) {
@@ -88,7 +89,7 @@ export default function Ubicacion({setTitle}) {
         document.getElementById('dropdown-aula').disabled = !showSelects;
         
         // Pedir datos 'filas' al servidor
-        axios.get('http://localhost:3001/ubicacion')
+        axios.get('/ubicacion')
              .then( res => {
                  setRowData(res.data)
              })

@@ -51,7 +51,7 @@ export default function Entrega({setTitle}) {
         e.preventDefault();
 
         try {
-            const resp = await axios.post('http://localhost:3001/entrega',formData);
+            const resp = await axios.post('/entrega',formData);
             const existeEquipo = resp.data.existe_equipo;
             const equipoEntregado = resp.data.equipo_entregado;
 

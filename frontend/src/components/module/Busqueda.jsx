@@ -85,7 +85,7 @@ function Buscar({setTitle}) {
     useEffect(() => {
         let unmounted = false;
 
-        axios.get('http://localhost:3001/equipos')
+        axios.get('/equipos')
                 .then(resp => {
                 if (!unmounted){
                     setRowData(resp.data);

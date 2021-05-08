@@ -35,7 +35,7 @@ export default function Login() {
         
         // Verificar usuario
         try {
-            const resp = await axios.post('http://localhost:3001/login',formData);
+            const resp = await axios.post('/login',formData);
             const existeUsuario = resp.data.existe_usuario;
             const passCorrecto  = resp.data.successful_password;
             const token = resp.data.token;

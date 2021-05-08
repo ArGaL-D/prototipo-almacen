@@ -86,7 +86,7 @@ export default function Registro({setTitle}) {
         e.preventDefault();
 
         try {
-            const resp = await axios.post('http://localhost:3001/registrar',formData);
+            const resp = await axios.post('/registrar',formData);
             const existeSerial = resp.data.existe_serial;
 
             if(existeSerial){

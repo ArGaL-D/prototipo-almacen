@@ -44,12 +44,12 @@ export default function ModalFormEquipo({open,onCloseModal, updateDevice, setUpd
 
         try {
             const token = localStorage.getItem('token');
-            const resp = await axios.post('http://localhost:3001/verificar-usuario', {token, password});
+            const resp = await axios.post('/verificar-usuario', {token, password});
             
             if (resp.data.isAuth){   
                 if (resp.data.successful_password){
                     
-                    const resp2 = await axios.put('http://localhost:3001/editar-equipo', updateDevice);
+                    const resp2 = await axios.put('/editar-equipo', updateDevice);
                     const successfulUpdate = resp2.data.successful_update;
 
                     if (successfulUpdate){

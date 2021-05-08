@@ -64,7 +64,7 @@ export default function FormReparacion() {
     const dataToServer = async (e) =>{
         e.preventDefault();
         try {
-            const resp = await axios.post('http://localhost:3001/reparacion',formData);
+            const resp = await axios.post('/reparacion',formData);
             const equipo = resp.data.equipo;
 
             if (equipo){
@@ -244,7 +244,7 @@ function TablaHilo ({numSerie}){
     
     const sendingData = async() =>{
         try{
-            const resp = await axios.post('http://localhost:3001/buscar-hilo',codigo);
+            const resp = await axios.post('/buscar-hilo',codigo);
             const hilo =  resp.data;
             
             setRow(hilo);
@@ -255,7 +255,7 @@ function TablaHilo ({numSerie}){
     
 
     return(
-        <div className="">
+        <div className="tabla_hilo">
             <div className="inpt_container">
                 <div className="boxInput">
                     <InputDark

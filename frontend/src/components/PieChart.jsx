@@ -13,7 +13,7 @@ export default function PieChart() {
   useEffect(()=>{
       const totalEquipos = async () => {
         try {
-          const resp = await axios.get('http://localhost:3001/total-equipos');
+          const resp = await axios.get('/total-equipos');
           setEquipos({
             disponibles: resp.data.equipos_disponibles,
             prestados  : resp.data.equipos_prestados,

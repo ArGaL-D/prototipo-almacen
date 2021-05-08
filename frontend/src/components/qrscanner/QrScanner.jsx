@@ -20,7 +20,7 @@ const QrScanner = ( {closeModalQr, getQrResults, type} ) => {
     
             if (url_correcto){
                 try{
-                    const resp = await axios.post('http://localhost:3001/scrapting', pagina);
+                    const resp = await axios.post('/scrapting', pagina);
                     const alumno = resp.data;
     
                     if (resp.data.error){

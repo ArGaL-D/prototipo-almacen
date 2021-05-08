@@ -14,7 +14,7 @@ export default function ControlledCarousel() {
   const [images,setImages] = useState([]);
 
   useEffect(()=>{
-    axios.get('http://localhost:3001/imagenes')
+    axios.get('/imagenes')
         .then(resp => {
             setImages(resp.data);                
         })
@@ -73,7 +73,7 @@ export default function ControlledCarousel() {
                   return(
                     <Carousel.Item interval={7000} key={index}>   
                       <img                        
-                          src = {`http://localhost:3001/${image}`}
+                          src = {`/${image}`}
                           alt = "First slide"
                           className = "d-block w-100"
                         />

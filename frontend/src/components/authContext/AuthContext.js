@@ -14,7 +14,7 @@ export const AuthProvider = ({children}) => {
             const token = localStorage.getItem('token');
             
             try {
-                const resp = await axios.get('http://localhost:3001/login/verificar',{ headers: {'Authorization': token} });
+                const resp = await axios.get('/login/verificar',{ headers: {'Authorization': token} });
                 
                 setAuthToken(resp.data.isAuth);
             } catch (error) {
