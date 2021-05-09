@@ -1,0 +1,42 @@
+.home{
+    width : 100%;
+    height: 100%;
+    overflow: auto;   
+    position: relative;
+
+    font-family: 'Roboto', sans-serif;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.home_title{
+    color: #20232a;
+    text-align: center;
+    font-size: clamp(3.5rem, 3vw, 5rem);
+    
+    animation-name: home-title;
+    animation-duration: 3.5s;
+}
+
+.home_subtitle{
+    padding: 1em 1em;
+    font-size: 1.5rem;
+    text-align: center;
+
+    animation-name: home-subtitle;
+    animation-duration: 3.5s;
+}
+
+/* ANIMACACIONES */
+@keyframes home-title {
+    from{color: whitesmoke}
+    to {color: #20232a;}
+}
+
+@keyframes home-subtitle {
+    from{color: whitesmoke}
+    to {color: #20232a;}
+}

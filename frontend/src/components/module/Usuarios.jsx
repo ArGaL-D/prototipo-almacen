@@ -357,6 +357,7 @@ export default function Usuarios({ setTitle }) {
     const scanQrCode = () => {
         setScanQr(!scanQr);
     }
+    
     const getQrResults = (equip0, seriaL) => {
         setQrData({ ...qrData, serial: seriaL, equipo: equip0 });
     }

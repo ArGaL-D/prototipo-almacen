@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { withRouter,useRouteMatch,Switch, Route } from 'react-router-dom'
 
+import Home       from '../module/Home';
 import Busqueda   from '../module/Busqueda';
 import Entrega    from '../module/Entrega';
 import Prestamo   from '../module/Prestamo';
@@ -41,7 +42,10 @@ function Page() {
         <div className="container_page">
           <Sidebar showSidebar={sidebar} />          
           <Switch>
-              <Route exact path={path}/>
+              <Route exact path={path}
+                  children={<Home 
+                  setTitle={setTitle}/>}
+              />
               <Route 
                   path={`${path}/buscar`}     
                   children={<Busqueda   
