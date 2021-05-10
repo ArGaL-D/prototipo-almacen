@@ -6,7 +6,6 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 800;
     
-    
     border-collapse: collapse;
 
     position: relative;
@@ -18,7 +17,8 @@
     background: #20232a; 
     
     padding: .6em;
-    font-size: .9rem;
+    font-size: .8rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-transform: uppercase;    
 
     position: sticky;
@@ -29,11 +29,15 @@
 
 /* FILAS - TABLA */
 .table-equipo tr{
-    background: #ebedef;     
+    background: #ebedef;    
 }
 .table-equipo tr:nth-child(even){
     background: #c7c5c5;
     box-shadow: 0px 1px 5px 0px rgba(167, 167, 167, 0.55);
+}
+
+.table-equipo tr td{
+    padding: 1em;
 }
 
 /* FILAS - TABLA - ANIMACIONES*/
@@ -46,10 +50,6 @@
 .table-equipo tr:hover .btn-edit,
 .table-equipo tr:hover .btn-del{
     border: 1px solid lightskyblue;
-}
-
-.table-equipo tr td{
-    padding: 1em;    
 }
 
 .btn-qr{

@@ -159,4 +159,9 @@
     .form_registrar .btn_qrCode{
         margin-bottom: 1.5em;
     }
+
+    .qr-modal .btn-modal{
+        margin-top: 3em;
+        width: 20%;
+    }    
 }

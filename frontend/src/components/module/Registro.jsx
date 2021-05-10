@@ -189,7 +189,7 @@ export default function Registro({setTitle}) {
                         formData.equipo==="" || formData.modelo===""
                         ? "marco":"marco active" }>
                     <QRCode 
-                        size  = {220}
+                        size  = {250}
                         value = { JSON.stringify(qrData) }                   
                         enableCORS = {true}                            
                         qrStyle    = {'squares'}
@@ -203,7 +203,7 @@ export default function Registro({setTitle}) {
                 
                 <div className="btn-modal">
                     <Button
-                        title = "REGISTRAR"
+                        title = "FINALIZAR"
                         onClick={closeModal}
                     />
                 </div>                  

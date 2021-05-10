@@ -539,8 +539,7 @@ export default function Usuarios({ setTitle }) {
                                 rows={filteringData(deviceRows)}
                                 columns={columns}
                                 updateRow={updateRowDevice}
-                                deleteRow={deleteRowDevice}
-                                
+                                deleteRow={deleteRowDevice}                                
                             />
                         </div>
 

@@ -19,13 +19,13 @@
 }
 
 /* CONTENEDOR 2 */
+.container_2{
+    overflow: auto;
+}
 .container_2 .donut{
     margin: auto;    
 }
 
-.container_2 .table{
-    overflow: auto;
-}
 
 /* MODAL-FORM */
 .row_form{
