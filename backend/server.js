@@ -438,24 +438,21 @@ server.post('/login', (req, res) => {
     // is an email
     const validate = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
-
     pool.getConnection((err, connection) => {
         if (err) throw err;
 
         connection.query(validate.test(usuario)?"call sp_getEmail(?)":"call sp_getUsuario(?)",[usuario],(error, results) => {
             connection.release();
 
-            if (error) console.log(error)
+            if (error) throw error;
 
             const existeUsuario = results[0][0].existe_usuario;
 
             if (existeUsuario){
                 const userData = results[1][0];
-
                 // COMPROBAR CONTRASEÑA
                 bcrypt.compare(userPass,userData.password, (error, result) =>{                
                     if (result){
-
                         // GENERAR TOKEN
                         const token = jwt.sign({userData},'secretKey',{expiresIn: '5h'});
                         res.json({
@@ -673,8 +670,7 @@ server.delete('/delete-usuario/:idUser', (req, res) => {
                 res.json({deleted_user: false});
             }else{
                 res.json({deleted_user: true});
-            }
-            
+            }            
         });
     });
     
