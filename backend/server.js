@@ -434,10 +434,11 @@ server.post('/usuario-pass', (req, resServer) => {
 // LOGIN - COMPROBAR SI EXISTE USUARIO y CREAR UN TOKEN de 'Autenticación'
 server.post('/login', (req, res) => {
     const usuario   = req.body.username;
-    const password  = req.body.userpass;
+    const userPass  = req.body.userpass;
     // is an email
     const validate = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-    
+
+
     pool.getConnection((err, connection) => {
         if (err) throw err;
 
@@ -452,7 +453,7 @@ server.post('/login', (req, res) => {
                 const userData = results[1][0];
 
                 // COMPROBAR CONTRASEÑA
-                bcrypt.compare(password,userData.password, (error, result) =>{                
+                bcrypt.compare(userPass,userData.password, (error, result) =>{                
                     if (result){
 
                         // GENERAR TOKEN

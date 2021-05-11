@@ -71,7 +71,7 @@ export default function FormCrearUsuario() {
                                 timer: 1600
                               })
                             
-                            setTimeout(reloadPage,2400);
+                            setTimeout(reloadPage,2200);
                         }
                     }
                     console.log(resp.data)
