@@ -570,6 +570,7 @@ export default function Usuarios({ setTitle }) {
                             setUpdateDevice={setUpdateDevice}
                         />
 
+                        {/* ESCANEAR EQUIPO */}
                         {
                             scanQr ?
                                 <div className="modal_qrScanner">

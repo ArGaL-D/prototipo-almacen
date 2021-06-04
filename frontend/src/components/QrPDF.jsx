@@ -25,7 +25,7 @@ export default function QrPDF() {
     const renderPDF = () => {
         const canvas = document.querySelectorAll('canvas');
         setRender(!render);        
-        if (render){            
+        if (!render){            
             setQrCanvas(Array.from(canvas))
         }
     }

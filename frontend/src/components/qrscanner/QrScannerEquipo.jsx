@@ -12,7 +12,7 @@ const QrScannerEquipo = ( {closeModalQr, getQrResults} ) => {
     const handleDecode = (result) => {  
         setQrClose(result.data) // No mover de posición.
         
-        //EQUIPO
+        //EQUIPO QR(formaro JSON)
         try{
             const qrJSON = JSON.parse(result.data);
             const serial = qrJSON.serial;

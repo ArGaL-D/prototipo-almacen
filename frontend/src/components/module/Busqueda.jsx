@@ -12,14 +12,19 @@ import Datatable from "../Datatable";
 import * as GoIcons from "react-icons/go";
 
 import "./styles/Busqueda.css";
+import QrScannerEquipo from '../qrscanner/QrScannerEquipo';
 
 function Buscar({setTitle}) {
 
     const location = useLocation();
 
+    
+    
+    const [qrScanner,setQrScanner] = useState(false);
+    const [devData, setDevData] = useState({serial: '',equipo:''});
     const [showQr, setShowQr] = useState(false);
-    const [open, setOpen] = useState(false);
-    const [text,setText]  = useState("");
+    const [open, setOpen]  = useState(false);
+    const [text,setText] = useState("");
     //Filas -
     const [rowData,setRowData] = useState([]);
     //Columnas - tabla buscar
@@ -63,6 +68,7 @@ function Buscar({setTitle}) {
     }
 
     // Regresa un arreglo con los nuevos elmentos filtrados.
+    // del input
     const filteringData = (rows) => {
         return rows.filter( row => 
                     row.num_serie.indexOf(text) > -1 ||
@@ -74,7 +80,19 @@ function Buscar({setTitle}) {
                     row.edificio.toString().indexOf(text) > -1 ||
                     row.piso.toString().indexOf(text) > -1 
         )
-    }    
+    } 
+
+    // Mostrar Modal QrScanner
+    const isQrScannerOpened = () => {
+        setQrScanner(!qrScanner);
+    }
+
+    const getQrResults = (equip0, seriaL) => {
+        setDevData({...devData, serial: seriaL,equipo: equip0});                
+        setText(seriaL)
+        document.getElementById('inpt-search').value = seriaL 
+    }
+
     // Establecer título actual - navbar
     useEffect(() => {
         setTitle('Búsqueda');
@@ -100,7 +118,7 @@ function Buscar({setTitle}) {
                     })
                 })
         return () => {unmounted = true}
-    })
+    },[])
 
     // Guardar la ruta actual del componente
     useEffect(()=> {
@@ -112,11 +130,28 @@ function Buscar({setTitle}) {
             
                 <div className="input">
                     <InputDark
+                        id = {"inpt-search"}
                         icon = {<GoIcons.GoSearch/>}
-                        onChange = {handleText}
+                        
+                        onClick = {isQrScannerOpened}
+                        onChange = {handleText}                        
                         placeholder = "Palabra clave"
+                        cursorPointer = {true}
                     />
                 </div>
+
+                {
+                    /* MODAL - QrCode Scanner */
+                    qrScanner ?
+                        <div className="qr-scanner-container">
+                          <QrScannerEquipo 
+                                closeModalQr = {setQrScanner}
+                                getQrResults = {getQrResults}
+                            />
+                        </div>                      
+                        : null
+                }
+
                 <div className="table">
                     <Datatable 
                         type = "EQUIPOS_BUSCAR"
@@ -125,7 +160,8 @@ function Buscar({setTitle}) {
                         onOpenModal = {onOpenModal}
                     />
                 </div>
-                {
+                
+                { /* MODAL - QrCODE */
                     showQr 
                     ?
                     <Modal open={open} onClose={onCloseModal} center>
@@ -135,7 +171,7 @@ function Buscar({setTitle}) {
                             enableCORS = {true}                            
                             qrStyle    = {'squares'}
                             quietZone  = {10 }                            
-                            fgColor    = {"#000406"}                        
+                            fgColor    = {"#121924"}                        
                         />
                     </Modal>
                     : null
