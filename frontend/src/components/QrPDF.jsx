@@ -24,9 +24,10 @@ export default function QrPDF() {
 
     const renderPDF = () => {
         const canvas = document.querySelectorAll('canvas');
-
-        setRender(true);        
-        setQrCanvas(Array.from(canvas))
+        setRender(!render);        
+        if (render){            
+            setQrCanvas(Array.from(canvas))
+        }
     }
 
     useEffect(()=>{
@@ -49,6 +50,7 @@ export default function QrPDF() {
             flexDirection: 'row',
             flexWrap: 'wrap',
             justifyContent: 'center',
+            alignItems: 'center',
             backgroundColor: 'white',
             paddingTop: '15px'
         },
