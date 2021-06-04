@@ -1,8 +1,9 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "private": true,  
+  "private": true,
   "dependencies": {
+    "@react-pdf/renderer": "^2.0.14",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
@@ -35,8 +36,8 @@
       "react-app/jest"
     ]
   },
-  "proxy":"http://192.168.0.8:3001",
-  "browserslist": {    
+  "proxy": "http://localhost:3001",
+  "browserslist": {
     "production": [
       ">0.2%",
       "not dead",

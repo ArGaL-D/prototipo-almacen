@@ -1,0 +1,74 @@
+.qr-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: .5em;
+
+    position: relative;
+}
+
+.qrCode-box{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 1em 10px;
+}
+
+.qrCode-border{
+    display: flex;
+    align-items: center;
+    border: 2px dashed black;
+}
+
+.qrCode-content-text{
+    width: 100%;      
+}
+
+.qrCode-content-text p{
+    margin: 0;
+    text-align: center;        
+}
+
+.dev-title{
+    color:  #1b2631;
+    padding-top: .5em;
+    
+    font-size: 1rem;
+    font-weight: 700;
+}
+.dev-serial{    
+    color:  #424949;
+    font-size: .8rem;
+    font-weight: 600;    
+}
+
+/* Button PDF */
+.btn-pdf{
+    position: fixed;
+    top: .1em;
+        
+    color: #fd9f11;
+    cursor: pointer;
+    font-size: 2rem;
+    
+    padding: .5em;    
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    transition: 500ms ease-in-out;
+}
+
+.btn-pdf:hover{
+    color: rgb(247, 37, 79);
+}
+
+/* Ventana IFRAME - PDF */
+
+iframe{
+    width: 90%;
+    height: 40%;
+    position: absolute;
+}

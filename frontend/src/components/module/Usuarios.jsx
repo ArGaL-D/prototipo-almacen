@@ -13,12 +13,13 @@ import FormCrearUsuario from '../forms/FormCrearUsuario';
 import AccessDenied     from '../AccessDenied';
 import QrScannerEquipo  from '../qrscanner/QrScannerEquipo';
 
-import * as IoIcons from 'react-icons/io5';
+import * as Io5Icons from 'react-icons/io5';
 import * as FaIcons from "react-icons/fa";
 import * as MdIcons from "react-icons/md";
 import * as ImIcons from "react-icons/im";
 
 import "./styles/Usuarios.css";
+import QrPDF from '../QrPDF';
 
 export default function Usuarios({ setTitle }) {
 
@@ -441,6 +442,7 @@ export default function Usuarios({ setTitle }) {
         <div className="module-usuarios">
             {/* CONTENEDOR 1 */}
             <div className="container_1">
+
                 <div className="rectangle">
                     <Link to={`${path}`}>
                         <Rectangle
@@ -450,6 +452,7 @@ export default function Usuarios({ setTitle }) {
                         />
                     </Link>
                 </div>
+
                 <div className="rectangle">
                     <Link to={`${path}/equipos`}>
                         <Rectangle
@@ -459,15 +462,17 @@ export default function Usuarios({ setTitle }) {
                         />
                     </Link>
                 </div>
+
                 <div className="rectangle">
                     <Link to={`${path}/crear-usuario`}>
                         <Rectangle
-                            icon={<IoIcons.IoPersonAdd />}
+                            icon={<Io5Icons.IoPersonAdd />}
                             title="Crear suario"
                             content="Total de usuarios"
                         />
                     </Link>
                 </div>
+
                 <div className="rectangle">
                     <Link to={`${path}/usuarios`}>
                         <Rectangle
@@ -477,6 +482,7 @@ export default function Usuarios({ setTitle }) {
                         />
                     </Link>
                 </div>
+
                 <div className="rectangle">
                     <Link to={`${path}/slider-imgs`}>
                         <Rectangle
@@ -486,11 +492,23 @@ export default function Usuarios({ setTitle }) {
                         />
                     </Link>
                 </div>
+
+                <div className="rectangle">
+                    <Link to={`${path}/qrcode-equipos`}>
+                        <Rectangle
+                            icon={<Io5Icons.IoQrCodeSharp />}
+                            title="QrCodes"
+                            content="Plantilla"
+                        />
+                    </Link>
+                </div>
             </div>
 
             {/* CONTENEDOR 2 */}
+
             <div className="container_2">
                 <Switch>
+
                     <Route path={`${path}`} exact>
                         <div className="donut">
                             <div className="pie_chart">
@@ -498,6 +516,7 @@ export default function Usuarios({ setTitle }) {
                             </div>
                         </div>
                     </Route>
+
                     <Route path={`${path}/crear-usuario`}>
                         <div className="boxUser">
                             <div className="title">
@@ -508,6 +527,7 @@ export default function Usuarios({ setTitle }) {
                             <FormCrearUsuario />
                         </div>
                     </Route>
+
                     <Route path={`${path}/usuarios`}>
                         <div className="table">
                             <Datatable
@@ -567,6 +587,11 @@ export default function Usuarios({ setTitle }) {
                             <Imgs />
                         </div>
                     </Route>
+
+                    <Route path={`${path}/qrcode-equipos`}>
+                        <QrPDF />
+                    </Route>
+
 
                     <Route path={`${path}/*`}>
                         <div className="table">
