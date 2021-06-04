@@ -68,7 +68,7 @@
 /* Ventana IFRAME - PDF */
 
 iframe{
-    width: 90%;
-    height: 40%;
+    width : 95%;
+    height: 95%;
     position: absolute;
 }

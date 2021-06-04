@@ -49,7 +49,7 @@ export default function QrPDF() {
             flexDirection: 'row',
             flexWrap: 'wrap',
             justifyContent: 'center',
-            backgroundColor: '#E4E4E4',
+            backgroundColor: 'white',
             paddingTop: '15px'
         },
         section: {      
@@ -57,10 +57,8 @@ export default function QrPDF() {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-        
             margin: '5px',
-            border: '2px solid black'
-          }
+          },          
     });
     
     const stylesImg = StyleSheet.create({
@@ -71,12 +69,13 @@ export default function QrPDF() {
         padding: '2px'        
     });
 
-    const styleTitle  = StyleSheet.create({
-
-    });
-    const styleSerial = StyleSheet.create({
-
-    });
+    const styleTitle  = {
+        fontSize: '12px'
+        
+    };
+    const styleSerial = {
+        fontSize: '10px'
+    };
 
     return (
         /* Contenedor de QR's*/
