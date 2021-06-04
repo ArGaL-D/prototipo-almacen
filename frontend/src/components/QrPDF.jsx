@@ -51,32 +51,35 @@ export default function QrPDF() {
             flexWrap: 'wrap',
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: 'white',
-            paddingTop: '15px'
+            backgroundColor: 'white',            
         },
         section: {      
+            width:'auto',
             flexGrow: 1,
+            display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center',
             alignItems: 'center',
-            margin: '5px',
+            justifyContent: 'center',            
+            margin: '5px',          
           },          
     });
     
     const stylesImg = StyleSheet.create({
-        width : '150px', 
-        height: '150px',
-        margin: '.5em',
+        width : '155px', 
+        height: '155px',
+        margin: '5px',
         border: '2px dashed black', 
         padding: '2px'        
     });
 
     const styleTitle  = {
-        fontSize: '12px'
-        
+        fontSize: '11px',
+        fontWeight: '600',
+        color: '#1b2631'
     };
     const styleSerial = {
-        fontSize: '10px'
+        fontSize: '10px',        
+        color: '#424949;'
     };
 
     return (
@@ -116,7 +119,7 @@ export default function QrPDF() {
                 ? 
                 <PDFViewer>
                     <Document>
-                        <Page size="A4" style={styles.page}>
+                        <Page size="Letter" style={styles.page}>
                             {
                                 qrCanvas.map((item,key) => {
                                     return(
