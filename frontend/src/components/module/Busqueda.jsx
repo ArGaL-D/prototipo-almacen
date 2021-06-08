@@ -9,7 +9,7 @@ import axios from "axios";
 import InputDark from "../field/InputDark";
 import Datatable from "../Datatable";
 
-import * as GoIcons from "react-icons/go";
+import * as RiIcons from "react-icons/ri";
 
 import "./styles/Busqueda.css";
 import QrScannerEquipo from '../qrscanner/QrScannerEquipo';
@@ -93,6 +93,10 @@ function Buscar({setTitle}) {
         document.getElementById('inpt-search').value = seriaL 
     }
 
+    const closeQrScanner = () => {
+        setQrScanner(false);
+    }
+
     // Establecer título actual - navbar
     useEffect(() => {
         setTitle('Búsqueda');
@@ -131,8 +135,7 @@ function Buscar({setTitle}) {
                 <div className="input">
                     <InputDark
                         id = {"inpt-search"}
-                        icon = {<GoIcons.GoSearch/>}
-                        
+                        icon = {<RiIcons.RiQrCodeLine/>}                        
                         onClick = {isQrScannerOpened}
                         onChange = {handleText}                        
                         placeholder = "Palabra clave"
@@ -144,10 +147,13 @@ function Buscar({setTitle}) {
                     /* MODAL - QrCode Scanner */
                     qrScanner ?
                         <div className="qr-scanner-container">
-                          <QrScannerEquipo 
+                            <QrScannerEquipo 
                                 closeModalQr = {setQrScanner}
                                 getQrResults = {getQrResults}
                             />
+                            <div className="close-qrScanner" onClick={closeQrScanner}>
+                                <RiIcons.RiCloseFill/>
+                            </div>
                         </div>                      
                         : null
                 }
@@ -167,7 +173,7 @@ function Buscar({setTitle}) {
                     <Modal open={open} onClose={onCloseModal} center>
                         <QRCode 
                             size  = {window.innerWidth<450 ? 220: 450}
-                            value = { JSON.stringify(qrData)}                   
+                            value = {JSON.stringify(qrData)}                   
                             enableCORS = {true}                            
                             qrStyle    = {'squares'}
                             quietZone  = {10 }                            

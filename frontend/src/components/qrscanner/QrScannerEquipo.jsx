@@ -22,8 +22,8 @@ const QrScannerEquipo = ( {closeModalQr, getQrResults} ) => {
         }catch(error){
             Swal.fire({
                 icon: 'error',
-                title: `QR`,
-                text: `Incorrecto`,
+                title: `QR Code`,
+                text: `Incorrecto, no pertenece a ningún equipo.`,
               })
             console.log(`Formato incorrecto QR -> ${error}`)
         }

@@ -9,11 +9,11 @@ import TextArea from '../field/TextArea';
 import InputDark from '../field/InputDark';
 import QrScannerEquipo from '../qrscanner/QrScannerEquipo';
 
-import * as BiIcons   from "react-icons/bi";
-import * as GoIcons   from "react-icons/go";
-import * as GiIcons   from "react-icons/gi";
-import * as MdIcons   from "react-icons/md";
-import * as HiIcons   from "react-icons/hi";
+import * as BiIcons from "react-icons/bi";
+import * as GoIcons from "react-icons/go";
+import * as GiIcons from "react-icons/gi";
+import * as MdIcons from "react-icons/md";
+import * as HiIcons from "react-icons/hi";
 
 import "./Form.css";
 import '../styles/Datatable.css';

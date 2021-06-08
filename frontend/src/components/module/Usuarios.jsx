@@ -17,6 +17,7 @@ import * as Io5Icons from 'react-icons/io5';
 import * as FaIcons from "react-icons/fa";
 import * as MdIcons from "react-icons/md";
 import * as ImIcons from "react-icons/im";
+import * as RiIcons from "react-icons/ri";
 
 import "./styles/Usuarios.css";
 import QrPDF from '../QrPDF';
@@ -370,6 +371,11 @@ export default function Usuarios({ setTitle }) {
         )
     }
 
+    const closeQrScanner = () => {
+        setScanQr(false);
+    }
+
+
     useEffect(() => {
         setTitle('Usuarios');
         sessionStorage.setItem('page', 'usuarios');
@@ -578,6 +584,9 @@ export default function Usuarios({ setTitle }) {
                                         closeModalQr={setScanQr}
                                         getQrResults={getQrResults}
                                     />
+                                    <div className="close-qrScanner" onClick={closeQrScanner}>
+                                        <RiIcons.RiCloseFill/>
+                                    </div>                                    
                                 </div>
                                 : null
                         }

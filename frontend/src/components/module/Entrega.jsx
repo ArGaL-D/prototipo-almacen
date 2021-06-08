@@ -7,11 +7,12 @@ import QrScannerEntrega from '../qrscanner/QrScannerEntrega';
 import InputDark  from '../field/InputDark';
 import Button  from '../field/Button';
 
-import * as FaIcons   from "react-icons/fa";
-import * as GiIcons   from "react-icons/gi";
-import * as MdIcons   from "react-icons/md";
-import * as BiIcons   from "react-icons/bi";
-import * as ImIcons   from "react-icons/im";
+import * as FaIcons from "react-icons/fa";
+import * as GiIcons from "react-icons/gi";
+import * as MdIcons from "react-icons/md";
+import * as BiIcons from "react-icons/bi";
+import * as ImIcons from "react-icons/im";
+import * as RiIcons from "react-icons/ri";
 
 import "./styles/Entrega.css";
 
@@ -77,6 +78,10 @@ export default function Entrega({setTitle}) {
         } catch (error) {
             console.log(error)
         }
+    }
+
+    const closeQrScanner = () => {
+        setOpenScanner(false);
     }
 
     // Establecer título actual - navbar
@@ -167,6 +172,9 @@ export default function Entrega({setTitle}) {
                             closeModalQr = {setOpenScanner}
                             getQrResults = {getQrResults}
                         />
+                        <div className="close-qrScanner" onClick={closeQrScanner}>
+                            <RiIcons.RiCloseFill/>
+                        </div>
                     </div>
                   :null
                 }

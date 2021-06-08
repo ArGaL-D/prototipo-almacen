@@ -129,6 +129,14 @@ export default function Prestamo({setTitle}) {
         }
     }
 
+    // Close QrScanner Modal
+    const closeQrScanner1 = () => {
+        setOpenScaner1(false);     
+    }
+    const closeQrScanner2 = () => {
+        setOpenScaner2(false);     
+    }
+
     //Establecer título actual - navbar
     useEffect(() => {
         setTitle('Préstamo');
@@ -293,6 +301,9 @@ export default function Prestamo({setTitle}) {
                                 closeModalQr = {setOpenScaner1}
                                 getQrResults = {getQrResults}
                             />
+                            <div className="close-qrScanner" onClick={closeQrScanner1}>
+                                <RiIcons.RiCloseFill/>
+                            </div>
                         </div>
                     : null
                 }
@@ -303,6 +314,9 @@ export default function Prestamo({setTitle}) {
                                 closeModalQr  = {setOpenScaner2}
                                 getQrResults = {getQrResults2}
                             />
+                            <div className="close-qrScanner" onClick={closeQrScanner2}>
+                                <RiIcons.RiCloseFill/>
+                            </div>
                         </div>
                     : null
                 }

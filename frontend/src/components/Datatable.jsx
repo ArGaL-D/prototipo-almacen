@@ -69,7 +69,7 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
                                 <td>
                                    <div className="td-descrip">
                                         {<GrIcons.GrTextAlignFull/>}
-                                        <TooltipText text={row.descripcion===""? "Sin descriṕción.":row.descripcion} />
+                                        <TooltipText text={row.descripcion===""? "Sin descripción.":row.descripcion} />
                                     </div>  
                                 </td>  
                                 <td>{row.almacen}</td> 
@@ -103,7 +103,7 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
                                 <td>
                                     <div className="td-descrip">
                                         {<GrIcons.GrTextAlignFull/>}
-                                        <TooltipText text={row.descripcion===""? "Sin descriṕción.":row.descripcion} />
+                                        <TooltipText text={row.descripcion===""? "Sin descripción.":row.descripcion} />
                                     </div>  
                                 </td>  
                                 <td>{row.almacen}</td> 
@@ -146,7 +146,7 @@ export default function Datatable({columns, rows ,type, onOpenModal,updateRow,de
                               <td>
                                   <div className="td-descrip">
                                       {<GrIcons.GrTextAlignFull/>}
-                                      <TooltipText text={row.detalles===""? "Sin descriṕción.":row.detalles} />
+                                      <TooltipText text={row.detalles===""? "Sin descripción.":row.detalles} />
                                   </div>                                    
                               </td>
                               <td>{row.estatus}</td>

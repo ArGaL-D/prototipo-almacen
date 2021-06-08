@@ -21,8 +21,8 @@ server.use(express.json());
 server.set('port', 3001);
 
 const config_db = {
-    host: '192.168.0.8',
-    user: 'tester1',
+    host: 'localhost',
+    user: 'root',
     password: 'archDB_32109',
     database: 'EQUIPOS_CECYT16',
     multipleStatements: true

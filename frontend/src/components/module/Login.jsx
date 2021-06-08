@@ -68,7 +68,7 @@ export default function Login() {
             Swal.fire({
                 icon: 'error',
                 title: 'LOGIN',
-                text: `No se puedo iniciar sesión. Probablemente, el servidor esté desactivo, o tenga conflictos internos.`,
+                text: `No se puedo iniciar sesión. Probablemente, el servidor esté desactivado, o tenga conflictos internos.`,
             })
         }           
     }

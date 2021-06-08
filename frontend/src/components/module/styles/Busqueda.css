@@ -27,6 +27,8 @@
 
     margin-top : 1em;
     margin-left: 1em;
+
+    position: relative;
 }
 
 /* QrCODE -SCANNER */
@@ -44,6 +46,19 @@
     align-items: center;
     justify-content: center;    
 }
+
+
+/* Close QrScanner */
+.close-qrScanner{
+    color: #fad287;
+    cursor: pointer;
+    font-size: 2.5rem;
+
+    position: absolute;
+    right: 8rem;
+    top: 1em;
+}
+
 /* FOR MOBILES */
 @media screen and (max-width: 450px) {
     .module_buscar .input{
