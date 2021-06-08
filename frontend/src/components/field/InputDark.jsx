@@ -22,7 +22,7 @@ export default function InputDark(props) {
             <div 
                 style ={props.cursorPointer?{cursor:'pointer'}:null}
                 onClick={props.onClick}
-                className="icon">
+                className={props.cursorPointer?"icon scanner": "icon"}>                
                 {props.icon}
             </div>
         </div>
