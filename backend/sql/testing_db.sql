@@ -74,4 +74,4 @@ CREATE TABLE REPARACIONES(
 */
 
 
-#INSERT INTO USUARIO VALUES(1,"admin","Augurio","Hernández Chávez","auhernandezc@ipn.mx","$2b$10$dvl6WVR3wL7C7zwWQamGKueEc8/yK3d2KG/SgyG9.EV0NbnKJgcg6","Si");
+#INSERT INTO USUARIOS VALUES(1,"admin","Augurio","Hernández Chávez","auhernandezc@ipn.mx","$2b$10$dvl6WVR3wL7C7zwWQamGKueEc8/yK3d2KG/SgyG9.EV0NbnKJgcg6","Si");
