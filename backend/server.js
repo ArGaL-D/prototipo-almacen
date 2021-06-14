@@ -23,7 +23,7 @@ server.set('port', 3001);
 const config_db = {
     host: 'localhost',
     user: 'root',
-    password: 'archDB_32109',
+    password: 'archDB',
     database: 'EQUIPOS_CECYT16',
     multipleStatements: true
 }
