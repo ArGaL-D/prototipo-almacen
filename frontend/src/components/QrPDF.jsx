@@ -83,7 +83,7 @@ export default function QrPDF() {
     };
 
     return (
-        /* Contenedor de QR's*/
+        /* Generar QRs en la pag.*/
         <div className="qr-container">
             {
                 deviceData.map((item,key) => {
@@ -92,8 +92,8 @@ export default function QrPDF() {
                             <div className="qrCode-border">
                                 <QRCode 
                                     size  = {215}
-                                    value = { JSON.stringify(item) }                   
-                                    enableCORS = {true}                            
+                                    value = { JSON.stringify({serial:item.num_serie, equipo:item.equipo, marcar:item.marca, modelo: item.modelo, almacen:item.almacen}) }                   
+                                    enableCORS = {true}                             
                                     qrStyle    = {'squares'}
                                     quietZone  = {10}                            
                                     fgColor    = {"#1b2631"}                   
@@ -113,7 +113,7 @@ export default function QrPDF() {
                 <ImIcons.ImFilePdf/>
             </div>
 
-            {/* Plantilla PDF */}
+            {/* Generar PDF - QrCodes */}
             {
                 render 
                 ? 
