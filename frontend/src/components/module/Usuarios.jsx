@@ -515,44 +515,12 @@ export default function Usuarios({ setTitle }) {
             <div className="container_2">
                 <Switch>
 
-                    <Route path={`${path}`} exact>
+                    <Route path={`${path}`} exact>                        
                         <div className="donut">
                             <div className="pie_chart">
                                 <PieChart />
                             </div>
                         </div>
-                    </Route>
-
-                    <Route path={`${path}/crear-usuario`}>
-                        <div className="boxUser">
-                            <div className="title">
-                                Información Personal
-                            </div>
-                        </div>
-                        <div className="form">
-                            <FormCrearUsuario />
-                        </div>
-                    </Route>
-
-                    <Route path={`${path}/usuarios`}>
-                        <div className="table">
-                            <Datatable
-                                type="USUARIOS"
-                                rows={userRows}
-                                columns={userComlumns}
-                                updateRow={updateRow}
-                                deleteRow={deleteRowUser}
-                                updatePass={updatePass}
-                                
-                            />
-                        </div>
-
-                        <ModalFormUsuario
-                            open={open}
-                            onCloseModal={onCloseModal}
-                            updateUser={updateUser}
-                            setUpdateUser={setUpdateUser}
-                        />
                     </Route>
 
                     <Route path={`${path}/equipos`}>
@@ -592,6 +560,37 @@ export default function Usuarios({ setTitle }) {
                         }
                     </Route>
 
+                    <Route path={`${path}/crear-usuario`}>
+                        <div className="boxUser">
+                            <div className="title">
+                                Información Personal
+                            </div>
+                        </div>
+                        <div className="form">
+                            <FormCrearUsuario />
+                        </div>
+                    </Route>
+
+                    <Route path={`${path}/usuarios`}>
+                        <div className="table">
+                            <Datatable
+                                type="USUARIOS"
+                                rows={userRows}
+                                columns={userComlumns}
+                                updateRow={updateRow}
+                                deleteRow={deleteRowUser}
+                                updatePass={updatePass}                                
+                            />
+                        </div>
+
+                        <ModalFormUsuario
+                            open={open}
+                            onCloseModal={onCloseModal}
+                            updateUser={updateUser}
+                            setUpdateUser={setUpdateUser}
+                        />
+                    </Route>
+              
                     <Route path={`${path}/slider-imgs`}>
                         <div className="container_images">
                             <Imgs />
@@ -602,12 +601,12 @@ export default function Usuarios({ setTitle }) {
                         <QrPDF />
                     </Route>
 
-
                     <Route path={`${path}/*`}>
                         <div className="table">
                             ERROR
                         </div>
                     </Route>
+                    
                 </Switch>
             </div>
         </div>             

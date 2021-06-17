@@ -15,12 +15,16 @@ import * as ImIcons from "react-icons/im";
 import * as RiIcons from "react-icons/ri";
 
 import "./styles/Entrega.css";
+import QrScannerEquipo from '../qrscanner/QrScannerEquipo';
 
 export default function Entrega({setTitle}) {
 
     const location = useLocation();
 
+    const [qrData, setQrData] = useState({ serial: "", equipo: "" });
     const [openScanner, setOpenScanner] = useState(false);
+    const [scanQr, setScanQr] = useState(false);
+    
     const [formData,setFormData] = useState({
         equipo : "",
         serial : "",
@@ -32,9 +36,9 @@ export default function Entrega({setTitle}) {
     // Mostrar modal - scanner
     const showScanner = () =>{
         setOpenScanner(!openScanner);
-    }
+    }    
 
-    // Obtener resultados del Scanner-Qr
+    // Obtener resultados del Scanner-Qr-Entrega
     const getQrResults = (persona,equip0,serie,fecha) =>{
         setFormData({...formData,
                 nombre: persona,
@@ -84,6 +88,18 @@ export default function Entrega({setTitle}) {
         setOpenScanner(false);
     }
 
+    // Obtener resultados del Scanner-Qr-Equipo
+    const getQrResultsDevice = (equip0, seriaL) => {
+        setQrData({ ...qrData, serial: seriaL, equipo: equip0 });
+    }
+    const scanQrCode = () => {
+        setScanQr(!scanQr);
+    }
+    const closeQrScannerDevice = () => {
+        setScanQr(false);
+    }
+
+
     // Establecer título actual - navbar
     useEffect(() => {
         setTitle('Entrega');
@@ -91,6 +107,7 @@ export default function Entrega({setTitle}) {
     })
 
     // Establecer y bloquear campo fecha-salida
+    /*
     useEffect(() =>{
         const tagFecha = document.getElementById('fecha-salida');
 
@@ -98,6 +115,7 @@ export default function Entrega({setTitle}) {
         tagFecha.readOnly = true;
 
     },[formData]);
+    */
 
     // Guardar la ruta actual del componente
     useEffect(()=> {
@@ -122,25 +140,27 @@ export default function Entrega({setTitle}) {
                 </div>
                 <div className="inpt">
                     <InputDark 
+                        id = "entrega-serial"
+                        name = "serial"
+                        icon = {<BiIcons.BiBarcodeReader/>}                      
+                        onClick = {scanQrCode}
+                        onChange = {handleInputText}
+                        maxLength = {"30"}
+                        placeholder = "Serial"
+                        defaultValue = {formData.serial || qrData.serial}           
+                        cursorPointer = {true}
+                    />   
+                </div>                
+                <div className="inpt">
+                    <InputDark 
                         id = "entrega-equipo"
                         name = "equipo"
                         icon = {<GiIcons.GiWifiRouter/>}                        
                         onChange = {handleInputText}
                         maxLength = {"35"}
                         placeholder = "Equipo"
-                        defaultValue = {formData.equipo}
+                        defaultValue = {formData.equipo || qrData.equipo}                                                
                     />
-                </div>
-                <div className="inpt">
-                    <InputDark 
-                        id = "entrega-serial"
-                        name = "serial"
-                        icon = {<BiIcons.BiBarcodeReader/>}                        
-                        onChange = {handleInputText}
-                        maxLength = {"30"}
-                        placeholder = "Serial"
-                        defaultValue = {formData.serial}           
-                    />   
                 </div>
                 <div className="inpt">
                     <InputDark 
@@ -177,6 +197,20 @@ export default function Entrega({setTitle}) {
                         </div>
                     </div>
                   :null
+                }
+                {/* ESCANEAR EQUIPO */}
+                {
+                    scanQr ?
+                        <div className="modal_qrScanner">
+                            <QrScannerEquipo
+                                closeModalQr={setScanQr}
+                                getQrResults={getQrResultsDevice}
+                            />
+                            <div className="close-qrScanner" onClick={closeQrScannerDevice}>
+                                <RiIcons.RiCloseFill/>
+                            </div>                                    
+                        </div>
+                        : null
                 }
             </form>
 
